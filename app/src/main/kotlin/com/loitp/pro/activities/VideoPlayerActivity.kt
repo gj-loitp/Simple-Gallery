@@ -28,6 +28,7 @@ import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.R
 import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.*
+import com.loitp.ui.activity.SimpleActivity
 import kotlinx.android.synthetic.main.activity_video_player.*
 import kotlinx.android.synthetic.main.bottom_video_time_holder.*
 

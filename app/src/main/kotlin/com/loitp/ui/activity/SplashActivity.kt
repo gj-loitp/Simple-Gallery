@@ -1,14 +1,13 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.content.Intent
-import com.simplemobiletools.commons.activities.BaseSplashActivity
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.extensions.config
 import com.loitp.pro.extensions.favoritesDB
 import com.loitp.pro.extensions.getFavoriteFromPath
 import com.loitp.pro.extensions.mediaDB
 import com.loitp.pro.models.Favorite
-import com.loitp.ui.activity.MainActivity
+import com.simplemobiletools.commons.activities.BaseSplashActivity
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 
 class SplashActivity : BaseSplashActivity() {
     override fun initActivity() {
@@ -24,7 +23,8 @@ class SplashActivity : BaseSplashActivity() {
                 config.wereFavoritesMigrated = true
                 ensureBackgroundThread {
                     val favorites = ArrayList<Favorite>()
-                    val favoritePaths = mediaDB.getFavorites().map { it.path }.toMutableList() as ArrayList<String>
+                    val favoritePaths =
+                        mediaDB.getFavorites().map { it.path }.toMutableList() as ArrayList<String>
                     favoritePaths.forEach {
                         favorites.add(getFavoriteFromPath(it))
                     }

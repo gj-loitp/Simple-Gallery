@@ -16,7 +16,6 @@ import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_STORAGE
 import com.simplemobiletools.commons.helpers.REAL_FILE_PATH
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
-import com.loitp.pro.activities.SimpleActivity
 import com.loitp.pro.activities.VideoPlayerActivity
 import com.loitp.pro.activities.ViewPagerActivity
 import com.loitp.pro.extensions.*

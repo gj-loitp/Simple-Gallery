@@ -28,7 +28,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
-import com.loitp.pro.activities.SimpleActivity
 import com.loitp.pro.adapters.FiltersAdapter
 import com.loitp.pro.dialogs.OtherAspectRatioDialog
 import com.loitp.pro.dialogs.ResizeDialog

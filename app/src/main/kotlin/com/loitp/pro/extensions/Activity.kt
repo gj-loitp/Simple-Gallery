@@ -31,7 +31,7 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.commons.models.FileDirItem
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
-import com.loitp.pro.activities.SimpleActivity
+import com.loitp.ui.activity.SimpleActivity
 import com.loitp.pro.dialogs.PickDirectoryDialog
 import com.loitp.pro.helpers.RECYCLE_BIN
 import com.loitp.pro.models.DateTaken

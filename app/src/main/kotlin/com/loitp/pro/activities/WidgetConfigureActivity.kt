@@ -19,6 +19,7 @@ import com.loitp.pro.helpers.MyWidgetProvider
 import com.loitp.pro.helpers.ROUNDED_CORNERS_NONE
 import com.loitp.pro.models.Directory
 import com.loitp.pro.models.Widget
+import com.loitp.ui.activity.SimpleActivity
 import kotlinx.android.synthetic.main.activity_widget_config.*
 
 class WidgetConfigureActivity : SimpleActivity() {
