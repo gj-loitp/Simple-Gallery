@@ -48,10 +48,9 @@ import com.loitp.ui.dialog.DeleteWithRememberDialog
 import com.loitp.ui.dialog.ResizeWithPathDialog
 import com.loitp.ui.dialog.SaveAsDialog
 import com.loitp.ui.dialog.SlideshowDialog
-import com.loitp.ext.*
-import com.loitp.pro.fragments.PhotoFragment
+import com.loitp.ui.frm.PhotoFragment
 import com.loitp.pro.fragments.VideoFragment
-import com.loitp.pro.fragments.ViewPagerFragment
+import com.loitp.ui.frm.ViewPagerFragment
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem

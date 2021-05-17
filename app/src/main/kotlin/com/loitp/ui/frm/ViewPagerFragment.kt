@@ -1,4 +1,4 @@
-package com.loitp.pro.fragments
+package com.loitp.ui.frm
 
 import android.provider.MediaStore
 import android.provider.MediaStore.Files
@@ -6,12 +6,13 @@ import android.provider.MediaStore.Images
 import android.view.MotionEvent
 import androidx.exifinterface.media.ExifInterface
 import androidx.fragment.app.Fragment
-import com.simplemobiletools.commons.extensions.*
-import com.loitp.pro.R
 import com.loitp.ext.config
+import com.loitp.pro.R
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
+import com.simplemobiletools.commons.extensions.*
 import java.io.File
+import kotlin.math.abs
 
 abstract class ViewPagerFragment : Fragment() {
     var listener: FragmentListener? = null
@@ -44,7 +45,7 @@ abstract class ViewPagerFragment : Fragment() {
             return ""
         }
 
-        val path = "${file.parent.trimEnd('/')}/"
+        val path = "${file.parent?.trimEnd('/')}/"
         val exif = try {
             ExifInterface(medium.path)
         } catch (e: Exception) {
@@ -66,7 +67,8 @@ abstract class ViewPagerFragment : Fragment() {
         }
 
         if (detailsFlag and EXT_RESOLUTION != 0) {
-            context!!.getResolution(file.absolutePath)?.formatAsResolution().let { if (it?.isNotEmpty() == true) details.appendln(it) }
+            context!!.getResolution(file.absolutePath)?.formatAsResolution()
+                .let { if (it?.isNotEmpty() == true) details.appendln(it) }
         }
 
         if (detailsFlag and EXT_LAST_MODIFIED != 0) {
@@ -91,14 +93,16 @@ abstract class ViewPagerFragment : Fragment() {
         return details.toString().trim()
     }
 
-    fun getPathToLoad(medium: Medium) = if (context?.isPathOnOTG(medium.path) == true) medium.path.getOTGPublicPath(context!!) else medium.path
+    fun getPathToLoad(medium: Medium) =
+        if (context?.isPathOnOTG(medium.path) == true) medium.path.getOTGPublicPath(context!!) else medium.path
 
     private fun getFileLastModified(file: File): String {
         val projection = arrayOf(Images.Media.DATE_MODIFIED)
         val uri = Files.getContentUri("external")
         val selection = "${MediaStore.MediaColumns.DATA} = ?"
         val selectionArgs = arrayOf(file.absolutePath)
-        val cursor = context!!.contentResolver.query(uri, projection, selection, selectionArgs, null)
+        val cursor =
+            context!!.contentResolver.query(uri, projection, selection, selectionArgs, null)
         cursor?.use {
             return if (cursor.moveToFirst()) {
                 val dateModified = cursor.getLongValue(Images.Media.DATE_MODIFIED) * 1000L
@@ -145,7 +149,9 @@ abstract class ViewPagerFragment : Fragment() {
                 val diffY = mTouchDownY - event.y
 
                 val downGestureDuration = System.currentTimeMillis() - mTouchDownTime
-                if (!mIgnoreCloseDown && Math.abs(diffY) > Math.abs(diffX) && diffY < -mCloseDownThreshold && downGestureDuration < MAX_CLOSE_DOWN_GESTURE_DURATION && context?.config?.allowDownGesture == true) {
+                if (!mIgnoreCloseDown && abs(diffY) > abs(diffX) && diffY < -mCloseDownThreshold &&
+                    downGestureDuration < MAX_CLOSE_DOWN_GESTURE_DURATION && context?.config?.allowDownGesture == true
+                ) {
                     activity?.finish()
                     activity?.overridePendingTransition(0, R.anim.slide_down)
                 }

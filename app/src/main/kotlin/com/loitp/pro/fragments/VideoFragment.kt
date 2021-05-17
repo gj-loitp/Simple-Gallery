@@ -34,6 +34,7 @@ import com.loitp.ext.parseFileChannel
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import com.loitp.pro.views.MediaSideScroll
+import com.loitp.ui.frm.ViewPagerFragment
 import kotlinx.android.synthetic.main.bottom_video_time_holder.view.*
 import kotlinx.android.synthetic.main.pager_video_item.view.*
 import java.io.File
