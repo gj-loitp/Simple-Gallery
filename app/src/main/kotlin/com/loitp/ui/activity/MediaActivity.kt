@@ -29,8 +29,8 @@ import com.loitp.service.GetMediaAsyncTask
 import com.loitp.db.GalleryDatabase
 import com.loitp.ui.dialog.ChangeGroupingDialog
 import com.loitp.ui.dialog.ChangeSortingDialog
-import com.loitp.pro.dialogs.ChangeViewTypeDialog
-import com.loitp.pro.dialogs.FilterMediaDialog
+import com.loitp.ui.dialog.ChangeViewTypeDialog
+import com.loitp.ui.dialog.FilterMediaDialog
 import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.*
 import com.loitp.pro.interfaces.MediaOperationsListener

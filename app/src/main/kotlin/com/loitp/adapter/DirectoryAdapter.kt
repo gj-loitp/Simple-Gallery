@@ -14,8 +14,8 @@ import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.loitp.pro.R
-import com.loitp.pro.dialogs.ConfirmDeleteFolderDialog
-import com.loitp.pro.dialogs.ExcludeFolderDialog
+import com.loitp.ui.dialog.ConfirmDeleteFolderDialog
+import com.loitp.ui.dialog.ExcludeFolderDialog
 import com.loitp.pro.dialogs.PickMediumDialog
 import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.*

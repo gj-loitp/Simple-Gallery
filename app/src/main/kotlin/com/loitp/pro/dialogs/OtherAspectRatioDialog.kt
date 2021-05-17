@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.loitp.pro.R
+import com.loitp.ui.dialog.CustomAspectRatioDialog
 import kotlinx.android.synthetic.main.dialog_other_aspect_ratio.view.*
 
 class OtherAspectRatioDialog(val activity: BaseSimpleActivity, val lastOtherAspectRatio: Pair<Float, Float>?, val callback: (aspectRatio: Pair<Float, Float>) -> Unit) {

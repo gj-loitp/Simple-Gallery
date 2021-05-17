@@ -1,15 +1,21 @@
-package com.loitp.pro.dialogs
+package com.loitp.ui.dialog
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AlertDialog
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.loitp.pro.R
 import com.loitp.pro.extensions.config
 import com.loitp.pro.helpers.*
+import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.commons.extensions.setupDialogStuff
 import kotlinx.android.synthetic.main.dialog_manage_extended_details.view.*
 
-class ManageExtendedDetailsDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
-    private var view = activity.layoutInflater.inflate(R.layout.dialog_manage_extended_details, null)
+class ManageExtendedDetailsDialog(
+    val activity: BaseSimpleActivity,
+    val callback: (result: Int) -> Unit
+) {
+    @SuppressLint("InflateParams")
+    private var view =
+        activity.layoutInflater.inflate(R.layout.dialog_manage_extended_details, null)
 
     init {
         val details = activity.config.extendedDetails
@@ -26,11 +32,11 @@ class ManageExtendedDetailsDialog(val activity: BaseSimpleActivity, val callback
         }
 
         AlertDialog.Builder(activity)
-                .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed() }
-                .setNegativeButton(R.string.cancel, null)
-                .create().apply {
-                    activity.setupDialogStuff(view, this)
-                }
+            .setPositiveButton(R.string.ok) { _, _ -> dialogConfirmed() }
+            .setNegativeButton(R.string.cancel, null)
+            .create().apply {
+                activity.setupDialogStuff(view, this)
+            }
     }
 
     private fun dialogConfirmed() {

@@ -1,5 +1,6 @@
-package com.loitp.pro.dialogs
+package com.loitp.ui.dialog
 
+import android.annotation.SuppressLint
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -12,9 +13,14 @@ import com.loitp.pro.R
 import com.loitp.pro.extensions.config
 import kotlinx.android.synthetic.main.dialog_exclude_folder.view.*
 
-class ExcludeFolderDialog(val activity: BaseSimpleActivity, val selectedPaths: List<String>, val callback: () -> Unit) {
-    val alternativePaths = getAlternativePathsList()
-    var radioGroup: RadioGroup? = null
+@SuppressLint("InflateParams")
+class ExcludeFolderDialog(
+    val activity: BaseSimpleActivity,
+    val selectedPaths: List<String>,
+    val callback: () -> Unit
+) {
+    private val alternativePaths = getAlternativePathsList()
+    private var radioGroup: RadioGroup? = null
 
     init {
         val view = activity.layoutInflater.inflate(R.layout.dialog_exclude_folder, null).apply {
@@ -24,25 +30,35 @@ class ExcludeFolderDialog(val activity: BaseSimpleActivity, val selectedPaths: L
             exclude_folder_radio_group.beVisibleIf(alternativePaths.size > 1)
         }
 
-        alternativePaths.forEachIndexed { index, value ->
-            val radioButton = (activity.layoutInflater.inflate(R.layout.radio_button, null) as RadioButton).apply {
+        alternativePaths.forEachIndexed { index, _ ->
+            val radioButton = (activity.layoutInflater.inflate(
+                R.layout.radio_button,
+                null
+            ) as RadioButton).apply {
                 text = alternativePaths[index]
                 isChecked = index == 0
                 id = index
             }
-            radioGroup!!.addView(radioButton, RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+            radioGroup!!.addView(
+                radioButton,
+                RadioGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            )
         }
 
         AlertDialog.Builder(activity)
-                .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed() }
-                .setNegativeButton(R.string.cancel, null)
-                .create().apply {
-                    activity.setupDialogStuff(view, this)
-                }
+            .setPositiveButton(R.string.ok) { _, _ -> dialogConfirmed() }
+            .setNegativeButton(R.string.cancel, null)
+            .create().apply {
+                activity.setupDialogStuff(view, this)
+            }
     }
 
     private fun dialogConfirmed() {
-        val path = if (alternativePaths.isEmpty()) selectedPaths[0] else alternativePaths[radioGroup!!.checkedRadioButtonId]
+        val path =
+            if (alternativePaths.isEmpty()) selectedPaths[0] else alternativePaths[radioGroup!!.checkedRadioButtonId]
         activity.config.addExcludedFolder(path)
         callback()
     }

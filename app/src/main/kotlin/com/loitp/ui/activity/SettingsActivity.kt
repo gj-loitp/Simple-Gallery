@@ -10,8 +10,8 @@ import com.google.gson.reflect.TypeToken
 import com.loitp.pro.R
 import com.loitp.ui.dialog.ChangeFileThumbnailStyleDialog
 import com.loitp.ui.dialog.ChangeFolderThumbnailStyleDialog
-import com.loitp.pro.dialogs.ManageBottomActionsDialog
-import com.loitp.pro.dialogs.ManageExtendedDetailsDialog
+import com.loitp.ui.dialog.ManageBottomActionsDialog
+import com.loitp.ui.dialog.ManageExtendedDetailsDialog
 import com.loitp.pro.extensions.config
 import com.loitp.pro.extensions.emptyTheRecycleBin
 import com.loitp.pro.extensions.mediaDB

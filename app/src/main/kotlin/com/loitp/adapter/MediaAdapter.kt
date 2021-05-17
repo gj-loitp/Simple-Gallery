@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.loitp.pro.R
-import com.loitp.pro.dialogs.DeleteWithRememberDialog
+import com.loitp.ui.dialog.DeleteWithRememberDialog
 import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.*
 import com.loitp.pro.interfaces.MediaOperationsListener

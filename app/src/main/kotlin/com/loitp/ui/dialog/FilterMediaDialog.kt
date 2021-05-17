@@ -1,5 +1,6 @@
-package com.loitp.pro.dialogs
+package com.loitp.ui.dialog
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.setupDialogStuff
@@ -8,7 +9,11 @@ import com.loitp.pro.extensions.config
 import com.loitp.pro.helpers.*
 import kotlinx.android.synthetic.main.dialog_filter_media.view.*
 
-class FilterMediaDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
+class FilterMediaDialog(
+    val activity: BaseSimpleActivity,
+    val callback: (result: Int) -> Unit
+) {
+    @SuppressLint("InflateParams")
     private var view = activity.layoutInflater.inflate(R.layout.dialog_filter_media, null)
 
     init {
@@ -23,11 +28,11 @@ class FilterMediaDialog(val activity: BaseSimpleActivity, val callback: (result:
         }
 
         AlertDialog.Builder(activity)
-                .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed() }
-                .setNegativeButton(R.string.cancel, null)
-                .create().apply {
-                    activity.setupDialogStuff(view, this, R.string.filter_media)
-                }
+            .setPositiveButton(R.string.ok) { _, _ -> dialogConfirmed() }
+            .setNegativeButton(R.string.cancel, null)
+            .create().apply {
+                activity.setupDialogStuff(view, this, R.string.filter_media)
+            }
     }
 
     private fun dialogConfirmed() {
