@@ -1,16 +1,32 @@
-package com.loitp.pro.helpers
+package com.loitp.helper
 
 import android.content.Context
 import android.graphics.*
 import android.net.Uri
 import com.davemorrissey.labs.subscaleview.ImageRegionDecoder
+import com.loitp.pro.helpers.LOW_TILE_DPI
 
-class PicassoRegionDecoder(val showHighestQuality: Boolean, val screenWidth: Int, val screenHeight: Int, val minTileDpi: Int) : ImageRegionDecoder {
+class PicassoRegionDecoder(
+    val showHighestQuality: Boolean,
+    val screenWidth: Int,
+    val screenHeight: Int,
+    val minTileDpi: Int
+) : ImageRegionDecoder {
     private var decoder: BitmapRegionDecoder? = null
     private val decoderLock = Any()
 
     override fun init(context: Context, uri: Uri): Point {
-        val newUri = Uri.parse(uri.toString().replace("%", "%25").replace("#", "%23"))
+        val newUri = Uri.parse(
+            uri.toString()
+                .replace(
+                    oldValue = "%",
+                    newValue = "%25"
+                )
+                .replace(
+                    oldValue = "#",
+                    newValue = "%23"
+                )
+        )
         val inputStream = context.contentResolver.openInputStream(newUri)
         decoder = BitmapRegionDecoder.newInstance(inputStream, false)
         return Point(decoder!!.width, decoder!!.height)
@@ -29,16 +45,18 @@ class PicassoRegionDecoder(val showHighestQuality: Boolean, val screenWidth: Int
 
             val options = BitmapFactory.Options()
             options.inSampleSize = newSampleSize
-            options.inPreferredConfig = if (showHighestQuality) Bitmap.Config.ARGB_8888 else Bitmap.Config.RGB_565
+            options.inPreferredConfig =
+                if (showHighestQuality) Bitmap.Config.ARGB_8888 else Bitmap.Config.RGB_565
             val bitmap = decoder!!.decodeRegion(rect, options)
 
-            return bitmap ?: throw RuntimeException("Region decoder returned null bitmap - image format may not be supported")
+            return bitmap
+                ?: throw RuntimeException("Region decoder returned null bitmap - image format may not be supported")
         }
     }
 
     override fun isReady() = decoder != null && !decoder!!.isRecycled
 
     override fun recycle() {
-        decoder!!.recycle()
+        decoder?.recycle()
     }
 }

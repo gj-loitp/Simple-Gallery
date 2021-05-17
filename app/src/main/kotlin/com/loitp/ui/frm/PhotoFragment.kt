@@ -43,6 +43,8 @@ import com.loitp.adapter.PortraitPhotosAdapter
 import com.loitp.ext.config
 import com.loitp.ext.saveRotatedImageToFile
 import com.loitp.ext.sendFakeClick
+import com.loitp.helper.MyGlideImageDecoder
+import com.loitp.helper.PicassoRegionDecoder
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium

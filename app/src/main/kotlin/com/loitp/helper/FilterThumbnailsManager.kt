@@ -1,4 +1,4 @@
-package com.loitp.pro.helpers
+package com.loitp.helper
 
 import android.graphics.Bitmap
 import com.loitp.pro.models.FilterItem
@@ -14,7 +14,8 @@ class FilterThumbnailsManager {
 
     fun processThumbs(): ArrayList<FilterItem> {
         for (filterItem in filterThumbnails) {
-            filterItem.bitmap = filterItem.filter.processFilter(Bitmap.createBitmap(filterItem.bitmap))
+            filterItem.bitmap =
+                filterItem.filter.processFilter(Bitmap.createBitmap(filterItem.bitmap))
             processedThumbnails.add(filterItem)
         }
         return processedThumbnails

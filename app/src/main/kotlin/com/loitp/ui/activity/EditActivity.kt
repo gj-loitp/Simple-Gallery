@@ -36,6 +36,7 @@ import com.loitp.ext.config
 import com.loitp.ext.copyNonDimensionAttributesTo
 import com.loitp.ext.fixDateTaken
 import com.loitp.ext.openEditor
+import com.loitp.helper.FilterThumbnailsManager
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.FilterItem
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog

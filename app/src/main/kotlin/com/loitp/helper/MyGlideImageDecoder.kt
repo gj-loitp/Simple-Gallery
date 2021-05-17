@@ -1,4 +1,4 @@
-package com.loitp.pro.helpers
+package com.loitp.helper
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,7 +10,10 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.signature.ObjectKey
 import com.davemorrissey.labs.subscaleview.ImageDecoder
 
-class MyGlideImageDecoder(val degrees: Int, val signature: ObjectKey) : ImageDecoder {
+class MyGlideImageDecoder(
+    val degrees: Int,
+    val signature: ObjectKey
+) : ImageDecoder {
 
     override fun decode(context: Context, uri: Uri): Bitmap {
         val options = RequestOptions()

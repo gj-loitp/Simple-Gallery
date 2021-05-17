@@ -28,6 +28,9 @@ import com.bumptech.glide.signature.ObjectKey
 import com.loitp.constant.IsoTypeReader
 import com.loitp.db.GalleryDatabase
 import com.loitp.helper.Config
+import com.loitp.helper.MediaFetcher
+import com.loitp.helper.MyWidgetProvider
+import com.loitp.helper.PicassoRoundedCornersTransformation
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
 import com.loitp.pro.interfaces.*
