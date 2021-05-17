@@ -5,6 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.loitp.db.dao.*
+import com.loitp.model.DateTaken
+import com.loitp.model.Directory
+import com.loitp.model.Favorite
+import com.loitp.model.Medium
 import com.loitp.pro.models.*
 
 @Database(

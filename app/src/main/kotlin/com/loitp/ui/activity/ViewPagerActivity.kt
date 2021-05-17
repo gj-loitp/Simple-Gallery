@@ -52,7 +52,7 @@ import com.loitp.ui.frm.PhotoFragment
 import com.loitp.ui.frm.VideoFragment
 import com.loitp.ui.frm.ViewPagerFragment
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.Medium
+import com.loitp.model.Medium
 import com.loitp.pro.models.ThumbnailItem
 import com.loitp.ui.view.DefaultPageTransformer
 import com.loitp.ui.view.FadePageTransformer

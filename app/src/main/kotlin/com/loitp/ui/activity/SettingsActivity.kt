@@ -17,7 +17,7 @@ import com.loitp.ext.emptyTheRecycleBin
 import com.loitp.ext.mediaDB
 import com.loitp.ext.showRecycleBinEmptyingDialog
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.AlbumCover
+import com.loitp.model.AlbumCover
 import com.simplemobiletools.commons.dialogs.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*

@@ -21,7 +21,7 @@ import com.loitp.ui.frm.PhotoFragment
 import com.loitp.ui.frm.VideoFragment
 import com.loitp.ui.frm.ViewPagerFragment
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.Medium
+import com.loitp.model.Medium
 import kotlinx.android.synthetic.main.bottom_actions.*
 import kotlinx.android.synthetic.main.fragment_holder.*
 import java.io.File

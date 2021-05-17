@@ -1,7 +1,7 @@
 package com.loitp.ext
 
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.Medium
+import com.loitp.model.Medium
 
 fun ArrayList<Medium>.getDirMediaTypes(): Int {
     var types = 0

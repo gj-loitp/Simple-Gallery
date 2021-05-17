@@ -30,8 +30,8 @@ import com.loitp.pro.R
 import com.loitp.pro.helpers.*
 import com.loitp.interfaces.DirectoryOperationsListener
 import com.loitp.service.NewPhotoFetcher
-import com.loitp.pro.models.Directory
-import com.loitp.pro.models.Medium
+import com.loitp.model.Directory
+import com.loitp.model.Medium
 import com.loitp.ui.dialog.ChangeSortingDialog
 import com.loitp.ui.dialog.ChangeViewTypeDialog
 import com.loitp.ui.dialog.FilterMediaDialog

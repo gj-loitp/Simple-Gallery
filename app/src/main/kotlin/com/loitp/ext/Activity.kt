@@ -27,7 +27,7 @@ import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
 import com.loitp.ext.*
 import com.loitp.pro.helpers.RECYCLE_BIN
-import com.loitp.pro.models.DateTaken
+import com.loitp.model.DateTaken
 import com.loitp.ui.activity.SimpleActivity
 import com.loitp.ui.dialog.PickDirectoryDialog
 import com.simplemobiletools.commons.activities.BaseSimpleActivity

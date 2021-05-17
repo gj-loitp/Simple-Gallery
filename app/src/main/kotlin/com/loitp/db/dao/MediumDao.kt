@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.loitp.pro.models.Medium
+import com.loitp.model.Medium
 
 @Dao
 interface MediumDao {

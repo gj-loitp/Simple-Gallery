@@ -1,6 +1,6 @@
 package com.loitp.interfaces
 
-import com.loitp.pro.models.Directory
+import com.loitp.model.Directory
 import java.io.File
 
 interface DirectoryOperationsListener {

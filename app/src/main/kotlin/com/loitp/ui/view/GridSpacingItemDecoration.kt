@@ -3,7 +3,7 @@ package com.loitp.ui.view
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.loitp.pro.models.Medium
+import com.loitp.model.Medium
 import com.loitp.pro.models.ThumbnailItem
 
 class GridSpacingItemDecoration(

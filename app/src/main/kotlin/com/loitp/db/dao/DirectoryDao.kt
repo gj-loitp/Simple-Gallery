@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.loitp.pro.helpers.RECYCLE_BIN
-import com.loitp.pro.models.Directory
+import com.loitp.model.Directory
 
 @Dao
 interface DirectoryDao {

@@ -5,7 +5,7 @@ import com.loitp.ext.config
 import com.loitp.ext.favoritesDB
 import com.loitp.ext.getFavoriteFromPath
 import com.loitp.ext.mediaDB
-import com.loitp.pro.models.Favorite
+import com.loitp.model.Favorite
 import com.simplemobiletools.commons.activities.BaseSplashActivity
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 

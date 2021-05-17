@@ -1,3 +1,3 @@
-package com.loitp.pro.models
+package com.loitp.model
 
 data class AlbumCover(val path: String, val tmb: String)

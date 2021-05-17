@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.loitp.ext.config
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.Medium
+import com.loitp.model.Medium
 import com.simplemobiletools.commons.extensions.*
 import java.io.File
 import kotlin.math.abs

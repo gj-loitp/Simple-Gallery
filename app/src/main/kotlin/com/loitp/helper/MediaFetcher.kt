@@ -14,7 +14,7 @@ import android.text.format.DateFormat
 import com.loitp.ext.*
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.Medium
+import com.loitp.model.Medium
 import com.loitp.pro.models.ThumbnailItem
 import com.loitp.pro.models.ThumbnailSection
 import com.simplemobiletools.commons.extensions.*

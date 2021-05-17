@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.AlbumCover
+import com.loitp.model.AlbumCover
 import com.simplemobiletools.commons.helpers.BaseConfig
 import com.simplemobiletools.commons.helpers.SORT_BY_DATE_MODIFIED
 import com.simplemobiletools.commons.helpers.SORT_DESCENDING

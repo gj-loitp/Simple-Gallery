@@ -12,7 +12,7 @@ import com.loitp.ui.frm.VideoFragment
 import com.loitp.ui.frm.ViewPagerFragment
 import com.loitp.pro.helpers.MEDIUM
 import com.loitp.pro.helpers.SHOULD_INIT_FRAGMENT
-import com.loitp.pro.models.Medium
+import com.loitp.model.Medium
 import com.loitp.ui.activity.ViewPagerActivity
 
 class MyPagerAdapter(

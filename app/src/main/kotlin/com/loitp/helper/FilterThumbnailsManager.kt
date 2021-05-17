@@ -1,7 +1,7 @@
 package com.loitp.helper
 
 import android.graphics.Bitmap
-import com.loitp.pro.models.FilterItem
+import com.loitp.model.FilterItem
 import java.util.*
 
 class FilterThumbnailsManager {

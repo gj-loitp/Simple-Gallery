@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.loitp.pro.R
-import com.loitp.pro.models.FilterItem
+import com.loitp.model.FilterItem
 import kotlinx.android.synthetic.main.editor_filter_item.view.*
 import java.util.*
 

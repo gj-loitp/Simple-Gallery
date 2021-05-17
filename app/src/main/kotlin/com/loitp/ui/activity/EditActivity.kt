@@ -38,7 +38,7 @@ import com.loitp.ext.fixDateTaken
 import com.loitp.ext.openEditor
 import com.loitp.helper.FilterThumbnailsManager
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.FilterItem
+import com.loitp.model.FilterItem
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.extensions.*
