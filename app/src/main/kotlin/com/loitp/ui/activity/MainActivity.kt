@@ -23,7 +23,6 @@ import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
-import com.loitp.pro.activities.MediaActivity
 import com.loitp.pro.activities.SearchActivity
 import com.loitp.pro.activities.SimpleActivity
 import com.loitp.pro.adapters.DirectoryAdapter

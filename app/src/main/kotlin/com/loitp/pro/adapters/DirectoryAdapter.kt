@@ -22,7 +22,7 @@ import com.simplemobiletools.commons.models.FileDirItem
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.loitp.pro.R
-import com.loitp.pro.activities.MediaActivity
+import com.loitp.ui.activity.MediaActivity
 import com.loitp.pro.dialogs.ConfirmDeleteFolderDialog
 import com.loitp.pro.dialogs.ExcludeFolderDialog
 import com.loitp.pro.dialogs.PickMediumDialog

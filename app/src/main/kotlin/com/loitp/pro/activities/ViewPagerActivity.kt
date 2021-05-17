@@ -57,6 +57,7 @@ import com.loitp.pro.fragments.ViewPagerFragment
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem
+import com.loitp.ui.activity.MediaActivity
 import kotlinx.android.synthetic.main.activity_medium.*
 import kotlinx.android.synthetic.main.bottom_actions.*
 import java.io.File

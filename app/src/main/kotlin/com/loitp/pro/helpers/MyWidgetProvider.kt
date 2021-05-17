@@ -16,7 +16,7 @@ import com.simplemobiletools.commons.extensions.setText
 import com.simplemobiletools.commons.extensions.setVisibleIf
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.R
-import com.loitp.pro.activities.MediaActivity
+import com.loitp.ui.activity.MediaActivity
 import com.loitp.pro.extensions.config
 import com.loitp.pro.extensions.directoryDao
 import com.loitp.pro.extensions.getFolderNameFromPath
