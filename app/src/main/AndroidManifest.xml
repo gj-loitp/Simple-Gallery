@@ -272,7 +272,7 @@
         </provider>
 
         <receiver
-            android:name=".receivers.RefreshMediaReceiver"
+            android:name="com.loitp.receiver.RefreshMediaReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.simplemobiletools.REFRESH_MEDIA"/>
@@ -291,7 +291,7 @@
                 android:resource="@xml/widget_info"/>
         </receiver>
 
-        <receiver android:name=".receivers.BootCompletedReceiver"
+        <receiver android:name="com.loitp.receiver.BootCompletedReceiver"
             android:exported="true"
             android:enabled="true">
             <intent-filter>

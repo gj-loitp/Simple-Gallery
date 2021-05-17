@@ -32,11 +32,10 @@ import com.loitp.helper.Config
 import com.loitp.helper.MediaFetcher
 import com.loitp.helper.MyWidgetProvider
 import com.loitp.helper.PicassoRoundedCornersTransformation
+import com.loitp.helper.svg.SvgSoftwareLayerSetter
 import com.loitp.model.*
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.*
-import com.loitp.pro.svg.SvgSoftwareLayerSetter
 import com.loitp.pro.views.MySquareImageView
 import com.loitp.service.GetMediaAsyncTask
 import com.loitp.ui.activity.SettingsActivity

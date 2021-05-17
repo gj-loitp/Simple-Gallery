@@ -1,4 +1,4 @@
-package com.loitp.pro.svg
+package com.loitp.helper.svg
 
 import android.content.Context
 import android.graphics.drawable.PictureDrawable
@@ -13,8 +13,13 @@ import java.io.InputStream
 
 @GlideModule
 class SvgModule : AppGlideModule() {
-    override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        registry.register(SVG::class.java, PictureDrawable::class.java, SvgDrawableTranscoder()).append(InputStream::class.java, SVG::class.java, SvgDecoder())
+    override fun registerComponents(
+        context: Context,
+        glide: Glide, registry:
+        Registry
+    ) {
+        registry.register(SVG::class.java, PictureDrawable::class.java, SvgDrawableTranscoder())
+            .append(InputStream::class.java, SVG::class.java, SvgDecoder())
     }
 
     override fun isManifestParsingEnabled() = false
