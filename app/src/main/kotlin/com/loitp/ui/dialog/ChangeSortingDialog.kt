@@ -1,5 +1,6 @@
-package com.loitp.pro.dialogs
+package com.loitp.ui.dialog
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -13,16 +14,23 @@ import com.loitp.pro.extensions.config
 import com.loitp.pro.helpers.SHOW_ALL
 import kotlinx.android.synthetic.main.dialog_change_sorting.view.*
 
-class ChangeSortingDialog(val activity: BaseSimpleActivity, val isDirectorySorting: Boolean, val showFolderCheckbox: Boolean,
-                          val path: String = "", val callback: () -> Unit) :
-        DialogInterface.OnClickListener {
+@SuppressLint("InflateParams")
+class ChangeSortingDialog(
+    val activity: BaseSimpleActivity,
+    val isDirectorySorting: Boolean,
+    val showFolderCheckbox: Boolean,
+    val path: String = "",
+    val callback: () -> Unit
+) :
+    DialogInterface.OnClickListener {
     private var currSorting = 0
     private var config = activity.config
     private var pathToUse = if (!isDirectorySorting && path.isEmpty()) SHOW_ALL else path
     private var view: View
 
     init {
-        currSorting = if (isDirectorySorting) config.directorySorting else config.getFolderSorting(pathToUse)
+        currSorting =
+            if (isDirectorySorting) config.directorySorting else config.getFolderSorting(pathToUse)
         view = activity.layoutInflater.inflate(R.layout.dialog_change_sorting, null).apply {
             use_for_this_folder_divider.beVisibleIf(showFolderCheckbox || (currSorting and SORT_BY_NAME != 0 || currSorting and SORT_BY_PATH != 0))
 
@@ -35,11 +43,11 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, val isDirectorySorti
         }
 
         AlertDialog.Builder(activity)
-                .setPositiveButton(R.string.ok, this)
-                .setNegativeButton(R.string.cancel, null)
-                .create().apply {
-                    activity.setupDialogStuff(view, this, R.string.sort_by)
-                }
+            .setPositiveButton(R.string.ok, this)
+            .setNegativeButton(R.string.cancel, null)
+            .create().apply {
+                activity.setupDialogStuff(view = view, dialog = this, titleId = R.string.sort_by)
+            }
 
         setupSortRadio()
         setupOrderRadio()
@@ -48,7 +56,8 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, val isDirectorySorti
     private fun setupSortRadio() {
         val sortingRadio = view.sorting_dialog_radio_sorting
         sortingRadio.setOnCheckedChangeListener { group, checkedId ->
-            val isSortingByNameOrPath = checkedId == sortingRadio.sorting_dialog_radio_name.id || checkedId == sortingRadio.sorting_dialog_radio_path.id
+            val isSortingByNameOrPath =
+                checkedId == sortingRadio.sorting_dialog_radio_name.id || checkedId == sortingRadio.sorting_dialog_radio_path.id
             view.sorting_dialog_numeric_sorting.beVisibleIf(isSortingByNameOrPath)
             view.use_for_this_folder_divider.beVisibleIf(view.sorting_dialog_numeric_sorting.isVisible() || view.sorting_dialog_use_for_this_folder.isVisible())
         }

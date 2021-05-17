@@ -25,7 +25,7 @@ import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
 import com.loitp.adapter.DirectoryAdapter
 import com.loitp.db.GalleryDatabase
-import com.loitp.pro.dialogs.ChangeSortingDialog
+import com.loitp.ui.dialog.ChangeSortingDialog
 import com.loitp.pro.dialogs.ChangeViewTypeDialog
 import com.loitp.pro.dialogs.FilterMediaDialog
 import com.loitp.pro.extensions.*

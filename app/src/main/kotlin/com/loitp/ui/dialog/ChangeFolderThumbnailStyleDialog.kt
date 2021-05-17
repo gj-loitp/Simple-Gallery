@@ -1,5 +1,6 @@
-package com.loitp.pro.dialogs
+package com.loitp.ui.dialog
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.view.View
 import android.widget.RelativeLayout
@@ -8,24 +9,30 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.loitp.pro.R
+import com.loitp.pro.extensions.config
+import com.loitp.pro.helpers.*
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.beGone
 import com.simplemobiletools.commons.extensions.beVisible
 import com.simplemobiletools.commons.extensions.setupDialogStuff
-import com.loitp.pro.R
-import com.loitp.pro.extensions.config
-import com.loitp.pro.helpers.*
 import kotlinx.android.synthetic.main.dialog_change_folder_thumbnail_style.view.*
 import kotlinx.android.synthetic.main.directory_item_grid_square.view.*
 
-class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) : DialogInterface.OnClickListener {
+class ChangeFolderThumbnailStyleDialog(
+    val activity: BaseSimpleActivity,
+    val callback: () -> Unit
+) : DialogInterface.OnClickListener {
     private var config = activity.config
-    private var view: View
+
+    @SuppressLint("InflateParams")
+    private var view: View =
+        activity.layoutInflater.inflate(R.layout.dialog_change_folder_thumbnail_style, null)
+            .apply {
+                dialog_folder_limit_title.isChecked = config.limitFolderTitle
+            }
 
     init {
-        view = activity.layoutInflater.inflate(R.layout.dialog_change_folder_thumbnail_style, null).apply {
-            dialog_folder_limit_title.isChecked = config.limitFolderTitle
-        }
 
         AlertDialog.Builder(activity)
             .setPositiveButton(R.string.ok, this)
@@ -41,7 +48,7 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
 
     private fun setupStyle() {
         val styleRadio = view.dialog_radio_folder_style
-        styleRadio.setOnCheckedChangeListener { group, checkedId ->
+        styleRadio.setOnCheckedChangeListener { _, _ ->
             updateSample()
         }
 
@@ -55,7 +62,7 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
 
     private fun setupMediaCount() {
         val countRadio = view.dialog_radio_folder_count_holder
-        countRadio.setOnCheckedChangeListener { group, checkedId ->
+        countRadio.setOnCheckedChangeListener { _, _ ->
             updateSample()
         }
 
@@ -68,18 +75,22 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
         countBtn.isChecked = true
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateSample() {
         val photoCount = 36
         val folderName = "Camera"
         view.apply {
-            val useRoundedCornersLayout = dialog_radio_folder_style.checkedRadioButtonId == R.id.dialog_radio_folder_rounded_corners
+            val useRoundedCornersLayout =
+                dialog_radio_folder_style.checkedRadioButtonId == R.id.dialog_radio_folder_rounded_corners
             dialog_folder_sample_holder.removeAllViews()
 
-            val layout = if (useRoundedCornersLayout) R.layout.directory_item_grid_rounded_corners else R.layout.directory_item_grid_square
+            val layout =
+                if (useRoundedCornersLayout) R.layout.directory_item_grid_rounded_corners else R.layout.directory_item_grid_square
             val sampleView = activity.layoutInflater.inflate(layout, null)
             dialog_folder_sample_holder.addView(sampleView)
 
-            sampleView.layoutParams.width = activity.resources.getDimension(R.dimen.sample_thumbnail_size).toInt()
+            sampleView.layoutParams.width =
+                activity.resources.getDimension(R.dimen.sample_thumbnail_size).toInt()
             (sampleView.layoutParams as RelativeLayout.LayoutParams).addRule(RelativeLayout.CENTER_HORIZONTAL)
 
             when (dialog_radio_folder_count_holder.checkedRadioButtonId) {

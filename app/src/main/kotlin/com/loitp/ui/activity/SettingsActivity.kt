@@ -8,8 +8,8 @@ import android.view.Menu
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.loitp.pro.R
-import com.loitp.pro.dialogs.ChangeFileThumbnailStyleDialog
-import com.loitp.pro.dialogs.ChangeFolderThumbnailStyleDialog
+import com.loitp.ui.dialog.ChangeFileThumbnailStyleDialog
+import com.loitp.ui.dialog.ChangeFolderThumbnailStyleDialog
 import com.loitp.pro.dialogs.ManageBottomActionsDialog
 import com.loitp.pro.dialogs.ManageExtendedDetailsDialog
 import com.loitp.pro.extensions.config
