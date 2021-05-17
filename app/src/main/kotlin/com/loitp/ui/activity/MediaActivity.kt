@@ -26,7 +26,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.loitp.pro.R
 import com.loitp.adapter.MediaAdapter
 import com.loitp.service.GetMediaAsyncTask
-import com.loitp.pro.databases.GalleryDatabase
+import com.loitp.db.GalleryDatabase
 import com.loitp.pro.dialogs.ChangeGroupingDialog
 import com.loitp.pro.dialogs.ChangeSortingDialog
 import com.loitp.pro.dialogs.ChangeViewTypeDialog

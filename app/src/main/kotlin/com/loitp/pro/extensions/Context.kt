@@ -30,7 +30,7 @@ import com.simplemobiletools.commons.helpers.*
 import com.loitp.pro.R
 import com.loitp.ui.activity.SettingsActivity
 import com.loitp.service.GetMediaAsyncTask
-import com.loitp.pro.databases.GalleryDatabase
+import com.loitp.db.GalleryDatabase
 import com.loitp.pro.helpers.*
 import com.loitp.pro.interfaces.*
 import com.loitp.pro.models.*
