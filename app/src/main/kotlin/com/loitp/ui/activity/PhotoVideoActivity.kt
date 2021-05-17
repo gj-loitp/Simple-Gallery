@@ -1,4 +1,4 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -16,14 +16,15 @@ import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_STORAGE
 import com.simplemobiletools.commons.helpers.REAL_FILE_PATH
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
+import com.loitp.pro.activities.SimpleActivity
+import com.loitp.pro.activities.VideoPlayerActivity
+import com.loitp.pro.activities.ViewPagerActivity
 import com.loitp.pro.extensions.*
 import com.loitp.pro.fragments.PhotoFragment
 import com.loitp.pro.fragments.VideoFragment
 import com.loitp.pro.fragments.ViewPagerFragment
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
-import com.loitp.ui.activity.MainActivity
-import com.loitp.ui.activity.PanoramaVideoActivity
 import kotlinx.android.synthetic.main.bottom_actions.*
 import kotlinx.android.synthetic.main.fragment_holder.*
 import java.io.File
@@ -35,7 +36,6 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
     private var mIsFromGallery = false
     private var mFragment: ViewPagerFragment? = null
     private var mUri: Uri? = null
-
     var mIsVideo = false
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,7 +125,10 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
             return
         } else {
             val path = applicationContext.getRealPathFromURI(mUri!!) ?: ""
-            if (path != mUri.toString() && path.isNotEmpty() && mUri!!.authority != "mms" && filename.contains('.') && getDoesFilePathExist(path)) {
+            if (path != mUri.toString() && path.isNotEmpty() && mUri!!.authority != "mms" && filename.contains(
+                    '.'
+                ) && getDoesFilePathExist(path)
+            ) {
                 if (isFileTypeVisible(path)) {
                     bottom_actions.beGone()
                     rescanPaths(arrayListOf(mUri!!.path!!))
@@ -151,7 +154,19 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
         }
 
         mIsVideo = type == TYPE_VIDEOS
-        mMedium = Medium(null, filename, mUri.toString(), mUri!!.path!!.getParentPath(), 0, 0, file.length(), type, 0, false, 0L)
+        mMedium = Medium(
+            id = null,
+            name = filename,
+            path = mUri.toString(),
+            parentPath = mUri!!.path!!.getParentPath(),
+            modified = 0,
+            taken = 0,
+            size = file.length(),
+            type = type,
+            videoDuration = 0,
+            isFavorite = false,
+            deletedTS = 0L
+        )
         supportActionBar?.title = mMedium!!.name
         bundle.putSerializable(MEDIUM, mMedium)
 
@@ -159,7 +174,8 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
             mFragment = if (mIsVideo) VideoFragment() else PhotoFragment()
             mFragment!!.listener = this
             mFragment!!.arguments = bundle
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_placeholder, mFragment!!).commit()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_placeholder, mFragment!!).commit()
         }
 
         if (config.blackBackground) {
@@ -181,7 +197,10 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
     }
 
     private fun launchVideoPlayer() {
-        val newUri = getFinalUriFromPath(mUri.toString(), BuildConfig.APPLICATION_ID)
+        val newUri = getFinalUriFromPath(
+            path = mUri.toString(),
+            applicationId = BuildConfig.APPLICATION_ID
+        )
         if (newUri == null) {
             toast(R.string.unknown_error_occurred)
             return
@@ -197,7 +216,9 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
                 }
             }
         } catch (ignored: Exception) {
+            ignored.printStackTrace()
         } catch (ignored: OutOfMemoryError) {
+            ignored.printStackTrace()
         }
 
         if (isPanorama) {
@@ -241,11 +262,15 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
         val visibleBottomActions = if (config.bottomActions) config.visibleBottomActions else 0
 
         menu.apply {
-            findItem(R.id.menu_set_as).isVisible = mMedium?.isImage() == true && visibleBottomActions and BOTTOM_ACTION_SET_AS == 0
-            findItem(R.id.menu_edit).isVisible = mMedium?.isImage() == true && mUri?.scheme == "file" && visibleBottomActions and BOTTOM_ACTION_EDIT == 0
-            findItem(R.id.menu_properties).isVisible = mUri?.scheme == "file" && visibleBottomActions and BOTTOM_ACTION_PROPERTIES == 0
+            findItem(R.id.menu_set_as).isVisible =
+                mMedium?.isImage() == true && visibleBottomActions and BOTTOM_ACTION_SET_AS == 0
+            findItem(R.id.menu_edit).isVisible =
+                mMedium?.isImage() == true && mUri?.scheme == "file" && visibleBottomActions and BOTTOM_ACTION_EDIT == 0
+            findItem(R.id.menu_properties).isVisible =
+                mUri?.scheme == "file" && visibleBottomActions and BOTTOM_ACTION_PROPERTIES == 0
             findItem(R.id.menu_share).isVisible = visibleBottomActions and BOTTOM_ACTION_SHARE == 0
-            findItem(R.id.menu_show_on_map).isVisible = visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP == 0
+            findItem(R.id.menu_show_on_map).isVisible =
+                visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP == 0
         }
 
         updateMenuItemColors(menu)
@@ -276,11 +301,11 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
     private fun isFileTypeVisible(path: String): Boolean {
         val filter = config.filterMedia
         return !(path.isImageFast() && filter and TYPE_IMAGES == 0 ||
-                path.isVideoFast() && filter and TYPE_VIDEOS == 0 ||
-                path.isGif() && filter and TYPE_GIFS == 0 ||
-                path.isRawFast() && filter and TYPE_RAWS == 0 ||
-                path.isSvg() && filter and TYPE_SVGS == 0 ||
-                path.isPortrait() && filter and TYPE_PORTRAITS == 0)
+            path.isVideoFast() && filter and TYPE_VIDEOS == 0 ||
+            path.isGif() && filter and TYPE_GIFS == 0 ||
+            path.isRawFast() && filter and TYPE_RAWS == 0 ||
+            path.isSvg() && filter and TYPE_SVGS == 0 ||
+            path.isPortrait() && filter and TYPE_PORTRAITS == 0)
     }
 
     private fun initBottomActions() {
@@ -289,7 +314,8 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
     }
 
     private fun initBottomActionsLayout() {
-        bottom_actions.layoutParams.height = resources.getDimension(R.dimen.bottom_actions_height).toInt() + navigationBarHeight
+        bottom_actions.layoutParams.height =
+            resources.getDimension(R.dimen.bottom_actions_height).toInt() + navigationBarHeight
         if (config.bottomActions) {
             bottom_actions.beVisible()
         } else {
@@ -298,8 +324,20 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
     }
 
     private fun initBottomActionButtons() {
-        arrayListOf(bottom_favorite, bottom_delete, bottom_rotate, bottom_properties, bottom_change_orientation, bottom_slideshow, bottom_show_on_map,
-                bottom_toggle_file_visibility, bottom_rename, bottom_copy, bottom_move, bottom_resize).forEach {
+        arrayListOf(
+            bottom_favorite,
+            bottom_delete,
+            bottom_rotate,
+            bottom_properties,
+            bottom_change_orientation,
+            bottom_slideshow,
+            bottom_show_on_map,
+            bottom_toggle_file_visibility,
+            bottom_rename,
+            bottom_copy,
+            bottom_move,
+            bottom_resize
+        ).forEach {
             it.beGone()
         }
 

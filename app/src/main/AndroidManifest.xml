@@ -148,7 +148,7 @@
             android:parentActivityName="com.loitp.ui.activity.MainActivity"/>
 
         <activity
-            android:name=".activities.PhotoVideoActivity"
+            android:name="com.loitp.ui.activity.PhotoVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 
         <activity
@@ -182,7 +182,7 @@
             android:parentActivityName=".activities.SettingsActivity"/>
 
         <activity
-            android:name=".activities.PhotoActivity"
+            android:name="com.loitp.ui.activity.PhotoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

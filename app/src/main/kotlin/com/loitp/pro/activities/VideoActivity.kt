@@ -1,6 +1,7 @@
 package com.loitp.pro.activities
 
 import android.os.Bundle
+import com.loitp.ui.activity.PhotoVideoActivity
 
 class VideoActivity : PhotoVideoActivity() {
 
