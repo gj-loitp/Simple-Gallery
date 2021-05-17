@@ -6,7 +6,7 @@ import android.view.MenuItem
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.interfaces.RefreshRecyclerViewListener
 import com.loitp.pro.R
-import com.loitp.pro.adapters.ManageFoldersAdapter
+import com.loitp.adapter.ManageFoldersAdapter
 import com.loitp.pro.extensions.config
 import kotlinx.android.synthetic.main.activity_manage_folders.*
 

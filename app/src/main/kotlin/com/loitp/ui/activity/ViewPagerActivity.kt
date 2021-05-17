@@ -41,7 +41,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
-import com.loitp.pro.adapters.MyPagerAdapter
+import com.loitp.adapter.MyPagerAdapter
 import com.loitp.pro.asynctasks.GetMediaAsynctask
 import com.loitp.pro.dialogs.DeleteWithRememberDialog
 import com.loitp.pro.dialogs.ResizeWithPathDialog

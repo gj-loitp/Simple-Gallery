@@ -1,4 +1,4 @@
-package com.loitp.pro.adapters
+package com.loitp.adapter
 
 import android.os.Bundle
 import android.os.Parcelable
@@ -7,15 +7,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
-import com.loitp.ui.activity.ViewPagerActivity
 import com.loitp.pro.fragments.PhotoFragment
 import com.loitp.pro.fragments.VideoFragment
 import com.loitp.pro.fragments.ViewPagerFragment
 import com.loitp.pro.helpers.MEDIUM
 import com.loitp.pro.helpers.SHOULD_INIT_FRAGMENT
 import com.loitp.pro.models.Medium
+import com.loitp.ui.activity.ViewPagerActivity
 
-class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val media: MutableList<Medium>) : FragmentStatePagerAdapter(fm) {
+class MyPagerAdapter(
+    val activity: ViewPagerActivity,
+    fm: FragmentManager,
+    val media: MutableList<Medium>
+) : FragmentStatePagerAdapter(fm) {
     private val fragments = HashMap<Int, ViewPagerFragment>()
     var shouldInitFragment = true
 
@@ -53,7 +57,7 @@ class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val m
     fun getCurrentFragment(position: Int) = fragments[position]
 
     fun toggleFullscreen(isFullscreen: Boolean) {
-        for ((pos, fragment) in fragments) {
+        for ((_, fragment) in fragments) {
             fragment.fullscreenToggled(isFullscreen)
         }
     }

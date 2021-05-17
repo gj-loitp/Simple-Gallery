@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.loitp.pro.R
-import com.loitp.pro.adapters.ManageFoldersAdapter
+import com.loitp.adapter.ManageFoldersAdapter
 import com.loitp.pro.extensions.config
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.extensions.beVisibleIf

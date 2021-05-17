@@ -1,4 +1,4 @@
-package com.loitp.pro.adapters
+package com.loitp.adapter
 
 import android.view.Menu
 import android.view.View
@@ -12,8 +12,19 @@ import com.loitp.pro.extensions.config
 import kotlinx.android.synthetic.main.item_manage_folder.view.*
 import java.util.*
 
-class ManageFoldersAdapter(activity: BaseSimpleActivity, var folders: ArrayList<String>, val isShowingExcludedFolders: Boolean, val listener: RefreshRecyclerViewListener?,
-                           recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) : MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
+class ManageFoldersAdapter(
+    activity: BaseSimpleActivity,
+    var folders: ArrayList<String>,
+    val isShowingExcludedFolders: Boolean,
+    val listener: RefreshRecyclerViewListener?,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit
+) : MyRecyclerViewAdapter(
+    activity = activity,
+    recyclerView = recyclerView,
+    fastScroller = null,
+    itemClick = itemClick
+) {
 
     private val config = activity.config
 
@@ -43,19 +54,25 @@ class ManageFoldersAdapter(activity: BaseSimpleActivity, var folders: ArrayList<
 
     override fun onActionModeDestroyed() {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_manage_folder, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        createViewHolder(R.layout.item_manage_folder, parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val folder = folders[position]
-        holder.bindView(folder, true, true) { itemView, adapterPosition ->
-            setupView(itemView, folder)
+        holder.bindView(
+            any = folder,
+            allowSingleClick = true,
+            allowLongClick = true
+        ) { itemView, _ ->
+            setupView(view = itemView, folder = folder)
         }
         bindViewHolder(holder)
     }
 
     override fun getItemCount() = folders.size
 
-    private fun getSelectedItems() = folders.filter { selectedKeys.contains(it.hashCode()) } as ArrayList<String>
+    private fun getSelectedItems() =
+        folders.filter { selectedKeys.contains(it.hashCode()) } as ArrayList<String>
 
     private fun setupView(view: View, folder: String) {
         view.apply {
