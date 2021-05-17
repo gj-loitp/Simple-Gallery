@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.simplemobiletools.commons.helpers.REFRESH_PATH
-import com.loitp.pro.extensions.addPathToDB
+import com.loitp.ext.addPathToDB
 
 class RefreshMediaReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

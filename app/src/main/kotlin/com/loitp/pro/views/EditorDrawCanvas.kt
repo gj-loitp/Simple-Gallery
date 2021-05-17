@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.loitp.pro.R
-import com.loitp.pro.extensions.config
+import com.loitp.ext.config
 import com.loitp.pro.models.PaintOptions
 import java.util.*
 

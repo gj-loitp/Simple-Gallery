@@ -3,7 +3,7 @@ package com.loitp.ui.dialog
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AlertDialog
 import com.loitp.pro.R
-import com.loitp.pro.extensions.config
+import com.loitp.ext.config
 import com.loitp.pro.helpers.*
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.setupDialogStuff

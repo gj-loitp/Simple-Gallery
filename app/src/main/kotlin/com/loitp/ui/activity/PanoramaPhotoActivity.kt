@@ -13,9 +13,9 @@ import androidx.core.content.ContextCompat
 import com.google.vr.sdk.widgets.pano.VrPanoramaEventListener
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
 import com.loitp.pro.R
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.hideSystemUI
-import com.loitp.pro.extensions.showSystemUI
+import com.loitp.ext.config
+import com.loitp.ext.hideSystemUI
+import com.loitp.ext.showSystemUI
 import com.loitp.pro.helpers.PATH
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread

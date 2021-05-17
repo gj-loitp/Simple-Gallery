@@ -13,11 +13,12 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import com.loitp.ext.*
 import com.loitp.pro.R
 import com.loitp.ui.dialog.ConfirmDeleteFolderDialog
 import com.loitp.ui.dialog.ExcludeFolderDialog
 import com.loitp.ui.dialog.PickMediumDialog
-import com.loitp.pro.extensions.*
+import com.loitp.ext.*
 import com.loitp.pro.helpers.*
 import com.loitp.pro.interfaces.DirectoryOperationsListener
 import com.loitp.pro.models.AlbumCover

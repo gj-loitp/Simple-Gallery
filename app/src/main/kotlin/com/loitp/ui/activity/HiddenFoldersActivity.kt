@@ -9,9 +9,9 @@ import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.interfaces.RefreshRecyclerViewListener
 import com.loitp.pro.R
 import com.loitp.adapter.ManageHiddenFoldersAdapter
-import com.loitp.pro.extensions.addNoMedia
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.getNoMediaFolders
+import com.loitp.ext.addNoMedia
+import com.loitp.ext.config
+import com.loitp.ext.getNoMediaFolders
 import kotlinx.android.synthetic.main.activity_manage_folders.*
 
 class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {

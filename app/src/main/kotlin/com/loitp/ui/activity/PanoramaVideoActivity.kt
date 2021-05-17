@@ -14,9 +14,12 @@ import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import com.google.vr.sdk.widgets.video.VrVideoEventListener
 import com.google.vr.sdk.widgets.video.VrVideoView
+import com.loitp.ext.config
+import com.loitp.ext.hasNavBar
+import com.loitp.ext.hideSystemUI
+import com.loitp.ext.showSystemUI
 import com.simplemobiletools.commons.extensions.*
 import com.loitp.pro.R
-import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.MIN_SKIP_LENGTH
 import com.loitp.pro.helpers.PATH
 import kotlinx.android.synthetic.main.activity_panorama_video.*

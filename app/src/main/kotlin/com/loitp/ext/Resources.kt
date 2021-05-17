@@ -1,4 +1,4 @@
-package com.loitp.pro.extensions
+package com.loitp.ext
 
 import android.content.Context
 import android.content.res.Resources

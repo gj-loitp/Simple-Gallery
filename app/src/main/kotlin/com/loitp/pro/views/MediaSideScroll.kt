@@ -13,7 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.simplemobiletools.commons.extensions.onGlobalLayout
 import com.loitp.pro.R
-import com.loitp.pro.extensions.audioManager
+import com.loitp.ext.audioManager
 import com.loitp.pro.helpers.DRAG_THRESHOLD
 
 // allow horizontal swipes through the layout, else it can cause glitches at zoomed in images

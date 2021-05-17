@@ -10,7 +10,7 @@ import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.extensions.value
 import com.simplemobiletools.commons.models.RadioItem
 import com.loitp.pro.R
-import com.loitp.pro.extensions.config
+import com.loitp.ext.config
 import com.loitp.pro.helpers.SLIDESHOW_ANIMATION_FADE
 import com.loitp.pro.helpers.SLIDESHOW_ANIMATION_NONE
 import com.loitp.pro.helpers.SLIDESHOW_ANIMATION_SLIDE

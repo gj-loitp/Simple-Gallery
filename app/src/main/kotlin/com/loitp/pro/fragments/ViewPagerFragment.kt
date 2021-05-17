@@ -8,7 +8,7 @@ import androidx.exifinterface.media.ExifInterface
 import androidx.fragment.app.Fragment
 import com.simplemobiletools.commons.extensions.*
 import com.loitp.pro.R
-import com.loitp.pro.extensions.config
+import com.loitp.ext.config
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import java.io.File

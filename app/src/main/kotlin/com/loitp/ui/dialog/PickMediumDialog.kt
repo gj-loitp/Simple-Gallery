@@ -5,8 +5,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.loitp.adapter.MediaAdapter
 import com.loitp.pro.R
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.getCachedMedia
+import com.loitp.ext.config
+import com.loitp.ext.getCachedMedia
 import com.loitp.pro.helpers.SHOW_ALL
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem

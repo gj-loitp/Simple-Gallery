@@ -4,8 +4,8 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import com.loitp.pro.R
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.removeNoMedia
+import com.loitp.ext.config
+import com.loitp.ext.removeNoMedia
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.extensions.isPathOnSD

@@ -2,8 +2,8 @@ package com.loitp.service
 
 import android.content.Context
 import android.os.AsyncTask
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.getFavoritePaths
+import com.loitp.ext.config
+import com.loitp.ext.getFavoritePaths
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem

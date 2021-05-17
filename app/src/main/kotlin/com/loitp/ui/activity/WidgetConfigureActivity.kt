@@ -9,9 +9,9 @@ import android.os.Bundle
 import android.widget.RelativeLayout
 import android.widget.RemoteViews
 import com.bumptech.glide.signature.ObjectKey
+import com.loitp.ext.*
 import com.loitp.pro.R
 import com.loitp.ui.dialog.PickDirectoryDialog
-import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.MyWidgetProvider
 import com.loitp.pro.helpers.ROUNDED_CORNERS_NONE
 import com.loitp.pro.models.Directory

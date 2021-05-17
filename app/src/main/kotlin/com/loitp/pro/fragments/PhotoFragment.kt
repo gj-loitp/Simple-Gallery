@@ -44,9 +44,9 @@ import com.loitp.pro.R
 import com.loitp.ui.activity.PanoramaPhotoActivity
 import com.loitp.ui.activity.PhotoActivity
 import com.loitp.adapter.PortraitPhotosAdapter
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.saveRotatedImageToFile
-import com.loitp.pro.extensions.sendFakeClick
+import com.loitp.ext.config
+import com.loitp.ext.saveRotatedImageToFile
+import com.loitp.ext.sendFakeClick
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import com.loitp.pro.svg.SvgSoftwareLayerSetter

@@ -12,10 +12,10 @@ import com.loitp.ui.dialog.ChangeFileThumbnailStyleDialog
 import com.loitp.ui.dialog.ChangeFolderThumbnailStyleDialog
 import com.loitp.ui.dialog.ManageBottomActionsDialog
 import com.loitp.ui.dialog.ManageExtendedDetailsDialog
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.emptyTheRecycleBin
-import com.loitp.pro.extensions.mediaDB
-import com.loitp.pro.extensions.showRecycleBinEmptyingDialog
+import com.loitp.ext.config
+import com.loitp.ext.emptyTheRecycleBin
+import com.loitp.ext.mediaDB
+import com.loitp.ext.showRecycleBinEmptyingDialog
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.AlbumCover
 import com.simplemobiletools.commons.dialogs.*

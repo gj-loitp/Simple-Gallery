@@ -1,10 +1,10 @@
 package com.loitp.ui.activity
 
 import android.content.Intent
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.favoritesDB
-import com.loitp.pro.extensions.getFavoriteFromPath
-import com.loitp.pro.extensions.mediaDB
+import com.loitp.ext.config
+import com.loitp.ext.favoritesDB
+import com.loitp.ext.getFavoriteFromPath
+import com.loitp.ext.mediaDB
 import com.loitp.pro.models.Favorite
 import com.simplemobiletools.commons.activities.BaseSplashActivity
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread

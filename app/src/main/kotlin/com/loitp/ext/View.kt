@@ -1,4 +1,4 @@
-package com.loitp.pro.extensions
+package com.loitp.ext
 
 import android.os.SystemClock
 import android.view.MotionEvent

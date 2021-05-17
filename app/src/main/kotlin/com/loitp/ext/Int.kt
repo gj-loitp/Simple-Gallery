@@ -1,4 +1,4 @@
-package com.loitp.pro.extensions
+package com.loitp.ext
 
 import com.simplemobiletools.commons.helpers.SORT_DESCENDING
 

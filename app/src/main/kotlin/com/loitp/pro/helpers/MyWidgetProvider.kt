@@ -17,10 +17,10 @@ import com.simplemobiletools.commons.extensions.setVisibleIf
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.R
 import com.loitp.ui.activity.MediaActivity
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.directoryDao
-import com.loitp.pro.extensions.getFolderNameFromPath
-import com.loitp.pro.extensions.widgetsDB
+import com.loitp.ext.config
+import com.loitp.ext.directoryDao
+import com.loitp.ext.getFolderNameFromPath
+import com.loitp.ext.widgetsDB
 import com.loitp.pro.models.Widget
 
 class MyWidgetProvider : AppWidgetProvider() {

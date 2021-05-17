@@ -5,7 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.loitp.pro.R
 import com.loitp.adapter.ManageFoldersAdapter
-import com.loitp.pro.extensions.config
+import com.loitp.ext.config
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.interfaces.RefreshRecyclerViewListener

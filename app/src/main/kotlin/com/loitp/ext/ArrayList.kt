@@ -1,4 +1,4 @@
-package com.loitp.pro.extensions
+package com.loitp.ext
 
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium

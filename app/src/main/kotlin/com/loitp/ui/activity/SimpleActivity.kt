@@ -14,9 +14,9 @@ import com.simplemobiletools.commons.extensions.scanPathRecursively
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isPiePlus
 import com.loitp.pro.R
-import com.loitp.pro.extensions.addPathToDB
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.updateDirectoryPath
+import com.loitp.ext.addPathToDB
+import com.loitp.ext.config
+import com.loitp.ext.updateDirectoryPath
 
 open class SimpleActivity : BaseSimpleActivity() {
     val observer = object : ContentObserver(null) {

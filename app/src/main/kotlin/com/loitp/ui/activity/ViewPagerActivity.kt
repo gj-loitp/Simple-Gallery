@@ -42,12 +42,13 @@ import com.bumptech.glide.request.target.Target
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
 import com.loitp.adapter.MyPagerAdapter
+import com.loitp.ext.*
 import com.loitp.service.GetMediaAsyncTask
 import com.loitp.ui.dialog.DeleteWithRememberDialog
 import com.loitp.ui.dialog.ResizeWithPathDialog
 import com.loitp.ui.dialog.SaveAsDialog
 import com.loitp.ui.dialog.SlideshowDialog
-import com.loitp.pro.extensions.*
+import com.loitp.ext.*
 import com.loitp.pro.fragments.PhotoFragment
 import com.loitp.pro.fragments.VideoFragment
 import com.loitp.pro.fragments.ViewPagerFragment

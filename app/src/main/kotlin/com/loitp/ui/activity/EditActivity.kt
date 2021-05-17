@@ -32,10 +32,10 @@ import com.loitp.adapter.FiltersAdapter
 import com.loitp.ui.dialog.OtherAspectRatioDialog
 import com.loitp.ui.dialog.ResizeDialog
 import com.loitp.ui.dialog.SaveAsDialog
-import com.loitp.pro.extensions.config
-import com.loitp.pro.extensions.copyNonDimensionAttributesTo
-import com.loitp.pro.extensions.fixDateTaken
-import com.loitp.pro.extensions.openEditor
+import com.loitp.ext.config
+import com.loitp.ext.copyNonDimensionAttributesTo
+import com.loitp.ext.fixDateTaken
+import com.loitp.ext.openEditor
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.FilterItem
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
