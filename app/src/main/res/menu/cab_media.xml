@@ -17,7 +17,6 @@
         android:title="@string/share"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/cab_rotate"
         android:icon="@drawable/ic_rotate_right_vector"
         android:title="@string/rotate"
         app:showAsAction="ifRoom">

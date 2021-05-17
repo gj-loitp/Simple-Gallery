@@ -5,8 +5,6 @@
     <string name="edit">Szerkesztés</string>
     <string name="open_camera">Kamera megnyitása</string>
     <string name="hidden">(rejtett)</string>
-    <string name="excluded">(kizárva)</string>
-    <string name="pin_folder">Mappa kitűzés</string>
     <string name="unpin_folder">Mappa kitűzés megszüntetése</string>
     <string name="pin_to_the_top">Kitűzés felülre</string>
     <string name="show_all">Mutassa az összes mappa tartalmát</string>
@@ -17,8 +15,6 @@
     <string name="unknown_location">Ismeretlen helyszín</string>
     <string name="volume">Hangerő</string>
     <string name="brightness">Fényesség</string>
-    <string name="lock_orientation">Tájolás zárolása</string>
-    <string name="unlock_orientation">Tájolás feloldása</string>
     <string name="change_orientation">Tájolás változtatása</string>
     <string name="force_portrait">Álló mód kényszerítése</string>
     <string name="force_landscape">Fekvő mód kényszerítése</string>
@@ -27,7 +23,6 @@
     <string name="fixing">Javítás...</string>
     <string name="dates_fixed_successfully">Sikeres dátum javítás</string>
     <string name="no_date_takens_found">Nem találhatók Dátum értékek</string>
-    <string name="share_resized">Átméretezett verzió megosztása</string>
     <string name="upgraded_from_free">Hey,\n\nseems like you upgraded from the old free app. You can now uninstall the old version, which has an \'Upgrade to Pro\' button at the top of the app settings.\n\nYou will only have the Recycle bin items deleted, favorite items unmarked and you will also have to reset your app settings.\n\nThanks!</string>
     <string name="switch_to_file_search">Váltás a fájlkeresésre az összes látható mappában</string>
     <string name="set_as_default_folder">Set as default folder</string>
@@ -52,8 +47,6 @@
     <string name="exclude_folder_description">Ez kizárja a kijelölést és az alkönyvtárakat a Simple Gallery alkalmazásból. A kizárt mappákat a Beállításokban kezelheti.</string>
     <string name="exclude_folder_parent">Kizárja a szülő mappát?</string>
     <string name="excluded_activity_placeholder">A mappák kizárásával az almappákkal együtt elrejti a Simple Gallery alkalmazásban, de továbbra is láthatóak maradnak más alkalmazásokban.\n\nHa el szeretné rejteni őket más alkalmazásokban is, használja az Elrejtés funkciót.</string>
-    <string name="remove_all">Összes eltávolítása</string>
-    <string name="remove_all_description">Összes mappa eltávolítása a Kizárás listából. Ez nem törli a mappákat.</string>
     <string name="hidden_folders">Rejtett mappák</string>
     <string name="manage_hidden_folders">Rejtett mappák kezelése</string>
     <string name="hidden_folders_placeholder">Úgy tűnik, a mappái nincsenek elrejtve egy \".nomedia\" fájllal.</string>
@@ -77,24 +70,11 @@
     <string name="editor">Szerkesztő</string>
     <string name="rotate">Forgatás</string>
     <string name="invalid_image_path">Érvénytelen kép elérési útvonal</string>
-    <string name="invalid_video_path">Invalid video path</string>
     <string name="image_editing_failed">Sikertelen kép szerkesztés</string>
-    <string name="video_editing_failed">Video editing failed</string>
-    <string name="image_editing_cancelled">A képszerkesztés megszakítva</string>
-    <string name="video_editing_cancelled">Video editing cancelled</string>
-    <string name="file_edited_successfully">A fájl szerkesztése sikerült</string>
-    <string name="image_edited_successfully">Image edited successfully</string>
-    <string name="video_edited_successfully">Video edited successfully</string>
-    <string name="edit_image_with">Kép szerkesztés ezzel:</string>
-    <string name="edit_video_with">Edit video with:</string>
-    <string name="no_image_editor_found">Nem található kép szerkesztő</string>
-    <string name="no_video_editor_found">No video editor found</string>
     <string name="unknown_file_location">Ismeretlen fájl hely</string>
-    <string name="error_saving_file">Nem lehet felülírni a forrás fájlt</string>
     <string name="rotate_left">Forgatás balra</string>
     <string name="rotate_right">Forgatás jobbra</string>
     <string name="rotate_one_eighty">180º-os forgatás</string>
-    <string name="flip">Tükrözés</string>
     <string name="flip_horizontally">Tükrözés vízszintesen</string>
     <string name="flip_vertically">Tükrözés függőlegesen</string>
     <string name="free_aspect_ratio">Szabad</string>                    <!-- available as an option: 1:1, 4:3, 16:9, free -->
@@ -102,13 +82,8 @@
 
     <!-- Set wallpaper -->
     <string name="simple_wallpaper">Simple Wallpaper</string>
-    <string name="set_as_wallpaper">Beállítás háttérképként</string>
-    <string name="set_as_wallpaper_failed">Nem sikerült a beállítás háttérképként</string>
-    <string name="set_as_wallpaper_with">Beállítás háttérképként ezzel:</string>
     <string name="setting_wallpaper">Beállítás háttérképként...</string>
     <string name="wallpaper_set_successfully">Sikeresen beállítva háttérképnek</string>
-    <string name="portrait_aspect_ratio">Álló képarány</string>
-    <string name="landscape_aspect_ratio">Fekvő képarány</string>
     <string name="home_screen">Kezdő képernyő</string>
     <string name="lock_screen">Zárolás képernyő</string>
     <string name="home_and_lock_screen">Kezdő és zárolás képernyő</string>
@@ -116,7 +91,6 @@
     <!-- Slideshow -->
     <string name="slideshow">Diavetítés</string>
     <string name="interval">Időköz (másodperc):</string>
-    <string name="include_photos">Fotók befoglalása</string>
     <string name="include_videos">Videók befoglalása</string>
     <string name="include_gifs">GIF befoglalása</string>
     <string name="random_order">Véletlen sorrend</string>
@@ -136,10 +110,8 @@
     <string name="group_by">Csoportosítás</string>
     <string name="do_not_group_files">Nincs csoportosítás</string>
     <string name="by_folder">Mappa</string>
-    <string name="by_last_modified">Utolsó módosítás</string>
     <string name="by_last_modified_daily">Utoljára módosítva (naponta)</string>
     <string name="by_last_modified_monthly">Utoljára módosítva (havonta)</string>
-    <string name="by_date_taken">Dátum</string>
     <string name="by_date_taken_daily">Felvétel dátuma (naponta)</string>
     <string name="by_date_taken_monthly">Felvétel dátuma (havonta)</string>
     <string name="by_file_type">Fájl típus</string>
@@ -167,11 +139,8 @@
     <string name="hide_system_ui_at_fullscreen">Automatikusan elrejti a rendszer UI-t teljes képernyőn</string>
     <string name="delete_empty_folders">Az üres mappák törlése a tartalom törlése után</string>
     <string name="allow_photo_gestures">Engedélyezi a kép fényerő módosítást függőleges gesztusokkal</string>
-    <string name="allow_video_gestures">Engedélyezi a videó hangerő és fényerő módosítást függőleges gesztusokkal</string>
-    <string name="show_media_count">Mutassa a fájlok számát a mappákban</string>
     <string name="show_extended_details">Mutassa a kiterjesztett adatokat a teljes képernyős médián keresztül</string>
     <string name="manage_extended_details">Bővített részletek kezelése</string>
-    <string name="one_finger_zoom">Engedélyezi az egy ujjas nagyítást a teljes képernyős médiában</string>
     <string name="allow_instant_change">Engedélyezi a azonnali média váltást a képernyő oldalára kattintva</string>
     <string name="allow_deep_zooming_images">Engedélyezi a képek mély nagyítását</string>
     <string name="hide_extended_details">Bővített részletek elrejtése az állapotsor rejtett állapotában</string>
@@ -190,7 +159,6 @@
     <string name="compromise">Kiegyensúlyozott</string>
     <string name="avoid_showing_invalid_files">Kerülje az érvénytelen fájlok mutatását</string>
     <string name="show_image_file_types">Mutassa a kép fájl típusokat</string>
-    <string name="allow_zooming_videos">A videók nagyításának engedélyezése dupla koppintással</string>
     <string name="folder_thumbnail_style">Folder thumbnail style</string>
     <string name="file_thumbnail_style">File thumbnail style</string>
     <string name="thumbnail_spacing">Thumbnail spacing</string>
@@ -200,7 +168,6 @@
     <string name="limit_folder_title">Limit long folder titles to 1 line</string>
     <string name="square">Square</string>
     <string name="rounded_corners">Rounded corners</string>
-    <string name="export_favorite_paths">Export favorite file paths</string>
 
     <!-- Setting sections -->
     <string name="thumbnails">Miniatűrök</string>
@@ -214,117 +181,6 @@
     <string name="toggle_file_visibility">Fájl láthatóság módosítása</string>
 
     <!-- New editor strings -->
-    <string name="pesdk_transform_button_freeCrop">Egyéni</string>
-    <string name="pesdk_transform_button_resetCrop">Alaphelyzetbe</string>
-    <string name="pesdk_transform_button_squareCrop">Négyzet</string>
-    <string name="pesdk_transform_title_name">Átalakítás</string>
-    <string name="pesdk_filter_title_name">Szűrő</string>
-    <string name="pesdk_filter_asset_none">Nincs</string>
-    <string name="pesdk_adjustments_title_name">Beállít</string>
-    <string name="pesdk_adjustments_button_shadowTool">Árnyékok</string>
-    <string name="pesdk_adjustments_button_exposureTool">Kitettség</string>
-    <string name="pesdk_adjustments_button_highlightTool">Kiemelések</string>
-    <string name="pesdk_adjustments_button_brightnessTool">Fényerő</string>
-    <string name="pesdk_adjustments_button_contrastTool">Kontraszt</string>
-    <string name="pesdk_adjustments_button_saturationTool">Színtelítettség</string>
-    <string name="pesdk_adjustments_button_clarityTool">Világosság</string>
-    <string name="pesdk_adjustments_button_gammaTool">Gamma</string>
-    <string name="pesdk_adjustments_button_blacksTool">Feketék</string>
-    <string name="pesdk_adjustments_button_whitesTool">Fehérek</string>
-    <string name="pesdk_adjustments_button_temperatureTool">Színhőmérséklet</string>
-    <string name="pesdk_adjustments_button_sharpnessTool">Élesség</string>
-    <string name="pesdk_adjustments_button_reset">Alaphelyzetbe</string>
-    <string name="pesdk_focus_title_name">Fókusz</string>
-    <string name="pesdk_focus_title_disabled">Nincs</string>
-    <string name="pesdk_focus_button_radial">Sugárirányú</string>
-    <string name="pesdk_focus_button_linear">Lineáris</string>
-    <string name="pesdk_focus_button_mirrored">Tükrözött</string>
-    <string name="pesdk_focus_button_gaussian">Gaussian</string>
-    <string name="pesdk_text_title_name">Szöveg</string>
-    <string name="pesdk_text_title_options">Szöveg beállítások</string>
-    <string name="pesdk_text_title_textColor">Szöveg színe</string>
-    <string name="pesdk_text_title_font">Betűtípus</string>
-    <string name="pesdk_text_button_add">Hozzáadás</string>
-    <string name="pesdk_text_button_edit">Szerkesztés</string>
-    <string name="pesdk_text_button_straighten">Egyenesített</string>
-    <string name="pesdk_text_button_font">Betűtípus</string>
-    <string name="pesdk_text_button_color">Szín</string>
-    <string name="pesdk_text_button_backgroundColor">Háttérszín</string>
-    <string name="pesdk_text_button_alignment">Igazítás</string>
-    <string name="pesdk_text_button_bringToFront">Előre</string>
-    <string name="pesdk_text_button_delete">Törlés</string>
-    <string name="pesdk_text_text_editTextPlaceholder">Saját szöveg</string>
-    <string name="pesdk_brush_title_name">Ecset</string>
-    <string name="pesdk_brush_button_color">Szín</string>
-    <string name="pesdk_brush_button_size">Méret</string>
-    <string name="pesdk_brush_button_hardness">Keménység</string>
-    <string name="pesdk_brush_button_bringToFront">Előre</string>
-    <string name="pesdk_brush_button_delete">Törlés</string>
-    <string name="pesdk_brush_title_brushColor">Ecset színe</string>
-    <string name="pesdk_editor_title_name">Szerkesztő</string>
-    <string name="pesdk_editor_title_closeEditorAlert">Bezárja a szerkesztőt?</string>
-    <string name="pesdk_editor_text_closeEditorAlert">Valóban el akarja dobni a változtatásokat?</string>
-    <string name="pesdk_editor_button_closeEditorAlertConfirmation">Igen</string>
-    <string name="pesdk_editor_button_closeEditorAlertCancelation">Nem</string>
-    <string name="pesdk_editor_cancel">Mégsem</string>
-    <string name="pesdk_editor_accept">Elfogad</string>
-    <string name="pesdk_editor_save">Mentés</string>
-    <string name="pesdk_editor_text_exportProgressUnknown">Exportálás…</string>
-    <string name="pesdk_editor_text_exportProgress" formatted="false">%s exportálása.</string>
-    <string name="pesdk_sticker_title_name">Sticker</string>
-    <string name="pesdk_sticker_title_color">Sticker Color</string>
-    <string name="pesdk_sticker_title_options">Sticker Options</string>
-    <string name="pesdk_sticker_button_add">Add</string>
-    <string name="pesdk_sticker_button_color">Color</string>
-    <string name="pesdk_sticker_button_delete">Delete</string>
-    <string name="pesdk_sticker_button_bringToFront">To Front</string>
-    <string name="pesdk_sticker_button_straighten">Straighten</string>
-    <string name="pesdk_sticker_button_replace">Replace</string>
-    <string name="pesdk_sticker_button_opacity">Opacity</string>
-    <string name="pesdk_sticker_button_contrast">Contrast</string>
-    <string name="pesdk_sticker_button_saturation">Saturation</string>
-    <string name="pesdk_sticker_button_brightness">Brightness</string>
-    <string name="pesdk_sticker_category_name_custom">Uploads</string>
-    <string name="pesdk_overlay_title_name">Overlay</string>
-    <string name="pesdk_overlay_button_blendModeNormal">Normal</string>
-    <string name="pesdk_overlay_button_blendModeDarken">Darken</string>
-    <string name="pesdk_overlay_button_blendModeScreen">Screen</string>
-    <string name="pesdk_overlay_button_blendModeOverlay">Overlay</string>
-    <string name="pesdk_overlay_button_blendModeLighten">Lighten</string>
-    <string name="pesdk_overlay_button_blendModeMultiply">Multiply</string>
-    <string name="pesdk_overlay_button_blendModeColorBurn">Color Burn</string>
-    <string name="pesdk_overlay_button_blendModeSoftLight">Soft Light</string>
-    <string name="pesdk_overlay_button_blendModeHardLight">Hard Light</string>
-    <string name="pesdk_overlay_asset_none">None</string>
-    <string name="pesdk_overlay_asset_golden">Golden</string>
-    <string name="pesdk_overlay_asset_lightleak1">Lightleak 1</string>
-    <string name="pesdk_overlay_asset_mosaic">Mosaic</string>
-    <string name="pesdk_overlay_asset_paper">Paper</string>
-    <string name="pesdk_overlay_asset_rain">Rain</string>
-    <string name="pesdk_overlay_asset_vintage">Vintage</string>
-    <string name="pesdk_common_button_flipH">Tükrözés vízszintesen</string>
-    <string name="pesdk_common_button_flipV">Tükrözés függőlegesen</string>
-    <string name="pesdk_common_button_undo">Visszavonás</string>
-    <string name="pesdk_common_button_redo">Visszavom</string>
-    <string name="pesdk_common_title_colorPicker">Színválasztó</string>
-    <string name="pesdk_common_title_transparentColor">Áttetsző</string>
-    <string name="pesdk_common_title_whiteColor">Fehér</string>
-    <string name="pesdk_common_title_grayColor">Szürke</string>
-    <string name="pesdk_common_title_blackColor">Fekete</string>
-    <string name="pesdk_common_title_lightBlueColor">Világoskék</string>
-    <string name="pesdk_common_title_blueColor">Kék</string>
-    <string name="pesdk_common_title_purpleColor">Bíbor</string>
-    <string name="pesdk_common_title_orchidColor">Orchidea</string>
-    <string name="pesdk_common_title_pinkColor">Rózsaszín</string>
-    <string name="pesdk_common_title_redColor">Piros</string>
-    <string name="pesdk_common_title_orangeColor">Narancssárga</string>
-    <string name="pesdk_common_title_goldColor">Arany</string>
-    <string name="pesdk_common_title_yellowColor">Sárga</string>
-    <string name="pesdk_common_title_oliveColor">Oliva</string>
-    <string name="pesdk_common_title_greenColor">Zöld</string>
-    <string name="pesdk_common_title_aquamarinColor">Aquamarin</string>
-    <string name="pesdk_common_title_pipettableColor">Pipetta szín</string>
-    <string name="vesdk_video_trim_title_name">Trim</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Hogyan tudom beállítani a Simple Gallery-t alapértelmezett galériának?</string>
@@ -360,65 +216,7 @@ Ezzel csak a kiválasztott mappák láthatók, mivel a kizárás és a befoglal�
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Gallery Pro - Photo Manager &amp; Editor</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Browse your memories without any interruptions with this photo and video gallery</string>
-    <string name="app_long_description">
-        Simple Gallery Pro is a highly customizable offline gallery. Organize &amp; edit your photos, recover deleted files with the recycle bin, protect &amp; hide files and view a huge variety of different photo &amp; video formats including RAW, SVG and much more.
-
-        The app contains no ads and unnecessary permissions. As the app doesn’t require internet access either, your privacy is protected.
-
-        -------------------------------------------------
-        <b>SIMPLE GALLERY PRO – FEATURES</b>
-        -------------------------------------------------
-
-        • Offline gallery with no ads or popups
-        • Simple gallery photo editor – crop, rotate, resize, draw, filters &amp; more
-        • No internet access needed, giving you more privacy and security
-        • No unnecessary permissions required
-        • Quickly search images, videos &amp; files
-        • Open &amp; view many different photo and video types (RAW, SVG, panoramic etc)
-        • A variety of intuitive gestures to easily edit &amp; organize files
-        • Lots of ways to filter, group &amp; sort files
-        • Customize the appearance of Simple Gallery Pro
-        • Available in 32 languages
-        • Mark files as favorites for quick access
-        • Protect your photos &amp; videos with a pattern, pin or fingerprint
-        • Use pin, pattern &amp; fingerprint to protect the app launch or specific functions too
-        • Recover deleted photos &amp; videos from the recycle bin
-        • Toggle visibility of files to hide photos &amp; videos
-        • Create a customizable slideshow of your files
-        • View detailed information of your files (resolution, EXIF values etc)
-        • Simple Gallery Pro is open source
-        … and much much more!
-
-        <b>PHOTO GALLERY EDITOR</b>
-        Simple Gallery Pro makes it easy to edit your pictures on the fly. Crop, flip, rotate and resize your pictures. If you’re feeling a little more creative you can add filters and draw on your pictures!
-
-        <b>SUPPORT FOR MANY FILE TYPES</b>
-        Unlike some other gallery viewers &amp; photo organizers, Simple Gallery Pro supports a huge range of different file types including JPEG, PNG, MP4, MKV, RAW, SVG, Panoramic photos, Panoramic videos and many more.
-
-        <b>HIGHLY CUSTOMIZABLE GALLERY MANAGER</b>
-        From the UI to the function buttons on the bottom toolbar, Simple Gallery Pro is highly customizable and works the way you want it to. No other gallery manager has this kind of flexibility! Thanks to being open source, we’re also available in 32 languages!
-
-        <b>RECOVER DELETED PHOTOS &amp; VIDEOS</b>
-        Accidentally deleted a precious photo or video? Don’t worry! Simple Gallery Pro features a handy recycle bin where you can recover deleted photos &amp; videos easily.
-
-        <b>PROTECT &amp; HIDE PHOTOS, VIDEOS &amp; FILES</b>
-        Using pin, pattern or your device’s fingerprint scanner you can protect and hide photos, videos &amp; entire albums. You can protect the app itself or place locks on specific functions of the app. For example, you can’t delete a file without a fingerprint scan, helping to protect your files from accidental deletion.
-
-        <b>Nézze meg a Simple Tools csomagot itt:</b>
-        https://www.simplemobiletools.com
-
-        <b>A Simple Gallery Pro önálló weboldala:</b>
-        https://www.simplemobiletools.com/gallery
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
 
     <!--
         Haven't found some strings? There's more at

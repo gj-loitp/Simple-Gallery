@@ -24,7 +24,6 @@
             android:paddingBottom="@dimen/bigger_margin">
 
             <com.simplemobiletools.commons.views.MyTextView
-                android:id="@+id/dialog_file_style_spacing_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

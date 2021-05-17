@@ -5,8 +5,6 @@
     <string name="edit">Редагувати</string>
     <string name="open_camera">Запустити камеру</string>
     <string name="hidden">(приховане)</string>
-    <string name="excluded">(виключене)</string>
-    <string name="pin_folder">Закріпити теку</string>
     <string name="unpin_folder">Відкріпити теку</string>
     <string name="pin_to_the_top">Закріпити зверху</string>
     <string name="show_all">Показати вміст усіх тек</string>
@@ -17,8 +15,6 @@
     <string name="unknown_location">Невідоме розташування</string>
     <string name="volume">Об\'єм</string>
     <string name="brightness">Яскравість</string>
-    <string name="lock_orientation">Закріпити орієнтацію</string>
-    <string name="unlock_orientation">Відкріпити орієнтацію</string>
     <string name="change_orientation">Змінити орієнтацію</string>
     <string name="force_portrait">Примусова портретна орієнтація</string>
     <string name="force_landscape">Примусова ландшафтна орієнтація</string>
@@ -27,7 +23,6 @@
     <string name="fixing">Виправлення…</string>
     <string name="dates_fixed_successfully">Дати успішно виправлені</string>
     <string name="no_date_takens_found">No Date Taken values have been found</string>
-    <string name="share_resized">Поділитися зображенням іншого розміру</string>
     <string name="upgraded_from_free">Агов,\n\nздається, ви оновились зі старого безкоштовного додатка. Тепер ви можете видалити стару версію, у якій є кнопка \"Перейти на Pro\" вгорі налаштувань додатка.\n\nВи втратите лише елементи з Кошика, позначки улюблених елементів, а також потрібно буде скинути ваші налаштування додатка.\n\nДякую!</string>
     <string name="switch_to_file_search">Перейти до пошуку файла в усіх видимих теках</string>
     <string name="set_as_default_folder">Встановити теку за замовчуванням</string>
@@ -52,8 +47,6 @@
     <string name="exclude_folder_description">Ця дія виключить обрані теки з їх підтеками тільки з Simple Gallery. Керувати виключеними теками можна у \"Налаштуваннях\".</string>
     <string name="exclude_folder_parent">Виключити батьківську теку натомість?</string>
     <string name="excluded_activity_placeholder">Виключення тек приховає їх разом з їх підтеками тільки у Simple Gallery, але вони все ще будуть видимі у інших додатках.\n\nЯкщо ви хочете приховати їх і від інших додатків, використовуйте функцію \"Приховати\".</string>
-    <string name="remove_all">Видалити все</string>
-    <string name="remove_all_description">Видалити всі теки зі списку виключених? Це не видалить теки з пристрою.</string>
     <string name="hidden_folders">Приховані теки</string>
     <string name="manage_hidden_folders">Керування прихованими теками</string>
     <string name="hidden_folders_placeholder">Схоже, у вас немає тек, прихованих за допомогою файлу \".nomedia\".</string>
@@ -77,24 +70,11 @@
     <string name="editor">Редактор</string>
     <string name="rotate">Обернути</string>
     <string name="invalid_image_path">Неприпустимий шлях до зображення</string>
-    <string name="invalid_video_path">Неприпустимий шлях до відео</string>
     <string name="image_editing_failed">Не вдалося редагувати зображення</string>
-    <string name="video_editing_failed">Не вдалося редагувати відео</string>
-    <string name="image_editing_cancelled">Редагування зображення скасовано</string>
-    <string name="video_editing_cancelled">Редагування відео скасовано</string>
-    <string name="file_edited_successfully">Файл вдало відредагован</string>
-    <string name="image_edited_successfully">Зображення вдало відредаговано</string>
-    <string name="video_edited_successfully">Відео вдало відредаговано</string>
-    <string name="edit_image_with">Редагувати зображення за допомогою:</string>
-    <string name="edit_video_with">Реданувати відео у:</string>
-    <string name="no_image_editor_found">Не знайдено редакторів зображень</string>
-    <string name="no_video_editor_found">Не знайдено редакторів відео</string>
     <string name="unknown_file_location">Невідоме розташування файлу</string>
-    <string name="error_saving_file">Не вдалося перезаписати вихідний файл</string>
     <string name="rotate_left">Обернути ліворуч</string>
     <string name="rotate_right">Обернути праворуч</string>
     <string name="rotate_one_eighty">Обернути на 180º</string>
-    <string name="flip">Віддзеркалити</string>
     <string name="flip_horizontally">Віддзеркалити горизонтально</string>
     <string name="flip_vertically">Віддзеркалити вертикально</string>
     <string name="free_aspect_ratio">Вільне</string>                        <!-- available as an option: 1:1, 4:3, 16:9, free -->
@@ -102,13 +82,8 @@
 
     <!-- Set wallpaper -->
     <string name="simple_wallpaper">Simple Wallpaper</string>
-    <string name="set_as_wallpaper">Встановити як шпалери</string>
-    <string name="set_as_wallpaper_failed">Не вдалося встановити шпалери</string>
-    <string name="set_as_wallpaper_with">Встановити шпалери за допомогою:</string>
     <string name="setting_wallpaper">Встановлення шпалер…</string>
     <string name="wallpaper_set_successfully">Шпалери успішно встановлено</string>
-    <string name="portrait_aspect_ratio">Співвідношення сторін у портретній орієнтації</string>
-    <string name="landscape_aspect_ratio">Співвідношення сторін у ландшафтній орієнтації</string>
     <string name="home_screen">Домашній екран</string>
     <string name="lock_screen">Екран блокування</string>
     <string name="home_and_lock_screen">Домашній екран і екран блокування</string>
@@ -116,7 +91,6 @@
     <!-- Slideshow -->
     <string name="slideshow">Слайдшоу</string>
     <string name="interval">Інтервал (секунди):</string>
-    <string name="include_photos">Включити фото</string>
     <string name="include_videos">Включити відео</string>
     <string name="include_gifs">Включити GIF-зображення</string>
     <string name="random_order">Випадковий порядок</string>
@@ -136,10 +110,8 @@
     <string name="group_by">Групувати за…</string>
     <string name="do_not_group_files">Не групувати файли</string>
     <string name="by_folder">текою</string>
-    <string name="by_last_modified">останньою зміною</string>
     <string name="by_last_modified_daily">останньою зміною (по днях)</string>
     <string name="by_last_modified_monthly">останньою зміною (по місяцях)</string>
-    <string name="by_date_taken">датою зйомки</string>
     <string name="by_date_taken_daily">датою зйомки (по днях)</string>
     <string name="by_date_taken_monthly">датою зйомки (по місяцях)</string>
     <string name="by_file_type">типом файлу</string>
@@ -167,11 +139,8 @@
     <string name="hide_system_ui_at_fullscreen">Автоматично приховувати системний інтерфейс при повноекранному перегляді</string>
     <string name="delete_empty_folders">Видаляти порожні теки після видалення їх вмісту</string>
     <string name="allow_photo_gestures">Дозволити керування яскравістю фотографій вертикальними жестами</string>
-    <string name="allow_video_gestures">Дозволити керування яскравістю та гучністю відео вертикальними жестами</string>
-    <string name="show_media_count">Показувати кількість файлів у теці на головному екрані</string>
     <string name="show_extended_details">Показувати розширені подробиці при повноекранному перегляді</string>
     <string name="manage_extended_details">Керування розширеними подробицями</string>
-    <string name="one_finger_zoom">Дозволити масштабування одним пальцем при повноекранному перегляді</string>
     <string name="allow_instant_change">Дозволити миттєво змінювати медіафайл натисканням на сторони екрана</string>
     <string name="allow_deep_zooming_images">Дозволити глибоке масштабування зображень</string>
     <string name="hide_extended_details">Приховати розширені подробиці, коли рядок стану прихований</string>
@@ -190,7 +159,6 @@
     <string name="compromise">Компроміс</string>
     <string name="avoid_showing_invalid_files">Запобігати показу пошкоджених файлів</string>
     <string name="show_image_file_types">Показувати типи файлів зображень</string>
-    <string name="allow_zooming_videos">Масштабувати відео подвійним натисканням по ньому</string>
     <string name="folder_thumbnail_style">Вид мініатюр тек</string>
     <string name="file_thumbnail_style">File thumbnail style</string>
     <string name="thumbnail_spacing">Thumbnail spacing</string>
@@ -200,7 +168,6 @@
     <string name="limit_folder_title">Обмежити довгі назви тек одним рядком</string>
     <string name="square">Квадрат</string>
     <string name="rounded_corners">Закруглені кути</string>
-    <string name="export_favorite_paths">Export favorite file paths</string>
 
     <!-- Setting sections -->
     <string name="thumbnails">Ескізи</string>
@@ -214,117 +181,6 @@
     <string name="toggle_file_visibility">Перемкнути видимість файлу</string>
 
     <!-- New editor strings -->
-    <string name="pesdk_transform_button_freeCrop">Custom</string>
-    <string name="pesdk_transform_button_resetCrop">Reset</string>
-    <string name="pesdk_transform_button_squareCrop">Square</string>
-    <string name="pesdk_transform_title_name">Transform</string>
-    <string name="pesdk_filter_title_name">Filter</string>
-    <string name="pesdk_filter_asset_none">None</string>
-    <string name="pesdk_adjustments_title_name">Adjust</string>
-    <string name="pesdk_adjustments_button_shadowTool">Shadows</string>
-    <string name="pesdk_adjustments_button_exposureTool">Exposure</string>
-    <string name="pesdk_adjustments_button_highlightTool">Highlights</string>
-    <string name="pesdk_adjustments_button_brightnessTool">Brightness</string>
-    <string name="pesdk_adjustments_button_contrastTool">Contrast</string>
-    <string name="pesdk_adjustments_button_saturationTool">Saturation</string>
-    <string name="pesdk_adjustments_button_clarityTool">Clarity</string>
-    <string name="pesdk_adjustments_button_gammaTool">Gamma</string>
-    <string name="pesdk_adjustments_button_blacksTool">Blacks</string>
-    <string name="pesdk_adjustments_button_whitesTool">Whites</string>
-    <string name="pesdk_adjustments_button_temperatureTool">Temperature</string>
-    <string name="pesdk_adjustments_button_sharpnessTool">Sharpness</string>
-    <string name="pesdk_adjustments_button_reset">Reset</string>
-    <string name="pesdk_focus_title_name">Focus</string>
-    <string name="pesdk_focus_title_disabled">None</string>
-    <string name="pesdk_focus_button_radial">Radial</string>
-    <string name="pesdk_focus_button_linear">Linear</string>
-    <string name="pesdk_focus_button_mirrored">Mirrored</string>
-    <string name="pesdk_focus_button_gaussian">Gaussian</string>
-    <string name="pesdk_text_title_name">Текст</string>
-    <string name="pesdk_text_title_options">Параметри тексту</string>
-    <string name="pesdk_text_title_textColor">Колір тексту</string>
-    <string name="pesdk_text_title_font">Шрифт</string>
-    <string name="pesdk_text_button_add">Додати</string>
-    <string name="pesdk_text_button_edit">Редагувати</string>
-    <string name="pesdk_text_button_straighten">Straighten</string>
-    <string name="pesdk_text_button_font">Шрифт</string>
-    <string name="pesdk_text_button_color">Колір</string>
-    <string name="pesdk_text_button_backgroundColor">BG Color</string>
-    <string name="pesdk_text_button_alignment">Вирівнювання</string>
-    <string name="pesdk_text_button_bringToFront">To Front</string>
-    <string name="pesdk_text_button_delete">Видалити</string>
-    <string name="pesdk_text_text_editTextPlaceholder">Ваш текст</string>
-    <string name="pesdk_brush_title_name">Пензель</string>
-    <string name="pesdk_brush_button_color">Колір</string>
-    <string name="pesdk_brush_button_size">Розмір</string>
-    <string name="pesdk_brush_button_hardness">Hardness</string>
-    <string name="pesdk_brush_button_bringToFront">To Front</string>
-    <string name="pesdk_brush_button_delete">Видалити</string>
-    <string name="pesdk_brush_title_brushColor">Колір пензля</string>
-    <string name="pesdk_editor_title_name">Редактор</string>
-    <string name="pesdk_editor_title_closeEditorAlert">Закрити редактор?</string>
-    <string name="pesdk_editor_text_closeEditorAlert">Ви дійсно хочете відмінити зміни?</string>
-    <string name="pesdk_editor_button_closeEditorAlertConfirmation">Так</string>
-    <string name="pesdk_editor_button_closeEditorAlertCancelation">Ні</string>
-    <string name="pesdk_editor_cancel">Відхилити</string>
-    <string name="pesdk_editor_accept">Прийняти</string>
-    <string name="pesdk_editor_save">Зберегти</string>
-    <string name="pesdk_editor_text_exportProgressUnknown">Exporting…</string>
-    <string name="pesdk_editor_text_exportProgress" formatted="false">Exporting %s.</string>
-    <string name="pesdk_sticker_title_name">Sticker</string>
-    <string name="pesdk_sticker_title_color">Sticker Color</string>
-    <string name="pesdk_sticker_title_options">Sticker Options</string>
-    <string name="pesdk_sticker_button_add">Додати</string>
-    <string name="pesdk_sticker_button_color">Колір</string>
-    <string name="pesdk_sticker_button_delete">Видалити</string>
-    <string name="pesdk_sticker_button_bringToFront">To Front</string>
-    <string name="pesdk_sticker_button_straighten">Straighten</string>
-    <string name="pesdk_sticker_button_replace">Replace</string>
-    <string name="pesdk_sticker_button_opacity">Прозорість</string>
-    <string name="pesdk_sticker_button_contrast">Контрастність</string>
-    <string name="pesdk_sticker_button_saturation">Насиченість</string>
-    <string name="pesdk_sticker_button_brightness">Яскравість</string>
-    <string name="pesdk_sticker_category_name_custom">Uploads</string>
-    <string name="pesdk_overlay_title_name">Overlay</string>
-    <string name="pesdk_overlay_button_blendModeNormal">Normal</string>
-    <string name="pesdk_overlay_button_blendModeDarken">Darken</string>
-    <string name="pesdk_overlay_button_blendModeScreen">Screen</string>
-    <string name="pesdk_overlay_button_blendModeOverlay">Overlay</string>
-    <string name="pesdk_overlay_button_blendModeLighten">Lighten</string>
-    <string name="pesdk_overlay_button_blendModeMultiply">Multiply</string>
-    <string name="pesdk_overlay_button_blendModeColorBurn">Color Burn</string>
-    <string name="pesdk_overlay_button_blendModeSoftLight">Soft Light</string>
-    <string name="pesdk_overlay_button_blendModeHardLight">Hard Light</string>
-    <string name="pesdk_overlay_asset_none">None</string>
-    <string name="pesdk_overlay_asset_golden">Golden</string>
-    <string name="pesdk_overlay_asset_lightleak1">Lightleak 1</string>
-    <string name="pesdk_overlay_asset_mosaic">Mosaic</string>
-    <string name="pesdk_overlay_asset_paper">Paper</string>
-    <string name="pesdk_overlay_asset_rain">Rain</string>
-    <string name="pesdk_overlay_asset_vintage">Vintage</string>
-    <string name="pesdk_common_button_flipH">Горизонтальний переворот</string>
-    <string name="pesdk_common_button_flipV">Вертикальний переворот</string>
-    <string name="pesdk_common_button_undo">Скасувати</string>
-    <string name="pesdk_common_button_redo">Повторити</string>
-    <string name="pesdk_common_title_colorPicker">Вибрати колір</string>
-    <string name="pesdk_common_title_transparentColor">Прозорий</string>
-    <string name="pesdk_common_title_whiteColor">Білий</string>
-    <string name="pesdk_common_title_grayColor">Сірий</string>
-    <string name="pesdk_common_title_blackColor">Чорний</string>
-    <string name="pesdk_common_title_lightBlueColor">Блакитний</string>
-    <string name="pesdk_common_title_blueColor">Синій</string>
-    <string name="pesdk_common_title_purpleColor">Фіолетовий</string>
-    <string name="pesdk_common_title_orchidColor">Бузковий</string>
-    <string name="pesdk_common_title_pinkColor">Рожевий</string>
-    <string name="pesdk_common_title_redColor">Червоний</string>
-    <string name="pesdk_common_title_orangeColor">Помаранчевий</string>
-    <string name="pesdk_common_title_goldColor">Золотий</string>
-    <string name="pesdk_common_title_yellowColor">Жовтий</string>
-    <string name="pesdk_common_title_oliveColor">Оливковий</string>
-    <string name="pesdk_common_title_greenColor">Зелений</string>
-    <string name="pesdk_common_title_aquamarinColor">Аквамариновий</string>
-    <string name="pesdk_common_title_pipettableColor">Pipettable color</string>
-    <string name="vesdk_video_trim_title_name">Trim</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Як зробити Simple Gallery галереєю за-замовчуванням?</string>
@@ -360,65 +216,7 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Gallery Pro - фотоменеджер і редактор</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Browse your memories without any interruptions with this photo and video gallery</string>
-    <string name="app_long_description">
-        Simple Gallery Pro - це офлайн-галерея з великою кількістю налаштувань. Впорядковуйте та редагуйте ваші фото, відновлюйте видалені файли з кошика, захищайте та приховуйте файли і переглядайте фото і відео різноманітних форматів, включаючи RAW, SVG та багато іншого.
-
-        Цей додаток не містить реклами і непотрібних дозволів. Оскільки додаток не потребує доступу в інтернет, ваша приватність захищена.
-
-        -------------------------------------------------
-        <b>SIMPLE GALLERY PRO – ФУНКЦІЇ</b>
-        -------------------------------------------------
-
-        • Офлайн-галерея без реклами чи спливаючих заставок
-        • Фоторедактор Simple gallery – обрізайте, обертайте, змінюйте розмір, малюйте, накладайте фільтри та інше
-        • Інтернет-з\'єднання не потрібне, що дає більше приватності і безпеки
-        • Не потребуються зайві дозволи
-        • Швидкий пошук зображень, відео і файлів
-        • Відкривайте та переглядайте багато різних фото- і відеоформатів (RAW, SVG, панорамні фото тощо)
-        • Різноманітні інтуїтивно зрозумілі жести для легкого редагуваання та упорядкування файлів
-        • Багато способів фільтрувати, групувати і сортувати файли
-        • Налаштуйте зовнішній вигляд Simple Gallery Pro
-        • Доступна 32 мовами
-        • Позначайте файли як улюблені для швидкого доступу
-        • Захищайте ваші фото і відео графічним ключем, PIN-кодом або відбитком пальця
-        • Використовуйте графічний ключ, PIN-код і відбиток пальця також для блокування запуску галереї або окремих її функцій
-        • Відновлюйте видалені фото і відео з кошика
-        • Змінюйте видимість файлів, щоб приховати фото і відео
-        • Створюйте налаштовуване слайд-шоу з ваших файлів
-        • Переглядайте детальну інформацію про ваші файли (роздільна здатність, записи EXIF тощо)
-        • Simple Gallery Pro є додатком з відкритим джерельним кодом
-        … та багато-багато іншого!
-
-        <b>ФОТОРЕДАКТОР</b>
-        Simple Gallery Pro дозволяє легко редагувати ваші зображення на льоту. Обрізайте, віддзеркалюйте, обертайте та змінюйте розмір своїх зображень. Якщо ви почуваєтеся креативно, можете додавати фільтри та малювати на ваших зображеннях!
-
-        <b>ПІДТРИМКА БАГАТЬОХ ТИПІВ ФАЙЛІВ</b>
-        На відміну від деяких інших переглядачів та організаторів галереї, Simple Gallery Pro підтримує величезний перелік різноманітних типів файлів, включаючи JPEG, PNG, MP4, MKV, RAW, SVG, панорамні фото, панорамні відео та багато іншого.
-
-        <b>МЕНЕДЖЕР ГАЛЕРЕЇ З БЕЗЛІЧЧЮ НАЛАШТУВАНЬ</b>
-        Від зовнішнього вигляду до функціональних кнопок у нижній панелі інструментів: Simple Gallery Pro має безліч налаштувань та працює у потрібний вам спосіб. Жодний інший менеджер галереї не має такої гнучкості! Завдяки відкритому джерельному коду цей додаток доступний 32 мовами!
-
-        <b>ВІДНОВЛЮЙТЕ ВИДАЛЕНІ ФОТО І ВІДЕО</b>
-        Випадково видалили дорогоцінне фото чи відео? Не хвилюйтеся! Simple Gallery Pro пропонує зручний кошик, звідки можна легко відновити видалені фото і відео.
-
-        <b>ЗАХИЩАЙТЕ І ПРИХОВУЙТЕ ФОТО, ВІДЕО І ФАЙЛИ</b>
-        Використовуючи PIN-код, графічний ключ чи сканер відбитка пальця на вашому пристрої, ви можете захистити та приховати фото, відео та цілі альбоми. Ви можете захистити сам додаток або заблокувати окремі його функції. Наприклад, заборона видалення файлів без сканування відбитку пальця допоможе захистити ваші файли від випадкового видалення.
-
-        <b>Перегляньте повний набір додатків Simple Tools тут:</b>
-        https://www.simplemobiletools.com
-
-        <b>Standalone website of Simple Gallery Pro:</b>
-        https://www.simplemobiletools.com/gallery
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
 
     <!--
         Haven't found some strings? There's more at
