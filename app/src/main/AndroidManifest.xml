@@ -92,7 +92,7 @@
         </activity>
 
         <activity
-            android:name=".activities.SearchActivity"
+            android:name="com.loitp.ui.activity.SearchActivity"
             android:label="@string/search"
             android:parentActivityName="com.loitp.ui.activity.MainActivity"
             android:resizeableActivity="true">

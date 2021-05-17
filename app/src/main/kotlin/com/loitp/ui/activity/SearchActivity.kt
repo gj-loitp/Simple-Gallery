@@ -1,4 +1,4 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.app.SearchManager
 import android.content.Context
@@ -12,12 +12,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.VIEW_TYPE_GRID
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.models.FileDirItem
-import com.simplemobiletools.commons.views.MyGridLayoutManager
 import com.loitp.pro.R
+import com.loitp.pro.activities.SimpleActivity
+import com.loitp.pro.activities.ViewPagerActivity
 import com.loitp.pro.adapters.MediaAdapter
 import com.loitp.pro.asynctasks.GetMediaAsynctask
 import com.loitp.pro.extensions.*
@@ -26,6 +23,11 @@ import com.loitp.pro.interfaces.MediaOperationsListener
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem
 import com.loitp.pro.models.ThumbnailSection
+import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.VIEW_TYPE_GRID
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.commons.models.FileDirItem
+import com.simplemobiletools.commons.views.MyGridLayoutManager
 import kotlinx.android.synthetic.main.activity_media.*
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_search.media_empty_text_placeholder
@@ -39,7 +41,6 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
     private var mLastSearchedText = ""
     private var mDateFormat = ""
     private var mTimeFormat = ""
-
     private var mSearchMenuItem: MenuItem? = null
     private var mCurrAsyncTask: GetMediaAsynctask? = null
     private var mAllMedia = ArrayList<ThumbnailItem>()
@@ -76,21 +77,23 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
     private fun setupSearch(menu: Menu) {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         mSearchMenuItem = menu.findItem(R.id.search)
-        MenuItemCompat.setOnActionExpandListener(mSearchMenuItem, object : MenuItemCompat.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                mIsSearchOpen = true
-                return true
-            }
-
-            // this triggers on device rotation too, avoid doing anything
-            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                if (mIsSearchOpen) {
-                    mIsSearchOpen = false
-                    mLastSearchedText = ""
+        MenuItemCompat.setOnActionExpandListener(
+            mSearchMenuItem,
+            object : MenuItemCompat.OnActionExpandListener {
+                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                    mIsSearchOpen = true
+                    return true
                 }
-                return true
-            }
-        })
+
+                // this triggers on device rotation too, avoid doing anything
+                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                    if (mIsSearchOpen) {
+                        mIsSearchOpen = false
+                        mLastSearchedText = ""
+                    }
+                    return true
+                }
+            })
         mSearchMenuItem?.expandActionView()
 
         (mSearchMenuItem?.actionView as? SearchView)?.apply {
@@ -113,9 +116,15 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
     private fun textChanged(text: String) {
         ensureBackgroundThread {
             try {
-                val filtered = mAllMedia.filter { it is Medium && it.name.contains(text, true) } as ArrayList
+                val filtered = mAllMedia.filter {
+                    it is Medium && it.name.contains(
+                        other = text,
+                        ignoreCase = true
+                    )
+                } as ArrayList
                 filtered.sortBy { it is Medium && !it.name.startsWith(text, true) }
-                val grouped = MediaFetcher(applicationContext).groupMedia(filtered as ArrayList<Medium>, "")
+                val grouped =
+                    MediaFetcher(applicationContext).groupMedia(filtered as ArrayList<Medium>, "")
                 runOnUiThread {
                     if (grouped.isEmpty()) {
                         media_empty_text_placeholder.text = getString(R.string.no_items_found)
@@ -135,24 +144,38 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
 
     private fun setupAdapter() {
         val currAdapter = media_grid.adapter
-        if (currAdapter == null) {
-            val fastscroller = if (config.scrollHorizontally) media_horizontal_fastscroller else media_vertical_fastscroller
-            MediaAdapter(this, ArrayList(), this, false, false, "", media_grid, fastscroller) {
-                if (it is Medium) {
-                    itemClicked(it.path)
+        when {
+            currAdapter == null -> {
+                val fastScroller =
+                    if (config.scrollHorizontally) media_horizontal_fastscroller else media_vertical_fastscroller
+                MediaAdapter(
+                    activity = this,
+                    media = ArrayList(),
+                    listener = this,
+                    isAGetIntent = false,
+                    allowMultiplePicks = false,
+                    path = "",
+                    recyclerView = media_grid,
+                    fastScroller = fastScroller
+                ) {
+                    if (it is Medium) {
+                        itemClicked(it.path)
+                    }
+                }.apply {
+                    media_grid.adapter = this
                 }
-            }.apply {
-                media_grid.adapter = this
+                setupLayoutManager()
+                handleGridSpacing(mAllMedia)
+                measureRecyclerViewContent(mAllMedia)
             }
-            setupLayoutManager()
-            handleGridSpacing(mAllMedia)
-            measureRecyclerViewContent(mAllMedia)
-        } else if (mLastSearchedText.isEmpty()) {
-            (currAdapter as MediaAdapter).updateMedia(mAllMedia)
-            handleGridSpacing(mAllMedia)
-            measureRecyclerViewContent(mAllMedia)
-        } else {
-            textChanged(mLastSearchedText)
+            mLastSearchedText.isEmpty() -> {
+                (currAdapter as MediaAdapter).updateMedia(mAllMedia)
+                handleGridSpacing(mAllMedia)
+                measureRecyclerViewContent(mAllMedia)
+            }
+            else -> {
+                textChanged(mLastSearchedText)
+            }
         }
 
         setupScrollDirection()
@@ -167,7 +190,14 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
 
             val spanCount = config.mediaColumnCnt
             val spacing = config.thumbnailSpacing
-            val decoration = GridSpacingItemDecoration(spanCount, spacing, config.scrollHorizontally, config.fileRoundedCorners, media, true)
+            val decoration = GridSpacingItemDecoration(
+                spanCount = spanCount,
+                spacing = spacing,
+                isScrollingHorizontally = config.scrollHorizontally,
+                addSideSpacing = config.fileRoundedCorners,
+                items = media,
+                useGridPosition = true
+            )
             media_grid.addItemDecoration(decoration)
         }
     }
@@ -176,7 +206,7 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
 
     private fun toggleFilenameVisibility() {
         config.displayFileNames = !config.displayFileNames
-        getMediaAdapter()?.updateDisplayFilenames(config.displayFileNames)
+        getMediaAdapter()?.updateDisplayFilenames(displayFilenames = config.displayFileNames)
     }
 
     private fun itemClicked(path: String) {
@@ -205,10 +235,16 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
         val layoutManager = media_grid.layoutManager as MyGridLayoutManager
         if (config.scrollHorizontally) {
             layoutManager.orientation = RecyclerView.HORIZONTAL
-            media_grid.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            media_grid.layoutParams = RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
         } else {
             layoutManager.orientation = RecyclerView.VERTICAL
-            media_grid.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            media_grid.layoutParams = RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
         }
 
         layoutManager.spanCount = config.mediaColumnCnt
@@ -281,9 +317,13 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
     private fun calculateContentHeight(media: ArrayList<ThumbnailItem>) {
         val layoutManager = media_grid.layoutManager as MyGridLayoutManager
         val pathToCheck = SHOW_ALL
-        val hasSections = config.getFolderGrouping(pathToCheck) and GROUP_BY_NONE == 0 && !config.scrollHorizontally
+        val hasSections =
+            config.getFolderGrouping(pathToCheck) and GROUP_BY_NONE == 0 && !config.scrollHorizontally
         val sectionTitleHeight = if (hasSections) layoutManager.getChildAt(0)?.height ?: 0 else 0
-        val thumbnailHeight = if (hasSections) layoutManager.getChildAt(1)?.height ?: 0 else layoutManager.getChildAt(0)?.height ?: 0
+        val thumbnailHeight =
+            if (hasSections) layoutManager.getChildAt(1)?.height ?: 0 else layoutManager.getChildAt(
+                0
+            )?.height ?: 0
 
         var fullHeight = 0
         var curSectionItems = 0
@@ -326,7 +366,7 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
             }
         }
 
-        mCurrAsyncTask!!.execute()
+        mCurrAsyncTask?.execute()
     }
 
     override fun refreshItems() {
@@ -334,13 +374,18 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
     }
 
     override fun tryDeleteFiles(fileDirItems: ArrayList<FileDirItem>) {
-        val filtered = fileDirItems.filter { File(it.path).isFile && it.path.isMediaFile() } as ArrayList
+        val filtered =
+            fileDirItems.filter { File(it.path).isFile && it.path.isMediaFile() } as ArrayList
         if (filtered.isEmpty()) {
             return
         }
 
         if (config.useRecycleBin && !filtered.first().path.startsWith(recycleBinPath)) {
-            val movingItems = resources.getQuantityString(R.plurals.moving_items_into_bin, filtered.size, filtered.size)
+            val movingItems = resources.getQuantityString(
+                R.plurals.moving_items_into_bin,
+                filtered.size,
+                filtered.size
+            )
             toast(movingItems)
 
             movePathsInRecycleBin(filtered.map { it.path } as ArrayList<String>) {
@@ -351,9 +396,10 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
                 }
             }
         } else {
-            val deletingItems = resources.getQuantityString(R.plurals.deleting_items, filtered.size, filtered.size)
+            val deletingItems =
+                resources.getQuantityString(R.plurals.deleting_items, filtered.size, filtered.size)
             toast(deletingItems)
-            deleteFilteredFiles(filtered)
+            deleteFilteredFiles(filtered = filtered)
         }
     }
 
