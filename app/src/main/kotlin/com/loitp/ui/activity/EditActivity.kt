@@ -429,7 +429,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         val filename = applicationContext.getFilenameFromContentUri(saveUri) ?: "tmp.jpg"
         val newPath = "$folder/$filename"
         val fileDirItem = FileDirItem(newPath, filename)
-        getFileOutputStream(fileDirItem, true) {
+        getFileOutputStream(fileDirItem = fileDirItem, allowCreatingNewFile = true) {
             if (it != null) {
                 try {
                     it.write(bytes.toByteArray())
@@ -897,10 +897,15 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         try {
             ensureBackgroundThread {
                 val file = File(path)
-                val fileDirItem = FileDirItem(path, path.getFilenameFromPath())
-                getFileOutputStream(fileDirItem, true) {
+                val fileDirItem = FileDirItem(path = path, name = path.getFilenameFromPath())
+                getFileOutputStream(fileDirItem = fileDirItem, allowCreatingNewFile = true) {
                     if (it != null) {
-                        saveBitmap(file, bitmap, it, showSavingToast)
+                        saveBitmap(
+                            file = file,
+                            bitmap = bitmap,
+                            out = it,
+                            showSavingToast = showSavingToast
+                        )
                     } else {
                         toast(R.string.image_editing_failed)
                     }
@@ -952,7 +957,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
     private fun scanFinalPath(path: String) {
         val paths = arrayListOf(path)
         rescanPaths(paths) {
-            fixDateTaken(paths, false)
+            fixDateTaken(paths = paths, showToasts = false)
             setResult(Activity.RESULT_OK, intent)
             toast(R.string.file_saved)
             finish()

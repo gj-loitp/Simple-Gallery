@@ -172,7 +172,7 @@
             android:parentActivityName=".activities.SettingsActivity"/>
 
         <activity
-            android:name=".activities.ExcludedFoldersActivity"
+            android:name="com.loitp.ui.activity.ExcludedFoldersActivity"
             android:label="@string/excluded_folders"
             android:parentActivityName=".activities.SettingsActivity"/>
 
