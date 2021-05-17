@@ -23,6 +23,8 @@ import com.loitp.pro.extensions.showRecycleBinEmptyingDialog
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.AlbumCover
 import com.loitp.ui.activity.ExcludedFoldersActivity
+import com.loitp.ui.activity.HiddenFoldersActivity
+import com.loitp.ui.activity.IncludedFoldersActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.io.File
 import java.io.InputStream

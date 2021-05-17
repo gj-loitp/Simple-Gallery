@@ -1,4 +1,4 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +8,7 @@ import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.interfaces.RefreshRecyclerViewListener
 import com.loitp.pro.R
+import com.loitp.pro.activities.SimpleActivity
 import com.loitp.pro.adapters.ManageHiddenFoldersAdapter
 import com.loitp.pro.extensions.addNoMedia
 import com.loitp.pro.extensions.config
@@ -30,7 +31,12 @@ class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
                     setTextColor(config.textColor)
                 }
 
-                val adapter = ManageHiddenFoldersAdapter(this, it, this, manage_folders_list) {}
+                val adapter = ManageHiddenFoldersAdapter(
+                    activity = this,
+                    folders = it,
+                    listener = this,
+                    recyclerView = manage_folders_list
+                ) {}
                 manage_folders_list.adapter = adapter
             }
         }
@@ -55,7 +61,14 @@ class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
     }
 
     private fun addFolder() {
-        FilePickerDialog(this, config.lastFilepickerPath, false, config.shouldShowHidden, false, true) {
+        FilePickerDialog(
+            activity = this,
+            currPath = config.lastFilepickerPath,
+            pickFile = false,
+            showHidden = config.shouldShowHidden,
+            showFAB = false,
+            canAddShowHiddenButton = true
+        ) {
             config.lastFilepickerPath = it
             ensureBackgroundThread {
                 addNoMedia(it) {
