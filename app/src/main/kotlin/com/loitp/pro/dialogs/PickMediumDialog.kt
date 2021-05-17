@@ -10,7 +10,7 @@ import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.helpers.VIEW_TYPE_GRID
 import com.simplemobiletools.commons.views.MyGridLayoutManager
 import com.loitp.pro.R
-import com.loitp.pro.adapters.MediaAdapter
+import com.loitp.adapter.MediaAdapter
 import com.loitp.pro.asynctasks.GetMediaAsynctask
 import com.loitp.pro.extensions.config
 import com.loitp.pro.extensions.getCachedMedia

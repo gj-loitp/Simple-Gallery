@@ -24,7 +24,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.loitp.pro.R
-import com.loitp.pro.adapters.MediaAdapter
+import com.loitp.adapter.MediaAdapter
 import com.loitp.pro.asynctasks.GetMediaAsynctask
 import com.loitp.pro.databases.GalleryDatabase
 import com.loitp.pro.dialogs.ChangeGroupingDialog

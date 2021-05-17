@@ -43,7 +43,7 @@ import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.R
 import com.loitp.ui.activity.PanoramaPhotoActivity
 import com.loitp.ui.activity.PhotoActivity
-import com.loitp.pro.adapters.PortraitPhotosAdapter
+import com.loitp.adapter.PortraitPhotosAdapter
 import com.loitp.pro.extensions.config
 import com.loitp.pro.extensions.saveRotatedImageToFile
 import com.loitp.pro.extensions.sendFakeClick
