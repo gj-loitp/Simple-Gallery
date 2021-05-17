@@ -813,7 +813,7 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
             showFAB = false,
             canAddShowHiddenButton = true
         ) {
-            CreateNewFolderDialog(this, it) {
+            CreateNewFolderDialog(activity = this, path = it) {
                 config.tempFolderPath = it
                 ensureBackgroundThread {
                     gotDirectories(newDirs = addTempFolderIfNeeded(dirs = getCurrentlyDisplayedDirs()))

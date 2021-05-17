@@ -235,7 +235,7 @@
         </activity>
 
         <activity
-            android:name=".activities.SetWallpaperActivity"
+            android:name="com.loitp.ui.activity.SetWallpaperActivity"
             android:label="@string/simple_wallpaper">
             <intent-filter>
                 <action android:name="android.intent.action.ATTACH_DATA"/>

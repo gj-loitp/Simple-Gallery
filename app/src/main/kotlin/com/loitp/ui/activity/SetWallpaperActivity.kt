@@ -1,4 +1,4 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,23 +9,25 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.loitp.pro.R
+import com.loitp.pro.activities.SimpleActivity
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.checkAppSideloading
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.models.RadioItem
-import com.loitp.pro.R
-import com.loitp.ui.activity.MainActivity
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_set_wallpaper.*
 import kotlinx.android.synthetic.main.bottom_set_wallpaper_actions.*
 
 class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener {
-    private val PICK_IMAGE = 1
+    companion object {
+        private const val PICK_IMAGE = 1
+    }
+
     private var isLandscapeRatio = true
     private var wallpaperFlag = -1
-
     lateinit var uri: Uri
     lateinit var wallpaperManager: WallpaperManager
 
@@ -91,7 +93,8 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
     }
 
     private fun setupAspectRatio() {
-        val wallpaperWidth = if (isLandscapeRatio) wallpaperManager.desiredMinimumWidth else wallpaperManager.desiredMinimumWidth / 2
+        val wallpaperWidth =
+            if (isLandscapeRatio) wallpaperManager.desiredMinimumWidth else wallpaperManager.desiredMinimumWidth / 2
         crop_image_view.setAspectRatio(wallpaperWidth, wallpaperManager.desiredMinimumHeight)
         bottom_set_wallpaper_aspect_ratio.setImageResource(if (isLandscapeRatio) R.drawable.ic_minimize else R.drawable.ic_maximize)
     }
@@ -105,9 +108,16 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
     private fun confirmWallpaper() {
         if (isNougatPlus()) {
             val items = arrayListOf(
-                    RadioItem(WallpaperManager.FLAG_SYSTEM, getString(R.string.home_screen)),
-                    RadioItem(WallpaperManager.FLAG_LOCK, getString(R.string.lock_screen)),
-                    RadioItem(WallpaperManager.FLAG_SYSTEM or WallpaperManager.FLAG_LOCK, getString(R.string.home_and_lock_screen)))
+                RadioItem(
+                    id = WallpaperManager.FLAG_SYSTEM,
+                    title = getString(R.string.home_screen)
+                ),
+                RadioItem(id = WallpaperManager.FLAG_LOCK, title = getString(R.string.lock_screen)),
+                RadioItem(
+                    id = WallpaperManager.FLAG_SYSTEM or WallpaperManager.FLAG_LOCK,
+                    title = getString(R.string.home_and_lock_screen)
+                )
+            )
 
             RadioGroupDialog(this, items) {
                 wallpaperFlag = it as Int
@@ -131,7 +141,8 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
                 val ratio = wantedHeight / bitmap.height.toFloat()
                 val wantedWidth = (bitmap.width * ratio).toInt()
                 try {
-                    val scaledBitmap = Bitmap.createScaledBitmap(bitmap, wantedWidth, wantedHeight, true)
+                    val scaledBitmap =
+                        Bitmap.createScaledBitmap(bitmap, wantedWidth, wantedHeight, true)
                     if (isNougatPlus()) {
                         wallpaperManager.setBitmap(scaledBitmap, null, true, wallpaperFlag)
                     } else {
@@ -157,6 +168,10 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
                 finish()
             }
         }
-        super.onActivityResult(requestCode, resultCode, resultData)
+        super.onActivityResult(
+            requestCode = requestCode,
+            resultCode = resultCode,
+            resultData = resultData
+        )
     }
 }
