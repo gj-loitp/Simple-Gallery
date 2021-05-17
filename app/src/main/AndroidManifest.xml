@@ -208,7 +208,7 @@
         </activity>
 
         <activity
-            android:name=".activities.EditActivity"
+            android:name="com.loitp.ui.activity.EditActivity"
             android:label="@string/editor">
 
             <intent-filter
