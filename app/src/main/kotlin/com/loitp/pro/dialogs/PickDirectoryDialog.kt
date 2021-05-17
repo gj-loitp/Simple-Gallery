@@ -9,7 +9,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.VIEW_TYPE_GRID
 import com.simplemobiletools.commons.views.MyGridLayoutManager
 import com.loitp.pro.R
-import com.loitp.pro.adapters.DirectoryAdapter
+import com.loitp.adapter.DirectoryAdapter
 import com.loitp.pro.extensions.*
 import com.loitp.pro.models.Directory
 import kotlinx.android.synthetic.main.dialog_directory_picker.view.*

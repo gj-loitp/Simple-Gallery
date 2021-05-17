@@ -23,7 +23,7 @@ import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
-import com.loitp.pro.adapters.DirectoryAdapter
+import com.loitp.adapter.DirectoryAdapter
 import com.loitp.pro.databases.GalleryDatabase
 import com.loitp.pro.dialogs.ChangeSortingDialog
 import com.loitp.pro.dialogs.ChangeViewTypeDialog
