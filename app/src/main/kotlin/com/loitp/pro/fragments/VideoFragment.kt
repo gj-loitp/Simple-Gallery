@@ -26,7 +26,7 @@ import com.google.android.exoplayer2.upstream.FileDataSource
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.R
-import com.loitp.pro.activities.PanoramaVideoActivity
+import com.loitp.ui.activity.PanoramaVideoActivity
 import com.loitp.pro.activities.VideoActivity
 import com.loitp.pro.extensions.config
 import com.loitp.pro.extensions.hasNavBar

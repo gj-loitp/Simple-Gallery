@@ -1,28 +1,36 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.content.res.Configuration
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import android.widget.SeekBar
+import androidx.core.content.ContextCompat
 import com.google.vr.sdk.widgets.video.VrVideoEventListener
 import com.google.vr.sdk.widgets.video.VrVideoView
 import com.simplemobiletools.commons.extensions.*
 import com.loitp.pro.R
+import com.loitp.pro.activities.SimpleActivity
 import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.MIN_SKIP_LENGTH
 import com.loitp.pro.helpers.PATH
 import kotlinx.android.synthetic.main.activity_panorama_video.*
 import kotlinx.android.synthetic.main.bottom_video_time_holder.*
 import java.io.File
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListener {
-    private val CARDBOARD_DISPLAY_MODE = 3
+    companion object {
+        private const val CARDBOARD_DISPLAY_MODE = 3
+    }
 
     private var mIsFullscreen = false
     private var mIsExploreEnabled = true
@@ -32,8 +40,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
     private var mPlayOnReady = false
     private var mDuration = 0
     private var mCurrTime = 0
-
-    private var mTimerHandler = Handler()
+    private var mTimerHandler = Handler(Looper.getMainLooper())
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
@@ -54,7 +61,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
             updateStatusbarColor(Color.BLACK)
         }
 
-        window.statusBarColor = resources.getColor(R.color.circle_black_background)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.circle_black_background)
 
         if (config.maxBrightness) {
             val attributes = window.attributes
@@ -242,9 +249,12 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
         }
 
         video_time_holder.setPadding(0, 0, right, bottom)
-        video_time_holder.background = resources.getDrawable(R.drawable.gradient_background)
+        video_time_holder.background =
+            ContextCompat.getDrawable(this, R.drawable.gradient_background)
         video_time_holder.onGlobalLayout {
-            val newBottomMargin = video_time_holder.height - resources.getDimension(R.dimen.video_player_play_pause_size).toInt() - resources.getDimension(R.dimen.activity_margin).toInt()
+            val newBottomMargin =
+                video_time_holder.height - resources.getDimension(R.dimen.video_player_play_pause_size)
+                    .toInt() - resources.getDimension(R.dimen.activity_margin).toInt()
             (explore.layoutParams as RelativeLayout.LayoutParams).bottomMargin = newBottomMargin
 
             (cardboard.layoutParams as RelativeLayout.LayoutParams).apply {
@@ -272,7 +282,13 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
             it.animate().alpha(newAlpha)
         }
 
-        arrayOf(cardboard, explore, video_toggle_play_pause, video_curr_time, video_duration).forEach {
+        arrayOf(
+            cardboard,
+            explore,
+            video_toggle_play_pause,
+            video_curr_time,
+            video_duration
+        ).forEach {
             it.isClickable = !mIsFullscreen
         }
 
@@ -296,10 +312,13 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
         }
 
         val curr = vr_video_view.currentPosition
-        val twoPercents = Math.max((vr_video_view.duration / 50).toInt(), MIN_SKIP_LENGTH)
+        val twoPercents = max((vr_video_view.duration / 50).toInt(), MIN_SKIP_LENGTH)
         val newProgress = if (forward) curr + twoPercents else curr - twoPercents
-        val roundProgress = Math.round(newProgress / 1000f)
-        val limitedProgress = Math.max(Math.min(vr_video_view.duration.toInt(), roundProgress), 0)
+        val roundProgress = (newProgress / 1000f).roundToInt()
+        val limitedProgress = max(
+            a = min(a = vr_video_view.duration.toInt(), b = roundProgress),
+            b = 0
+        )
         setVideoProgress(limitedProgress)
         if (!mIsPlaying) {
             togglePlayPause()

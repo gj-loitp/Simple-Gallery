@@ -23,6 +23,7 @@ import com.loitp.pro.fragments.ViewPagerFragment
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import com.loitp.ui.activity.MainActivity
+import com.loitp.ui.activity.PanoramaVideoActivity
 import kotlinx.android.synthetic.main.bottom_actions.*
 import kotlinx.android.synthetic.main.fragment_holder.*
 import java.io.File
