@@ -42,7 +42,7 @@ import com.bumptech.glide.request.target.Target
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
 import com.loitp.adapter.MyPagerAdapter
-import com.loitp.pro.asynctasks.GetMediaAsynctask
+import com.loitp.service.GetMediaAsyncTask
 import com.loitp.pro.dialogs.DeleteWithRememberDialog
 import com.loitp.pro.dialogs.ResizeWithPathDialog
 import com.loitp.pro.dialogs.SaveAsDialog
@@ -1208,7 +1208,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
 
     private fun refreshViewPager() {
         if (config.getFolderSorting(mDirectory) and SORT_BY_RANDOM == 0) {
-            GetMediaAsynctask(
+            GetMediaAsyncTask(
                 context = applicationContext,
                 mPath = mDirectory,
                 isPickImage = false,

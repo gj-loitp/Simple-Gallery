@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.loitp.pro.R
 import com.loitp.adapter.MediaAdapter
-import com.loitp.pro.asynctasks.GetMediaAsynctask
+import com.loitp.service.GetMediaAsyncTask
 import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.*
 import com.loitp.pro.interfaces.MediaOperationsListener
@@ -40,7 +40,7 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
     private var mDateFormat = ""
     private var mTimeFormat = ""
     private var mSearchMenuItem: MenuItem? = null
-    private var mCurrAsyncTask: GetMediaAsynctask? = null
+    private var mCurrAsyncTask: GetMediaAsyncTask? = null
     private var mAllMedia = ArrayList<ThumbnailItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -357,7 +357,7 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
 
     private fun startAsyncTask(updateItems: Boolean) {
         mCurrAsyncTask?.stopFetching()
-        mCurrAsyncTask = GetMediaAsynctask(applicationContext, "", showAll = true) {
+        mCurrAsyncTask = GetMediaAsyncTask(applicationContext, "", showAll = true) {
             mAllMedia = it.clone() as ArrayList<ThumbnailItem>
             if (updateItems) {
                 textChanged(mLastSearchedText)

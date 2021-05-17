@@ -25,7 +25,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.loitp.pro.R
 import com.loitp.adapter.MediaAdapter
-import com.loitp.pro.asynctasks.GetMediaAsynctask
+import com.loitp.service.GetMediaAsyncTask
 import com.loitp.pro.databases.GalleryDatabase
 import com.loitp.pro.dialogs.ChangeGroupingDialog
 import com.loitp.pro.dialogs.ChangeSortingDialog
@@ -71,7 +71,7 @@ class MediaActivity : SimpleActivity(), MediaOperationsListener {
     private var mLatestMediaDateId = 0L
     private var mLastMediaHandler = Handler(Looper.getMainLooper())
     private var mTempShowHiddenHandler = Handler(Looper.getMainLooper())
-    private var mCurrAsyncTask: GetMediaAsynctask? = null
+    private var mCurrAsyncTask: GetMediaAsyncTask? = null
     private var mZoomListener: MyRecyclerView.MyZoomListener? = null
     private var mSearchMenuItem: MenuItem? = null
     private var mStoredAnimateGifs = true
@@ -653,7 +653,7 @@ class MediaActivity : SimpleActivity(), MediaOperationsListener {
 
     private fun startAsyncTask() {
         mCurrAsyncTask?.stopFetching()
-        mCurrAsyncTask = GetMediaAsynctask(
+        mCurrAsyncTask = GetMediaAsyncTask(
             context = applicationContext,
             mPath = mPath,
             isPickImage = mIsGetImageIntent,

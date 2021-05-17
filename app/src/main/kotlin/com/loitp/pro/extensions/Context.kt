@@ -29,7 +29,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.loitp.pro.R
 import com.loitp.ui.activity.SettingsActivity
-import com.loitp.pro.asynctasks.GetMediaAsynctask
+import com.loitp.service.GetMediaAsyncTask
 import com.loitp.pro.databases.GalleryDatabase
 import com.loitp.pro.helpers.*
 import com.loitp.pro.interfaces.*
@@ -357,7 +357,7 @@ fun Context.rescanFolderMedia(path: String) {
 fun Context.rescanFolderMediaSync(path: String) {
     getCachedMedia(path) {
         val cached = it
-        GetMediaAsynctask(applicationContext, path, false, false, false) {
+        GetMediaAsyncTask(applicationContext, path, false, false, false) {
             ensureBackgroundThread {
                 val newMedia = it
                 val media = newMedia.filter { it is Medium } as ArrayList<Medium>
