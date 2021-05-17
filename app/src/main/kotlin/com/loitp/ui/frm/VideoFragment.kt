@@ -1,5 +1,6 @@
-package com.loitp.pro.fragments
+package com.loitp.ui.frm
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Point
@@ -7,6 +8,7 @@ import android.graphics.SurfaceTexture
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.*
 import android.widget.ImageView
@@ -23,26 +25,30 @@ import com.google.android.exoplayer2.upstream.ContentDataSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DataSpec
 import com.google.android.exoplayer2.upstream.FileDataSource
-import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.loitp.pro.R
-import com.loitp.ui.activity.PanoramaVideoActivity
-import com.loitp.ui.activity.VideoActivity
 import com.loitp.ext.config
 import com.loitp.ext.hasNavBar
 import com.loitp.ext.parseFileChannel
+import com.loitp.pro.R
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import com.loitp.pro.views.MediaSideScroll
-import com.loitp.ui.frm.ViewPagerFragment
+import com.loitp.ui.activity.PanoramaVideoActivity
+import com.loitp.ui.activity.VideoActivity
+import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import kotlinx.android.synthetic.main.bottom_video_time_holder.view.*
 import kotlinx.android.synthetic.main.pager_video_item.view.*
 import java.io.File
 import java.io.FileInputStream
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.roundToInt
 
-class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, SeekBar.OnSeekBarChangeListener {
-    private val PROGRESS = "progress"
+class VideoFragment : ViewPagerFragment(),
+    TextureView.SurfaceTextureListener,
+    SeekBar.OnSeekBarChangeListener {
 
+    private val mProgress = "progress"
     private var mIsFullscreen = false
     private var mWasFragmentInit = false
     private var mIsPanorama = false
@@ -61,7 +67,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
 
     private var mExoPlayer: SimpleExoPlayer? = null
     private var mVideoSize = Point(1, 1)
-    private var mTimerHandler = Handler()
+    private var mTimerHandler = Handler(Looper.getMainLooper())
 
     private var mStoredShowExtendedDetails = false
     private var mStoredHideExtendedDetails = false
@@ -80,7 +86,12 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
     private lateinit var mPlayPauseButton: ImageView
     private lateinit var mSeekBar: SeekBar
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         mMedium = arguments!!.getSerializable(MEDIUM) as Medium
         mConfig = context!!.config
         mView = inflater.inflate(R.layout.pager_video_item, container, false).apply {
@@ -116,39 +127,40 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
             mTextureView = video_surface
             mTextureView.surfaceTextureListener = this@VideoFragment
 
-            val gestureDetector = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
-                override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-                    if (!mConfig.allowInstantChange) {
-                        toggleFullscreen()
+            val gestureDetector =
+                GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
+                    override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+                        if (!mConfig.allowInstantChange) {
+                            toggleFullscreen()
+                            return true
+                        }
+
+                        val viewWidth = width
+                        val instantWidth = viewWidth / 7
+                        val clickedX = e?.rawX ?: 0f
+                        when {
+                            clickedX <= instantWidth -> listener?.goToPrevItem()
+                            clickedX >= viewWidth - instantWidth -> listener?.goToNextItem()
+                            else -> toggleFullscreen()
+                        }
                         return true
                     }
 
-                    val viewWidth = width
-                    val instantWidth = viewWidth / 7
-                    val clickedX = e?.rawX ?: 0f
-                    when {
-                        clickedX <= instantWidth -> listener?.goToPrevItem()
-                        clickedX >= viewWidth - instantWidth -> listener?.goToNextItem()
-                        else -> toggleFullscreen()
+                    override fun onDoubleTap(e: MotionEvent?): Boolean {
+                        if (e != null) {
+                            handleDoubleTap(e.rawX)
+                        }
+
+                        return true
                     }
-                    return true
-                }
+                })
 
-                override fun onDoubleTap(e: MotionEvent?): Boolean {
-                    if (e != null) {
-                        handleDoubleTap(e.rawX)
-                    }
-
-                    return true
-                }
-            })
-
-            video_preview.setOnTouchListener { view, event ->
+            video_preview.setOnTouchListener { _, event ->
                 handleEvent(event)
                 false
             }
 
-            video_surface_frame.setOnTouchListener { view, event ->
+            video_surface_frame.setOnTouchListener { _, event ->
                 if (video_surface_frame.controller.state.zoom == 1f) {
                     handleEvent(event)
                 }
@@ -170,7 +182,8 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
             mIsFragmentVisible = true
         }
 
-        mIsFullscreen = activity!!.window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_FULLSCREEN == View.SYSTEM_UI_FLAG_FULLSCREEN
+        mIsFullscreen =
+            activity!!.window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_FULLSCREEN == View.SYSTEM_UI_FLAG_FULLSCREEN
         initTimeHolder()
         checkIfPanorama()
 
@@ -193,32 +206,44 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
 
         if (!mIsPanorama) {
             if (savedInstanceState != null) {
-                mCurrTime = savedInstanceState.getInt(PROGRESS)
+                mCurrTime = savedInstanceState.getInt(mProgress)
             }
 
             mWasFragmentInit = true
             setVideoSize()
 
             mView.apply {
-                mBrightnessSideScroll.initialize(activity!!, slide_info, true, container, singleTap = { x, y ->
-                    if (mConfig.allowInstantChange) {
-                        listener?.goToPrevItem()
-                    } else {
-                        toggleFullscreen()
-                    }
-                }, doubleTap = { x, y ->
-                    doSkip(false)
-                })
+                mBrightnessSideScroll.initialize(
+                    activity = activity!!,
+                    slideInfoView = slide_info,
+                    isBrightness = true,
+                    parentView = container,
+                    singleTap = { _, _ ->
+                        if (mConfig.allowInstantChange) {
+                            listener?.goToPrevItem()
+                        } else {
+                            toggleFullscreen()
+                        }
+                    },
+                    doubleTap = { _, _ ->
+                        doSkip(false)
+                    })
 
-                mVolumeSideScroll.initialize(activity!!, slide_info, false, container, singleTap = { x, y ->
-                    if (mConfig.allowInstantChange) {
-                        listener?.goToNextItem()
-                    } else {
-                        toggleFullscreen()
-                    }
-                }, doubleTap = { x, y ->
-                    doSkip(true)
-                })
+                mVolumeSideScroll.initialize(
+                    activity = activity!!,
+                    slideInfoView = slide_info,
+                    isBrightness = false,
+                    parentView = container,
+                    singleTap = { _, _ ->
+                        if (mConfig.allowInstantChange) {
+                            listener?.goToNextItem()
+                        } else {
+                            toggleFullscreen()
+                        }
+                    },
+                    doubleTap = { _, _ ->
+                        doSkip(true)
+                    })
 
                 video_surface.onGlobalLayout {
                     if (mIsFragmentVisible && mConfig.autoplayVideos && !mConfig.openVideosOnSeparateScreen) {
@@ -238,7 +263,8 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
 
     override fun onResume() {
         super.onResume()
-        mConfig = context!!.config      // make sure we get a new config, in case the user changed something in the app settings
+        mConfig =
+            context!!.config      // make sure we get a new config, in case the user changed something in the app settings
         activity!!.updateTextColors(mView.video_holder)
         val allowVideoGestures = mConfig.allowVideoGestures
         mTextureView.beGoneIf(mConfig.openVideosOnSeparateScreen || mIsPanorama)
@@ -292,7 +318,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(PROGRESS, mCurrTime)
+        outState.putInt(mProgress, mCurrTime)
     }
 
     private fun storeStateVariables() {
@@ -308,9 +334,15 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
     private fun saveVideoProgress() {
         if (!videoEnded()) {
             if (mExoPlayer != null) {
-                mConfig.saveLastVideoPosition(mMedium.path, mExoPlayer!!.currentPosition.toInt() / 1000)
+                mConfig.saveLastVideoPosition(
+                    path = mMedium.path,
+                    value = mExoPlayer!!.currentPosition.toInt() / 1000
+                )
             } else {
-                mConfig.saveLastVideoPosition(mMedium.path, mPositionAtPause.toInt() / 1000)
+                mConfig.saveLastVideoPosition(
+                    path = mMedium.path,
+                    value = mPositionAtPause.toInt() / 1000
+                )
             }
         }
     }
@@ -366,21 +398,31 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
         }
 
         val factory = DataSource.Factory { fileDataSource }
-        val audioSource = ExtractorMediaSource(fileDataSource.uri, factory, DefaultExtractorsFactory(), null, null)
+        val audioSource = ExtractorMediaSource(
+            fileDataSource.uri,
+            factory,
+            DefaultExtractorsFactory(),
+            null,
+            null
+        )
         mPlayOnPrepared = true
-        mExoPlayer!!.audioStreamType = C.STREAM_TYPE_MUSIC
-        mExoPlayer!!.prepare(audioSource)
+        mExoPlayer?.audioStreamType = C.STREAM_TYPE_MUSIC
+        mExoPlayer?.prepare(audioSource)
 
         if (mTextureView.surfaceTexture != null) {
-            mExoPlayer!!.setVideoSurface(Surface(mTextureView.surfaceTexture))
+            mExoPlayer?.setVideoSurface(Surface(mTextureView.surfaceTexture))
         }
 
-        mExoPlayer!!.addListener(object : Player.EventListener {
+        mExoPlayer?.addListener(object : Player.EventListener {
             override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters?) {}
 
             override fun onSeekProcessed() {}
 
-            override fun onTracksChanged(trackGroups: TrackGroupArray?, trackSelections: TrackSelectionArray?) {}
+            override fun onTracksChanged(
+                trackGroups: TrackGroupArray?,
+                trackSelections: TrackSelectionArray?
+            ) {
+            }
 
             override fun onPlayerError(error: ExoPlaybackException?) {}
 
@@ -408,8 +450,13 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
             }
         })
 
-        mExoPlayer!!.addVideoListener(object : SimpleExoPlayer.VideoListener {
-            override fun onVideoSizeChanged(width: Int, height: Int, unappliedRotationDegrees: Int, pixelWidthHeightRatio: Float) {
+        mExoPlayer?.addVideoListener(object : SimpleExoPlayer.VideoListener {
+            override fun onVideoSizeChanged(
+                width: Int,
+                height: Int,
+                unappliedRotationDegrees: Int,
+                pixelWidthHeightRatio: Float
+            ) {
                 mVideoSize.x = width
                 mVideoSize.y = (height / pixelWidthHeightRatio).toInt()
                 setVideoSize()
@@ -504,7 +551,11 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
         }
 
         mSeekBar.setOnSeekBarChangeListener(if (mIsFullscreen) null else this)
-        arrayOf(mView.video_curr_time, mView.video_duration, mView.video_toggle_play_pause).forEach {
+        arrayOf(
+            mView.video_curr_time,
+            mView.video_duration,
+            mView.video_toggle_play_pause
+        ).forEach {
             it.isClickable = !mIsFullscreen
         }
 
@@ -551,9 +602,14 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
         }
 
         val curr = mExoPlayer!!.currentPosition
-        val newProgress = if (forward) curr + FAST_FORWARD_VIDEO_MS else curr - FAST_FORWARD_VIDEO_MS
-        val roundProgress = Math.round(newProgress / 1000f)
-        val limitedProgress = Math.max(Math.min(mExoPlayer!!.duration.toInt() / 1000, roundProgress), 0)
+        val newProgress =
+            if (forward) curr + FAST_FORWARD_VIDEO_MS else curr - FAST_FORWARD_VIDEO_MS
+        val roundProgress = (newProgress / 1000f).roundToInt()
+        val limitedProgress =
+            max(
+                a = min(a = mExoPlayer!!.duration.toInt() / 1000, b = roundProgress),
+                b = 0
+            )
         setPosition(limitedProgress)
         if (!mIsPlaying) {
             togglePlayPause()
@@ -581,7 +637,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
             return
         }
 
-        mExoPlayer!!.playWhenReady = false
+        mExoPlayer?.playWhenReady = false
         mIsDragged = true
     }
 
@@ -596,7 +652,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
         }
 
         if (mIsPlaying) {
-            mExoPlayer!!.playWhenReady = true
+            mExoPlayer?.playWhenReady = true
         } else {
             playVideo()
         }

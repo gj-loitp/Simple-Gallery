@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 import com.loitp.ui.frm.PhotoFragment
-import com.loitp.pro.fragments.VideoFragment
+import com.loitp.ui.frm.VideoFragment
 import com.loitp.ui.frm.ViewPagerFragment
 import com.loitp.pro.helpers.MEDIUM
 import com.loitp.pro.helpers.SHOULD_INIT_FRAGMENT

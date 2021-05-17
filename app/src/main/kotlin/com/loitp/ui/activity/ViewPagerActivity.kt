@@ -49,7 +49,7 @@ import com.loitp.ui.dialog.ResizeWithPathDialog
 import com.loitp.ui.dialog.SaveAsDialog
 import com.loitp.ui.dialog.SlideshowDialog
 import com.loitp.ui.frm.PhotoFragment
-import com.loitp.pro.fragments.VideoFragment
+import com.loitp.ui.frm.VideoFragment
 import com.loitp.ui.frm.ViewPagerFragment
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
