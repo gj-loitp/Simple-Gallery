@@ -1,4 +1,4 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.app.Activity
 import android.appwidget.AppWidgetManager
@@ -9,9 +9,6 @@ import android.os.Bundle
 import android.widget.RelativeLayout
 import android.widget.RemoteViews
 import com.bumptech.glide.signature.ObjectKey
-import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.R
 import com.loitp.pro.dialogs.PickDirectoryDialog
 import com.loitp.pro.extensions.*
@@ -19,7 +16,9 @@ import com.loitp.pro.helpers.MyWidgetProvider
 import com.loitp.pro.helpers.ROUNDED_CORNERS_NONE
 import com.loitp.pro.models.Directory
 import com.loitp.pro.models.Widget
-import com.loitp.ui.activity.SimpleActivity
+import com.simplemobiletools.commons.dialogs.ColorPickerDialog
+import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import kotlinx.android.synthetic.main.activity_widget_config.*
 
 class WidgetConfigureActivity : SimpleActivity() {
@@ -38,7 +37,8 @@ class WidgetConfigureActivity : SimpleActivity() {
         setContentView(R.layout.activity_widget_config)
         initVariables()
 
-        mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
+        mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID)
+            ?: AppWidgetManager.INVALID_APPWIDGET_ID
 
         if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish()
@@ -59,7 +59,7 @@ class WidgetConfigureActivity : SimpleActivity() {
         updateTextColors(folder_picker_holder)
         folder_picker_holder.background = ColorDrawable(config.backgroundColor)
 
-        getCachedDirectories(false, false) {
+        getCachedDirectories(getVideosOnly = false, getImagesOnly = false) {
             mDirectories = it
             val path = it.firstOrNull()?.path
             if (path != null) {
@@ -72,7 +72,8 @@ class WidgetConfigureActivity : SimpleActivity() {
         mBgColor = config.widgetBgColor
         mBgAlpha = Color.alpha(mBgColor) / 255f
 
-        mBgColorWithoutTransparency = Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
+        mBgColorWithoutTransparency =
+            Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
         config_bg_seekbar.apply {
             progress = (mBgAlpha * 100).toInt()
 
@@ -115,7 +116,12 @@ class WidgetConfigureActivity : SimpleActivity() {
     }
 
     private fun requestWidgetUpdate() {
-        Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyWidgetProvider::class.java).apply {
+        Intent(
+            AppWidgetManager.ACTION_APPWIDGET_UPDATE,
+            null,
+            this,
+            MyWidgetProvider::class.java
+        ).apply {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(mWidgetId))
             sendBroadcast(this)
         }
@@ -153,7 +159,12 @@ class WidgetConfigureActivity : SimpleActivity() {
     }
 
     private fun changeSelectedFolder() {
-        PickDirectoryDialog(this, "", false, true) {
+        PickDirectoryDialog(
+            activity = this,
+            sourcePath = "",
+            showOtherFolderButton = false,
+            showFavoritesBin = true
+        ) {
             updateFolderImage(it)
         }
     }
@@ -170,7 +181,13 @@ class WidgetConfigureActivity : SimpleActivity() {
             if (path != null) {
                 runOnUiThread {
                     val signature = ObjectKey(System.currentTimeMillis().toString())
-                    loadJpg(path, config_image, config.cropThumbnails, ROUNDED_CORNERS_NONE, signature)
+                    loadJpg(
+                        path = path,
+                        target = config_image,
+                        cropThumbnails = config.cropThumbnails,
+                        roundCorners = ROUNDED_CORNERS_NONE,
+                        signature = signature
+                    )
                 }
             }
         }
@@ -179,6 +196,7 @@ class WidgetConfigureActivity : SimpleActivity() {
     private fun handleFolderNameDisplay() {
         val showFolderName = folder_picker_show_folder_name.isChecked
         config_folder_name.beVisibleIf(showFolderName)
-        (config_image.layoutParams as RelativeLayout.LayoutParams).bottomMargin = if (showFolderName) 0 else resources.getDimension(R.dimen.normal_margin).toInt()
+        (config_image.layoutParams as RelativeLayout.LayoutParams).bottomMargin =
+            if (showFolderName) 0 else resources.getDimension(R.dimen.normal_margin).toInt()
     }
 }
