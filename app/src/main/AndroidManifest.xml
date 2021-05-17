@@ -135,7 +135,7 @@
         <activity
             android:name="com.simplemobiletools.commons.activities.CustomizationActivity"
             android:label="@string/customize_colors"
-            android:parentActivityName=".activities.SettingsActivity"/>
+            android:parentActivityName="com.loitp.ui.activity.SettingsActivity"/>
 
         <activity
             android:name="com.simplemobiletools.commons.activities.FAQActivity"
@@ -143,7 +143,7 @@
             android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity"/>
 
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name="com.loitp.ui.activity.SettingsActivity"
             android:label="@string/settings"
             android:parentActivityName="com.loitp.ui.activity.MainActivity"/>
 
@@ -169,17 +169,17 @@
         <activity
             android:name="com.loitp.ui.activity.IncludedFoldersActivity"
             android:label="@string/include_folders"
-            android:parentActivityName=".activities.SettingsActivity"/>
+            android:parentActivityName="com.loitp.ui.activity.SettingsActivity"/>
 
         <activity
             android:name="com.loitp.ui.activity.ExcludedFoldersActivity"
             android:label="@string/excluded_folders"
-            android:parentActivityName=".activities.SettingsActivity"/>
+            android:parentActivityName="com.loitp.ui.activity.SettingsActivity"/>
 
         <activity
             android:name="com.loitp.ui.activity.HiddenFoldersActivity"
             android:label="@string/hidden_folders"
-            android:parentActivityName=".activities.SettingsActivity"/>
+            android:parentActivityName="com.loitp.ui.activity.SettingsActivity"/>
 
         <activity
             android:name="com.loitp.ui.activity.PhotoActivity"

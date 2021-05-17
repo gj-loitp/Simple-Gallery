@@ -1,4 +1,4 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -7,11 +7,8 @@ import android.text.TextUtils
 import android.view.Menu
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.simplemobiletools.commons.dialogs.*
-import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.*
-import com.simplemobiletools.commons.models.RadioItem
 import com.loitp.pro.R
+import com.loitp.pro.activities.SimpleActivity
 import com.loitp.pro.dialogs.ChangeFileThumbnailStyleDialog
 import com.loitp.pro.dialogs.ChangeFolderThumbnailStyleDialog
 import com.loitp.pro.dialogs.ManageBottomActionsDialog
@@ -22,16 +19,21 @@ import com.loitp.pro.extensions.mediaDB
 import com.loitp.pro.extensions.showRecycleBinEmptyingDialog
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.AlbumCover
-import com.loitp.ui.activity.ExcludedFoldersActivity
-import com.loitp.ui.activity.HiddenFoldersActivity
-import com.loitp.ui.activity.IncludedFoldersActivity
+import com.simplemobiletools.commons.dialogs.*
+import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.*
+import com.simplemobiletools.commons.models.RadioItem
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.io.File
 import java.io.InputStream
 import java.util.*
+import kotlin.system.exitProcess
 
 class SettingsActivity : SimpleActivity() {
-    private val PICK_IMPORT_SOURCE_INTENT = 1
+    companion object {
+        private const val PICK_IMPORT_SOURCE_INTENT = 1
+    }
+
     private var mRecycleBinContentSize = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,9 +114,20 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupSectionColors() {
         val adjustedPrimaryColor = getAdjustedPrimaryColor()
-        arrayListOf(visibility_label, videos_label, thumbnails_label, scrolling_label, fullscreen_media_label, security_label,
-            file_operations_label, deep_zoomable_images_label, extended_details_label, bottom_actions_label, recycle_bin_label,
-            migrating_label).forEach {
+        arrayListOf(
+            visibility_label,
+            videos_label,
+            thumbnails_label,
+            scrolling_label,
+            fullscreen_media_label,
+            security_label,
+            file_operations_label,
+            deep_zoomable_images_label,
+            extended_details_label,
+            bottom_actions_label,
+            recycle_bin_label,
+            migrating_label
+        ).forEach {
             it.setTextColor(adjustedPrimaryColor)
         }
     }
@@ -131,7 +144,7 @@ class SettingsActivity : SimpleActivity() {
         settings_use_english_holder.setOnClickListener {
             settings_use_english.toggle()
             config.useEnglish = settings_use_english.isChecked
-            System.exit(0)
+            exitProcess(0)
         }
     }
 
@@ -147,7 +160,8 @@ class SettingsActivity : SimpleActivity() {
             val items = arrayListOf(
                 RadioItem(PRIORITY_SPEED, getString(R.string.speed)),
                 RadioItem(PRIORITY_COMPROMISE, getString(R.string.compromise)),
-                RadioItem(PRIORITY_VALIDITY, getString(R.string.avoid_showing_invalid_files)))
+                RadioItem(PRIORITY_VALIDITY, getString(R.string.avoid_showing_invalid_files))
+            )
 
             RadioGroupDialog(this@SettingsActivity, items, config.fileLoadingPriority) {
                 config.fileLoadingPriority = it as Int
@@ -156,11 +170,13 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun getFileLoadingPriorityText() = getString(when (config.fileLoadingPriority) {
-        PRIORITY_SPEED -> R.string.speed
-        PRIORITY_COMPROMISE -> R.string.compromise
-        else -> R.string.avoid_showing_invalid_files
-    })
+    private fun getFileLoadingPriorityText() = getString(
+        when (config.fileLoadingPriority) {
+            PRIORITY_SPEED -> R.string.speed
+            PRIORITY_COMPROMISE -> R.string.compromise
+            else -> R.string.avoid_showing_invalid_files
+        }
+    )
 
     private fun setupManageIncludedFolders() {
         settings_manage_included_folders_holder.setOnClickListener {
@@ -281,8 +297,13 @@ class SettingsActivity : SimpleActivity() {
     private fun setupHiddenItemPasswordProtection() {
         settings_hidden_item_password_protection.isChecked = config.isHiddenPasswordProtectionOn
         settings_hidden_item_password_protection_holder.setOnClickListener {
-            val tabToShow = if (config.isHiddenPasswordProtectionOn) config.hiddenProtectionType else SHOW_ALL_TABS
-            SecurityDialog(this, config.hiddenPasswordHash, tabToShow) { hash, type, success ->
+            val tabToShow =
+                if (config.isHiddenPasswordProtectionOn) config.hiddenProtectionType else SHOW_ALL_TABS
+            SecurityDialog(
+                activity = this,
+                requiredHash = config.hiddenPasswordHash,
+                showTabIndex = tabToShow
+            ) { hash, type, success ->
                 if (success) {
                     val hasPasswordProtection = config.isHiddenPasswordProtectionOn
                     settings_hidden_item_password_protection.isChecked = !hasPasswordProtection
@@ -291,9 +312,16 @@ class SettingsActivity : SimpleActivity() {
                     config.hiddenProtectionType = type
 
                     if (config.isHiddenPasswordProtectionOn) {
-                        val confirmationTextId = if (config.hiddenProtectionType == PROTECTION_FINGERPRINT)
-                            R.string.fingerprint_setup_successfully else R.string.protection_setup_successfully
-                        ConfirmationDialog(this, "", confirmationTextId, R.string.ok, 0) { }
+                        val confirmationTextId =
+                            if (config.hiddenProtectionType == PROTECTION_FINGERPRINT)
+                                R.string.fingerprint_setup_successfully else R.string.protection_setup_successfully
+                        ConfirmationDialog(
+                            activity = this,
+                            message = "",
+                            messageId = confirmationTextId,
+                            positive = R.string.ok,
+                            negative = 0
+                        ) { }
                     }
                 }
             }
@@ -303,8 +331,13 @@ class SettingsActivity : SimpleActivity() {
     private fun setupAppPasswordProtection() {
         settings_app_password_protection.isChecked = config.isAppPasswordProtectionOn
         settings_app_password_protection_holder.setOnClickListener {
-            val tabToShow = if (config.isAppPasswordProtectionOn) config.appProtectionType else SHOW_ALL_TABS
-            SecurityDialog(this, config.appPasswordHash, tabToShow) { hash, type, success ->
+            val tabToShow =
+                if (config.isAppPasswordProtectionOn) config.appProtectionType else SHOW_ALL_TABS
+            SecurityDialog(
+                activity = this,
+                requiredHash = config.appPasswordHash,
+                showTabIndex = tabToShow
+            ) { hash, type, success ->
                 if (success) {
                     val hasPasswordProtection = config.isAppPasswordProtectionOn
                     settings_app_password_protection.isChecked = !hasPasswordProtection
@@ -313,9 +346,16 @@ class SettingsActivity : SimpleActivity() {
                     config.appProtectionType = type
 
                     if (config.isAppPasswordProtectionOn) {
-                        val confirmationTextId = if (config.appProtectionType == PROTECTION_FINGERPRINT)
-                            R.string.fingerprint_setup_successfully else R.string.protection_setup_successfully
-                        ConfirmationDialog(this, "", confirmationTextId, R.string.ok, 0) { }
+                        val confirmationTextId =
+                            if (config.appProtectionType == PROTECTION_FINGERPRINT)
+                                R.string.fingerprint_setup_successfully else R.string.protection_setup_successfully
+                        ConfirmationDialog(
+                            activity = this,
+                            message = "",
+                            messageId = confirmationTextId,
+                            positive = R.string.ok,
+                            negative = 0
+                        ) { }
                     }
                 }
             }
@@ -325,8 +365,13 @@ class SettingsActivity : SimpleActivity() {
     private fun setupFileDeletionPasswordProtection() {
         settings_file_deletion_password_protection.isChecked = config.isDeletePasswordProtectionOn
         settings_file_deletion_password_protection_holder.setOnClickListener {
-            val tabToShow = if (config.isDeletePasswordProtectionOn) config.deleteProtectionType else SHOW_ALL_TABS
-            SecurityDialog(this, config.deletePasswordHash, tabToShow) { hash, type, success ->
+            val tabToShow =
+                if (config.isDeletePasswordProtectionOn) config.deleteProtectionType else SHOW_ALL_TABS
+            SecurityDialog(
+                activity = this,
+                requiredHash = config.deletePasswordHash,
+                showTabIndex = tabToShow
+            ) { hash, type, success ->
                 if (success) {
                     val hasPasswordProtection = config.isDeletePasswordProtectionOn
                     settings_file_deletion_password_protection.isChecked = !hasPasswordProtection
@@ -335,9 +380,16 @@ class SettingsActivity : SimpleActivity() {
                     config.deleteProtectionType = type
 
                     if (config.isDeletePasswordProtectionOn) {
-                        val confirmationTextId = if (config.deleteProtectionType == PROTECTION_FINGERPRINT)
-                            R.string.fingerprint_setup_successfully else R.string.protection_setup_successfully
-                        ConfirmationDialog(this, "", confirmationTextId, R.string.ok, 0) { }
+                        val confirmationTextId =
+                            if (config.deleteProtectionType == PROTECTION_FINGERPRINT)
+                                R.string.fingerprint_setup_successfully else R.string.protection_setup_successfully
+                        ConfirmationDialog(
+                            activity = this,
+                            message = "",
+                            messageId = confirmationTextId,
+                            positive = R.string.ok,
+                            negative = 0
+                        ) { }
                     }
                 }
             }
@@ -400,10 +452,12 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun getFolderStyleText() = getString(when (config.folderStyle) {
-        FOLDER_STYLE_SQUARE -> R.string.square
-        else -> R.string.rounded_corners
-    })
+    private fun getFolderStyleText() = getString(
+        when (config.folderStyle) {
+            FOLDER_STYLE_SQUARE -> R.string.square
+            else -> R.string.rounded_corners
+        }
+    )
 
     private fun setupKeepLastModified() {
         settings_keep_last_modified.isChecked = config.keepLastModified
@@ -503,22 +557,35 @@ class SettingsActivity : SimpleActivity() {
         settings_screen_rotation.text = getScreenRotationText()
         settings_screen_rotation_holder.setOnClickListener {
             val items = arrayListOf(
-                RadioItem(ROTATE_BY_SYSTEM_SETTING, getString(R.string.screen_rotation_system_setting)),
-                RadioItem(ROTATE_BY_DEVICE_ROTATION, getString(R.string.screen_rotation_device_rotation)),
-                RadioItem(ROTATE_BY_ASPECT_RATIO, getString(R.string.screen_rotation_aspect_ratio)))
+                RadioItem(
+                    id = ROTATE_BY_SYSTEM_SETTING,
+                    title = getString(R.string.screen_rotation_system_setting)
+                ),
+                RadioItem(
+                    id = ROTATE_BY_DEVICE_ROTATION,
+                    title = getString(R.string.screen_rotation_device_rotation)
+                ),
+                RadioItem(ROTATE_BY_ASPECT_RATIO, getString(R.string.screen_rotation_aspect_ratio))
+            )
 
-            RadioGroupDialog(this@SettingsActivity, items, config.screenRotation) {
+            RadioGroupDialog(
+                activity = this@SettingsActivity,
+                items = items,
+                checkedItemId = config.screenRotation
+            ) {
                 config.screenRotation = it as Int
                 settings_screen_rotation.text = getScreenRotationText()
             }
         }
     }
 
-    private fun getScreenRotationText() = getString(when (config.screenRotation) {
-        ROTATE_BY_SYSTEM_SETTING -> R.string.screen_rotation_system_setting
-        ROTATE_BY_DEVICE_ROTATION -> R.string.screen_rotation_device_rotation
-        else -> R.string.screen_rotation_aspect_ratio
-    })
+    private fun getScreenRotationText() = getString(
+        when (config.screenRotation) {
+            ROTATE_BY_SYSTEM_SETTING -> R.string.screen_rotation_system_setting
+            ROTATE_BY_DEVICE_ROTATION -> R.string.screen_rotation_device_rotation
+            else -> R.string.screen_rotation_aspect_ratio
+        }
+    )
 
     private fun setupBottomActions() {
         settings_bottom_actions.isChecked = config.bottomActions
@@ -780,11 +847,13 @@ class SettingsActivity : SimpleActivity() {
                 AUTOPLAY_VIDEOS -> config.autoplayVideos = value.toBoolean()
                 REMEMBER_LAST_VIDEO_POSITION -> config.rememberLastVideoPosition = value.toBoolean()
                 LOOP_VIDEOS -> config.loopVideos = value.toBoolean()
-                OPEN_VIDEOS_ON_SEPARATE_SCREEN -> config.openVideosOnSeparateScreen = value.toBoolean()
+                OPEN_VIDEOS_ON_SEPARATE_SCREEN -> config.openVideosOnSeparateScreen =
+                    value.toBoolean()
                 ALLOW_VIDEO_GESTURES -> config.allowVideoGestures = value.toBoolean()
                 ANIMATE_GIFS -> config.animateGifs = value.toBoolean()
                 CROP_THUMBNAILS -> config.cropThumbnails = value.toBoolean()
-                SHOW_THUMBNAIL_VIDEO_DURATION -> config.showThumbnailVideoDuration = value.toBoolean()
+                SHOW_THUMBNAIL_VIDEO_DURATION -> config.showThumbnailVideoDuration =
+                    value.toBoolean()
                 SHOW_THUMBNAIL_FILE_TYPES -> config.showThumbnailFileTypes = value.toBoolean()
                 SCROLL_HORIZONTALLY -> config.scrollHorizontally = value.toBoolean()
                 ENABLE_PULL_TO_REFRESH -> config.enablePullToRefresh = value.toBoolean()
@@ -831,8 +900,10 @@ class SettingsActivity : SimpleActivity() {
                 SLIDESHOW_MOVE_BACKWARDS -> config.slideshowMoveBackwards = value.toBoolean()
                 SLIDESHOW_LOOP -> config.loopSlideshow = value.toBoolean()
                 LAST_EDITOR_CROP_ASPECT_RATIO -> config.lastEditorCropAspectRatio = value.toInt()
-                LAST_EDITOR_CROP_OTHER_ASPECT_RATIO_X -> config.lastEditorCropOtherAspectRatioX = value.toString().toFloat()
-                LAST_EDITOR_CROP_OTHER_ASPECT_RATIO_Y -> config.lastEditorCropOtherAspectRatioY = value.toString().toFloat()
+                LAST_EDITOR_CROP_OTHER_ASPECT_RATIO_X -> config.lastEditorCropOtherAspectRatioX =
+                    value.toString().toFloat()
+                LAST_EDITOR_CROP_OTHER_ASPECT_RATIO_Y -> config.lastEditorCropOtherAspectRatioY =
+                    value.toString().toFloat()
                 LAST_CONFLICT_RESOLUTION -> config.lastConflictResolution = value.toInt()
                 LAST_CONFLICT_APPLY_TO_ALL -> config.lastConflictApplyToAll = value.toBoolean()
                 EDITOR_BRUSH_COLOR -> config.editorBrushColor = value.toInt()
@@ -845,13 +916,16 @@ class SettingsActivity : SimpleActivity() {
                 FILE_ROUNDED_CORNERS -> config.fileRoundedCorners = value.toBoolean()
                 ALBUM_COVERS -> {
                     val existingCovers = config.parseAlbumCovers()
-                    val existingCoverPaths = existingCovers.map { it.path }.toMutableList() as ArrayList<String>
+                    val existingCoverPaths =
+                        existingCovers.map { it.path }.toMutableList() as ArrayList<String>
 
                     val listType = object : TypeToken<List<AlbumCover>>() {}.type
-                    val covers = Gson().fromJson<ArrayList<AlbumCover>>(value.toString(), listType) ?: ArrayList(1)
-                    covers.filter { !existingCoverPaths.contains(it.path) && getDoesFilePathExist(it.tmb) }.forEach {
-                        existingCovers.add(it)
-                    }
+                    val covers = Gson().fromJson<ArrayList<AlbumCover>>(value.toString(), listType)
+                        ?: ArrayList(1)
+                    covers.filter { !existingCoverPaths.contains(it.path) && getDoesFilePathExist(it.tmb) }
+                        .forEach {
+                            existingCovers.add(it)
+                        }
 
                     config.albumCovers = Gson().toJson(existingCovers)
                 }

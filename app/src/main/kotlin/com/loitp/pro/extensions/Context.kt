@@ -28,7 +28,7 @@ import com.bumptech.glide.signature.ObjectKey
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.loitp.pro.R
-import com.loitp.pro.activities.SettingsActivity
+import com.loitp.ui.activity.SettingsActivity
 import com.loitp.pro.asynctasks.GetMediaAsynctask
 import com.loitp.pro.databases.GalleryDatabase
 import com.loitp.pro.helpers.*
