@@ -41,7 +41,7 @@ import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.R
-import com.loitp.pro.activities.PanoramaPhotoActivity
+import com.loitp.ui.activity.PanoramaPhotoActivity
 import com.loitp.pro.activities.PhotoActivity
 import com.loitp.pro.adapters.PortraitPhotosAdapter
 import com.loitp.pro.extensions.config

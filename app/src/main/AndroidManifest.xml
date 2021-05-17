@@ -157,7 +157,7 @@
             android:parentActivityName="com.loitp.ui.activity.MediaActivity"/>
 
         <activity
-            android:name=".activities.PanoramaPhotoActivity"
+            android:name="com.loitp.ui.activity.PanoramaPhotoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullScreenTheme"/>
 

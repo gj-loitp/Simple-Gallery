@@ -1,4 +1,4 @@
-package com.loitp.pro.activities
+package com.loitp.ui.activity
 
 import android.content.res.Configuration
 import android.graphics.Bitmap
@@ -9,17 +9,23 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.RelativeLayout
+import androidx.core.content.ContextCompat
 import com.google.vr.sdk.widgets.pano.VrPanoramaEventListener
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
+import com.loitp.pro.R
+import com.loitp.pro.activities.SimpleActivity
+import com.loitp.pro.extensions.config
+import com.loitp.pro.extensions.hideSystemUI
+import com.loitp.pro.extensions.showSystemUI
+import com.loitp.pro.helpers.PATH
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.loitp.pro.R
-import com.loitp.pro.extensions.*
-import com.loitp.pro.helpers.PATH
 import kotlinx.android.synthetic.main.activity_panorama_photo.*
 
 open class PanoramaPhotoActivity : SimpleActivity() {
-    private val CARDBOARD_DISPLAY_MODE = 3
+    companion object {
+        private const val CARDBOARD_DISPLAY_MODE = 3
+    }
 
     private var isFullscreen = false
     private var isExploreEnabled = true
@@ -56,7 +62,7 @@ open class PanoramaPhotoActivity : SimpleActivity() {
             updateStatusbarColor(Color.BLACK)
         }
 
-        window.statusBarColor = resources.getColor(R.color.circle_black_background)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.circle_black_background)
 
         if (config.maxBrightness) {
             val attributes = window.attributes
