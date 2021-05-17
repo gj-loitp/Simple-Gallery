@@ -29,9 +29,9 @@ import com.bumptech.glide.request.target.Target
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
 import com.loitp.adapter.FiltersAdapter
-import com.loitp.pro.dialogs.OtherAspectRatioDialog
-import com.loitp.pro.dialogs.ResizeDialog
-import com.loitp.pro.dialogs.SaveAsDialog
+import com.loitp.ui.dialog.OtherAspectRatioDialog
+import com.loitp.ui.dialog.ResizeDialog
+import com.loitp.ui.dialog.SaveAsDialog
 import com.loitp.pro.extensions.config
 import com.loitp.pro.extensions.copyNonDimensionAttributesTo
 import com.loitp.pro.extensions.fixDateTaken

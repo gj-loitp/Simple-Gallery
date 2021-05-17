@@ -1,5 +1,6 @@
-package com.loitp.pro.dialogs
+package com.loitp.ui.dialog
 
+import android.annotation.SuppressLint
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
@@ -16,7 +17,11 @@ import com.loitp.pro.helpers.SLIDESHOW_ANIMATION_SLIDE
 import com.loitp.pro.helpers.SLIDESHOW_DEFAULT_INTERVAL
 import kotlinx.android.synthetic.main.dialog_slideshow.view.*
 
-class SlideshowDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) {
+@SuppressLint("InflateParams")
+class SlideshowDialog(
+    val activity: BaseSimpleActivity,
+    val callback: () -> Unit
+) {
     val view: View
 
     init {
@@ -36,9 +41,10 @@ class SlideshowDialog(val activity: BaseSimpleActivity, val callback: () -> Unit
 
             animation_holder.setOnClickListener {
                 val items = arrayListOf(
-                        RadioItem(SLIDESHOW_ANIMATION_NONE, activity.getString(R.string.no_animation)),
-                        RadioItem(SLIDESHOW_ANIMATION_SLIDE, activity.getString(R.string.slide)),
-                        RadioItem(SLIDESHOW_ANIMATION_FADE, activity.getString(R.string.fade)))
+                    RadioItem(SLIDESHOW_ANIMATION_NONE, activity.getString(R.string.no_animation)),
+                    RadioItem(SLIDESHOW_ANIMATION_SLIDE, activity.getString(R.string.slide)),
+                    RadioItem(SLIDESHOW_ANIMATION_FADE, activity.getString(R.string.fade))
+                )
 
                 RadioGroupDialog(activity, items, activity.config.slideshowAnimation) {
                     activity.config.slideshowAnimation = it as Int
@@ -74,18 +80,18 @@ class SlideshowDialog(val activity: BaseSimpleActivity, val callback: () -> Unit
         setupValues()
 
         AlertDialog.Builder(activity)
-                .setPositiveButton(R.string.ok, null)
-                .setNegativeButton(R.string.cancel, null)
-                .create().apply {
-                    activity.setupDialogStuff(view, this) {
-                        hideKeyboard()
-                        getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                            storeValues()
-                            callback()
-                            dismiss()
-                        }
+            .setPositiveButton(R.string.ok, null)
+            .setNegativeButton(R.string.cancel, null)
+            .create().apply {
+                activity.setupDialogStuff(view, this) {
+                    hideKeyboard()
+                    getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                        storeValues()
+                        callback()
+                        dismiss()
                     }
                 }
+            }
     }
 
     private fun setupValues() {

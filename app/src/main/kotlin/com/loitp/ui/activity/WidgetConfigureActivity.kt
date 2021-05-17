@@ -10,7 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.RemoteViews
 import com.bumptech.glide.signature.ObjectKey
 import com.loitp.pro.R
-import com.loitp.pro.dialogs.PickDirectoryDialog
+import com.loitp.ui.dialog.PickDirectoryDialog
 import com.loitp.pro.extensions.*
 import com.loitp.pro.helpers.MyWidgetProvider
 import com.loitp.pro.helpers.ROUNDED_CORNERS_NONE
