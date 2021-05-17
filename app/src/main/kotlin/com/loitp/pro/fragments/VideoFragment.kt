@@ -27,7 +27,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.loitp.pro.R
 import com.loitp.ui.activity.PanoramaVideoActivity
-import com.loitp.pro.activities.VideoActivity
+import com.loitp.ui.activity.VideoActivity
 import com.loitp.pro.extensions.config
 import com.loitp.pro.extensions.hasNavBar
 import com.loitp.pro.extensions.parseFileChannel
