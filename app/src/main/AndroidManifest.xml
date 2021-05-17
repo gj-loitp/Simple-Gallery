@@ -301,7 +301,7 @@
         </receiver>
 
         <service
-            android:name=".jobs.NewPhotoFetcher"
+            android:name="com.loitp.service.NewPhotoFetcher"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
 
