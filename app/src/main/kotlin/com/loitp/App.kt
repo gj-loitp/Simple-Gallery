@@ -1,4 +1,4 @@
-package com.loitp.pro
+package com.loitp
 
 import android.app.Application
 import com.github.ajalt.reprint.core.Reprint

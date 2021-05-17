@@ -42,6 +42,7 @@ import com.loitp.pro.interfaces.MediaOperationsListener
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem
 import com.loitp.pro.models.ThumbnailSection
+import com.loitp.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_media.*
 import java.io.File
 import java.io.IOException

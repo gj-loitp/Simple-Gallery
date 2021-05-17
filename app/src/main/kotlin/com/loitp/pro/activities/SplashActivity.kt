@@ -8,6 +8,7 @@ import com.loitp.pro.extensions.favoritesDB
 import com.loitp.pro.extensions.getFavoriteFromPath
 import com.loitp.pro.extensions.mediaDB
 import com.loitp.pro.models.Favorite
+import com.loitp.ui.activity.MainActivity
 
 class SplashActivity : BaseSplashActivity() {
     override fun initActivity() {
