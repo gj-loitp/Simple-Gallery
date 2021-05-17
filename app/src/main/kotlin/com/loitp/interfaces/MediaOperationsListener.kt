@@ -1,7 +1,7 @@
-package com.loitp.pro.interfaces
+package com.loitp.interfaces
 
-import com.simplemobiletools.commons.models.FileDirItem
 import com.loitp.pro.models.ThumbnailItem
+import com.simplemobiletools.commons.models.FileDirItem
 
 interface MediaOperationsListener {
     fun refreshItems()

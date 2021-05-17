@@ -18,9 +18,8 @@ import com.loitp.pro.R
 import com.loitp.ui.dialog.ConfirmDeleteFolderDialog
 import com.loitp.ui.dialog.ExcludeFolderDialog
 import com.loitp.ui.dialog.PickMediumDialog
-import com.loitp.ext.*
 import com.loitp.pro.helpers.*
-import com.loitp.pro.interfaces.DirectoryOperationsListener
+import com.loitp.interfaces.DirectoryOperationsListener
 import com.loitp.pro.models.AlbumCover
 import com.loitp.pro.models.Directory
 import com.loitp.ui.activity.MediaActivity

@@ -28,7 +28,7 @@ import com.loitp.helper.MediaFetcher
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
-import com.loitp.pro.interfaces.DirectoryOperationsListener
+import com.loitp.interfaces.DirectoryOperationsListener
 import com.loitp.pro.jobs.NewPhotoFetcher
 import com.loitp.pro.models.Directory
 import com.loitp.pro.models.Medium

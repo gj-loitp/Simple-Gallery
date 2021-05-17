@@ -1,4 +1,4 @@
-package com.loitp.pro.interfaces
+package com.loitp.interfaces
 
 import com.loitp.pro.models.Directory
 import java.io.File

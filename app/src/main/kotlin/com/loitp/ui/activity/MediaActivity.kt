@@ -34,7 +34,7 @@ import com.loitp.ui.dialog.ChangeSortingDialog
 import com.loitp.ui.dialog.ChangeViewTypeDialog
 import com.loitp.ui.dialog.FilterMediaDialog
 import com.loitp.pro.helpers.*
-import com.loitp.pro.interfaces.MediaOperationsListener
+import com.loitp.interfaces.MediaOperationsListener
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem
 import com.loitp.pro.models.ThumbnailSection

@@ -27,13 +27,13 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.signature.ObjectKey
 import com.loitp.constant.IsoTypeReader
 import com.loitp.db.GalleryDatabase
+import com.loitp.db.dao.*
 import com.loitp.helper.Config
 import com.loitp.helper.MediaFetcher
 import com.loitp.helper.MyWidgetProvider
 import com.loitp.helper.PicassoRoundedCornersTransformation
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
-import com.loitp.pro.interfaces.*
 import com.loitp.pro.models.*
 import com.loitp.pro.svg.SvgSoftwareLayerSetter
 import com.loitp.pro.views.MySquareImageView
@@ -191,7 +191,10 @@ fun Context.getDirsToShow(
         // show the current folder as an available option too, not just sub folders
         if (currentPathPrefix.isNotEmpty()) {
             val currentFolder =
-                allDirs.firstOrNull { parentDirs.firstOrNull { it.path == currentPathPrefix } == null && it.path == currentPathPrefix }
+                allDirs.firstOrNull {
+                    parentDirs.firstOrNull { it.path == currentPathPrefix } == null
+                        && it.path == currentPathPrefix
+                }
             currentFolder?.apply {
                 subfoldersCount = 1
                 parentDirs.add(this)

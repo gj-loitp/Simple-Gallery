@@ -1,4 +1,4 @@
-package com.loitp.pro.interfaces
+package com.loitp.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

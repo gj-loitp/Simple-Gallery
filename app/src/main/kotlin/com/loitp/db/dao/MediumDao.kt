@@ -1,4 +1,4 @@
-package com.loitp.pro.interfaces
+package com.loitp.db.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -34,7 +34,12 @@ interface MediumDao {
     fun deleteOldRecycleBinItems(timestmap: Long)
 
     @Query("UPDATE OR REPLACE media SET filename = :newFilename, full_path = :newFullPath, parent_path = :newParentPath WHERE full_path = :oldPath COLLATE NOCASE")
-    fun updateMedium(newFilename: String, newFullPath: String, newParentPath: String, oldPath: String)
+    fun updateMedium(
+        newFilename: String,
+        newFullPath: String,
+        newParentPath: String,
+        oldPath: String
+    )
 
     @Query("UPDATE OR REPLACE media SET full_path = :newPath, deleted_ts = :deletedTS WHERE full_path = :oldPath COLLATE NOCASE")
     fun updateDeleted(newPath: String, deletedTS: Long, oldPath: String)

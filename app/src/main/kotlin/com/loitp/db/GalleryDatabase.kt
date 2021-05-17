@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.loitp.pro.interfaces.*
+import com.loitp.db.dao.*
 import com.loitp.pro.models.*
 
 @Database(
