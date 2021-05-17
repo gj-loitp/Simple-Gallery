@@ -1,5 +1,6 @@
-package com.loitp.pro.views
+package com.loitp.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
@@ -10,7 +11,13 @@ import com.loitp.ext.config
 import com.loitp.model.PaintOptions
 import java.util.*
 
-class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, attrs) {
+class EditorDrawCanvas(
+    context: Context,
+    attrs: AttributeSet
+) : View(
+    context,
+    attrs
+) {
     private var mCurX = 0f
     private var mCurY = 0f
     private var mStartX = 0f
@@ -41,8 +48,8 @@ class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, at
         super.onDraw(canvas)
         canvas.save()
 
-        if (backgroundBitmap != null) {
-            canvas.drawBitmap(backgroundBitmap!!, 0f, 0f, null)
+        backgroundBitmap?.let {
+            canvas.drawBitmap(it, 0f, 0f, null)
         }
 
         for ((key, value) in mPaths) {
@@ -55,6 +62,7 @@ class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, at
         canvas.restore()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val x = event.x
         val y = event.y
@@ -106,7 +114,10 @@ class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, at
 
         mPaths[mPath] = mPaintOptions
         mPath = Path()
-        mPaintOptions = PaintOptions(mPaintOptions.color, mPaintOptions.strokeWidth)
+        mPaintOptions = PaintOptions(
+            color = mPaintOptions.color,
+            strokeWidth = mPaintOptions.strokeWidth
+        )
     }
 
     private fun changePaint(paintOptions: PaintOptions) {
@@ -119,7 +130,8 @@ class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, at
     }
 
     fun updateBrushSize(newBrushSize: Int) {
-        mPaintOptions.strokeWidth = resources.getDimension(R.dimen.full_brush_size) * (newBrushSize / 100f)
+        mPaintOptions.strokeWidth =
+            resources.getDimension(R.dimen.full_brush_size) * (newBrushSize / 100f)
     }
 
     fun updateBackgroundBitmap(bitmap: Bitmap) {

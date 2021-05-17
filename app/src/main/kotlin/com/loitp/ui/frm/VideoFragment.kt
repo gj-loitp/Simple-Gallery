@@ -32,7 +32,7 @@ import com.loitp.helper.Config
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
 import com.loitp.model.Medium
-import com.loitp.pro.views.MediaSideScroll
+import com.loitp.ui.view.MediaSideScroll
 import com.loitp.ui.activity.PanoramaVideoActivity
 import com.loitp.ui.activity.VideoActivity
 import com.simplemobiletools.commons.extensions.*

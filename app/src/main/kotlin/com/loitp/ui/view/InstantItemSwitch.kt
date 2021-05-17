@@ -1,5 +1,6 @@
-package com.loitp.pro.views
+package com.loitp.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -8,9 +9,16 @@ import android.widget.RelativeLayout
 import com.loitp.pro.helpers.CLICK_MAX_DISTANCE
 import com.loitp.pro.helpers.CLICK_MAX_DURATION
 import com.loitp.pro.helpers.DRAG_THRESHOLD
+import kotlin.math.abs
 
 // handle only one finger clicks, pass other events to the parent view and ignore it when received again
-class InstantItemSwitch(context: Context, attrs: AttributeSet) : RelativeLayout(context, attrs) {
+class InstantItemSwitch(
+    context: Context,
+    attrs: AttributeSet
+) : RelativeLayout(
+    context,
+    attrs
+) {
     private var mTouchDownTime = 0L
     private var mTouchDownX = 0f
     private var mTouchDownY = 0f
@@ -29,6 +37,7 @@ class InstantItemSwitch(context: Context, attrs: AttributeSet) : RelativeLayout(
         return super.dispatchTouchEvent(ev)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (passTouches) {
             return false
@@ -43,7 +52,10 @@ class InstantItemSwitch(context: Context, attrs: AttributeSet) : RelativeLayout(
             MotionEvent.ACTION_UP -> {
                 val diffX = mTouchDownX - event.x
                 val diffY = mTouchDownY - event.y
-                if (Math.abs(diffX) < CLICK_MAX_DISTANCE && Math.abs(diffY) < CLICK_MAX_DISTANCE && System.currentTimeMillis() - mTouchDownTime < CLICK_MAX_DURATION) {
+                if (abs(diffX) < CLICK_MAX_DISTANCE
+                    && abs(diffY) < CLICK_MAX_DISTANCE
+                    && System.currentTimeMillis() - mTouchDownTime < CLICK_MAX_DURATION
+                ) {
                     performClick()
                 }
             }
@@ -54,7 +66,7 @@ class InstantItemSwitch(context: Context, attrs: AttributeSet) : RelativeLayout(
 
                 val diffX = mTouchDownX - event.x
                 val diffY = mTouchDownY - event.y
-                if (Math.abs(diffX) > dragThreshold || Math.abs(diffY) > dragThreshold) {
+                if (abs(diffX) > dragThreshold || abs(diffY) > dragThreshold) {
                     if (!passTouches) {
                         event.action = MotionEvent.ACTION_DOWN
                         event.setLocation(event.rawX, event.y)
