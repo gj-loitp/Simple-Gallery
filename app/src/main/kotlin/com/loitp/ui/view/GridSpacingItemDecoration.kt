@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.loitp.model.Medium
-import com.loitp.pro.models.ThumbnailItem
+import com.loitp.model.ThumbnailItem
 
 class GridSpacingItemDecoration(
     val spanCount: Int,

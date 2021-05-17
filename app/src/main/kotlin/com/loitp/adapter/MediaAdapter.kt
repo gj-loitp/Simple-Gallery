@@ -18,8 +18,8 @@ import com.loitp.ui.dialog.DeleteWithRememberDialog
 import com.loitp.pro.helpers.*
 import com.loitp.interfaces.MediaOperationsListener
 import com.loitp.model.Medium
-import com.loitp.pro.models.ThumbnailItem
-import com.loitp.pro.models.ThumbnailSection
+import com.loitp.model.ThumbnailItem
+import com.loitp.model.ThumbnailSection
 import com.loitp.ui.activity.ViewPagerActivity
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter

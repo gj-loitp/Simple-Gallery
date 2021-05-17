@@ -36,8 +36,8 @@ import com.loitp.ui.dialog.FilterMediaDialog
 import com.loitp.pro.helpers.*
 import com.loitp.interfaces.MediaOperationsListener
 import com.loitp.model.Medium
-import com.loitp.pro.models.ThumbnailItem
-import com.loitp.pro.models.ThumbnailSection
+import com.loitp.model.ThumbnailItem
+import com.loitp.model.ThumbnailSection
 import com.loitp.ui.view.GridSpacingItemDecoration
 import com.simplemobiletools.commons.dialogs.CreateNewFolderDialog
 import com.simplemobiletools.commons.extensions.*

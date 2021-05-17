@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.loitp.pro.models.Widget
+import com.loitp.model.Widget
 
 @Dao
 interface WidgetsDao {

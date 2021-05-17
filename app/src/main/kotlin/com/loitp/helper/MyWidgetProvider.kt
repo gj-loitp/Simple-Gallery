@@ -16,7 +16,7 @@ import com.loitp.ext.getFolderNameFromPath
 import com.loitp.ext.widgetsDB
 import com.loitp.pro.R
 import com.loitp.pro.helpers.DIRECTORY
-import com.loitp.pro.models.Widget
+import com.loitp.model.Widget
 import com.loitp.ui.activity.MediaActivity
 import com.simplemobiletools.commons.extensions.getFileSignature
 import com.simplemobiletools.commons.extensions.setBackgroundColor

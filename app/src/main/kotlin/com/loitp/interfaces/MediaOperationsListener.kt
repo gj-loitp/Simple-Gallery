@@ -1,6 +1,6 @@
 package com.loitp.interfaces
 
-import com.loitp.pro.models.ThumbnailItem
+import com.loitp.model.ThumbnailItem
 import com.simplemobiletools.commons.models.FileDirItem
 
 interface MediaOperationsListener {

@@ -7,7 +7,7 @@ import com.loitp.ext.getFavoritePaths
 import com.loitp.helper.MediaFetcher
 import com.loitp.pro.helpers.*
 import com.loitp.model.Medium
-import com.loitp.pro.models.ThumbnailItem
+import com.loitp.model.ThumbnailItem
 import com.simplemobiletools.commons.helpers.FAVORITES
 import com.simplemobiletools.commons.helpers.SORT_BY_DATE_MODIFIED
 import com.simplemobiletools.commons.helpers.SORT_BY_DATE_TAKEN

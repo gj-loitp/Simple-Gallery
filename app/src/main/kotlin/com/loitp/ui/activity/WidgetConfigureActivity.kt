@@ -15,7 +15,7 @@ import com.loitp.ui.dialog.PickDirectoryDialog
 import com.loitp.helper.MyWidgetProvider
 import com.loitp.pro.helpers.ROUNDED_CORNERS_NONE
 import com.loitp.model.Directory
-import com.loitp.pro.models.Widget
+import com.loitp.model.Widget
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread

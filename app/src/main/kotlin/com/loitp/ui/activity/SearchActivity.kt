@@ -20,8 +20,8 @@ import com.loitp.service.GetMediaAsyncTask
 import com.loitp.pro.helpers.*
 import com.loitp.interfaces.MediaOperationsListener
 import com.loitp.model.Medium
-import com.loitp.pro.models.ThumbnailItem
-import com.loitp.pro.models.ThumbnailSection
+import com.loitp.model.ThumbnailItem
+import com.loitp.model.ThumbnailSection
 import com.loitp.ui.view.GridSpacingItemDecoration
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.VIEW_TYPE_GRID

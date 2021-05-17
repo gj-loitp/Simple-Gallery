@@ -9,7 +9,7 @@ import com.loitp.ext.config
 import com.loitp.ext.getCachedMedia
 import com.loitp.pro.helpers.SHOW_ALL
 import com.loitp.model.Medium
-import com.loitp.pro.models.ThumbnailItem
+import com.loitp.model.ThumbnailItem
 import com.loitp.service.GetMediaAsyncTask
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.beGoneIf

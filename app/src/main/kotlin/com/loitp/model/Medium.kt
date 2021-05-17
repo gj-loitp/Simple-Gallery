@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.*
 import com.bumptech.glide.signature.ObjectKey
 import com.loitp.pro.helpers.*
-import com.loitp.pro.models.ThumbnailItem
 import com.simplemobiletools.commons.extensions.formatDate
 import com.simplemobiletools.commons.extensions.formatSize
 import com.simplemobiletools.commons.extensions.getFilenameExtension
