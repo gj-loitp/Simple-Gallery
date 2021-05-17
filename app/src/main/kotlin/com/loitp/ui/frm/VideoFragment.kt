@@ -28,6 +28,7 @@ import com.google.android.exoplayer2.upstream.FileDataSource
 import com.loitp.ext.config
 import com.loitp.ext.hasNavBar
 import com.loitp.ext.parseFileChannel
+import com.loitp.helper.Config
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium

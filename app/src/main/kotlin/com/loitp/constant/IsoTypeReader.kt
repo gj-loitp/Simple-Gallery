@@ -1,4 +1,4 @@
-package com.loitp.pro.helpers
+package com.loitp.constant
 
 import java.io.UnsupportedEncodingException
 import java.nio.ByteBuffer

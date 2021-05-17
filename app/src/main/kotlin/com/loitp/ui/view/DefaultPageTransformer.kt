@@ -1,4 +1,4 @@
-package com.loitp.pro.helpers
+package com.loitp.ui.view
 
 import android.view.View
 import androidx.viewpager.widget.ViewPager

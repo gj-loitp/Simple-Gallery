@@ -25,7 +25,9 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.signature.ObjectKey
+import com.loitp.constant.IsoTypeReader
 import com.loitp.db.GalleryDatabase
+import com.loitp.helper.Config
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
 import com.loitp.pro.interfaces.*

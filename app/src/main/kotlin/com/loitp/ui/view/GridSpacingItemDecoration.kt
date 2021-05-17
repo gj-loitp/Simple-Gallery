@@ -1,4 +1,4 @@
-package com.loitp.pro.helpers
+package com.loitp.ui.view
 
 import android.graphics.Rect
 import android.view.View
@@ -6,13 +6,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem
 
-class GridSpacingItemDecoration(val spanCount: Int, val spacing: Int, val isScrollingHorizontally: Boolean, val addSideSpacing: Boolean,
-                                var items: ArrayList<ThumbnailItem>, val useGridPosition: Boolean) : RecyclerView.ItemDecoration() {
+class GridSpacingItemDecoration(
+    val spanCount: Int,
+    val spacing: Int,
+    val isScrollingHorizontally: Boolean,
+    val addSideSpacing: Boolean,
+    var items: ArrayList<ThumbnailItem>,
+    val useGridPosition: Boolean
+) : RecyclerView.ItemDecoration() {
 
-    override fun toString() = "spanCount: $spanCount, spacing: $spacing, isScrollingHorizontally: $isScrollingHorizontally, addSideSpacing: $addSideSpacing, " +
+    override fun toString() =
+        "spanCount: $spanCount, spacing: $spacing, isScrollingHorizontally: $isScrollingHorizontally, addSideSpacing: $addSideSpacing, " +
             "items: ${items.hashCode()}, useGridPosition: $useGridPosition"
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         if (spacing <= 1) {
             return
         }

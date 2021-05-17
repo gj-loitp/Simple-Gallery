@@ -54,6 +54,8 @@ import com.loitp.ui.frm.ViewPagerFragment
 import com.loitp.pro.helpers.*
 import com.loitp.pro.models.Medium
 import com.loitp.pro.models.ThumbnailItem
+import com.loitp.ui.view.DefaultPageTransformer
+import com.loitp.ui.view.FadePageTransformer
 import com.simplemobiletools.commons.dialogs.PropertiesDialog
 import com.simplemobiletools.commons.dialogs.RenameItemDialog
 import com.simplemobiletools.commons.extensions.*
