@@ -435,7 +435,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_enable_pull_to_refresh_holder"
+            android:id="@+id/layoutSettingsEnablePullToRefresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -446,19 +446,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_enable_pull_to_refresh"
+                android:id="@+id/swSettingsEnablePullToRefresh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/enable_pull_to_refresh"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/fullscreen_media_label"
+            android:id="@+id/tvFullScreenMediaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
@@ -468,7 +469,7 @@
             android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
-            android:id="@+id/settings_max_brightness_holder"
+            android:id="@+id/layoutSettingsMaxBrightness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -479,19 +480,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_max_brightness"
+                android:id="@+id/swSettingsMaxBrightness"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/max_brightness"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_black_background_holder"
+            android:id="@+id/layoutSettingsBlackBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -502,19 +504,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_black_background"
+                android:id="@+id/swSettingsBlackBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/black_background_at_fullscreen"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_hide_system_ui_holder"
+            android:id="@+id/layoutSettingsHideSystemUi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -525,19 +528,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_hide_system_ui"
+                android:id="@+id/swSettingsHideSystemUi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/hide_system_ui_at_fullscreen"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_allow_instant_change_holder"
+            android:id="@+id/layoutSettingsAllowInstantChange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -548,19 +552,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_allow_instant_change"
+                android:id="@+id/swSettingsAllowInstantChange"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/allow_instant_change"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_allow_photo_gestures_holder"
+            android:id="@+id/layoutSettingsAllowPhotoGestures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -571,19 +576,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_allow_photo_gestures"
+                android:id="@+id/swSettingsAllowPhotoGestures"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/allow_photo_gestures"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_allow_down_gesture_holder"
+            android:id="@+id/layoutSettingsAllowDownGesture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -594,19 +600,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_allow_down_gesture"
+                android:id="@+id/swSettingsAllowDownGesture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/allow_down_gesture"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_show_notch_holder"
+            android:id="@+id/layoutSettingsShowNotch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -617,19 +624,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_show_notch"
+                android:id="@+id/swSettingsShowNotch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/show_notch"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_screen_rotation_holder"
+            android:id="@+id/layoutSettingsScreenRotation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -643,13 +651,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/settings_screen_rotation"
+                android:layout_toStartOf="@+id/tvSettingsScreenRotation"
                 android:paddingStart="@dimen/medium_margin"
                 android:paddingEnd="@dimen/medium_margin"
                 android:text="@string/screen_rotation_by" />
 
             <com.simplemobiletools.commons.views.MyTextView
-                android:id="@+id/settings_screen_rotation"
+                android:id="@+id/tvSettingsScreenRotation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -660,7 +668,7 @@
         </RelativeLayout>
 
         <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/deep_zoomable_images_label"
+            android:id="@+id/tvDeepZoomableImagesLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
@@ -670,7 +678,7 @@
             android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
-            android:id="@+id/settings_allow_zooming_images_holder"
+            android:id="@+id/layoutSettingsAllowZoomingImages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -681,19 +689,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_allow_zooming_images"
+                android:id="@+id/swSettingsAllowZoomingImages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/allow_deep_zooming_images"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_allow_rotating_with_gestures_holder"
+            android:id="@+id/layoutSettingsAllowRotatingWithGestures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -704,19 +713,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_allow_rotating_with_gestures"
+                android:id="@+id/swSettingsAllowRotatingWithGestures"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/allow_rotating_gestures"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_show_highest_quality_holder"
+            android:id="@+id/layoutSettingsShowHighestQuality"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -727,19 +737,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_show_highest_quality"
+                android:id="@+id/swSettingsShowHighestQuality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/show_highest_quality"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_allow_one_to_one_zoom_holder"
+            android:id="@+id/layoutSettingsAllowOneToOneZoom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -750,19 +761,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_allow_one_to_one_zoom"
+                android:id="@+id/swSettingsAllowOneTOneZoom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/allow_one_to_one_zoom"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/extended_details_label"
+            android:id="@+id/tvExtendedDetailsLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
@@ -772,7 +784,7 @@
             android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
-            android:id="@+id/settings_show_extended_details_holder"
+            android:id="@+id/layoutSettingsShowExtendedDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -783,18 +795,19 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_show_extended_details"
+                android:id="@+id/swSettingsShowExtendedDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/show_extended_details"
                 app:switchPadding="@dimen/medium_margin" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_hide_extended_details_holder"
+            android:id="@+id/layoutSettingsHideExtendedDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -805,18 +818,19 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_hide_extended_details"
+                android:id="@+id/swSettingsHideExtendedDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/hide_extended_details"
                 app:switchPadding="@dimen/medium_margin" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_manage_extended_details_holder"
+            android:id="@+id/layoutSettingsManageExtendedDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -831,12 +845,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/manage_extended_details" />
 
         </RelativeLayout>
 
         <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/security_label"
+            android:id="@+id/tvSecurityLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
@@ -846,7 +861,7 @@
             android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
-            android:id="@+id/settings_hidden_item_password_protection_holder"
+            android:id="@+id/layoutSettingsHiddenItemPasswordProtection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -857,19 +872,20 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_hidden_item_password_protection"
+                android:id="@+id/swSettingsHiddenItemPasswordProtection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/password_protect_hidden_items"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_app_password_protection_holder"
+            android:id="@+id/layoutSettingsAppPasswordProtection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -877,22 +893,24 @@
             android:paddingStart="@dimen/normal_margin"
             android:paddingTop="@dimen/activity_margin"
             android:paddingEnd="@dimen/normal_margin"
-            android:paddingBottom="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin"
+            tools:ignore="TooManyViews">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_app_password_protection"
+                android:id="@+id/swSettingsAppPasswordProtection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/password_protect_whole_app"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/settings_file_deletion_password_protection_holder"
+            android:id="@+id/layoutSettingsFileDeletionPasswordProtection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -903,12 +921,13 @@
             android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_file_deletion_password_protection"
+                android:id="@+id/swSettingsFileDeletionPasswordProtection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/password_protect_file_deletion"
                 app:switchPadding="@dimen/medium_margin" />
 

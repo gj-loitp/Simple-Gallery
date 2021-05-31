@@ -118,11 +118,11 @@ class SettingsActivity : SimpleActivity() {
             tvVideosLabel,
             tvThumbnailsLabel,
             tvScrollingLabel,
-            fullscreen_media_label,
-            security_label,
+            tvFullScreenMediaLabel,
+            tvSecurityLabel,
             file_operations_label,
-            deep_zoomable_images_label,
-            extended_details_label,
+            tvDeepZoomableImagesLabel,
+            tvExtendedDetailsLabel,
             bottom_actions_label,
             recycle_bin_label,
             migrating_label
@@ -249,10 +249,10 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupMaxBrightness() {
-        settings_max_brightness.isChecked = config.maxBrightness
-        settings_max_brightness_holder.setOnClickListener {
-            settings_max_brightness.toggle()
-            config.maxBrightness = settings_max_brightness.isChecked
+        swSettingsMaxBrightness.isChecked = config.maxBrightness
+        layoutSettingsMaxBrightness.setOnClickListener {
+            swSettingsMaxBrightness.toggle()
+            config.maxBrightness = swSettingsMaxBrightness.isChecked
         }
     }
 
@@ -265,10 +265,10 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupDarkBackground() {
-        settings_black_background.isChecked = config.blackBackground
-        settings_black_background_holder.setOnClickListener {
-            settings_black_background.toggle()
-            config.blackBackground = settings_black_background.isChecked
+        swSettingsBlackBackground.isChecked = config.blackBackground
+        layoutSettingsBlackBackground.setOnClickListener {
+            swSettingsBlackBackground.toggle()
+            config.blackBackground = swSettingsBlackBackground.isChecked
         }
     }
 
@@ -280,22 +280,22 @@ class SettingsActivity : SimpleActivity() {
 
             if (config.scrollHorizontally) {
                 config.enablePullToRefresh = false
-                settings_enable_pull_to_refresh.isChecked = false
+                swSettingsEnablePullToRefresh.isChecked = false
             }
         }
     }
 
     private fun setupHideSystemUI() {
-        settings_hide_system_ui.isChecked = config.hideSystemUI
-        settings_hide_system_ui_holder.setOnClickListener {
-            settings_hide_system_ui.toggle()
-            config.hideSystemUI = settings_hide_system_ui.isChecked
+        swSettingsHideSystemUi.isChecked = config.hideSystemUI
+        layoutSettingsHideSystemUi.setOnClickListener {
+            swSettingsHideSystemUi.toggle()
+            config.hideSystemUI = swSettingsHideSystemUi.isChecked
         }
     }
 
     private fun setupHiddenItemPasswordProtection() {
-        settings_hidden_item_password_protection.isChecked = config.isHiddenPasswordProtectionOn
-        settings_hidden_item_password_protection_holder.setOnClickListener {
+        swSettingsHiddenItemPasswordProtection.isChecked = config.isHiddenPasswordProtectionOn
+        layoutSettingsHiddenItemPasswordProtection.setOnClickListener {
             val tabToShow =
                 if (config.isHiddenPasswordProtectionOn) config.hiddenProtectionType else SHOW_ALL_TABS
             SecurityDialog(
@@ -305,7 +305,7 @@ class SettingsActivity : SimpleActivity() {
             ) { hash, type, success ->
                 if (success) {
                     val hasPasswordProtection = config.isHiddenPasswordProtectionOn
-                    settings_hidden_item_password_protection.isChecked = !hasPasswordProtection
+                    swSettingsHiddenItemPasswordProtection.isChecked = !hasPasswordProtection
                     config.isHiddenPasswordProtectionOn = !hasPasswordProtection
                     config.hiddenPasswordHash = if (hasPasswordProtection) "" else hash
                     config.hiddenProtectionType = type
@@ -328,8 +328,8 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupAppPasswordProtection() {
-        settings_app_password_protection.isChecked = config.isAppPasswordProtectionOn
-        settings_app_password_protection_holder.setOnClickListener {
+        swSettingsAppPasswordProtection.isChecked = config.isAppPasswordProtectionOn
+        layoutSettingsAppPasswordProtection.setOnClickListener {
             val tabToShow =
                 if (config.isAppPasswordProtectionOn) config.appProtectionType else SHOW_ALL_TABS
             SecurityDialog(
@@ -339,7 +339,7 @@ class SettingsActivity : SimpleActivity() {
             ) { hash, type, success ->
                 if (success) {
                     val hasPasswordProtection = config.isAppPasswordProtectionOn
-                    settings_app_password_protection.isChecked = !hasPasswordProtection
+                    swSettingsAppPasswordProtection.isChecked = !hasPasswordProtection
                     config.isAppPasswordProtectionOn = !hasPasswordProtection
                     config.appPasswordHash = if (hasPasswordProtection) "" else hash
                     config.appProtectionType = type
@@ -362,8 +362,8 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupFileDeletionPasswordProtection() {
-        settings_file_deletion_password_protection.isChecked = config.isDeletePasswordProtectionOn
-        settings_file_deletion_password_protection_holder.setOnClickListener {
+        swSettingsFileDeletionPasswordProtection.isChecked = config.isDeletePasswordProtectionOn
+        layoutSettingsFileDeletionPasswordProtection.setOnClickListener {
             val tabToShow =
                 if (config.isDeletePasswordProtectionOn) config.deleteProtectionType else SHOW_ALL_TABS
             SecurityDialog(
@@ -373,7 +373,7 @@ class SettingsActivity : SimpleActivity() {
             ) { hash, type, success ->
                 if (success) {
                     val hasPasswordProtection = config.isDeletePasswordProtectionOn
-                    settings_file_deletion_password_protection.isChecked = !hasPasswordProtection
+                    swSettingsFileDeletionPasswordProtection.isChecked = !hasPasswordProtection
                     config.isDeletePasswordProtectionOn = !hasPasswordProtection
                     config.deletePasswordHash = if (hasPasswordProtection) "" else hash
                     config.deleteProtectionType = type
@@ -404,35 +404,35 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupAllowPhotoGestures() {
-        settings_allow_photo_gestures.isChecked = config.allowPhotoGestures
-        settings_allow_photo_gestures_holder.setOnClickListener {
-            settings_allow_photo_gestures.toggle()
-            config.allowPhotoGestures = settings_allow_photo_gestures.isChecked
+        swSettingsAllowPhotoGestures.isChecked = config.allowPhotoGestures
+        layoutSettingsAllowPhotoGestures.setOnClickListener {
+            swSettingsAllowPhotoGestures.toggle()
+            config.allowPhotoGestures = swSettingsAllowPhotoGestures.isChecked
         }
     }
 
     private fun setupAllowDownGesture() {
-        settings_allow_down_gesture.isChecked = config.allowDownGesture
-        settings_allow_down_gesture_holder.setOnClickListener {
-            settings_allow_down_gesture.toggle()
-            config.allowDownGesture = settings_allow_down_gesture.isChecked
+        swSettingsAllowDownGesture.isChecked = config.allowDownGesture
+        layoutSettingsAllowDownGesture.setOnClickListener {
+            swSettingsAllowDownGesture.toggle()
+            config.allowDownGesture = swSettingsAllowDownGesture.isChecked
         }
     }
 
     private fun setupAllowRotatingWithGestures() {
-        settings_allow_rotating_with_gestures.isChecked = config.allowRotatingWithGestures
-        settings_allow_rotating_with_gestures_holder.setOnClickListener {
-            settings_allow_rotating_with_gestures.toggle()
-            config.allowRotatingWithGestures = settings_allow_rotating_with_gestures.isChecked
+        swSettingsAllowRotatingWithGestures.isChecked = config.allowRotatingWithGestures
+        layoutSettingsAllowRotatingWithGestures.setOnClickListener {
+            swSettingsAllowRotatingWithGestures.toggle()
+            config.allowRotatingWithGestures = swSettingsAllowRotatingWithGestures.isChecked
         }
     }
 
     private fun setupShowNotch() {
-        settings_show_notch_holder.beVisibleIf(isPiePlus())
-        settings_show_notch.isChecked = config.showNotch
-        settings_show_notch_holder.setOnClickListener {
-            settings_show_notch.toggle()
-            config.showNotch = settings_show_notch.isChecked
+        layoutSettingsShowNotch.beVisibleIf(isPiePlus())
+        swSettingsShowNotch.isChecked = config.showNotch
+        layoutSettingsShowNotch.setOnClickListener {
+            swSettingsShowNotch.toggle()
+            config.showNotch = swSettingsShowNotch.isChecked
         }
     }
 
@@ -467,78 +467,78 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupEnablePullToRefresh() {
-        settings_enable_pull_to_refresh.isChecked = config.enablePullToRefresh
-        settings_enable_pull_to_refresh_holder.setOnClickListener {
-            settings_enable_pull_to_refresh.toggle()
-            config.enablePullToRefresh = settings_enable_pull_to_refresh.isChecked
+        swSettingsEnablePullToRefresh.isChecked = config.enablePullToRefresh
+        layoutSettingsEnablePullToRefresh.setOnClickListener {
+            swSettingsEnablePullToRefresh.toggle()
+            config.enablePullToRefresh = swSettingsEnablePullToRefresh.isChecked
         }
     }
 
     private fun setupAllowZoomingImages() {
-        settings_allow_zooming_images.isChecked = config.allowZoomingImages
+        swSettingsAllowZoomingImages.isChecked = config.allowZoomingImages
         updateDeepZoomToggleButtons()
-        settings_allow_zooming_images_holder.setOnClickListener {
-            settings_allow_zooming_images.toggle()
-            config.allowZoomingImages = settings_allow_zooming_images.isChecked
+        layoutSettingsAllowZoomingImages.setOnClickListener {
+            swSettingsAllowZoomingImages.toggle()
+            config.allowZoomingImages = swSettingsAllowZoomingImages.isChecked
             updateDeepZoomToggleButtons()
         }
     }
 
     private fun updateDeepZoomToggleButtons() {
-        settings_allow_rotating_with_gestures_holder.beVisibleIf(config.allowZoomingImages)
-        settings_show_highest_quality_holder.beVisibleIf(config.allowZoomingImages)
-        settings_allow_one_to_one_zoom_holder.beVisibleIf(config.allowZoomingImages)
+        layoutSettingsAllowRotatingWithGestures.beVisibleIf(config.allowZoomingImages)
+        layoutSettingsShowHighestQuality.beVisibleIf(config.allowZoomingImages)
+        layoutSettingsAllowOneToOneZoom.beVisibleIf(config.allowZoomingImages)
     }
 
     private fun setupShowHighestQuality() {
-        settings_show_highest_quality.isChecked = config.showHighestQuality
-        settings_show_highest_quality_holder.setOnClickListener {
-            settings_show_highest_quality.toggle()
-            config.showHighestQuality = settings_show_highest_quality.isChecked
+        swSettingsShowHighestQuality.isChecked = config.showHighestQuality
+        layoutSettingsShowHighestQuality.setOnClickListener {
+            swSettingsShowHighestQuality.toggle()
+            config.showHighestQuality = swSettingsShowHighestQuality.isChecked
         }
     }
 
     private fun setupAllowOneToOneZoom() {
-        settings_allow_one_to_one_zoom.isChecked = config.allowOneToOneZoom
-        settings_allow_one_to_one_zoom_holder.setOnClickListener {
-            settings_allow_one_to_one_zoom.toggle()
-            config.allowOneToOneZoom = settings_allow_one_to_one_zoom.isChecked
+        swSettingsAllowOneTOneZoom.isChecked = config.allowOneToOneZoom
+        layoutSettingsAllowOneToOneZoom.setOnClickListener {
+            swSettingsAllowOneTOneZoom.toggle()
+            config.allowOneToOneZoom = swSettingsAllowOneTOneZoom.isChecked
         }
     }
 
     private fun setupAllowInstantChange() {
-        settings_allow_instant_change.isChecked = config.allowInstantChange
-        settings_allow_instant_change_holder.setOnClickListener {
-            settings_allow_instant_change.toggle()
-            config.allowInstantChange = settings_allow_instant_change.isChecked
+        swSettingsAllowInstantChange.isChecked = config.allowInstantChange
+        layoutSettingsAllowInstantChange.setOnClickListener {
+            swSettingsAllowInstantChange.toggle()
+            config.allowInstantChange = swSettingsAllowInstantChange.isChecked
         }
     }
 
     private fun setupShowExtendedDetails() {
-        settings_show_extended_details.isChecked = config.showExtendedDetails
-        settings_show_extended_details_holder.setOnClickListener {
-            settings_show_extended_details.toggle()
-            config.showExtendedDetails = settings_show_extended_details.isChecked
-            settings_manage_extended_details_holder.beVisibleIf(config.showExtendedDetails)
-            settings_hide_extended_details_holder.beVisibleIf(config.showExtendedDetails)
+        swSettingsShowExtendedDetails.isChecked = config.showExtendedDetails
+        layoutSettingsShowExtendedDetails.setOnClickListener {
+            swSettingsShowExtendedDetails.toggle()
+            config.showExtendedDetails = swSettingsShowExtendedDetails.isChecked
+            layoutSettingsManageExtendedDetails.beVisibleIf(config.showExtendedDetails)
+            layoutSettingsHideExtendedDetails.beVisibleIf(config.showExtendedDetails)
         }
     }
 
     private fun setupHideExtendedDetails() {
-        settings_hide_extended_details_holder.beVisibleIf(config.showExtendedDetails)
-        settings_hide_extended_details.isChecked = config.hideExtendedDetails
-        settings_hide_extended_details_holder.setOnClickListener {
-            settings_hide_extended_details.toggle()
-            config.hideExtendedDetails = settings_hide_extended_details.isChecked
+        layoutSettingsHideExtendedDetails.beVisibleIf(config.showExtendedDetails)
+        swSettingsHideExtendedDetails.isChecked = config.hideExtendedDetails
+        layoutSettingsHideExtendedDetails.setOnClickListener {
+            swSettingsHideExtendedDetails.toggle()
+            config.hideExtendedDetails = swSettingsHideExtendedDetails.isChecked
         }
     }
 
     private fun setupManageExtendedDetails() {
-        settings_manage_extended_details_holder.beVisibleIf(config.showExtendedDetails)
-        settings_manage_extended_details_holder.setOnClickListener {
+        layoutSettingsManageExtendedDetails.beVisibleIf(config.showExtendedDetails)
+        layoutSettingsManageExtendedDetails.setOnClickListener {
             ManageExtendedDetailsDialog(this) {
                 if (config.extendedDetails == 0) {
-                    settings_show_extended_details_holder.callOnClick()
+                    layoutSettingsShowExtendedDetails.callOnClick()
                 }
             }
         }
@@ -553,8 +553,8 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupScreenRotation() {
-        settings_screen_rotation.text = getScreenRotationText()
-        settings_screen_rotation_holder.setOnClickListener {
+        tvSettingsScreenRotation.text = getScreenRotationText()
+        layoutSettingsScreenRotation.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(
                     id = ROTATE_BY_SYSTEM_SETTING,
@@ -573,7 +573,7 @@ class SettingsActivity : SimpleActivity() {
                 checkedItemId = config.screenRotation
             ) {
                 config.screenRotation = it as Int
-                settings_screen_rotation.text = getScreenRotationText()
+                tvSettingsScreenRotation.text = getScreenRotationText()
             }
         }
     }
