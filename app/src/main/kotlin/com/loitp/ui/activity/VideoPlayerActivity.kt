@@ -105,9 +105,9 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
         super.onDestroy()
         if (!isChangingConfigurations) {
             pauseVideo()
-            video_curr_time.text = 0.getFormattedDuration()
+            tvVideoCurrTime.text = 0.getFormattedDuration()
             releaseExoPlayer()
-            video_seekbar.progress = 0
+            sbVideo.progress = 0
             mTimerHandler.removeCallbacksAndMessages(null)
             mPlayWhenReadyHandler.removeCallbacksAndMessages(null)
         }
@@ -159,17 +159,17 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             fullscreenToggled(isFullscreen)
         }
 
-        video_curr_time.setOnClickListener { doSkip(false) }
-        video_duration.setOnClickListener { doSkip(true) }
-        video_toggle_play_pause.setOnClickListener { togglePlayPause() }
+        tvVideoCurrTime.setOnClickListener { doSkip(false) }
+        tvVideoDuration.setOnClickListener { doSkip(true) }
+        ivVideoTogglePlayPause.setOnClickListener { togglePlayPause() }
         layoutVideoSurfaceFrame.setOnClickListener { toggleFullscreen() }
         layoutVideoSurfaceFrame.controller.settings.swallowDoubleTaps = true
 
-        video_next_file.beVisibleIf(intent.getBooleanExtra(SHOW_NEXT_ITEM, false))
-        video_next_file.setOnClickListener { handleNextFile() }
+        ivVideoNextFile.beVisibleIf(intent.getBooleanExtra(SHOW_NEXT_ITEM, false))
+        ivVideoNextFile.setOnClickListener { handleNextFile() }
 
-        video_prev_file.beVisibleIf(intent.getBooleanExtra(SHOW_PREV_ITEM, false))
-        video_prev_file.setOnClickListener { handlePrevFile() }
+        ivVideoPrevFile.beVisibleIf(intent.getBooleanExtra(SHOW_PREV_ITEM, false))
+        ivVideoPrevFile.setOnClickListener { handlePrevFile() }
 
 
         val gestureDetector =
@@ -277,8 +277,8 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             override fun onPositionDiscontinuity(reason: Int) {
                 // Reset progress views when video loops.
                 if (reason == Player.DISCONTINUITY_REASON_PERIOD_TRANSITION) {
-                    video_seekbar.progress = 0
-                    video_curr_time.text = 0.getFormattedDuration()
+                    sbVideo.progress = 0
+                    tvVideoCurrTime.text = 0.getFormattedDuration()
                 }
             }
 
@@ -314,10 +314,10 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
     private fun videoPrepared() {
         if (!mWasVideoStarted) {
-            video_toggle_play_pause.beVisible()
+            ivVideoTogglePlayPause.beVisible()
             mDuration = (mExoPlayer!!.duration / 1000).toInt()
-            video_seekbar.max = mDuration
-            video_duration.text = mDuration.getFormattedDuration()
+            sbVideo.max = mDuration
+            tvVideoDuration.text = mDuration.getFormattedDuration()
             setPosition(mCurrTime)
 
             if (config.rememberLastVideoPosition) {
@@ -327,7 +327,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             if (config.autoplayVideos) {
                 resumeVideo()
             } else {
-                video_toggle_play_pause.setImageResource(R.drawable.ic_play_outline_vector)
+                ivVideoTogglePlayPause.setImageResource(R.drawable.ic_play_outline_vector)
             }
         }
     }
@@ -342,7 +342,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
     }
 
     private fun resumeVideo() {
-        video_toggle_play_pause.setImageResource(R.drawable.ic_pause_outline_vector)
+        ivVideoTogglePlayPause.setImageResource(R.drawable.ic_pause_outline_vector)
         if (mExoPlayer == null) {
             return
         }
@@ -359,7 +359,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
     }
 
     private fun pauseVideo() {
-        video_toggle_play_pause.setImageResource(R.drawable.ic_play_outline_vector)
+        ivVideoTogglePlayPause.setImageResource(R.drawable.ic_play_outline_vector)
         if (mExoPlayer == null) {
             return
         }
@@ -383,8 +383,8 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
     private fun setPosition(seconds: Int) {
         mExoPlayer?.seekTo(seconds * 1000L)
-        video_seekbar.progress = seconds
-        video_curr_time.text = seconds.getFormattedDuration()
+        sbVideo.progress = seconds
+        tvVideoCurrTime.text = seconds.getFormattedDuration()
     }
 
     private fun setLastVideoSavedPosition() {
@@ -401,8 +401,8 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
         clearLastVideoSavedProgress()
         mCurrTime = (mExoPlayer!!.duration / 1000).toInt()
-        video_seekbar.progress = video_seekbar.max
-        video_curr_time.text = mDuration.getFormattedDuration()
+        sbVideo.progress = sbVideo.max
+        tvVideoCurrTime.text = mDuration.getFormattedDuration()
         pauseVideo()
     }
 
@@ -485,19 +485,19 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
         val newAlpha = if (isFullScreen) 0f else 1f
         arrayOf(
-            video_prev_file,
-            video_toggle_play_pause,
-            video_next_file,
-            video_curr_time,
-            video_seekbar,
-            video_duration,
+            ivVideoPrevFile,
+            ivVideoTogglePlayPause,
+            ivVideoNextFile,
+            tvVideoCurrTime,
+            sbVideo,
+            tvVideoDuration,
             ivTopShadow,
             ivVideoBottomGradient
         ).forEach {
             it.animate().alpha(newAlpha).start()
         }
-        video_seekbar.setOnSeekBarChangeListener(if (mIsFullscreen) null else this)
-        arrayOf(video_prev_file, video_next_file, video_curr_time, video_duration).forEach {
+        sbVideo.setOnSeekBarChangeListener(if (mIsFullscreen) null else this)
+        arrayOf(ivVideoPrevFile, ivVideoNextFile, tvVideoCurrTime, tvVideoDuration).forEach {
             it.isClickable = !mIsFullscreen
         }
     }
@@ -515,11 +515,11 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             }
         }
 
-        video_time_holder.setPadding(0, 0, right, bottom)
-        video_seekbar.setOnSeekBarChangeListener(this)
-        video_seekbar.max = mDuration
-        video_duration.text = mDuration.getFormattedDuration()
-        video_curr_time.text = mCurrTime.getFormattedDuration()
+        layoutVideoTime.setPadding(0, 0, right, bottom)
+        sbVideo.setOnSeekBarChangeListener(this)
+        sbVideo.max = mDuration
+        tvVideoDuration.text = mDuration.getFormattedDuration()
+        tvVideoCurrTime.text = mCurrTime.getFormattedDuration()
         setupTimer()
     }
 
@@ -528,8 +528,8 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             override fun run() {
                 if (mExoPlayer != null && !mIsDragged && mIsPlaying) {
                     mCurrTime = (mExoPlayer!!.currentPosition / 1000).toInt()
-                    video_seekbar.progress = mCurrTime
-                    video_curr_time.text = mCurrTime.getFormattedDuration()
+                    sbVideo.progress = mCurrTime
+                    tvVideoCurrTime.text = mCurrTime.getFormattedDuration()
                 }
 
                 mTimerHandler.postDelayed(this, 1000)
@@ -572,7 +572,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                     )) && layoutVideoSurfaceFrame.controller.state.zoom == 1f
                 ) {
                     if (!mIsDragged) {
-                        arrayOf(video_curr_time, video_seekbar, video_duration).forEach {
+                        arrayOf(tvVideoCurrTime, sbVideo, tvVideoDuration).forEach {
                             it.animate().alpha(1f).start()
                         }
                     }
@@ -605,7 +605,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                 mIgnoreCloseDown = false
                 if (mIsDragged) {
                     if (mIsFullscreen) {
-                        arrayOf(video_curr_time, video_seekbar, video_duration).forEach {
+                        arrayOf(tvVideoCurrTime, sbVideo, tvVideoDuration).forEach {
                             it.animate().alpha(0f).start()
                         }
                     }

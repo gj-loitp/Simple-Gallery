@@ -40,7 +40,7 @@
         android:id="@+id/ivVideoBottomGradient"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignTop="@+id/video_time_holder"
+        android:layout_alignTop="@+id/layoutVideoTime"
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_background"
         tools:ignore="UnknownIdInLayout" />

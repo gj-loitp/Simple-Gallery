@@ -602,9 +602,9 @@ class MediaAdapter(
 
             val showVideoDuration = medium.isVideo() && config.showThumbnailVideoDuration
             if (showVideoDuration) {
-                video_duration?.text = medium.videoDuration.getFormattedDuration()
+                tvVideoDuration?.text = medium.videoDuration.getFormattedDuration()
             }
-            video_duration?.beVisibleIf(showVideoDuration)
+            tvVideoDuration?.beVisibleIf(showVideoDuration)
 
             medium_check?.beVisibleIf(isSelected)
             if (isSelected) {

@@ -82,11 +82,11 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
     }
 
     private fun setupBottomActions() {
-        bottom_set_wallpaper_aspect_ratio.setOnClickListener {
+        ivBottomSetWallpaperAspectRatio.setOnClickListener {
             changeAspectRatio(!isLandscapeRatio)
         }
 
-        bottom_set_wallpaper_rotate.setOnClickListener {
+        ivBottomSetWallpaperRotate.setOnClickListener {
             cropImageView.rotateImage(90)
         }
     }
@@ -95,7 +95,7 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
         val wallpaperWidth =
             if (isLandscapeRatio) wallpaperManager.desiredMinimumWidth else wallpaperManager.desiredMinimumWidth / 2
         cropImageView.setAspectRatio(wallpaperWidth, wallpaperManager.desiredMinimumHeight)
-        bottom_set_wallpaper_aspect_ratio.setImageResource(if (isLandscapeRatio) R.drawable.ic_minimize else R.drawable.ic_maximize)
+        ivBottomSetWallpaperAspectRatio.setImageResource(if (isLandscapeRatio) R.drawable.ic_minimize else R.drawable.ic_maximize)
     }
 
     private fun changeAspectRatio(isLandscape: Boolean) {

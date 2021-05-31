@@ -97,8 +97,8 @@ class VideoFragment : ViewPagerFragment(),
         mConfig = context!!.config
         mView = inflater.inflate(R.layout.pager_video_item, container, false).apply {
             panorama_outline.setOnClickListener { openPanorama() }
-            video_curr_time.setOnClickListener { skip(false) }
-            video_duration.setOnClickListener { skip(true) }
+            tvVideoCurrTime.setOnClickListener { skip(false) }
+            tvVideoDuration.setOnClickListener { skip(true) }
             video_holder.setOnClickListener { toggleFullscreen() }
             video_preview.setOnClickListener { toggleFullscreen() }
             layoutVideoSurfaceFrame.controller.settings.swallowDoubleTaps = true
@@ -111,18 +111,18 @@ class VideoFragment : ViewPagerFragment(),
                 }
             }
 
-            mPlayPauseButton = video_toggle_play_pause
+            mPlayPauseButton = ivVideoTogglePlayPause
             mPlayPauseButton.setOnClickListener {
                 togglePlayPause()
             }
 
-            mSeekBar = video_seekbar
+            mSeekBar = sbVideo
             mSeekBar.setOnSeekBarChangeListener(this@VideoFragment)
             // adding an empty click listener just to avoid ripple animation at toggling fullscreen
             mSeekBar.setOnClickListener { }
 
-            mTimeHolder = video_time_holder
-            mCurrTimeView = video_curr_time
+            mTimeHolder = layoutVideoTime
+            mCurrTimeView = tvVideoCurrTime
             mBrightnessSideScroll = videoBrightnessController
             mVolumeSideScroll = videoVolumeController
             mTextureView = videoSurface
@@ -358,7 +358,7 @@ class VideoFragment : ViewPagerFragment(),
 
     private fun setupTimeHolder() {
         mSeekBar.max = mDuration
-        mView.video_duration.text = mDuration.getFormattedDuration()
+        mView.tvVideoDuration.text = mDuration.getFormattedDuration()
         setupTimer()
     }
 
@@ -553,9 +553,9 @@ class VideoFragment : ViewPagerFragment(),
 
         mSeekBar.setOnSeekBarChangeListener(if (mIsFullscreen) null else this)
         arrayOf(
-            mView.video_curr_time,
-            mView.video_duration,
-            mView.video_toggle_play_pause
+            mView.tvVideoCurrTime,
+            mView.tvVideoDuration,
+            mView.ivVideoTogglePlayPause
         ).forEach {
             it.isClickable = !mIsFullscreen
         }

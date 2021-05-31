@@ -100,8 +100,8 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
         setupButtons()
         intent.removeExtra(PATH)
 
-        video_curr_time.setOnClickListener { skip(false) }
-        video_duration.setOnClickListener { skip(true) }
+        tvVideoCurrTime.setOnClickListener { skip(false) }
+        tvVideoDuration.setOnClickListener { skip(true) }
 
         try {
             val options = VrVideoView.Options()
@@ -145,9 +145,9 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
                             mIsPlaying = true
                             resumeVideo()
                         } else {
-                            video_toggle_play_pause.setImageResource(R.drawable.ic_play_outline_vector)
+                            ivVideoTogglePlayPause.setImageResource(R.drawable.ic_play_outline_vector)
                         }
-                        video_toggle_play_pause.beVisible()
+                        ivVideoTogglePlayPause.beVisible()
                     }
 
                     override fun onCompletion() {
@@ -156,7 +156,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
                 })
             }
 
-            video_toggle_play_pause.setOnClickListener {
+            ivVideoTogglePlayPause.setOnClickListener {
                 togglePlayPause()
             }
         } catch (e: Exception) {
@@ -176,8 +176,8 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
 
     private fun setupDuration(duration: Long) {
         mDuration = (duration / 1000).toInt()
-        video_seekbar.max = mDuration
-        video_duration.text = mDuration.getFormattedDuration()
+        sbVideo.max = mDuration
+        tvVideoDuration.text = mDuration.getFormattedDuration()
         setVideoProgress(0)
     }
 
@@ -186,8 +186,8 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
             override fun run() {
                 if (mIsPlaying && !mIsDragged) {
                     mCurrTime = (vrVideoView!!.currentPosition / 1000).toInt()
-                    video_seekbar.progress = mCurrTime
-                    video_curr_time.text = mCurrTime.getFormattedDuration()
+                    sbVideo.progress = mCurrTime
+                    tvVideoCurrTime.text = mCurrTime.getFormattedDuration()
                 }
 
                 mTimerHandler.postDelayed(this, 1000)
@@ -205,7 +205,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
     }
 
     private fun resumeVideo() {
-        video_toggle_play_pause.setImageResource(R.drawable.ic_pause_outline_vector)
+        ivVideoTogglePlayPause.setImageResource(R.drawable.ic_pause_outline_vector)
         if (mCurrTime == mDuration) {
             setVideoProgress(0)
             mPlayOnReady = true
@@ -218,22 +218,22 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
 
     private fun pauseVideo() {
         vrVideoView.pauseVideo()
-        video_toggle_play_pause.setImageResource(R.drawable.ic_play_outline_vector)
+        ivVideoTogglePlayPause.setImageResource(R.drawable.ic_play_outline_vector)
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
     private fun setVideoProgress(seconds: Int) {
         vrVideoView.seekTo(seconds * 1000L)
-        video_seekbar.progress = seconds
+        sbVideo.progress = seconds
         mCurrTime = seconds
-        video_curr_time.text = seconds.getFormattedDuration()
+        tvVideoCurrTime.text = seconds.getFormattedDuration()
     }
 
     private fun videoCompleted() {
         mIsPlaying = false
         mCurrTime = (vrVideoView.duration / 1000).toInt()
-        video_seekbar.progress = video_seekbar.max
-        video_curr_time.text = mDuration.getFormattedDuration()
+        sbVideo.progress = sbVideo.max
+        tvVideoCurrTime.text = mDuration.getFormattedDuration()
         pauseVideo()
     }
 
@@ -250,12 +250,12 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
             }
         }
 
-        video_time_holder.setPadding(0, 0, right, bottom)
-        video_time_holder.background =
+        layoutVideoTime.setPadding(0, 0, right, bottom)
+        layoutVideoTime.background =
             ContextCompat.getDrawable(this, R.drawable.gradient_background)
-        video_time_holder.onGlobalLayout {
+        layoutVideoTime.onGlobalLayout {
             val newBottomMargin =
-                video_time_holder.height - resources.getDimension(R.dimen.video_player_play_pause_size)
+                layoutVideoTime.height - resources.getDimension(R.dimen.video_player_play_pause_size)
                     .toInt() - resources.getDimension(R.dimen.activity_margin).toInt()
             (ivExplore.layoutParams as RelativeLayout.LayoutParams).bottomMargin = newBottomMargin
 
@@ -265,7 +265,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
             }
             ivExplore.requestLayout()
         }
-        video_toggle_play_pause.setImageResource(R.drawable.ic_play_outline_vector)
+        ivVideoTogglePlayPause.setImageResource(R.drawable.ic_play_outline_vector)
 
         ivCardboard.setOnClickListener {
             vrVideoView.displayMode = CARDBOARD_DISPLAY_MODE
@@ -287,15 +287,15 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
         arrayOf(
             ivCardboard,
             ivExplore,
-            video_toggle_play_pause,
-            video_curr_time,
-            video_duration
+            ivVideoTogglePlayPause,
+            tvVideoCurrTime,
+            tvVideoDuration
         ).forEach {
             it.isClickable = !mIsFullscreen
         }
 
-        video_seekbar.setOnSeekBarChangeListener(if (mIsFullscreen) null else this)
-        video_time_holder.animate().alpha(newAlpha).start()
+        sbVideo.setOnSeekBarChangeListener(if (mIsFullscreen) null else this)
+        layoutVideoTime.animate().alpha(newAlpha).start()
     }
 
     private fun handleClick() {

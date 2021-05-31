@@ -59,7 +59,7 @@
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/video_duration"
+        android:id="@+id/tvVideoDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
