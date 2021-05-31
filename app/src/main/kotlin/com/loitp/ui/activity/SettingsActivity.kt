@@ -90,7 +90,7 @@ class SettingsActivity : SimpleActivity() {
         setupShowRecycleBin()
         setupShowRecycleBinLast()
         setupEmptyRecycleBin()
-        updateTextColors(settings_holder)
+        updateTextColors(layoutSettingsHolder)
         setupSectionColors()
         setupClearCache()
         setupExportSettings()
@@ -114,10 +114,10 @@ class SettingsActivity : SimpleActivity() {
     private fun setupSectionColors() {
         val adjustedPrimaryColor = getAdjustedPrimaryColor()
         arrayListOf(
-            visibility_label,
-            videos_label,
-            thumbnails_label,
-            scrolling_label,
+            tvVisibilityLabel,
+            tvVideosLabel,
+            tvThumbnailsLabel,
+            tvScrollingLabel,
             fullscreen_media_label,
             security_label,
             file_operations_label,
@@ -132,30 +132,30 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupCustomizeColors() {
-        settings_customize_colors_holder.setOnClickListener {
+        layoutSettingsCustomizeColorsHolder.setOnClickListener {
             startCustomizationActivity()
         }
     }
 
     private fun setupUseEnglish() {
-        settings_use_english_holder.beVisibleIf(config.wasUseEnglishToggled || Locale.getDefault().language != "en")
-        settings_use_english.isChecked = config.useEnglish
-        settings_use_english_holder.setOnClickListener {
-            settings_use_english.toggle()
-            config.useEnglish = settings_use_english.isChecked
+        layoutSettingsUseEnglishHolder.beVisibleIf(config.wasUseEnglishToggled || Locale.getDefault().language != "en")
+        swSettingsUseEnglish.isChecked = config.useEnglish
+        layoutSettingsUseEnglishHolder.setOnClickListener {
+            swSettingsUseEnglish.toggle()
+            config.useEnglish = swSettingsUseEnglish.isChecked
             exitProcess(0)
         }
     }
 
     private fun setupChangeDateTimeFormat() {
-        settings_change_date_time_format_holder.setOnClickListener {
+        layoutSettingsChangeDateTimeFormat.setOnClickListener {
             ChangeDateTimeFormatDialog(this) {}
         }
     }
 
     private fun setupFileLoadingPriority() {
-        settings_file_loading_priority.text = getFileLoadingPriorityText()
-        settings_file_loading_priority_holder.setOnClickListener {
+        tvSettingsFileLoadingPriority.text = getFileLoadingPriorityText()
+        layoutSettingsFileLoadingPriority.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(PRIORITY_SPEED, getString(R.string.speed)),
                 RadioItem(PRIORITY_COMPROMISE, getString(R.string.compromise)),
@@ -164,7 +164,7 @@ class SettingsActivity : SimpleActivity() {
 
             RadioGroupDialog(this@SettingsActivity, items, config.fileLoadingPriority) {
                 config.fileLoadingPriority = it as Int
-                settings_file_loading_priority.text = getFileLoadingPriorityText()
+                tvSettingsFileLoadingPriority.text = getFileLoadingPriorityText()
             }
         }
     }
@@ -178,20 +178,20 @@ class SettingsActivity : SimpleActivity() {
     )
 
     private fun setupManageIncludedFolders() {
-        settings_manage_included_folders_holder.setOnClickListener {
+        layoutSettingsManageIncludedFolders.setOnClickListener {
             startActivity(Intent(this, IncludedFoldersActivity::class.java))
         }
     }
 
     private fun setupManageExcludedFolders() {
-        settings_manage_excluded_folders_holder.setOnClickListener {
+        layoutSettingsManageExcludedFolders.setOnClickListener {
             startActivity(Intent(this, ExcludedFoldersActivity::class.java))
         }
     }
 
     private fun setupManageHiddenFolders() {
-        settings_manage_hidden_folders_holder.beVisibleIf(!isQPlus())
-        settings_manage_hidden_folders_holder.setOnClickListener {
+        layoutSettingsManageHiddenFolders.beVisibleIf(!isQPlus())
+        layoutSettingsManageHiddenFolders.setOnClickListener {
             handleHiddenFolderPasswordProtection {
                 startActivity(Intent(this, HiddenFoldersActivity::class.java))
             }
@@ -199,8 +199,8 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupShowHiddenItems() {
-        settings_show_hidden_items.isChecked = config.showHiddenMedia
-        settings_show_hidden_items_holder.setOnClickListener {
+        swSettingsShowHiddenItems.isChecked = config.showHiddenMedia
+        layoutSettingsShowHiddenItems.setOnClickListener {
             if (config.showHiddenMedia) {
                 toggleHiddenItems()
             } else {
@@ -212,39 +212,39 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun toggleHiddenItems() {
-        settings_show_hidden_items.toggle()
-        config.showHiddenMedia = settings_show_hidden_items.isChecked
+        swSettingsShowHiddenItems.toggle()
+        config.showHiddenMedia = swSettingsShowHiddenItems.isChecked
     }
 
     private fun setupAutoplayVideos() {
-        settings_autoplay_videos.isChecked = config.autoplayVideos
-        settings_autoplay_videos_holder.setOnClickListener {
-            settings_autoplay_videos.toggle()
-            config.autoplayVideos = settings_autoplay_videos.isChecked
+        swSettingsAutoplayVideos.isChecked = config.autoplayVideos
+        layoutSettingsAutoplayVideos.setOnClickListener {
+            swSettingsAutoplayVideos.toggle()
+            config.autoplayVideos = swSettingsAutoplayVideos.isChecked
         }
     }
 
     private fun setupRememberLastVideo() {
-        settings_remember_last_video_position.isChecked = config.rememberLastVideoPosition
-        settings_remember_last_video_position_holder.setOnClickListener {
-            settings_remember_last_video_position.toggle()
-            config.rememberLastVideoPosition = settings_remember_last_video_position.isChecked
+        swSettingsRememberLastVideoPosition.isChecked = config.rememberLastVideoPosition
+        layoutSettingsRememberLastVideoPosition.setOnClickListener {
+            swSettingsRememberLastVideoPosition.toggle()
+            config.rememberLastVideoPosition = swSettingsRememberLastVideoPosition.isChecked
         }
     }
 
     private fun setupLoopVideos() {
-        settings_loop_videos.isChecked = config.loopVideos
-        settings_loop_videos_holder.setOnClickListener {
-            settings_loop_videos.toggle()
-            config.loopVideos = settings_loop_videos.isChecked
+        swSettingsLoopVideos.isChecked = config.loopVideos
+        layoutSettingsLoopVideos.setOnClickListener {
+            swSettingsLoopVideos.toggle()
+            config.loopVideos = swSettingsLoopVideos.isChecked
         }
     }
 
     private fun setupOpenVideosOnSeparateScreen() {
-        settings_open_videos_on_separate_screen.isChecked = config.openVideosOnSeparateScreen
-        settings_open_videos_on_separate_screen_holder.setOnClickListener {
-            settings_open_videos_on_separate_screen.toggle()
-            config.openVideosOnSeparateScreen = settings_open_videos_on_separate_screen.isChecked
+        swSettingsOpenVideosOnSeparateScreen.isChecked = config.openVideosOnSeparateScreen
+        layoutSettingsOpenVideosOnSeparateScreen.setOnClickListener {
+            swSettingsOpenVideosOnSeparateScreen.toggle()
+            config.openVideosOnSeparateScreen = swSettingsOpenVideosOnSeparateScreen.isChecked
         }
     }
 
@@ -257,10 +257,10 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupCropThumbnails() {
-        settings_crop_thumbnails.isChecked = config.cropThumbnails
-        settings_crop_thumbnails_holder.setOnClickListener {
-            settings_crop_thumbnails.toggle()
-            config.cropThumbnails = settings_crop_thumbnails.isChecked
+        swSettingsCropThumbnails.isChecked = config.cropThumbnails
+        layoutSettingsCropThumbnailsHolder.setOnClickListener {
+            swSettingsCropThumbnails.toggle()
+            config.cropThumbnails = swSettingsCropThumbnails.isChecked
         }
     }
 
@@ -273,10 +273,10 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupScrollHorizontally() {
-        settings_scroll_horizontally.isChecked = config.scrollHorizontally
-        settings_scroll_horizontally_holder.setOnClickListener {
-            settings_scroll_horizontally.toggle()
-            config.scrollHorizontally = settings_scroll_horizontally.isChecked
+        swSettingsScrollHorizontally.isChecked = config.scrollHorizontally
+        layoutSettingsScrollHorizontally.setOnClickListener {
+            swSettingsScrollHorizontally.toggle()
+            config.scrollHorizontally = swSettingsScrollHorizontally.isChecked
 
             if (config.scrollHorizontally) {
                 config.enablePullToRefresh = false
@@ -437,16 +437,16 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupFileThumbnailStyle() {
-        settings_file_thumbnail_style_holder.setOnClickListener {
+        layoutSettingsFileThumbnailStyle.setOnClickListener {
             ChangeFileThumbnailStyleDialog(this)
         }
     }
 
     private fun setupFolderThumbnailStyle() {
-        settings_folder_thumbnail_style.text = getFolderStyleText()
-        settings_folder_thumbnail_style_holder.setOnClickListener {
+        tvSettingsFolderThumbnailStyle.text = getFolderStyleText()
+        layoutSettingsFolderThumbnailStyle.setOnClickListener {
             ChangeFolderThumbnailStyleDialog(this) {
-                settings_folder_thumbnail_style.text = getFolderStyleText()
+                tvSettingsFolderThumbnailStyle.text = getFolderStyleText()
             }
         }
     }
