@@ -120,12 +120,12 @@ class SettingsActivity : SimpleActivity() {
             tvScrollingLabel,
             tvFullScreenMediaLabel,
             tvSecurityLabel,
-            file_operations_label,
+            tvFileOperationsLabel,
             tvDeepZoomableImagesLabel,
             tvExtendedDetailsLabel,
-            bottom_actions_label,
-            recycle_bin_label,
-            migrating_label
+            tvBottomActionsLabel,
+            tvRecyclebinLabel,
+            tvMigratingLabel
         ).forEach {
             it.setTextColor(adjustedPrimaryColor)
         }
@@ -396,10 +396,10 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupDeleteEmptyFolders() {
-        settings_delete_empty_folders.isChecked = config.deleteEmptyFolders
-        settings_delete_empty_folders_holder.setOnClickListener {
-            settings_delete_empty_folders.toggle()
-            config.deleteEmptyFolders = settings_delete_empty_folders.isChecked
+        swSettingsDeleteEmptyFolders.isChecked = config.deleteEmptyFolders
+        layoutSettingsDeleteEmptyFolders.setOnClickListener {
+            swSettingsDeleteEmptyFolders.toggle()
+            config.deleteEmptyFolders = swSettingsDeleteEmptyFolders.isChecked
         }
     }
 
@@ -459,10 +459,10 @@ class SettingsActivity : SimpleActivity() {
     )
 
     private fun setupKeepLastModified() {
-        settings_keep_last_modified.isChecked = config.keepLastModified
-        settings_keep_last_modified_holder.setOnClickListener {
-            settings_keep_last_modified.toggle()
-            config.keepLastModified = settings_keep_last_modified.isChecked
+        swSettingsKeepLastModified.isChecked = config.keepLastModified
+        layoutSettingsKeepLastModified.setOnClickListener {
+            swSettingsKeepLastModified.toggle()
+            config.keepLastModified = swSettingsKeepLastModified.isChecked
         }
     }
 
@@ -545,10 +545,10 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupSkipDeleteConfirmation() {
-        settings_skip_delete_confirmation.isChecked = config.skipDeleteConfirmation
-        settings_skip_delete_confirmation_holder.setOnClickListener {
-            settings_skip_delete_confirmation.toggle()
-            config.skipDeleteConfirmation = settings_skip_delete_confirmation.isChecked
+        swSettingsSkipDeleteConfirmation.isChecked = config.skipDeleteConfirmation
+        layoutSettingsSkipDeleteConfirmation.setOnClickListener {
+            swSettingsSkipDeleteConfirmation.toggle()
+            config.skipDeleteConfirmation = swSettingsSkipDeleteConfirmation.isChecked
         }
     }
 
@@ -587,20 +587,20 @@ class SettingsActivity : SimpleActivity() {
     )
 
     private fun setupBottomActions() {
-        settings_bottom_actions.isChecked = config.bottomActions
-        settings_bottom_actions_holder.setOnClickListener {
-            settings_bottom_actions.toggle()
-            config.bottomActions = settings_bottom_actions.isChecked
-            settings_manage_bottom_actions_holder.beVisibleIf(config.bottomActions)
+        swSettingsBottomActions.isChecked = config.bottomActions
+        layoutSettingsBottomActions.setOnClickListener {
+            swSettingsBottomActions.toggle()
+            config.bottomActions = swSettingsBottomActions.isChecked
+            layoutSettingsManageBottomActions.beVisibleIf(config.bottomActions)
         }
     }
 
     private fun setupManageBottomActions() {
-        settings_manage_bottom_actions_holder.beVisibleIf(config.bottomActions)
-        settings_manage_bottom_actions_holder.setOnClickListener {
+        layoutSettingsManageBottomActions.beVisibleIf(config.bottomActions)
+        layoutSettingsManageBottomActions.setOnClickListener {
             ManageBottomActionsDialog(this) {
                 if (config.visibleBottomActions == 0) {
-                    settings_bottom_actions_holder.callOnClick()
+                    layoutSettingsBottomActions.callOnClick()
                     config.bottomActions = false
                     config.visibleBottomActions = DEFAULT_BOTTOM_ACTIONS
                 }
@@ -609,33 +609,33 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupUseRecycleBin() {
-        settings_empty_recycle_bin_holder.beVisibleIf(config.useRecycleBin)
-        settings_show_recycle_bin_holder.beVisibleIf(config.useRecycleBin)
-        settings_show_recycle_bin_last_holder.beVisibleIf(config.useRecycleBin && config.showRecycleBinAtFolders)
-        settings_use_recycle_bin.isChecked = config.useRecycleBin
-        settings_use_recycle_bin_holder.setOnClickListener {
-            settings_use_recycle_bin.toggle()
-            config.useRecycleBin = settings_use_recycle_bin.isChecked
-            settings_empty_recycle_bin_holder.beVisibleIf(config.useRecycleBin)
-            settings_show_recycle_bin_holder.beVisibleIf(config.useRecycleBin)
-            settings_show_recycle_bin_last_holder.beVisibleIf(config.useRecycleBin && config.showRecycleBinAtFolders)
+        layoutSettingsEmptyRecycleBin.beVisibleIf(config.useRecycleBin)
+        layoutSettingsShowRecycleBin.beVisibleIf(config.useRecycleBin)
+        layoutSettingsShowRecycleBinLast.beVisibleIf(config.useRecycleBin && config.showRecycleBinAtFolders)
+        swSettingsUseRecycleBin.isChecked = config.useRecycleBin
+        layoutSettingsUseRecyclebin.setOnClickListener {
+            swSettingsUseRecycleBin.toggle()
+            config.useRecycleBin = swSettingsUseRecycleBin.isChecked
+            layoutSettingsEmptyRecycleBin.beVisibleIf(config.useRecycleBin)
+            layoutSettingsShowRecycleBin.beVisibleIf(config.useRecycleBin)
+            layoutSettingsShowRecycleBinLast.beVisibleIf(config.useRecycleBin && config.showRecycleBinAtFolders)
         }
     }
 
     private fun setupShowRecycleBin() {
-        settings_show_recycle_bin.isChecked = config.showRecycleBinAtFolders
-        settings_show_recycle_bin_holder.setOnClickListener {
-            settings_show_recycle_bin.toggle()
-            config.showRecycleBinAtFolders = settings_show_recycle_bin.isChecked
-            settings_show_recycle_bin_last_holder.beVisibleIf(config.useRecycleBin && config.showRecycleBinAtFolders)
+        swSettingsShowRecycleBin.isChecked = config.showRecycleBinAtFolders
+        layoutSettingsShowRecycleBin.setOnClickListener {
+            swSettingsShowRecycleBin.toggle()
+            config.showRecycleBinAtFolders = swSettingsShowRecycleBin.isChecked
+            layoutSettingsShowRecycleBinLast.beVisibleIf(config.useRecycleBin && config.showRecycleBinAtFolders)
         }
     }
 
     private fun setupShowRecycleBinLast() {
-        settings_show_recycle_bin_last.isChecked = config.showRecycleBinLast
-        settings_show_recycle_bin_last_holder.setOnClickListener {
-            settings_show_recycle_bin_last.toggle()
-            config.showRecycleBinLast = settings_show_recycle_bin_last.isChecked
+        swSettingsShowRecycleBinLast.isChecked = config.showRecycleBinLast
+        layoutSettingsShowRecycleBinLast.setOnClickListener {
+            swSettingsShowRecycleBinLast.toggle()
+            config.showRecycleBinLast = swSettingsShowRecycleBinLast.isChecked
             if (config.showRecycleBinLast) {
                 config.removePinnedFolders(setOf(RECYCLE_BIN))
             }
@@ -649,18 +649,18 @@ class SettingsActivity : SimpleActivity() {
             } catch (ignored: Exception) {
             }
             runOnUiThread {
-                settings_empty_recycle_bin_size.text = mRecycleBinContentSize.formatSize()
+                tvSettingsEmptyRecycleBinSize.text = mRecycleBinContentSize.formatSize()
             }
         }
 
-        settings_empty_recycle_bin_holder.setOnClickListener {
+        layoutSettingsEmptyRecycleBin.setOnClickListener {
             if (mRecycleBinContentSize == 0L) {
                 toast(R.string.recycle_bin_empty)
             } else {
                 showRecycleBinEmptyingDialog {
                     emptyTheRecycleBin()
                     mRecycleBinContentSize = 0L
-                    settings_empty_recycle_bin_size.text = 0L.formatSize()
+                    tvSettingsEmptyRecycleBinSize.text = 0L.formatSize()
                 }
             }
         }
@@ -669,22 +669,22 @@ class SettingsActivity : SimpleActivity() {
     private fun setupClearCache() {
         ensureBackgroundThread {
             runOnUiThread {
-                settings_clear_cache_size.text = cacheDir.getProperSize(true).formatSize()
+                tvSettingsClearCacheSize.text = cacheDir.getProperSize(true).formatSize()
             }
         }
 
-        settings_clear_cache_holder.setOnClickListener {
+        layoutSettingsClearCache.setOnClickListener {
             ensureBackgroundThread {
                 cacheDir.deleteRecursively()
                 runOnUiThread {
-                    settings_clear_cache_size.text = cacheDir.getProperSize(true).formatSize()
+                    tvSettingsClearCacheSize.text = cacheDir.getProperSize(true).formatSize()
                 }
             }
         }
     }
 
     private fun setupExportSettings() {
-        settings_export_holder.setOnClickListener {
+        layoutSettingsExport.setOnClickListener {
             val configItems = LinkedHashMap<String, Any>().apply {
                 put(IS_USING_SHARED_THEME, config.isUsingSharedTheme)
                 put(TEXT_COLOR, config.textColor)
@@ -776,7 +776,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupImportSettings() {
-        settings_import_holder.setOnClickListener {
+        layoutSettingsImport.setOnClickListener {
             if (isQPlus()) {
                 Intent(Intent.ACTION_GET_CONTENT).apply {
                     addCategory(Intent.CATEGORY_OPENABLE)
