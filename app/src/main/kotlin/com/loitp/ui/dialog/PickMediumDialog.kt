@@ -35,7 +35,7 @@ class PickMediumDialog(
     var isGridViewType = viewType == VIEW_TYPE_GRID
 
     init {
-        (view.media_grid.layoutManager as MyGridLayoutManager).apply {
+        (view.rvMedia.layoutManager as MyGridLayoutManager).apply {
             orientation =
                 if (activity.config.scrollHorizontally && isGridViewType) RecyclerView.HORIZONTAL else RecyclerView.VERTICAL
             spanCount = if (isGridViewType) activity.config.mediaColumnCnt else 1
@@ -93,7 +93,7 @@ class PickMediumDialog(
             isAGetIntent = true,
             allowMultiplePicks = false,
             path = path,
-            recyclerView = view.media_grid,
+            recyclerView = view.rvMedia,
             fastScroller = null
         ) {
             if (it is Medium) {
@@ -107,18 +107,18 @@ class PickMediumDialog(
         val dateFormat = activity.config.dateFormat
         val timeFormat = activity.getTimeFormat()
         view.apply {
-            media_grid.adapter = adapter
+            rvMedia.adapter = adapter
 
-            media_vertical_fastscroller.isHorizontal = false
-            media_vertical_fastscroller.beGoneIf(scrollHorizontally)
+            fsMediaVertical.isHorizontal = false
+            fsMediaVertical.beGoneIf(scrollHorizontally)
 
-            media_horizontal_fastscroller.isHorizontal = true
-            media_horizontal_fastscroller.beVisibleIf(scrollHorizontally)
+            fsMediaHorizontal.isHorizontal = true
+            fsMediaHorizontal.beVisibleIf(scrollHorizontally)
 
             if (scrollHorizontally) {
-                media_horizontal_fastscroller.setViews(media_grid) {
+                fsMediaHorizontal.setViews(rvMedia) {
                     val medium = (media[it] as? Medium)
-                    media_horizontal_fastscroller.updateBubbleText(
+                    fsMediaHorizontal.updateBubbleText(
                         medium?.getBubbleText(
                             sorting = sorting,
                             context = activity,
@@ -128,9 +128,9 @@ class PickMediumDialog(
                     )
                 }
             } else {
-                media_vertical_fastscroller.setViews(media_grid) {
+                fsMediaVertical.setViews(rvMedia) {
                     val medium = (media[it] as? Medium)
-                    media_vertical_fastscroller.updateBubbleText(
+                    fsMediaVertical.updateBubbleText(
                         medium?.getBubbleText(
                             sorting = sorting,
                             context = activity,

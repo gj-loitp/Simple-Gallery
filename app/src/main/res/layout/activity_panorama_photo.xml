@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_grey_black">
 
     <com.google.vr.sdk.widgets.pano.VrPanoramaView
-        android:id="@+id/panorama_view"
+        android:id="@+id/panoramaView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/panorama_gradient_background"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPanoramaGradientBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_background"
-        android:contentDescription="@null"/>
+        android:contentDescription="@null" />
 
-    <ImageView
-        android:id="@+id/cardboard"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivCardboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/activity_margin"
-        android:src="@drawable/ic_cardboard"/>
+        android:src="@drawable/ic_cardboard" />
 
-    <ImageView
-        android:id="@+id/explore"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivExplore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/activity_margin"
-        android:src="@drawable/ic_explore_vector"/>
+        android:src="@drawable/ic_explore_vector" />
 
 </RelativeLayout>

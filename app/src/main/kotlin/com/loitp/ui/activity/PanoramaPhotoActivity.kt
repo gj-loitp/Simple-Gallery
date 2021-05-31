@@ -40,14 +40,14 @@ open class PanoramaPhotoActivity : SimpleActivity() {
         checkNotchSupport()
         setupButtonMargins()
 
-        cardboard.setOnClickListener {
-            panorama_view.displayMode = CARDBOARD_DISPLAY_MODE
+        ivCardboard.setOnClickListener {
+            panoramaView.displayMode = CARDBOARD_DISPLAY_MODE
         }
 
-        explore.setOnClickListener {
+        ivExplore.setOnClickListener {
             isExploreEnabled = !isExploreEnabled
-            panorama_view.setPureTouchTracking(isExploreEnabled)
-            explore.setImageResource(if (isExploreEnabled) R.drawable.ic_explore_vector else R.drawable.ic_explore_off_vector)
+            panoramaView.setPureTouchTracking(isExploreEnabled)
+            ivExplore.setImageResource(if (isExploreEnabled) R.drawable.ic_explore_vector else R.drawable.ic_explore_off_vector)
         }
 
         checkIntent()
@@ -55,7 +55,7 @@ open class PanoramaPhotoActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        panorama_view.resumeRendering()
+        panoramaView.resumeRendering()
         isRendering = true
         if (config.blackBackground) {
             updateStatusbarColor(Color.BLACK)
@@ -72,14 +72,14 @@ open class PanoramaPhotoActivity : SimpleActivity() {
 
     override fun onPause() {
         super.onPause()
-        panorama_view.pauseRendering()
+        panoramaView.pauseRendering()
         isRendering = false
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if (isRendering) {
-            panorama_view.shutdown()
+            panoramaView.shutdown()
         }
     }
 
@@ -99,7 +99,7 @@ open class PanoramaPhotoActivity : SimpleActivity() {
             ensureBackgroundThread {
                 val bitmap = getBitmapToLoad(path)
                 runOnUiThread {
-                    panorama_view.apply {
+                    panoramaView.apply {
                         beVisible()
                         loadImageFromBitmap(bitmap, options)
                         setFlingingEnabled(true)
@@ -162,20 +162,20 @@ open class PanoramaPhotoActivity : SimpleActivity() {
 
     private fun setupButtonMargins() {
         val navBarHeight = navigationBarHeight
-        (cardboard.layoutParams as RelativeLayout.LayoutParams).apply {
+        (ivCardboard.layoutParams as RelativeLayout.LayoutParams).apply {
             bottomMargin = navBarHeight
             rightMargin = navigationBarWidth
         }
 
-        (explore.layoutParams as RelativeLayout.LayoutParams).bottomMargin = navigationBarHeight
+        (ivExplore.layoutParams as RelativeLayout.LayoutParams).bottomMargin = navigationBarHeight
 
-        cardboard.onGlobalLayout {
-            panorama_gradient_background.layoutParams.height = navBarHeight + cardboard.height
+        ivCardboard.onGlobalLayout {
+            ivPanoramaGradientBackground.layoutParams.height = navBarHeight + ivCardboard.height
         }
     }
 
     private fun toggleButtonVisibility() {
-        arrayOf(cardboard, explore, panorama_gradient_background).forEach {
+        arrayOf(ivCardboard, ivExplore, ivPanoramaGradientBackground).forEach {
             it.animate().alpha(if (isFullscreen) 0f else 1f)
             it.isClickable = !isFullscreen
         }

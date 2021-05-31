@@ -75,7 +75,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
     override fun onResume() {
         super.onResume()
-        top_shadow.layoutParams.height = statusBarHeight + actionBarHeight
+        ivTopShadow.layoutParams.height = statusBarHeight + actionBarHeight
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
@@ -491,7 +491,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             video_curr_time,
             video_seekbar,
             video_duration,
-            top_shadow,
+            ivTopShadow,
             video_bottom_gradient
         ).forEach {
             it.animate().alpha(newAlpha).start()

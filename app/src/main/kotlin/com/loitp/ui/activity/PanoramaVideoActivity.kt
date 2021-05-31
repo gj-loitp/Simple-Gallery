@@ -57,7 +57,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
 
     override fun onResume() {
         super.onResume()
-        vr_video_view.resumeRendering()
+        vrVideoView.resumeRendering()
         mIsRendering = true
         if (config.blackBackground) {
             updateStatusbarColor(Color.BLACK)
@@ -74,14 +74,14 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
 
     override fun onPause() {
         super.onPause()
-        vr_video_view.pauseRendering()
+        vrVideoView.pauseRendering()
         mIsRendering = false
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if (mIsRendering) {
-            vr_video_view.shutdown()
+            vrVideoView.shutdown()
         }
 
         if (!isChangingConfigurations) {
@@ -112,7 +112,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
                 Uri.fromFile(File(path))
             }
 
-            vr_video_view.apply {
+            vrVideoView.apply {
                 loadVideo(uri, options)
                 pauseVideo()
 
@@ -185,7 +185,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
         runOnUiThread(object : Runnable {
             override fun run() {
                 if (mIsPlaying && !mIsDragged) {
-                    mCurrTime = (vr_video_view!!.currentPosition / 1000).toInt()
+                    mCurrTime = (vrVideoView!!.currentPosition / 1000).toInt()
                     video_seekbar.progress = mCurrTime
                     video_curr_time.text = mCurrTime.getFormattedDuration()
                 }
@@ -212,18 +212,18 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
             return
         }
 
-        vr_video_view.playVideo()
+        vrVideoView.playVideo()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
     private fun pauseVideo() {
-        vr_video_view.pauseVideo()
+        vrVideoView.pauseVideo()
         video_toggle_play_pause.setImageResource(R.drawable.ic_play_outline_vector)
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
     private fun setVideoProgress(seconds: Int) {
-        vr_video_view.seekTo(seconds * 1000L)
+        vrVideoView.seekTo(seconds * 1000L)
         video_seekbar.progress = seconds
         mCurrTime = seconds
         video_curr_time.text = seconds.getFormattedDuration()
@@ -231,7 +231,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
 
     private fun videoCompleted() {
         mIsPlaying = false
-        mCurrTime = (vr_video_view.duration / 1000).toInt()
+        mCurrTime = (vrVideoView.duration / 1000).toInt()
         video_seekbar.progress = video_seekbar.max
         video_curr_time.text = mDuration.getFormattedDuration()
         pauseVideo()
@@ -257,36 +257,36 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
             val newBottomMargin =
                 video_time_holder.height - resources.getDimension(R.dimen.video_player_play_pause_size)
                     .toInt() - resources.getDimension(R.dimen.activity_margin).toInt()
-            (explore.layoutParams as RelativeLayout.LayoutParams).bottomMargin = newBottomMargin
+            (ivExplore.layoutParams as RelativeLayout.LayoutParams).bottomMargin = newBottomMargin
 
-            (cardboard.layoutParams as RelativeLayout.LayoutParams).apply {
+            (ivCardboard.layoutParams as RelativeLayout.LayoutParams).apply {
                 bottomMargin = newBottomMargin
                 rightMargin = navigationBarWidth
             }
-            explore.requestLayout()
+            ivExplore.requestLayout()
         }
         video_toggle_play_pause.setImageResource(R.drawable.ic_play_outline_vector)
 
-        cardboard.setOnClickListener {
-            vr_video_view.displayMode = CARDBOARD_DISPLAY_MODE
+        ivCardboard.setOnClickListener {
+            vrVideoView.displayMode = CARDBOARD_DISPLAY_MODE
         }
 
-        explore.setOnClickListener {
+        ivExplore.setOnClickListener {
             mIsExploreEnabled = !mIsExploreEnabled
-            vr_video_view.setPureTouchTracking(mIsExploreEnabled)
-            explore.setImageResource(if (mIsExploreEnabled) R.drawable.ic_explore_vector else R.drawable.ic_explore_off_vector)
+            vrVideoView.setPureTouchTracking(mIsExploreEnabled)
+            ivExplore.setImageResource(if (mIsExploreEnabled) R.drawable.ic_explore_vector else R.drawable.ic_explore_off_vector)
         }
     }
 
     private fun toggleButtonVisibility() {
         val newAlpha = if (mIsFullscreen) 0f else 1f
-        arrayOf(cardboard, explore).forEach {
+        arrayOf(ivCardboard, ivExplore).forEach {
             it.animate().alpha(newAlpha)
         }
 
         arrayOf(
-            cardboard,
-            explore,
+            ivCardboard,
+            ivExplore,
             video_toggle_play_pause,
             video_curr_time,
             video_duration
@@ -313,12 +313,12 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
             return
         }
 
-        val curr = vr_video_view.currentPosition
-        val twoPercents = max((vr_video_view.duration / 50).toInt(), MIN_SKIP_LENGTH)
+        val curr = vrVideoView.currentPosition
+        val twoPercents = max((vrVideoView.duration / 50).toInt(), MIN_SKIP_LENGTH)
         val newProgress = if (forward) curr + twoPercents else curr - twoPercents
         val roundProgress = (newProgress / 1000f).roundToInt()
         val limitedProgress = max(
-            a = min(a = vr_video_view.duration.toInt(), b = roundProgress),
+            a = min(a = vrVideoView.duration.toInt(), b = roundProgress),
             b = 0
         )
         setVideoProgress(limitedProgress)
@@ -334,7 +334,7 @@ open class PanoramaVideoActivity : SimpleActivity(), SeekBar.OnSeekBarChangeList
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar?) {
-        vr_video_view.pauseVideo()
+        vrVideoView.pauseVideo()
         mIsDragged = true
     }
 

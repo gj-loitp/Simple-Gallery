@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.simplemobiletools.commons.views.MyTextView
-        android:id="@+id/media_empty_text_placeholder"
+        android:id="@+id/tvMediaEmpty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0.8"
@@ -19,7 +20,7 @@
         android:visibility="gone" />
 
     <com.simplemobiletools.commons.views.MyRecyclerView
-        android:id="@+id/media_grid"
+        android:id="@+id/rvMedia"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -27,19 +28,20 @@
         app:spanCount="@integer/media_columns_vertical_scroll" />
 
     <com.simplemobiletools.commons.views.FastScroller
-        android:id="@+id/media_vertical_fastscroller"
+        android:id="@+id/fsMediaVertical"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:paddingStart="@dimen/normal_margin"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:ignore="RtlSymmetry">
 
         <include layout="@layout/fastscroller_handle_vertical" />
 
     </com.simplemobiletools.commons.views.FastScroller>
 
     <com.simplemobiletools.commons.views.FastScroller
-        android:id="@+id/media_horizontal_fastscroller"
+        android:id="@+id/fsMediaHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

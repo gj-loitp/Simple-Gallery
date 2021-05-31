@@ -101,7 +101,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
         setContentView(R.layout.activity_medium)
 
         window.decorView.setBackgroundColor(config.backgroundColor)
-        top_shadow.layoutParams.height = statusBarHeight + actionBarHeight
+        ivTopShadow.layoutParams.height = statusBarHeight + actionBarHeight
         checkNotchSupport()
         (MediaActivity.mMedia.clone() as ArrayList<ThumbnailItem>).filterIsInstance<Medium>()
             .mapTo(mMediaFiles) { it as Medium }
@@ -373,7 +373,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
         }
         supportActionBar?.title = mPath.getFilenameFromPath()
 
-        view_pager.onGlobalLayout {
+        viewPager.onGlobalLayout {
             if (!isDestroyed) {
                 if (mMediaFiles.isNotEmpty()) {
                     gotMedia(mMediaFiles as ArrayList<ThumbnailItem>)
@@ -383,14 +383,14 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
         }
 
         refreshViewPager()
-        view_pager.offscreenPageLimit = 2
+        viewPager.offscreenPageLimit = 2
 
         if (config.blackBackground) {
-            view_pager.background = ColorDrawable(Color.BLACK)
+            viewPager.background = ColorDrawable(Color.BLACK)
         }
 
         if (config.hideSystemUI) {
-            view_pager.onGlobalLayout {
+            viewPager.onGlobalLayout {
                 Handler(Looper.getMainLooper()).postDelayed({
                     fragmentClicked()
                 }, HIDE_SYSTEM_UI_DELAY)
@@ -467,7 +467,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
         val pagerAdapter = MyPagerAdapter(this, supportFragmentManager, media)
         if (!isDestroyed) {
             pagerAdapter.shouldInitFragment = mPos < 5
-            view_pager.apply {
+            viewPager.apply {
                 adapter = pagerAdapter
                 pagerAdapter.shouldInitFragment = true
                 currentItem = mPos
@@ -491,10 +491,10 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
 
     private fun startSlideshow() {
         if (getMediaForSlideshow()) {
-            view_pager.onGlobalLayout {
+            viewPager.onGlobalLayout {
                 if (!isDestroyed) {
                     if (config.slideshowAnimation == SLIDESHOW_ANIMATION_FADE) {
-                        view_pager.setPageTransformer(false, FadePageTransformer())
+                        viewPager.setPageTransformer(false, FadePageTransformer())
                     }
 
                     hideSystemUI(true)
@@ -509,38 +509,38 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
     }
 
     private fun goToNextMedium(forward: Boolean) {
-        val oldPosition = view_pager.currentItem
+        val oldPosition = viewPager.currentItem
         val newPosition = if (forward) oldPosition + 1 else oldPosition - 1
-        if (newPosition == -1 || newPosition > view_pager.adapter!!.count - 1) {
+        if (newPosition == -1 || newPosition > viewPager.adapter!!.count - 1) {
             slideshowEnded(forward)
         } else {
-            view_pager.setCurrentItem(newPosition, false)
+            viewPager.setCurrentItem(newPosition, false)
         }
     }
 
     private fun animatePagerTransition(forward: Boolean) {
-        val oldPosition = view_pager.currentItem
-        val animator = ValueAnimator.ofInt(0, view_pager.width)
+        val oldPosition = viewPager.currentItem
+        val animator = ValueAnimator.ofInt(0, viewPager.width)
         animator.addListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-                if (view_pager.isFakeDragging) {
+                if (viewPager.isFakeDragging) {
                     try {
-                        view_pager.endFakeDrag()
+                        viewPager.endFakeDrag()
                     } catch (ignored: Exception) {
                         stopSlideshow()
                     }
 
-                    if (view_pager.currentItem == oldPosition) {
+                    if (viewPager.currentItem == oldPosition) {
                         slideshowEnded(forward)
                     }
                 }
             }
 
             override fun onAnimationCancel(animation: Animator?) {
-                view_pager.endFakeDrag()
+                viewPager.endFakeDrag()
             }
 
             override fun onAnimationStart(animation: Animator?) {
@@ -557,12 +557,12 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
         animator.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener {
             var oldDragPosition = 0
             override fun onAnimationUpdate(animation: ValueAnimator) {
-                if (view_pager?.isFakeDragging == true) {
+                if (viewPager?.isFakeDragging == true) {
                     val dragPosition = animation.animatedValue as Int
                     val dragOffset = dragPosition - oldDragPosition
                     oldDragPosition = dragPosition
                     try {
-                        view_pager.fakeDragBy(dragOffset * (if (forward) -1f else 1f))
+                        viewPager.fakeDragBy(dragOffset * (if (forward) -1f else 1f))
                     } catch (e: Exception) {
                         stopSlideshow()
                     }
@@ -570,16 +570,16 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
             }
         })
 
-        view_pager.beginFakeDrag()
+        viewPager.beginFakeDrag()
         animator.start()
     }
 
     private fun slideshowEnded(forward: Boolean) {
         if (config.loopSlideshow) {
             if (forward) {
-                view_pager.setCurrentItem(0, false)
+                viewPager.setCurrentItem(0, false)
             } else {
-                view_pager.setCurrentItem(view_pager.adapter!!.count - 1, false)
+                viewPager.setCurrentItem(viewPager.adapter!!.count - 1, false)
             }
         } else {
             stopSlideshow()
@@ -589,7 +589,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
 
     private fun stopSlideshow() {
         if (mIsSlideshowActive) {
-            view_pager.setPageTransformer(false, DefaultPageTransformer())
+            viewPager.setPageTransformer(false, DefaultPageTransformer())
             mIsSlideshowActive = false
             showSystemUI(true)
             mSlideshowHandler.removeCallbacksAndMessages(null)
@@ -804,7 +804,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
     }
 
     private fun getCurrentFragment() =
-        (view_pager.adapter as? MyPagerAdapter)?.getCurrentFragment(view_pager.currentItem)
+        (viewPager.adapter as? MyPagerAdapter)?.getCurrentFragment(viewPager.currentItem)
 
     private fun showProperties() {
         if (getCurrentMedium() != null) {
@@ -813,12 +813,12 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
     }
 
     private fun initBottomActionsLayout() {
-        bottom_actions.layoutParams.height =
+        bottomActions.layoutParams.height =
             resources.getDimension(R.dimen.bottom_actions_height).toInt() + navigationBarHeight
         if (config.bottomActions) {
-            bottom_actions.beVisible()
+            bottomActions.beVisible()
         } else {
-            bottom_actions.beGone()
+            bottomActions.beGone()
         }
     }
 
@@ -1333,12 +1333,12 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
     override fun isSlideShowActive() = mIsSlideshowActive
 
     override fun goToPrevItem() {
-        view_pager.setCurrentItem(view_pager.currentItem - 1, false)
+        viewPager.setCurrentItem(viewPager.currentItem - 1, false)
         checkOrientation()
     }
 
     override fun goToNextItem() {
-        view_pager.setCurrentItem(view_pager.currentItem + 1, false)
+        viewPager.setCurrentItem(viewPager.currentItem + 1, false)
         checkOrientation()
     }
 
@@ -1353,8 +1353,8 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 putExtra(IS_FROM_GALLERY, true)
                 putExtra(REAL_FILE_PATH, path)
-                putExtra(SHOW_PREV_ITEM, view_pager.currentItem != 0)
-                putExtra(SHOW_NEXT_ITEM, view_pager.currentItem != mMediaFiles.size - 1)
+                putExtra(SHOW_PREV_ITEM, viewPager.currentItem != 0)
+                putExtra(SHOW_NEXT_ITEM, viewPager.currentItem != mMediaFiles.size - 1)
 
                 try {
                     startActivityForResult(this, REQUEST_VIEW_VIDEO)
@@ -1379,12 +1379,12 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
     }
 
     private fun fullscreenToggled() {
-        view_pager.adapter?.let {
+        viewPager.adapter?.let {
             (it as MyPagerAdapter).toggleFullscreen(mIsFullScreen)
             val newAlpha = if (mIsFullScreen) 0f else 1f
-            top_shadow.animate().alpha(newAlpha).start()
-            if (bottom_actions.isVisible()) {
-                bottom_actions.animate().alpha(newAlpha).start()
+            ivTopShadow.animate().alpha(newAlpha).start()
+            if (bottomActions.isVisible()) {
+                bottomActions.animate().alpha(newAlpha).start()
                 arrayOf(
                     bottom_favorite,
                     bottom_edit,

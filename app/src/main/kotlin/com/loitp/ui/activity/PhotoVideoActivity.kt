@@ -101,7 +101,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
             if (realPath != null && getDoesFilePathExist(realPath)) {
                 if (realPath.getFilenameFromPath().contains('.') || filename.contains('.')) {
                     if (isFileTypeVisible(realPath)) {
-                        bottom_actions.beGone()
+                        bottomActions.beGone()
                         sendViewPagerIntent(realPath)
                         finish()
                         return
@@ -114,7 +114,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
 
         if (mUri!!.scheme == "file") {
             if (filename.contains('.')) {
-                bottom_actions.beGone()
+                bottomActions.beGone()
                 rescanPaths(arrayListOf(mUri!!.path!!))
                 sendViewPagerIntent(mUri!!.path!!)
                 finish()
@@ -127,7 +127,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
                 ) && getDoesFilePathExist(path)
             ) {
                 if (isFileTypeVisible(path)) {
-                    bottom_actions.beGone()
+                    bottomActions.beGone()
                     rescanPaths(arrayListOf(mUri!!.path!!))
                     sendViewPagerIntent(path)
                     finish()
@@ -176,7 +176,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
         }
 
         if (config.blackBackground) {
-            fragment_holder.background = ColorDrawable(Color.BLACK)
+            layoutFragmentHolder.background = ColorDrawable(Color.BLACK)
         }
 
         if (config.maxBrightness) {
@@ -311,12 +311,12 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
     }
 
     private fun initBottomActionsLayout() {
-        bottom_actions.layoutParams.height =
+        bottomActions.layoutParams.height =
             resources.getDimension(R.dimen.bottom_actions_height).toInt() + navigationBarHeight
         if (config.bottomActions) {
-            bottom_actions.beVisible()
+            bottomActions.beVisible()
         } else {
-            bottom_actions.beGone()
+            bottomActions.beGone()
         }
     }
 
@@ -341,14 +341,14 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
         val visibleBottomActions = if (config.bottomActions) config.visibleBottomActions else 0
         bottom_edit.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_EDIT != 0 && mMedium?.isImage() == true)
         bottom_edit.setOnClickListener {
-            if (mUri != null && bottom_actions.alpha == 1f) {
+            if (mUri != null && bottomActions.alpha == 1f) {
                 openEditor(mUri!!.toString())
             }
         }
 
         bottom_share.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHARE != 0)
         bottom_share.setOnClickListener {
-            if (mUri != null && bottom_actions.alpha == 1f) {
+            if (mUri != null && bottomActions.alpha == 1f) {
                 sharePath(mUri!!.toString())
             }
         }
@@ -373,9 +373,9 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
         }
 
         val newAlpha = if (mIsFullScreen) 0f else 1f
-        top_shadow.animate().alpha(newAlpha).start()
-        if (!bottom_actions.isGone()) {
-            bottom_actions.animate().alpha(newAlpha).start()
+        ivTopShadow.animate().alpha(newAlpha).start()
+        if (!bottomActions.isGone()) {
+            bottomActions.animate().alpha(newAlpha).start()
         }
     }
 
