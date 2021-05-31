@@ -322,44 +322,44 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
 
     private fun initBottomActionButtons() {
         arrayListOf(
-            bottom_favorite,
-            bottom_delete,
-            bottom_rotate,
-            bottom_properties,
-            bottom_change_orientation,
-            bottom_slideshow,
-            bottom_show_on_map,
-            bottom_toggle_file_visibility,
-            bottom_rename,
-            bottom_copy,
-            bottom_move,
-            bottom_resize
+            ivBottomFavorite,
+            ivBottomDelete,
+            ivBottomRotate,
+            ivBottomProperties,
+            ivBottomChangeOrientation,
+            ivBottomSlideshow,
+            ivBottomShowOnMap,
+            ivBottomToggleFileVisibility,
+            ivBottomRename,
+            ivBottomCopy,
+            ivBottomMove,
+            ivBottomResize
         ).forEach {
             it.beGone()
         }
 
         val visibleBottomActions = if (config.bottomActions) config.visibleBottomActions else 0
-        bottom_edit.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_EDIT != 0 && mMedium?.isImage() == true)
-        bottom_edit.setOnClickListener {
+        ivBottomEdit.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_EDIT != 0 && mMedium?.isImage() == true)
+        ivBottomEdit.setOnClickListener {
             if (mUri != null && bottomActions.alpha == 1f) {
                 openEditor(mUri!!.toString())
             }
         }
 
-        bottom_share.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHARE != 0)
-        bottom_share.setOnClickListener {
+        ivBottomShare.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHARE != 0)
+        ivBottomShare.setOnClickListener {
             if (mUri != null && bottomActions.alpha == 1f) {
                 sharePath(mUri!!.toString())
             }
         }
 
-        bottom_set_as.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SET_AS != 0 && mMedium?.isImage() == true)
-        bottom_set_as.setOnClickListener {
+        ivBottomSetAs.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SET_AS != 0 && mMedium?.isImage() == true)
+        ivBottomSetAs.setOnClickListener {
             setAs(mUri!!.toString())
         }
 
-        bottom_show_on_map.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP != 0)
-        bottom_show_on_map.setOnClickListener {
+        ivBottomShowOnMap.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP != 0)
+        ivBottomShowOnMap.setOnClickListener {
             showFileOnMap(mUri!!.toString())
         }
     }

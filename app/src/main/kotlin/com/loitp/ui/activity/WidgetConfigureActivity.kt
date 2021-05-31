@@ -44,20 +44,20 @@ class WidgetConfigureActivity : SimpleActivity() {
             finish()
         }
 
-        config_save.setOnClickListener { saveConfig() }
-        config_bg_color.setOnClickListener { pickBackgroundColor() }
-        config_text_color.setOnClickListener { pickTextColor() }
-        folder_picker_value.setOnClickListener { changeSelectedFolder() }
-        config_image_holder.setOnClickListener { changeSelectedFolder() }
-        folder_picker_show_folder_name.isChecked = config.showWidgetFolderName
+        btConfigSave.setOnClickListener { saveConfig() }
+        ivConfigBgColor.setOnClickListener { pickBackgroundColor() }
+        ivConfigTextColor.setOnClickListener { pickTextColor() }
+        tvFolderPickerValue.setOnClickListener { changeSelectedFolder() }
+        layoutConfigImage.setOnClickListener { changeSelectedFolder() }
+        swFolderPickerShowFolderName.isChecked = config.showWidgetFolderName
         handleFolderNameDisplay()
-        folder_picker_show_folder_name_holder.setOnClickListener {
-            folder_picker_show_folder_name.toggle()
+        layoutFolderPickerShowFolderName.setOnClickListener {
+            swFolderPickerShowFolderName.toggle()
             handleFolderNameDisplay()
         }
 
-        updateTextColors(folder_picker_holder)
-        folder_picker_holder.background = ColorDrawable(config.backgroundColor)
+        updateTextColors(layoutFolderPicker)
+        layoutFolderPicker.background = ColorDrawable(config.backgroundColor)
 
         getCachedDirectories(getVideosOnly = false, getImagesOnly = false) {
             mDirectories = it
@@ -74,7 +74,7 @@ class WidgetConfigureActivity : SimpleActivity() {
 
         mBgColorWithoutTransparency =
             Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
-        config_bg_seekbar.apply {
+        sbConfigBg.apply {
             progress = (mBgAlpha * 100).toInt()
 
             onSeekBarChangeListener {
@@ -92,7 +92,7 @@ class WidgetConfigureActivity : SimpleActivity() {
         val views = RemoteViews(packageName, R.layout.widget)
         views.setBackgroundColor(R.id.widget_holder, mBgColor)
         AppWidgetManager.getInstance(this).updateAppWidget(mWidgetId, views)
-        config.showWidgetFolderName = folder_picker_show_folder_name.isChecked
+        config.showWidgetFolderName = swFolderPickerShowFolderName.isChecked
         val widget = Widget(null, mWidgetId, mFolderPath)
         ensureBackgroundThread {
             widgetsDB.insertOrUpdate(widget)
@@ -129,15 +129,15 @@ class WidgetConfigureActivity : SimpleActivity() {
 
     private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
-        config_save.setBackgroundColor(mBgColor)
-        config_image_holder.setBackgroundColor(mBgColor)
-        config_bg_color.setFillWithStroke(mBgColor, Color.BLACK)
+        btConfigSave.setBackgroundColor(mBgColor)
+        layoutConfigImage.setBackgroundColor(mBgColor)
+        ivConfigBgColor.setFillWithStroke(mBgColor, Color.BLACK)
     }
 
     private fun updateTextColor() {
-        config_save.setTextColor(mTextColor)
-        config_folder_name.setTextColor(mTextColor)
-        config_text_color.setFillWithStroke(mTextColor, Color.BLACK)
+        btConfigSave.setTextColor(mTextColor)
+        tvConfigFolderName.setTextColor(mTextColor)
+        ivConfigTextColor.setFillWithStroke(mTextColor, Color.BLACK)
     }
 
     private fun pickBackgroundColor() {
@@ -172,8 +172,8 @@ class WidgetConfigureActivity : SimpleActivity() {
     private fun updateFolderImage(folderPath: String) {
         mFolderPath = folderPath
         runOnUiThread {
-            folder_picker_value.text = getFolderNameFromPath(folderPath)
-            config_folder_name.text = getFolderNameFromPath(folderPath)
+            tvFolderPickerValue.text = getFolderNameFromPath(folderPath)
+            tvConfigFolderName.text = getFolderNameFromPath(folderPath)
         }
 
         ensureBackgroundThread {
@@ -183,7 +183,7 @@ class WidgetConfigureActivity : SimpleActivity() {
                     val signature = ObjectKey(System.currentTimeMillis().toString())
                     loadJpg(
                         path = path,
-                        target = config_image,
+                        target = ivConfig,
                         cropThumbnails = config.cropThumbnails,
                         roundCorners = ROUNDED_CORNERS_NONE,
                         signature = signature
@@ -194,9 +194,9 @@ class WidgetConfigureActivity : SimpleActivity() {
     }
 
     private fun handleFolderNameDisplay() {
-        val showFolderName = folder_picker_show_folder_name.isChecked
-        config_folder_name.beVisibleIf(showFolderName)
-        (config_image.layoutParams as RelativeLayout.LayoutParams).bottomMargin =
+        val showFolderName = swFolderPickerShowFolderName.isChecked
+        tvConfigFolderName.beVisibleIf(showFolderName)
+        (ivConfig.layoutParams as RelativeLayout.LayoutParams).bottomMargin =
             if (showFolderName) 0 else resources.getDimension(R.dimen.normal_margin).toInt()
     }
 }

@@ -80,7 +80,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
         if (config.blackBackground) {
-            video_player_holder.background = ColorDrawable(Color.BLACK)
+            layoutVideoPlayer.background = ColorDrawable(Color.BLACK)
         }
 
         if (config.maxBrightness) {
@@ -89,7 +89,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             window.attributes = attributes
         }
 
-        updateTextColors(video_player_holder)
+        updateTextColors(layoutVideoPlayer)
     }
 
     override fun onPause() {
@@ -132,8 +132,8 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
         super.onConfigurationChanged(newConfig)
         setVideoSize()
         initTimeHolder()
-        video_surface_frame.onGlobalLayout {
-            video_surface_frame.controller.resetState()
+        layoutVideoSurfaceFrame.onGlobalLayout {
+            layoutVideoSurfaceFrame.controller.resetState()
         }
     }
 
@@ -162,8 +162,8 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
         video_curr_time.setOnClickListener { doSkip(false) }
         video_duration.setOnClickListener { doSkip(true) }
         video_toggle_play_pause.setOnClickListener { togglePlayPause() }
-        video_surface_frame.setOnClickListener { toggleFullscreen() }
-        video_surface_frame.controller.settings.swallowDoubleTaps = true
+        layoutVideoSurfaceFrame.setOnClickListener { toggleFullscreen() }
+        layoutVideoSurfaceFrame.controller.settings.swallowDoubleTaps = true
 
         video_next_file.beVisibleIf(intent.getBooleanExtra(SHOW_NEXT_ITEM, false))
         video_next_file.setOnClickListener { handleNextFile() }
@@ -183,21 +183,21 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                 }
             })
 
-        video_surface_frame.setOnTouchListener { _, event ->
+        layoutVideoSurfaceFrame.setOnTouchListener { _, event ->
             handleEvent(event)
             gestureDetector.onTouchEvent(event)
             false
         }
 
         initExoPlayer()
-        video_surface.surfaceTextureListener = this
+        videoSurface.surfaceTextureListener = this
 
         if (config.allowVideoGestures) {
-            video_brightness_controller.initialize(
+            videoBrightnessController.initialize(
                 activity = this,
-                slideInfoView = slide_info,
+                slideInfoView = tvSlideInfo,
                 isBrightness = true,
-                parentView = video_player_holder,
+                parentView = layoutVideoPlayer,
                 singleTap = { _, _ ->
                     toggleFullscreen()
                 },
@@ -205,11 +205,11 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                     doSkip(forward = false)
                 })
 
-            video_volume_controller.initialize(
+            videoVolumeController.initialize(
                 activity = this,
-                slideInfoView = slide_info,
+                slideInfoView = tvSlideInfo,
                 isBrightness = false,
-                parentView = video_player_holder,
+                parentView = layoutVideoPlayer,
                 singleTap = { _, _ ->
                     toggleFullscreen()
                 },
@@ -217,8 +217,8 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                     doSkip(true)
                 })
         } else {
-            video_brightness_controller.beGone()
-            video_volume_controller.beGone()
+            videoBrightnessController.beGone()
+            videoVolumeController.beGone()
         }
 
         if (config.hideSystemUI) {
@@ -438,7 +438,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
         val screenProportion = screenWidth.toFloat() / screenHeight.toFloat()
 
-        video_surface.layoutParams.apply {
+        videoSurface.layoutParams.apply {
             if (videoProportion > screenProportion) {
                 width = screenWidth
                 height = (screenWidth.toFloat() / videoProportion).toInt()
@@ -446,7 +446,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                 width = (videoProportion * screenHeight.toFloat()).toInt()
                 height = screenHeight
             }
-            video_surface.layoutParams = this
+            videoSurface.layoutParams = this
         }
 
         val multiplier = if (screenWidth > screenHeight) 0.5 else 0.8
@@ -492,7 +492,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             video_seekbar,
             video_duration,
             ivTopShadow,
-            video_bottom_gradient
+            ivVideoBottomGradient
         ).forEach {
             it.animate().alpha(newAlpha).start()
         }
@@ -569,7 +569,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
                 if (mIsDragged || (abs(diffX) > mDragThreshold && abs(diffX) > abs(
                         diffY
-                    )) && video_surface_frame.controller.state.zoom == 1f
+                    )) && layoutVideoSurfaceFrame.controller.state.zoom == 1f
                 ) {
                     if (!mIsDragged) {
                         arrayOf(video_curr_time, video_seekbar, video_duration).forEach {
@@ -597,7 +597,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                 val downGestureDuration = System.currentTimeMillis() - mTouchDownTime
                 if (config.allowDownGesture && !mIgnoreCloseDown && abs(diffY) > abs(diffX) && diffY < -mCloseDownThreshold &&
                     downGestureDuration < MAX_CLOSE_DOWN_GESTURE_DURATION &&
-                    video_surface_frame.controller.state.zoom == 1f
+                    layoutVideoSurfaceFrame.controller.state.zoom == 1f
                 ) {
                     supportFinishAfterTransition()
                 }
@@ -681,7 +681,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
     override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
         ensureBackgroundThread {
-            mExoPlayer?.setVideoSurface(Surface(video_surface?.surfaceTexture))
+            mExoPlayer?.setVideoSurface(Surface(videoSurface?.surfaceTexture))
         }
     }
 

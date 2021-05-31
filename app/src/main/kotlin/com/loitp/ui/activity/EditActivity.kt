@@ -505,12 +505,12 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
     }
 
     private fun setupCropRotateActionButtons() {
-        bottom_rotate.setOnClickListener {
+        ivBottomRotate.setOnClickListener {
             cropImageView.rotateImage(90)
         }
 
-        bottom_resize.beGoneIf(isCropIntent)
-        bottom_resize.setOnClickListener {
+        ivBottomResize.beGoneIf(isCropIntent)
+        ivBottomResize.setOnClickListener {
             resizeImage()
         }
 

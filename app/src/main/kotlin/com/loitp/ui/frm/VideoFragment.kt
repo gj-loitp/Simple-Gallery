@@ -101,7 +101,7 @@ class VideoFragment : ViewPagerFragment(),
             video_duration.setOnClickListener { skip(true) }
             video_holder.setOnClickListener { toggleFullscreen() }
             video_preview.setOnClickListener { toggleFullscreen() }
-            video_surface_frame.controller.settings.swallowDoubleTaps = true
+            layoutVideoSurfaceFrame.controller.settings.swallowDoubleTaps = true
 
             video_play_outline.setOnClickListener {
                 if (mConfig.openVideosOnSeparateScreen) {
@@ -123,9 +123,9 @@ class VideoFragment : ViewPagerFragment(),
 
             mTimeHolder = video_time_holder
             mCurrTimeView = video_curr_time
-            mBrightnessSideScroll = video_brightness_controller
-            mVolumeSideScroll = video_volume_controller
-            mTextureView = video_surface
+            mBrightnessSideScroll = videoBrightnessController
+            mVolumeSideScroll = videoVolumeController
+            mTextureView = videoSurface
             mTextureView.surfaceTextureListener = this@VideoFragment
 
             val gestureDetector =
@@ -161,8 +161,8 @@ class VideoFragment : ViewPagerFragment(),
                 false
             }
 
-            video_surface_frame.setOnTouchListener { _, event ->
-                if (video_surface_frame.controller.state.zoom == 1f) {
+            layoutVideoSurfaceFrame.setOnTouchListener { _, event ->
+                if (layoutVideoSurfaceFrame.controller.state.zoom == 1f) {
                     handleEvent(event)
                 }
 
@@ -216,7 +216,7 @@ class VideoFragment : ViewPagerFragment(),
             mView.apply {
                 mBrightnessSideScroll.initialize(
                     activity = activity!!,
-                    slideInfoView = slide_info,
+                    slideInfoView = tvSlideInfo,
                     isBrightness = true,
                     parentView = container,
                     singleTap = { _, _ ->
@@ -232,7 +232,7 @@ class VideoFragment : ViewPagerFragment(),
 
                 mVolumeSideScroll.initialize(
                     activity = activity!!,
-                    slideInfoView = slide_info,
+                    slideInfoView = tvSlideInfo,
                     isBrightness = false,
                     parentView = container,
                     singleTap = { _, _ ->
@@ -246,7 +246,7 @@ class VideoFragment : ViewPagerFragment(),
                         doSkip(true)
                     })
 
-                video_surface.onGlobalLayout {
+                videoSurface.onGlobalLayout {
                     if (mIsFragmentVisible && mConfig.autoplayVideos && !mConfig.openVideosOnSeparateScreen) {
                         playVideo()
                     }
@@ -269,7 +269,7 @@ class VideoFragment : ViewPagerFragment(),
         activity!!.updateTextColors(mView.video_holder)
         val allowVideoGestures = mConfig.allowVideoGestures
         mTextureView.beGoneIf(mConfig.openVideosOnSeparateScreen || mIsPanorama)
-        mView.video_surface_frame.beGoneIf(mTextureView.isGone())
+        mView.layoutVideoSurfaceFrame.beGoneIf(mTextureView.isGone())
 
         mVolumeSideScroll.beVisibleIf(allowVideoGestures && !mIsPanorama)
         mBrightnessSideScroll.beVisibleIf(allowVideoGestures && !mIsPanorama)
@@ -312,8 +312,8 @@ class VideoFragment : ViewPagerFragment(),
         setVideoSize()
         initTimeHolder()
         checkExtendedDetails()
-        mView.video_surface_frame.onGlobalLayout {
-            mView.video_surface_frame.controller.resetState()
+        mView.layoutVideoSurfaceFrame.onGlobalLayout {
+            mView.layoutVideoSurfaceFrame.controller.resetState()
         }
     }
 

@@ -130,7 +130,7 @@ class PhotoFragment : ViewPagerFragment() {
 
             photo_brightness_controller.initialize(
                 activity!!,
-                slide_info,
+                tvSlideInfo,
                 true,
                 container,
                 singleTap = { x, y ->

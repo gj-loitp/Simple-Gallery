@@ -14,7 +14,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.simplemobiletools.gallery.loitp93"
+        applicationId "com.simplemobiletools.gallery.loitp93.pro"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

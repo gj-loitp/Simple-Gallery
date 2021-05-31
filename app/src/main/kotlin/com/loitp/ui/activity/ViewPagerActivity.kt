@@ -825,37 +825,37 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
     private fun initBottomActionButtons() {
         val currentMedium = getCurrentMedium()
         val visibleBottomActions = if (config.bottomActions) config.visibleBottomActions else 0
-        bottom_favorite.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_TOGGLE_FAVORITE != 0 && currentMedium?.getIsInRecycleBin() == false)
-        bottom_favorite.setOnClickListener {
+        ivBottomFavorite.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_TOGGLE_FAVORITE != 0 && currentMedium?.getIsInRecycleBin() == false)
+        ivBottomFavorite.setOnClickListener {
             toggleFavorite()
         }
 
-        bottom_edit.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_EDIT != 0 && currentMedium?.isSVG() == false)
-        bottom_edit.setOnClickListener {
+        ivBottomEdit.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_EDIT != 0 && currentMedium?.isSVG() == false)
+        ivBottomEdit.setOnClickListener {
             openEditor(getCurrentPath())
         }
 
-        bottom_share.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHARE != 0)
-        bottom_share.setOnClickListener {
+        ivBottomShare.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHARE != 0)
+        ivBottomShare.setOnClickListener {
             shareMediumPath(getCurrentPath())
         }
 
-        bottom_delete.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_DELETE != 0)
-        bottom_delete.setOnClickListener {
+        ivBottomDelete.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_DELETE != 0)
+        ivBottomDelete.setOnClickListener {
             checkDeleteConfirmation()
         }
 
-        bottom_rotate.setOnClickListener {
+        ivBottomRotate.setOnClickListener {
             rotateImage(90)
         }
 
-        bottom_properties.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_PROPERTIES != 0)
-        bottom_properties.setOnClickListener {
+        ivBottomProperties.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_PROPERTIES != 0)
+        ivBottomProperties.setOnClickListener {
             showProperties()
         }
 
-        bottom_change_orientation.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_CHANGE_ORIENTATION != 0)
-        bottom_change_orientation.setOnClickListener {
+        ivBottomChangeOrientation.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_CHANGE_ORIENTATION != 0)
+        ivBottomChangeOrientation.setOnClickListener {
             requestedOrientation = when (requestedOrientation) {
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
                 ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
@@ -866,18 +866,18 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
             updateBottomActionIcons(currentMedium)
         }
 
-        bottom_slideshow.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SLIDESHOW != 0)
-        bottom_slideshow.setOnClickListener {
+        ivBottomSlideshow.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SLIDESHOW != 0)
+        ivBottomSlideshow.setOnClickListener {
             initSlideshow()
         }
 
-        bottom_show_on_map.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP != 0)
-        bottom_show_on_map.setOnClickListener {
+        ivBottomShowOnMap.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP != 0)
+        ivBottomShowOnMap.setOnClickListener {
             showFileOnMap(getCurrentPath())
         }
 
-        bottom_toggle_file_visibility.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_TOGGLE_VISIBILITY != 0)
-        bottom_toggle_file_visibility.setOnClickListener {
+        ivBottomToggleFileVisibility.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_TOGGLE_VISIBILITY != 0)
+        ivBottomToggleFileVisibility.setOnClickListener {
             currentMedium?.apply {
                 toggleFileVisibility(!isHidden()) {
                     updateBottomActionIcons(currentMedium)
@@ -885,28 +885,28 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
             }
         }
 
-        bottom_rename.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_RENAME != 0 && currentMedium?.getIsInRecycleBin() == false)
-        bottom_rename.setOnClickListener {
+        ivBottomRename.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_RENAME != 0 && currentMedium?.getIsInRecycleBin() == false)
+        ivBottomRename.setOnClickListener {
             renameFile()
         }
 
-        bottom_set_as.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SET_AS != 0)
-        bottom_set_as.setOnClickListener {
+        ivBottomSetAs.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_SET_AS != 0)
+        ivBottomSetAs.setOnClickListener {
             setAs(getCurrentPath())
         }
 
-        bottom_copy.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_COPY != 0)
-        bottom_copy.setOnClickListener {
+        ivBottomCopy.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_COPY != 0)
+        ivBottomCopy.setOnClickListener {
             copyMoveTo(true)
         }
 
-        bottom_move.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_MOVE != 0)
-        bottom_move.setOnClickListener {
+        ivBottomMove.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_MOVE != 0)
+        ivBottomMove.setOnClickListener {
             moveFileTo()
         }
 
-        bottom_resize.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_RESIZE != 0 && currentMedium?.isImage() == true)
-        bottom_resize.setOnClickListener {
+        ivBottomResize.beVisibleIf(visibleBottomActions and BOTTOM_ACTION_RESIZE != 0 && currentMedium?.isImage() == true)
+        ivBottomResize.setOnClickListener {
             resizeImage()
         }
     }
@@ -918,13 +918,13 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
 
         val favoriteIcon =
             if (medium.isFavorite) R.drawable.ic_star_on_vector else R.drawable.ic_star_off_vector
-        bottom_favorite.setImageResource(favoriteIcon)
+        ivBottomFavorite.setImageResource(favoriteIcon)
 
         val hideIcon = if (medium.isHidden()) R.drawable.ic_unhide_vector else R.drawable.ic_hide
-        bottom_toggle_file_visibility.setImageResource(hideIcon)
+        ivBottomToggleFileVisibility.setImageResource(hideIcon)
 
-        bottom_rotate.beVisibleIf(config.visibleBottomActions and BOTTOM_ACTION_ROTATE != 0 && getCurrentMedium()?.isImage() == true)
-        bottom_change_orientation.setImageResource(getChangeOrientationIcon())
+        ivBottomRotate.beVisibleIf(config.visibleBottomActions and BOTTOM_ACTION_ROTATE != 0 && getCurrentMedium()?.isImage() == true)
+        ivBottomChangeOrientation.setImageResource(getChangeOrientationIcon())
     }
 
     private fun toggleFavorite() {
@@ -1386,21 +1386,21 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
             if (bottomActions.isVisible()) {
                 bottomActions.animate().alpha(newAlpha).start()
                 arrayOf(
-                    bottom_favorite,
-                    bottom_edit,
-                    bottom_share,
-                    bottom_delete,
-                    bottom_rotate,
-                    bottom_properties,
-                    bottom_change_orientation,
-                    bottom_slideshow,
-                    bottom_show_on_map,
-                    bottom_toggle_file_visibility,
-                    bottom_rename,
-                    bottom_set_as,
-                    bottom_copy,
-                    bottom_move,
-                    bottom_resize
+                    ivBottomFavorite,
+                    ivBottomEdit,
+                    ivBottomShare,
+                    ivBottomDelete,
+                    ivBottomRotate,
+                    ivBottomProperties,
+                    ivBottomChangeOrientation,
+                    ivBottomSlideshow,
+                    ivBottomShowOnMap,
+                    ivBottomToggleFileVisibility,
+                    ivBottomRename,
+                    ivBottomSetAs,
+                    ivBottomCopy,
+                    ivBottomMove,
+                    ivBottomResize
                 ).forEach {
                     it.isClickable = !mIsFullScreen
                 }
