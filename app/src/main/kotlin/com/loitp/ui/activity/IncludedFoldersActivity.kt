@@ -20,7 +20,7 @@ class IncludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
     private fun updateFolders() {
         val folders = ArrayList<String>()
         config.includedFolders.mapTo(folders) { it }
-        manage_folders_placeholder.apply {
+        tvManageFoldersPlaceHolder.apply {
             text = getString(R.string.included_activity_placeholder)
             beVisibleIf(folders.isEmpty())
             setTextColor(config.textColor)
@@ -31,9 +31,9 @@ class IncludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
             folders = folders,
             isShowingExcludedFolders = false,
             listener = this,
-            recyclerView = manage_folders_list
+            recyclerView = rvManageFolders
         ) {}
-        manage_folders_list.adapter = adapter
+        rvManageFolders.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

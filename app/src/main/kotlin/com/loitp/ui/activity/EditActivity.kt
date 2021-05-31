@@ -177,8 +177,8 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
 
         isCropIntent = intent.extras?.get(CROP) == "true"
         if (isCropIntent) {
-            bottom_editor_primary_actions.beGone()
-            (bottom_editor_crop_rotate_actions.layoutParams as RelativeLayout.LayoutParams).addRule(
+            bottomEditorPrimaryActions.beGone()
+            (bottomEditorCropRotateActions.layoutParams as RelativeLayout.LayoutParams).addRule(
                 RelativeLayout.ALIGN_PARENT_BOTTOM,
                 1
             )
@@ -200,14 +200,14 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
                 Pair(config.lastEditorCropOtherAspectRatioX, config.lastEditorCropOtherAspectRatioY)
         }
         updateAspectRatio(config.lastEditorCropAspectRatio)
-        crop_image_view.guidelines = CropImageView.Guidelines.ON
-        bottom_aspect_ratios.beVisible()
+        cropImageView.guidelines = CropImageView.Guidelines.ON
+        bottomAspectRatios.beVisible()
     }
 
     private fun loadDefaultImageView() {
-        default_image_view.beVisible()
-        crop_image_view.beGone()
-        editor_draw_canvas.beGone()
+        defaultImageView.beVisible()
+        cropImageView.beGone()
+        editorDrawCanvas.beGone()
 
         val options = RequestOptions()
             .skipMemoryCache(true)
@@ -250,7 +250,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
                             R.string.none
                         )
                     ) {
-                        default_image_view.onGlobalLayout {
+                        defaultImageView.onGlobalLayout {
                             applyFilter(currentFilter)
                         }
                     } else {
@@ -264,13 +264,13 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
 
                     return false
                 }
-            }).into(default_image_view)
+            }).into(defaultImageView)
     }
 
     private fun loadCropImageView() {
-        default_image_view.beGone()
-        editor_draw_canvas.beGone()
-        crop_image_view.apply {
+        defaultImageView.beGone()
+        editorDrawCanvas.beGone()
+        cropImageView.apply {
             beVisible()
             setOnCropImageCompleteListener(this@EditActivity)
             setImageUriAsync(uri)
@@ -285,13 +285,13 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
     }
 
     private fun loadDrawCanvas() {
-        default_image_view.beGone()
-        crop_image_view.beGone()
-        editor_draw_canvas.beVisible()
+        defaultImageView.beGone()
+        cropImageView.beGone()
+        editorDrawCanvas.beVisible()
 
         if (!wasDrawCanvasPositioned) {
             wasDrawCanvasPositioned = true
-            editor_draw_canvas.onGlobalLayout {
+            editorDrawCanvas.onGlobalLayout {
                 ensureBackgroundThread {
                     fillCanvasBackground()
                 }
@@ -313,11 +313,11 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
                 .asBitmap()
                 .load(uri)
                 .apply(options)
-                .into(editor_draw_canvas.width, editor_draw_canvas.height)
+                .into(editorDrawCanvas.width, editorDrawCanvas.height)
 
             val bitmap = builder.get()
             runOnUiThread {
-                editor_draw_canvas.apply {
+                editorDrawCanvas.apply {
                     updateBackgroundBitmap(bitmap)
                     layoutParams.width = bitmap.width
                     layoutParams.height = bitmap.height
@@ -334,10 +334,10 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
     private fun saveImage() {
         setOldExif()
 
-        if (crop_image_view.isVisible()) {
-            crop_image_view.getCroppedImageAsync()
-        } else if (editor_draw_canvas.isVisible()) {
-            val bitmap = editor_draw_canvas.getBitmap()
+        if (cropImageView.isVisible()) {
+            cropImageView.getCroppedImageAsync()
+        } else if (editorDrawCanvas.isVisible()) {
+            val bitmap = editorDrawCanvas.getBitmap()
             if (saveUri.scheme == "file") {
                 SaveAsDialog(this, saveUri.path!!, true) {
                     saveBitmapToFile(bitmap, it, true)
@@ -355,8 +355,8 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
                 toast(R.string.saving)
 
                 // clean up everything to free as much memory as possible
-                default_image_view.setImageResource(0)
-                crop_image_view.setImageBitmap(null)
+                defaultImageView.setImageResource(0)
+                cropImageView.setImageBitmap(null)
                 bottom_actions_filter_list.adapter = null
                 bottom_actions_filter_list.beGone()
 
@@ -391,7 +391,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
     private fun shareImage() {
         ensureBackgroundThread {
             when {
-                default_image_view.isVisible() -> {
+                defaultImageView.isVisible() -> {
                     val currentFilter = getFiltersAdapter()?.getCurrentFilter()
                     if (currentFilter == null) {
                         toast(R.string.unknown_error_occurred)
@@ -403,13 +403,13 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
                     currentFilter.filter.processFilter(originalBitmap)
                     shareBitmap(originalBitmap)
                 }
-                crop_image_view.isVisible() -> {
+                cropImageView.isVisible() -> {
                     isSharingBitmap = true
                     runOnUiThread {
-                        crop_image_view.getCroppedImageAsync()
+                        cropImageView.getCroppedImageAsync()
                     }
                 }
-                editor_draw_canvas.isVisible() -> shareBitmap(editor_draw_canvas.getBitmap())
+                editorDrawCanvas.isVisible() -> shareBitmap(editorDrawCanvas.getBitmap())
             }
         }
     }
@@ -506,7 +506,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
 
     private fun setupCropRotateActionButtons() {
         bottom_rotate.setOnClickListener {
-            crop_image_view.rotateImage(90)
+            cropImageView.rotateImage(90)
         }
 
         bottom_resize.beGoneIf(isCropIntent)
@@ -515,21 +515,21 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         }
 
         bottom_flip_horizontally.setOnClickListener {
-            crop_image_view.flipImageHorizontally()
+            cropImageView.flipImageHorizontally()
         }
 
         bottom_flip_vertically.setOnClickListener {
-            crop_image_view.flipImageVertically()
+            cropImageView.flipImageVertically()
         }
 
         bottom_aspect_ratio.setOnClickListener {
             currCropRotateAction = if (currCropRotateAction == CROP_ROTATE_ASPECT_RATIO) {
-                crop_image_view.guidelines = CropImageView.Guidelines.OFF
-                bottom_aspect_ratios.beGone()
+                cropImageView.guidelines = CropImageView.Guidelines.OFF
+                bottomAspectRatios.beGone()
                 CROP_ROTATE_NONE
             } else {
-                crop_image_view.guidelines = CropImageView.Guidelines.ON
-                bottom_aspect_ratios.beVisible()
+                cropImageView.guidelines = CropImageView.Guidelines.ON
+                bottomAspectRatios.beVisible()
                 CROP_ROTATE_ASPECT_RATIO
             }
             updateCropRotateActionButtons()
@@ -584,23 +584,23 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         }
 
         bottom_draw_undo.setOnClickListener {
-            editor_draw_canvas.undo()
+            editorDrawCanvas.undo()
         }
     }
 
     private fun updateBrushSize(percent: Int) {
-        editor_draw_canvas.updateBrushSize(percent)
+        editorDrawCanvas.updateBrushSize(percent)
         val scale = max(0.03f, percent / 100f)
         bottom_draw_color.scaleX = scale
         bottom_draw_color.scaleY = scale
     }
 
     private fun updatePrimaryActionButtons() {
-        if (crop_image_view.isGone() && currPrimaryAction == PRIMARY_ACTION_CROP_ROTATE) {
+        if (cropImageView.isGone() && currPrimaryAction == PRIMARY_ACTION_CROP_ROTATE) {
             loadCropImageView()
-        } else if (default_image_view.isGone() && currPrimaryAction == PRIMARY_ACTION_FILTER) {
+        } else if (defaultImageView.isGone() && currPrimaryAction == PRIMARY_ACTION_FILTER) {
             loadDefaultImageView()
-        } else if (editor_draw_canvas.isGone() && currPrimaryAction == PRIMARY_ACTION_DRAW) {
+        } else if (editorDrawCanvas.isGone() && currPrimaryAction == PRIMARY_ACTION_DRAW) {
             loadDrawCanvas()
         }
 
@@ -616,9 +616,9 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         }
 
         currentPrimaryActionButton?.applyColorFilter(getAdjustedPrimaryColor())
-        bottom_editor_filter_actions.beVisibleIf(currPrimaryAction == PRIMARY_ACTION_FILTER)
-        bottom_editor_crop_rotate_actions.beVisibleIf(currPrimaryAction == PRIMARY_ACTION_CROP_ROTATE)
-        bottom_editor_draw_actions.beVisibleIf(currPrimaryAction == PRIMARY_ACTION_DRAW)
+        bottomEditorFilterActions.beVisibleIf(currPrimaryAction == PRIMARY_ACTION_FILTER)
+        bottomEditorCropRotateActions.beVisibleIf(currPrimaryAction == PRIMARY_ACTION_CROP_ROTATE)
+        bottomEditorDrawActions.beVisibleIf(currPrimaryAction == PRIMARY_ACTION_DRAW)
 
         if (currPrimaryAction == PRIMARY_ACTION_FILTER && bottom_actions_filter_list.adapter == null) {
             ensureBackgroundThread {
@@ -687,7 +687,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         }
 
         if (currPrimaryAction != PRIMARY_ACTION_CROP_ROTATE) {
-            bottom_aspect_ratios.beGone()
+            bottomAspectRatios.beGone()
             currCropRotateAction = CROP_ROTATE_NONE
         }
         updateCropRotateActionButtons()
@@ -695,7 +695,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
 
     private fun applyFilter(filterItem: FilterItem) {
         val newBitmap = Bitmap.createBitmap(filterInitialBitmap!!)
-        default_image_view.setImageBitmap(filterItem.filter.processFilter(newBitmap))
+        defaultImageView.setImageBitmap(filterItem.filter.processFilter(newBitmap))
     }
 
     private fun updateAspectRatio(aspectRatio: Int) {
@@ -703,7 +703,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         config.lastEditorCropAspectRatio = aspectRatio
         updateAspectRatioButtons()
 
-        crop_image_view.apply {
+        cropImageView.apply {
             if (aspectRatio == ASPECT_RATIO_FREE) {
                 setFixedAspectRatio(false)
             } else {
@@ -758,7 +758,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         drawColor = color
         bottom_draw_color.applyColorFilter(color)
         config.lastEditorDrawColor = color
-        editor_draw_canvas.updateColor(color)
+        editorDrawCanvas.updateColor(color)
     }
 
     private fun resizeImage() {
@@ -771,7 +771,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         ResizeDialog(this, point) {
             resizeWidth = it.x
             resizeHeight = it.y
-            crop_image_view.getCroppedImageAsync()
+            cropImageView.getCroppedImageAsync()
         }
     }
 
@@ -785,8 +785,8 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
     }
 
     private fun getAreaSize(): Point? {
-        val rect = crop_image_view.cropRect ?: return null
-        val rotation = crop_image_view.rotatedDegrees
+        val rect = cropImageView.cropRect ?: return null
+        val rotation = cropImageView.rotatedDegrees
         return if (rotation == 0 || rotation == 180) {
             Point(rect.width(), rect.height())
         } else {

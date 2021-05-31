@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <com.simplemobiletools.commons.views.MyRecyclerView
-        android:id="@+id/manage_folders_list"
+        android:id="@+id/rvManageFolders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:scrollbars="vertical"
-        app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager"/>
+        app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager" />
 
     <com.simplemobiletools.commons.views.MyTextView
-        android:id="@+id/manage_folders_placeholder"
+        android:id="@+id/tvManageFoldersPlaceHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -22,6 +21,6 @@
         android:paddingTop="@dimen/activity_margin"
         android:paddingRight="@dimen/big_margin"
         android:text="@string/excluded_activity_placeholder"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

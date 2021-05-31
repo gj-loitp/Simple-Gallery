@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.theartofdev.edmodo.cropper.CropImageView
-        android:id="@+id/crop_image_view"
+        android:id="@+id/cropImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cropBackgroundColor="@color/crop_image_view_background"

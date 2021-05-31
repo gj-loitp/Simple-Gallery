@@ -73,7 +73,7 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
         }
 
         wallpaperManager = WallpaperManager.getInstance(applicationContext)
-        crop_image_view.apply {
+        cropImageView.apply {
             setOnCropImageCompleteListener(this@SetWallpaperActivity)
             setImageUriAsync(uri)
         }
@@ -87,14 +87,14 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
         }
 
         bottom_set_wallpaper_rotate.setOnClickListener {
-            crop_image_view.rotateImage(90)
+            cropImageView.rotateImage(90)
         }
     }
 
     private fun setupAspectRatio() {
         val wallpaperWidth =
             if (isLandscapeRatio) wallpaperManager.desiredMinimumWidth else wallpaperManager.desiredMinimumWidth / 2
-        crop_image_view.setAspectRatio(wallpaperWidth, wallpaperManager.desiredMinimumHeight)
+        cropImageView.setAspectRatio(wallpaperWidth, wallpaperManager.desiredMinimumHeight)
         bottom_set_wallpaper_aspect_ratio.setImageResource(if (isLandscapeRatio) R.drawable.ic_minimize else R.drawable.ic_maximize)
     }
 
@@ -120,10 +120,10 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
 
             RadioGroupDialog(this, items) {
                 wallpaperFlag = it as Int
-                crop_image_view.getCroppedImageAsync()
+                cropImageView.getCroppedImageAsync()
             }
         } else {
-            crop_image_view.getCroppedImageAsync()
+            cropImageView.getCroppedImageAsync()
         }
     }
 

@@ -34,7 +34,7 @@ class PickDirectoryDialog(
     private var currentPathPrefix = ""
 
     init {
-        (view.directories_grid.layoutManager as MyGridLayoutManager).apply {
+        (view.rvDirectoriesGrid.layoutManager as MyGridLayoutManager).apply {
             orientation =
                 if (activity.config.scrollHorizontally && isGridViewType) RecyclerView.HORIZONTAL else RecyclerView.VERTICAL
             spanCount = if (isGridViewType) activity.config.dirColumnCnt else 1
@@ -129,7 +129,7 @@ class PickDirectoryDialog(
             activity = activity,
             dirs = dirs.clone() as ArrayList<Directory>,
             listener = null,
-            recyclerView = view.directories_grid,
+            recyclerView = view.rvDirectoriesGrid,
             isPickIntent = true
         ) {
             val clickedDir = it as Directory
@@ -158,17 +158,17 @@ class PickDirectoryDialog(
         val dateFormat = activity.config.dateFormat
         val timeFormat = activity.getTimeFormat()
         view.apply {
-            directories_grid.adapter = adapter
+            rvDirectoriesGrid.adapter = adapter
 
-            directories_vertical_fastscroller.isHorizontal = false
-            directories_vertical_fastscroller.beGoneIf(scrollHorizontally)
+            fsDirectoriesVertical.isHorizontal = false
+            fsDirectoriesVertical.beGoneIf(scrollHorizontally)
 
-            directories_horizontal_fastscroller.isHorizontal = true
-            directories_horizontal_fastscroller.beVisibleIf(scrollHorizontally)
+            fsDirectoriesHorizontal.isHorizontal = true
+            fsDirectoriesHorizontal.beVisibleIf(scrollHorizontally)
 
             if (scrollHorizontally) {
-                directories_horizontal_fastscroller.setViews(directories_grid) {
-                    directories_horizontal_fastscroller.updateBubbleText(
+                fsDirectoriesHorizontal.setViews(rvDirectoriesGrid) {
+                    fsDirectoriesHorizontal.updateBubbleText(
                         dirs[it].getBubbleText(
                             sorting = sorting,
                             context = activity,
@@ -178,8 +178,8 @@ class PickDirectoryDialog(
                     )
                 }
             } else {
-                directories_vertical_fastscroller.setViews(directories_grid) {
-                    directories_vertical_fastscroller.updateBubbleText(
+                fsDirectoriesVertical.setViews(rvDirectoriesGrid) {
+                    fsDirectoriesVertical.updateBubbleText(
                         dirs[it].getBubbleText(
                             sorting = sorting,
                             context = activity,

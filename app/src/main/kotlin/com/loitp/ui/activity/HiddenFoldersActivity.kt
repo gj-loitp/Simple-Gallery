@@ -24,7 +24,7 @@ class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
     private fun updateFolders() {
         getNoMediaFolders {
             runOnUiThread {
-                manage_folders_placeholder.apply {
+                tvManageFoldersPlaceHolder.apply {
                     text = getString(R.string.hidden_folders_placeholder)
                     beVisibleIf(it.isEmpty())
                     setTextColor(config.textColor)
@@ -34,9 +34,9 @@ class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
                     activity = this,
                     folders = it,
                     listener = this,
-                    recyclerView = manage_folders_list
+                    recyclerView = rvManageFolders
                 ) {}
-                manage_folders_list.adapter = adapter
+                rvManageFolders.adapter = adapter
             }
         }
     }

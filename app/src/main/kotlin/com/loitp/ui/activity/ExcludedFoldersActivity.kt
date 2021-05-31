@@ -21,7 +21,7 @@ class ExcludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
     private fun updateFolders() {
         val folders = ArrayList<String>()
         config.excludedFolders.mapTo(folders) { it }
-        manage_folders_placeholder.apply {
+        tvManageFoldersPlaceHolder.apply {
             text = getString(R.string.excluded_activity_placeholder)
             beVisibleIf(folders.isEmpty())
             setTextColor(config.textColor)
@@ -32,9 +32,9 @@ class ExcludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
             folders = folders,
             isShowingExcludedFolders = true,
             listener = this,
-            recyclerView = manage_folders_list
+            recyclerView = rvManageFolders
         ) {}
-        manage_folders_list.adapter = adapter
+        rvManageFolders.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
