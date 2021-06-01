@@ -39,6 +39,7 @@ import com.davemorrissey.labs.subscaleview.ImageDecoder
 import com.davemorrissey.labs.subscaleview.ImageRegionDecoder
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.github.penfeizhou.animation.webp.WebPDrawable
+import com.google.vr.sdk.widgets.video.deps.y
 import com.loitp.adapter.PortraitPhotosAdapter
 import com.loitp.ext.config
 import com.loitp.ext.saveRotatedImageToFile
@@ -57,7 +58,7 @@ import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import it.sephiroth.android.library.exif2.ExifInterface
-import kotlinx.android.synthetic.main.pager_photo_item.view.*
+import kotlinx.android.synthetic.main.item_pager_photo.view.*
 import org.apache.sanselan.common.byteSources.ByteSourceInputStream
 import org.apache.sanselan.formats.jpeg.JpegImageParser
 import pl.droidsonroids.gif.InputSource
@@ -109,7 +110,7 @@ class PhotoFragment : ViewPagerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mView = (inflater.inflate(R.layout.pager_photo_item, container, false) as ViewGroup)
+        mView = (inflater.inflate(R.layout.item_pager_photo, container, false) as ViewGroup)
         if (!arguments!!.getBoolean(SHOULD_INIT_FRAGMENT, true)) {
             return mView
         }

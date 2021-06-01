@@ -11,7 +11,7 @@
 
     <include
         android:id="@+id/bottomActions"
-        layout="@layout/bottom_actions" />
+        layout="@layout/view_bottom_actions" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivTopShadow"

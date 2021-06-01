@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import com.loitp.pro.R
 import com.simplemobiletools.commons.extensions.getFileKey
-import kotlinx.android.synthetic.main.portrait_photo_item.view.*
+import kotlinx.android.synthetic.main.item_portrait_photo.view.*
 import java.util.*
 
 class PortraitPhotosAdapter(
@@ -36,7 +36,7 @@ class PortraitPhotosAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.portrait_photo_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_portrait_photo, parent, false)
         return ViewHolder(view)
     }
 

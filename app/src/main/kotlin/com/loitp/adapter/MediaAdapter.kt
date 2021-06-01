@@ -31,13 +31,13 @@ import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FileDirItem
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
-import kotlinx.android.synthetic.main.photo_item_grid.view.*
-import kotlinx.android.synthetic.main.thumbnail_section.view.*
-import kotlinx.android.synthetic.main.video_item_grid.view.*
-import kotlinx.android.synthetic.main.video_item_grid.view.layoutMediaItem
-import kotlinx.android.synthetic.main.video_item_grid.view.ivMediumCheck
-import kotlinx.android.synthetic.main.video_item_grid.view.tvMediumName
-import kotlinx.android.synthetic.main.video_item_grid.view.ivMediumThumbnail
+import kotlinx.android.synthetic.main.item_photo_grid.view.*
+import kotlinx.android.synthetic.main.item_thumbnail_section.view.*
+import kotlinx.android.synthetic.main.item_video_grid.view.*
+import kotlinx.android.synthetic.main.item_video_grid.view.layoutMediaItem
+import kotlinx.android.synthetic.main.item_video_grid.view.ivMediumCheck
+import kotlinx.android.synthetic.main.item_video_grid.view.tvMediumName
+import kotlinx.android.synthetic.main.item_video_grid.view.ivMediumThumbnail
 import java.util.*
 
 class MediaAdapter(
@@ -91,19 +91,19 @@ class MediaAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutType = if (viewType == ITEM_SECTION) {
-            R.layout.thumbnail_section
+            R.layout.item_thumbnail_section
         } else {
             if (isListViewType) {
                 if (viewType == ITEM_MEDIUM_PHOTO) {
-                    R.layout.photo_item_list
+                    R.layout.item_photo_list
                 } else {
-                    R.layout.video_item_list
+                    R.layout.item_video_list
                 }
             } else {
                 if (viewType == ITEM_MEDIUM_PHOTO) {
-                    R.layout.photo_item_grid
+                    R.layout.item_photo_grid
                 } else {
-                    R.layout.video_item_grid
+                    R.layout.item_video_grid
                 }
             }
         }

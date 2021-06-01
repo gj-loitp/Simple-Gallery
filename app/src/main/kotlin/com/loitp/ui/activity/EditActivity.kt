@@ -50,11 +50,11 @@ import com.theartofdev.edmodo.cropper.CropImageView
 import com.zomato.photofilters.FilterPack
 import com.zomato.photofilters.imageprocessors.Filter
 import kotlinx.android.synthetic.main.activity_edit.*
-import kotlinx.android.synthetic.main.bottom_actions_aspect_ratio.*
-import kotlinx.android.synthetic.main.bottom_editor_actions_filter.*
-import kotlinx.android.synthetic.main.bottom_editor_crop_rotate_actions.*
-import kotlinx.android.synthetic.main.bottom_editor_draw_actions.*
-import kotlinx.android.synthetic.main.bottom_editor_primary_actions.*
+import kotlinx.android.synthetic.main.view_bottom_actions_aspect_ratio.*
+import kotlinx.android.synthetic.main.view_bottom_editor_actions_filter.*
+import kotlinx.android.synthetic.main.view_bottom_editor_crop_rotate_actions.*
+import kotlinx.android.synthetic.main.view_bottom_editor_draw_actions.*
+import kotlinx.android.synthetic.main.view_bottom_editor_primary_actions.*
 import java.io.*
 import kotlin.math.max
 

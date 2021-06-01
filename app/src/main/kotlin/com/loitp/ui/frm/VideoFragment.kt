@@ -29,16 +29,16 @@ import com.loitp.ext.config
 import com.loitp.ext.hasNavBar
 import com.loitp.ext.parseFileChannel
 import com.loitp.helper.Config
+import com.loitp.model.Medium
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
-import com.loitp.model.Medium
-import com.loitp.ui.view.MediaSideScroll
 import com.loitp.ui.activity.PanoramaVideoActivity
 import com.loitp.ui.activity.VideoActivity
+import com.loitp.ui.view.MediaSideScroll
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import kotlinx.android.synthetic.main.bottom_video_time_holder.view.*
-import kotlinx.android.synthetic.main.pager_video_item.view.*
+import kotlinx.android.synthetic.main.item_pager_video.view.*
+import kotlinx.android.synthetic.main.view_bottom_video_time_holder.view.*
 import java.io.File
 import java.io.FileInputStream
 import kotlin.math.max
@@ -95,7 +95,7 @@ class VideoFragment : ViewPagerFragment(),
     ): View {
         mMedium = arguments!!.getSerializable(MEDIUM) as Medium
         mConfig = context!!.config
-        mView = inflater.inflate(R.layout.pager_video_item, container, false).apply {
+        mView = inflater.inflate(R.layout.item_pager_video, container, false).apply {
             ivPanoramaOutline.setOnClickListener { openPanorama() }
             tvVideoCurrTime.setOnClickListener { skip(false) }
             tvVideoDuration.setOnClickListener { skip(true) }

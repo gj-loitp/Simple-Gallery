@@ -23,7 +23,7 @@ import com.loitp.pro.R
 import com.loitp.pro.helpers.MIN_SKIP_LENGTH
 import com.loitp.pro.helpers.PATH
 import kotlinx.android.synthetic.main.activity_panorama_video.*
-import kotlinx.android.synthetic.main.bottom_video_time_holder.*
+import kotlinx.android.synthetic.main.view_bottom_video_time_holder.*
 import java.io.File
 import kotlin.math.max
 import kotlin.math.min

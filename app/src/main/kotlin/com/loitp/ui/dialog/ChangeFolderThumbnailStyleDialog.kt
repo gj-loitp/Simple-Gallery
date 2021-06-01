@@ -17,7 +17,7 @@ import com.simplemobiletools.commons.extensions.beGone
 import com.simplemobiletools.commons.extensions.beVisible
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import kotlinx.android.synthetic.main.dialog_change_folder_thumbnail_style.view.*
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.*
+import kotlinx.android.synthetic.main.item_directory_square.view.*
 
 class ChangeFolderThumbnailStyleDialog(
     val activity: BaseSimpleActivity,
@@ -85,7 +85,7 @@ class ChangeFolderThumbnailStyleDialog(
             layoutDialogFolderSample.removeAllViews()
 
             val layout =
-                if (useRoundedCornersLayout) R.layout.directory_item_grid_rounded_corners else R.layout.directory_item_grid_square
+                if (useRoundedCornersLayout) R.layout.item_directory_rounded_corners else R.layout.item_directory_square
             val sampleView = activity.layoutInflater.inflate(layout, null)
             layoutDialogFolderSample.addView(sampleView)
 

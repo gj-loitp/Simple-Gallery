@@ -31,7 +31,7 @@ import com.loitp.pro.helpers.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import kotlinx.android.synthetic.main.activity_video_player.*
-import kotlinx.android.synthetic.main.bottom_video_time_holder.*
+import kotlinx.android.synthetic.main.view_bottom_video_time_holder.*
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

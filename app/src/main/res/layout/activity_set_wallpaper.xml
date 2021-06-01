@@ -11,6 +11,6 @@
         app:cropBackgroundColor="@color/crop_image_view_background"
         app:cropInitialCropWindowPaddingRatio="0" />
 
-    <include layout="@layout/bottom_set_wallpaper_actions" />
+    <include layout="@layout/view_bottom_set_wallpaper_actions" />
 
 </RelativeLayout>

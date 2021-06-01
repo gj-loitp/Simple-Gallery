@@ -31,13 +31,7 @@ import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FileDirItem
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirCheck
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirLocation
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirLock
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.tvDirName
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirPin
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirThumbnail
-import kotlinx.android.synthetic.main.directory_item_list.view.*
+import kotlinx.android.synthetic.main.item_directory_list.view.*
 import java.io.File
 
 class DirectoryAdapter(
@@ -78,9 +72,9 @@ class DirectoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutType = when {
-            isListViewType -> R.layout.directory_item_list
-            folderStyle == FOLDER_STYLE_SQUARE -> R.layout.directory_item_grid_square
-            else -> R.layout.directory_item_grid_rounded_corners
+            isListViewType -> R.layout.item_directory_list
+            folderStyle == FOLDER_STYLE_SQUARE -> R.layout.item_directory_square
+            else -> R.layout.item_directory_rounded_corners
         }
 
         return createViewHolder(layoutType, parent)

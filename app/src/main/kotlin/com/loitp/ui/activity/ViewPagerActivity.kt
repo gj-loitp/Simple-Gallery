@@ -62,7 +62,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FileDirItem
 import kotlinx.android.synthetic.main.activity_medium.*
-import kotlinx.android.synthetic.main.bottom_actions.*
+import kotlinx.android.synthetic.main.view_bottom_actions.*
 import java.io.File
 import java.io.OutputStream
 import java.util.*
