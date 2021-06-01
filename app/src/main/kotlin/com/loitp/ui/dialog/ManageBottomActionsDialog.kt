@@ -19,24 +19,24 @@ class ManageBottomActionsDialog(
     init {
         val actions = activity.config.visibleBottomActions
         view.apply {
-            manage_bottom_actions_toggle_favorite.isChecked =
+            cbManageBottomActionsToggleFavorite.isChecked =
                 actions and BOTTOM_ACTION_TOGGLE_FAVORITE != 0
-            manage_bottom_actions_edit.isChecked = actions and BOTTOM_ACTION_EDIT != 0
-            manage_bottom_actions_share.isChecked = actions and BOTTOM_ACTION_SHARE != 0
-            manage_bottom_actions_delete.isChecked = actions and BOTTOM_ACTION_DELETE != 0
-            manage_bottom_actions_rotate.isChecked = actions and BOTTOM_ACTION_ROTATE != 0
-            manage_bottom_actions_properties.isChecked = actions and BOTTOM_ACTION_PROPERTIES != 0
-            manage_bottom_actions_change_orientation.isChecked =
+            cbManageBottomActionsEdit.isChecked = actions and BOTTOM_ACTION_EDIT != 0
+            cbManageBottomActionsShare.isChecked = actions and BOTTOM_ACTION_SHARE != 0
+            cbManageBottomActionsDelete.isChecked = actions and BOTTOM_ACTION_DELETE != 0
+            cbManageBottomActionsRotate.isChecked = actions and BOTTOM_ACTION_ROTATE != 0
+            cbManageBottomActionsProperties.isChecked = actions and BOTTOM_ACTION_PROPERTIES != 0
+            cbManageBottomActionsChangeOrientation.isChecked =
                 actions and BOTTOM_ACTION_CHANGE_ORIENTATION != 0
-            manage_bottom_actions_slideshow.isChecked = actions and BOTTOM_ACTION_SLIDESHOW != 0
-            manage_bottom_actions_show_on_map.isChecked = actions and BOTTOM_ACTION_SHOW_ON_MAP != 0
-            manage_bottom_actions_toggle_visibility.isChecked =
+            cbManageBottomActionsSlideshow.isChecked = actions and BOTTOM_ACTION_SLIDESHOW != 0
+            cbManageBottomActionsShowOnMap.isChecked = actions and BOTTOM_ACTION_SHOW_ON_MAP != 0
+            cbManageBottomActionsToggleVisibility.isChecked =
                 actions and BOTTOM_ACTION_TOGGLE_VISIBILITY != 0
-            manage_bottom_actions_rename.isChecked = actions and BOTTOM_ACTION_RENAME != 0
-            manage_bottom_actions_set_as.isChecked = actions and BOTTOM_ACTION_SET_AS != 0
-            manage_bottom_actions_copy.isChecked = actions and BOTTOM_ACTION_COPY != 0
-            manage_bottom_actions_move.isChecked = actions and BOTTOM_ACTION_MOVE != 0
-            manage_bottom_actions_resize.isChecked = actions and BOTTOM_ACTION_RESIZE != 0
+            cbManageBottomActionsRename.isChecked = actions and BOTTOM_ACTION_RENAME != 0
+            cbManageBottomActionsSetAs.isChecked = actions and BOTTOM_ACTION_SET_AS != 0
+            cbManageBottomActionsCopy.isChecked = actions and BOTTOM_ACTION_COPY != 0
+            cbManageBottomActionsMove.isChecked = actions and BOTTOM_ACTION_MOVE != 0
+            cbManageBottomActionsResize.isChecked = actions and BOTTOM_ACTION_RESIZE != 0
         }
 
         AlertDialog.Builder(activity)
@@ -50,35 +50,35 @@ class ManageBottomActionsDialog(
     private fun dialogConfirmed() {
         var result = 0
         view.apply {
-            if (manage_bottom_actions_toggle_favorite.isChecked)
+            if (cbManageBottomActionsToggleFavorite.isChecked)
                 result += BOTTOM_ACTION_TOGGLE_FAVORITE
-            if (manage_bottom_actions_edit.isChecked)
+            if (cbManageBottomActionsEdit.isChecked)
                 result += BOTTOM_ACTION_EDIT
-            if (manage_bottom_actions_share.isChecked)
+            if (cbManageBottomActionsShare.isChecked)
                 result += BOTTOM_ACTION_SHARE
-            if (manage_bottom_actions_delete.isChecked)
+            if (cbManageBottomActionsDelete.isChecked)
                 result += BOTTOM_ACTION_DELETE
-            if (manage_bottom_actions_rotate.isChecked)
+            if (cbManageBottomActionsRotate.isChecked)
                 result += BOTTOM_ACTION_ROTATE
-            if (manage_bottom_actions_properties.isChecked)
+            if (cbManageBottomActionsProperties.isChecked)
                 result += BOTTOM_ACTION_PROPERTIES
-            if (manage_bottom_actions_change_orientation.isChecked)
+            if (cbManageBottomActionsChangeOrientation.isChecked)
                 result += BOTTOM_ACTION_CHANGE_ORIENTATION
-            if (manage_bottom_actions_slideshow.isChecked)
+            if (cbManageBottomActionsSlideshow.isChecked)
                 result += BOTTOM_ACTION_SLIDESHOW
-            if (manage_bottom_actions_show_on_map.isChecked)
+            if (cbManageBottomActionsShowOnMap.isChecked)
                 result += BOTTOM_ACTION_SHOW_ON_MAP
-            if (manage_bottom_actions_toggle_visibility.isChecked)
+            if (cbManageBottomActionsToggleVisibility.isChecked)
                 result += BOTTOM_ACTION_TOGGLE_VISIBILITY
-            if (manage_bottom_actions_rename.isChecked)
+            if (cbManageBottomActionsRename.isChecked)
                 result += BOTTOM_ACTION_RENAME
-            if (manage_bottom_actions_set_as.isChecked)
+            if (cbManageBottomActionsSetAs.isChecked)
                 result += BOTTOM_ACTION_SET_AS
-            if (manage_bottom_actions_copy.isChecked)
+            if (cbManageBottomActionsCopy.isChecked)
                 result += BOTTOM_ACTION_COPY
-            if (manage_bottom_actions_move.isChecked)
+            if (cbManageBottomActionsMove.isChecked)
                 result += BOTTOM_ACTION_MOVE
-            if (manage_bottom_actions_resize.isChecked)
+            if (cbManageBottomActionsResize.isChecked)
                 result += BOTTOM_ACTION_RESIZE
         }
 

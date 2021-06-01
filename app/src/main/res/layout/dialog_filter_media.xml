@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,20 +8,20 @@
     android:paddingRight="@dimen/activity_margin">
 
     <com.simplemobiletools.commons.views.MyAppCompatCheckbox
-        android:id="@+id/filter_media_images"
+        android:id="@+id/cbFilterMediaImages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_margin"
         android:paddingBottom="@dimen/activity_margin"
-        android:text="@string/images"/>
+        android:text="@string/images" />
 
     <com.simplemobiletools.commons.views.MyAppCompatCheckbox
-        android:id="@+id/filter_media_videos"
+        android:id="@+id/cbFilterMediaVideos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_margin"
         android:paddingBottom="@dimen/activity_margin"
-        android:text="@string/videos"/>
+        android:text="@string/videos" />
 
     <com.simplemobiletools.commons.views.MyAppCompatCheckbox
         android:id="@+id/filter_media_gifs"
@@ -30,30 +29,30 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_margin"
         android:paddingBottom="@dimen/activity_margin"
-        android:text="@string/gifs"/>
+        android:text="@string/gifs" />
 
     <com.simplemobiletools.commons.views.MyAppCompatCheckbox
-        android:id="@+id/filter_media_raws"
+        android:id="@+id/cbFilterMediaRaws"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_margin"
         android:paddingBottom="@dimen/activity_margin"
-        android:text="@string/raw_images"/>
+        android:text="@string/raw_images" />
 
     <com.simplemobiletools.commons.views.MyAppCompatCheckbox
-        android:id="@+id/filter_media_svgs"
+        android:id="@+id/cbFilterMediaSvgs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_margin"
         android:paddingBottom="@dimen/activity_margin"
-        android:text="@string/svgs"/>
+        android:text="@string/svgs" />
 
     <com.simplemobiletools.commons.views.MyAppCompatCheckbox
-        android:id="@+id/filter_media_portraits"
+        android:id="@+id/cbFilterMediaPortraits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_margin"
         android:paddingBottom="@dimen/activity_margin"
-        android:text="@string/portraits"/>
+        android:text="@string/portraits" />
 
 </LinearLayout>

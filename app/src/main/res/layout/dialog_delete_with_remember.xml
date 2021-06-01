@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/big_margin"
@@ -8,18 +7,18 @@
     android:paddingRight="@dimen/big_margin">
 
     <com.simplemobiletools.commons.views.MyTextView
-        android:id="@+id/delete_remember_title"
+        android:id="@+id/tvDeleteRememberTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/activity_margin"
         android:text="@string/proceed_with_deletion"
-        android:textSize="@dimen/bigger_text_size"/>
+        android:textSize="@dimen/bigger_text_size" />
 
     <com.simplemobiletools.commons.views.MyAppCompatCheckbox
-        android:id="@+id/delete_remember_checkbox"
+        android:id="@+id/cbDeleteRemember"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/delete_remember_title"
-        android:text="@string/do_not_ask_again"/>
+        android:layout_below="@+id/tvDeleteRememberTitle"
+        android:text="@string/do_not_ask_again" />
 
 </RelativeLayout>

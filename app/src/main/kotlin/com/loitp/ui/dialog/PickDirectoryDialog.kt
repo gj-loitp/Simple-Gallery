@@ -60,10 +60,10 @@ class PickDirectoryDialog(
                 dialog = this,
                 titleId = R.string.select_destination
             ) {
-                view.directories_show_hidden.beVisibleIf(!context.config.shouldShowHidden)
-                view.directories_show_hidden.setOnClickListener {
+                view.fabDirectoriesShowHidden.beVisibleIf(!context.config.shouldShowHidden)
+                view.fabDirectoriesShowHidden.setOnClickListener {
                     activity.handleHiddenFolderPasswordProtection {
-                        view.directories_show_hidden.beGone()
+                        view.fabDirectoriesShowHidden.beGone()
                         showHidden = true
                         fetchDirectories(true)
                     }

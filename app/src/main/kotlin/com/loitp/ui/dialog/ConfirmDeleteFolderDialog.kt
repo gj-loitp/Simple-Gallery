@@ -18,8 +18,8 @@ class ConfirmDeleteFolderDialog(
 
     init {
         val view = activity.layoutInflater.inflate(R.layout.dialog_confirm_delete_folder, null)
-        view.message.text = message
-        view.message_warning.text = warningMessage
+        view.tvMessage.text = message
+        view.tvMessageWarning.text = warningMessage
 
         val builder = AlertDialog.Builder(activity)
             .setPositiveButton(R.string.yes) { _, _ -> dialogConfirmed() }

@@ -24,10 +24,10 @@ class ExcludeFolderDialog(
 
     init {
         val view = activity.layoutInflater.inflate(R.layout.dialog_exclude_folder, null).apply {
-            exclude_folder_parent.beVisibleIf(alternativePaths.size > 1)
+            tvExcludeFolderParent.beVisibleIf(alternativePaths.size > 1)
 
-            radioGroup = exclude_folder_radio_group
-            exclude_folder_radio_group.beVisibleIf(alternativePaths.size > 1)
+            radioGroup = rgExcludeFolderRadioGroup
+            rgExcludeFolderRadioGroup.beVisibleIf(alternativePaths.size > 1)
         }
 
         alternativePaths.forEachIndexed { index, _ ->

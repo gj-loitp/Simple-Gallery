@@ -18,7 +18,7 @@ class DeleteWithRememberDialog(
     val view = activity.layoutInflater.inflate(R.layout.dialog_delete_with_remember, null)!!
 
     init {
-        view.delete_remember_title.text = message
+        view.tvDeleteRememberTitle.text = message
         val builder = AlertDialog.Builder(activity)
             .setPositiveButton(R.string.yes) { _, _ -> dialogConfirmed() }
             .setNegativeButton(R.string.no, null)
@@ -30,6 +30,6 @@ class DeleteWithRememberDialog(
 
     private fun dialogConfirmed() {
         dialog.dismiss()
-        callback(view.delete_remember_checkbox.isChecked)
+        callback(view.cbDeleteRemember.isChecked)
     }
 }
