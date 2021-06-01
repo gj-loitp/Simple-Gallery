@@ -28,26 +28,26 @@ class ChangeViewTypeDialog(
         view = activity.layoutInflater.inflate(R.layout.dialog_change_view_type, null).apply {
             val viewToCheck = if (fromFoldersView) {
                 if (config.viewTypeFolders == VIEW_TYPE_GRID) {
-                    change_view_type_dialog_radio_grid.id
+                    rbChangeViewTypeDialogRadioGrid.id
                 } else {
-                    change_view_type_dialog_radio_list.id
+                    rbChangeViewTypeDialogRadioList.id
                 }
             } else {
                 val currViewType = config.getFolderViewType(pathToUse)
                 if (currViewType == VIEW_TYPE_GRID) {
-                    change_view_type_dialog_radio_grid.id
+                    rbChangeViewTypeDialogRadioGrid.id
                 } else {
-                    change_view_type_dialog_radio_list.id
+                    rbChangeViewTypeDialogRadioList.id
                 }
             }
 
-            change_view_type_dialog_radio.check(viewToCheck)
-            change_view_type_dialog_group_direct_subfolders.apply {
+            rgChangeViewTypeDialogRadio.check(viewToCheck)
+            cbChangeViewTypeDialogGroupDirectSubfolders.apply {
                 beVisibleIf(fromFoldersView)
                 isChecked = config.groupDirectSubfolders
             }
 
-            change_view_type_dialog_use_for_this_folder.apply {
+            cbChangeViewTypeDialogUseForThisFolder.apply {
                 beVisibleIf(!fromFoldersView)
                 isChecked = config.hasCustomViewType(pathToUse)
             }
@@ -63,13 +63,13 @@ class ChangeViewTypeDialog(
 
     private fun dialogConfirmed() {
         val viewType =
-            if (view.change_view_type_dialog_radio.checkedRadioButtonId == view.change_view_type_dialog_radio_grid.id) VIEW_TYPE_GRID else VIEW_TYPE_LIST
+            if (view.rgChangeViewTypeDialogRadio.checkedRadioButtonId == view.rbChangeViewTypeDialogRadioGrid.id) VIEW_TYPE_GRID else VIEW_TYPE_LIST
         if (fromFoldersView) {
             config.viewTypeFolders = viewType
             config.groupDirectSubfolders =
-                view.change_view_type_dialog_group_direct_subfolders.isChecked
+                view.cbChangeViewTypeDialogGroupDirectSubfolders.isChecked
         } else {
-            if (view.change_view_type_dialog_use_for_this_folder.isChecked) {
+            if (view.cbChangeViewTypeDialogUseForThisFolder.isChecked) {
                 config.saveFolderViewType(pathToUse, viewType)
             } else {
                 config.removeFolderViewType(pathToUse)

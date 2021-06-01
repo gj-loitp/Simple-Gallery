@@ -11,7 +11,7 @@
         android:paddingTop="@dimen/normal_margin">
 
         <RelativeLayout
-            android:id="@+id/dialog_file_style_spacing_holder"
+            android:id="@+id/layoutDialogFileStyleSpacing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/dialog_file_style_spacing"
+                android:layout_toStartOf="@+id/tvDialogFileStyleSpacing"
                 android:ellipsize="end"
                 android:lines="1"
                 android:paddingStart="@dimen/medium_margin"
@@ -33,7 +33,7 @@
                 android:text="@string/thumbnail_spacing" />
 
             <com.simplemobiletools.commons.views.MyTextView
-                android:id="@+id/dialog_file_style_spacing"
+                android:id="@+id/tvDialogFileStyleSpacing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -44,7 +44,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/dialog_file_style_rounded_corners_holder"
+            android:id="@+id/layoutDialogFileStyleRoundedCorners"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -52,19 +52,20 @@
             android:padding="@dimen/normal_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/dialog_file_style_rounded_corners"
+                android:id="@+id/swDialogFileStyleRoundedCorners"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/rounded_corners"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/dialog_file_style_animate_gifs_holder"
+            android:id="@+id/layoutDialogFileStyleAnimateGifs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -72,19 +73,20 @@
             android:padding="@dimen/normal_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/dialog_file_style_animate_gifs"
+                android:id="@+id/swDialogFileStyleAnimateGifs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingEnd="0dp"
                 android:text="@string/animate_gifs"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/dialog_file_style_show_thumbnail_video_duration_holder"
+            android:id="@+id/layoutDialogFileStyleShowThumbnailVideoDuration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -92,10 +94,11 @@
             android:padding="@dimen/normal_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/dialog_file_style_show_thumbnail_video_duration"
+                android:id="@+id/swDialogFileStyleShowThumbnailVideoDuration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:paddingEnd="0dp"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
                 android:text="@string/show_thumbnail_video_duration"
@@ -104,7 +107,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/dialog_file_style_show_thumbnail_file_types_holder"
+            android:id="@+id/layoutDialogFileStyleShowThumbnailFileTypes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -112,11 +115,12 @@
             android:padding="@dimen/normal_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/dialog_file_style_show_thumbnail_file_types"
+                android:id="@+id/swDialogFileStyleShowThumbnailFileTypes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
+                android:paddingEnd="0dp"
                 android:paddingStart="@dimen/medium_margin"
                 android:text="@string/show_image_file_types"
                 app:switchPadding="@dimen/medium_margin" />

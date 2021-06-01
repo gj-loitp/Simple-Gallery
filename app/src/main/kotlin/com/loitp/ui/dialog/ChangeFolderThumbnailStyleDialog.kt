@@ -29,7 +29,7 @@ class ChangeFolderThumbnailStyleDialog(
     private var view: View =
         activity.layoutInflater.inflate(R.layout.dialog_change_folder_thumbnail_style, null)
             .apply {
-                dialog_folder_limit_title.isChecked = config.limitFolderTitle
+                cbDialogFolderLimitTitle.isChecked = config.limitFolderTitle
             }
 
     init {
@@ -53,23 +53,23 @@ class ChangeFolderThumbnailStyleDialog(
         }
 
         val styleBtn = when (config.folderStyle) {
-            FOLDER_STYLE_SQUARE -> styleRadio.dialog_radio_folder_square
-            else -> styleRadio.dialog_radio_folder_rounded_corners
+            FOLDER_STYLE_SQUARE -> styleRadio.rbDialogRadioFolderSquare
+            else -> styleRadio.rbDialogRadioFolderRoundedCorners
         }
 
         styleBtn.isChecked = true
     }
 
     private fun setupMediaCount() {
-        val countRadio = view.dialog_radio_folder_count_holder
+        val countRadio = view.rgDialogRadioFolderCount
         countRadio.setOnCheckedChangeListener { _, _ ->
             updateSample()
         }
 
         val countBtn = when (config.showFolderMediaCount) {
-            FOLDER_MEDIA_CNT_LINE -> countRadio.dialog_radio_folder_count_line
-            FOLDER_MEDIA_CNT_BRACKETS -> countRadio.dialog_radio_folder_count_brackets
-            else -> countRadio.dialog_radio_folder_count_none
+            FOLDER_MEDIA_CNT_LINE -> countRadio.rbDialogRadioFolderCountLine
+            FOLDER_MEDIA_CNT_BRACKETS -> countRadio.rbDialogRadioFolderCountBrackets
+            else -> countRadio.rbDialogRadioFolderCountNone
         }
 
         countBtn.isChecked = true
@@ -81,25 +81,25 @@ class ChangeFolderThumbnailStyleDialog(
         val folderName = "Camera"
         view.apply {
             val useRoundedCornersLayout =
-                dialog_radio_folder_style.checkedRadioButtonId == R.id.dialog_radio_folder_rounded_corners
-            dialog_folder_sample_holder.removeAllViews()
+                dialog_radio_folder_style.checkedRadioButtonId == R.id.rbDialogRadioFolderRoundedCorners
+            layoutDialogFolderSample.removeAllViews()
 
             val layout =
                 if (useRoundedCornersLayout) R.layout.directory_item_grid_rounded_corners else R.layout.directory_item_grid_square
             val sampleView = activity.layoutInflater.inflate(layout, null)
-            dialog_folder_sample_holder.addView(sampleView)
+            layoutDialogFolderSample.addView(sampleView)
 
             sampleView.layoutParams.width =
                 activity.resources.getDimension(R.dimen.sample_thumbnail_size).toInt()
             (sampleView.layoutParams as RelativeLayout.LayoutParams).addRule(RelativeLayout.CENTER_HORIZONTAL)
 
-            when (dialog_radio_folder_count_holder.checkedRadioButtonId) {
-                R.id.dialog_radio_folder_count_line -> {
+            when (rgDialogRadioFolderCount.checkedRadioButtonId) {
+                R.id.rbDialogRadioFolderCountLine -> {
                     dir_name.text = folderName
                     photo_cnt.text = photoCount.toString()
                     photo_cnt.beVisible()
                 }
-                R.id.dialog_radio_folder_count_brackets -> {
+                R.id.rbDialogRadioFolderCountBrackets -> {
                     photo_cnt.beGone()
                     dir_name.text = "$folderName ($photoCount)"
                 }
@@ -127,19 +127,19 @@ class ChangeFolderThumbnailStyleDialog(
 
     override fun onClick(dialog: DialogInterface, which: Int) {
         val style = when (view.dialog_radio_folder_style.checkedRadioButtonId) {
-            R.id.dialog_radio_folder_square -> FOLDER_STYLE_SQUARE
+            R.id.rbDialogRadioFolderSquare -> FOLDER_STYLE_SQUARE
             else -> FOLDER_STYLE_ROUNDED_CORNERS
         }
 
-        val count = when (view.dialog_radio_folder_count_holder.checkedRadioButtonId) {
-            R.id.dialog_radio_folder_count_line -> FOLDER_MEDIA_CNT_LINE
-            R.id.dialog_radio_folder_count_brackets -> FOLDER_MEDIA_CNT_BRACKETS
+        val count = when (view.rgDialogRadioFolderCount.checkedRadioButtonId) {
+            R.id.rbDialogRadioFolderCountLine -> FOLDER_MEDIA_CNT_LINE
+            R.id.rbDialogRadioFolderCountBrackets -> FOLDER_MEDIA_CNT_BRACKETS
             else -> FOLDER_MEDIA_CNT_NONE
         }
 
         config.folderStyle = style
         config.showFolderMediaCount = count
-        config.limitFolderTitle = view.dialog_folder_limit_title.isChecked
+        config.limitFolderTitle = view.cbDialogFolderLimitTitle.isChecked
         callback()
     }
 }

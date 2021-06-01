@@ -34,12 +34,12 @@ class ChangeSortingDialog(
         view = activity.layoutInflater.inflate(R.layout.dialog_change_sorting, null).apply {
             use_for_this_folder_divider.beVisibleIf(showFolderCheckbox || (currSorting and SORT_BY_NAME != 0 || currSorting and SORT_BY_PATH != 0))
 
-            sorting_dialog_numeric_sorting.beVisibleIf(showFolderCheckbox && (currSorting and SORT_BY_NAME != 0 || currSorting and SORT_BY_PATH != 0))
-            sorting_dialog_numeric_sorting.isChecked = currSorting and SORT_USE_NUMERIC_VALUE != 0
+            cbSortingDialogNumericSorting.beVisibleIf(showFolderCheckbox && (currSorting and SORT_BY_NAME != 0 || currSorting and SORT_BY_PATH != 0))
+            cbSortingDialogNumericSorting.isChecked = currSorting and SORT_USE_NUMERIC_VALUE != 0
 
-            sorting_dialog_use_for_this_folder.beVisibleIf(showFolderCheckbox)
-            sorting_dialog_use_for_this_folder.isChecked = config.hasCustomSorting(pathToUse)
-            sorting_dialog_bottom_note.beVisibleIf(!isDirectorySorting)
+            cbSortingDialogUseForThisFolder.beVisibleIf(showFolderCheckbox)
+            cbSortingDialogUseForThisFolder.isChecked = config.hasCustomSorting(pathToUse)
+            tvSortingDialogBottomNote.beVisibleIf(!isDirectorySorting)
         }
 
         AlertDialog.Builder(activity)
@@ -54,58 +54,58 @@ class ChangeSortingDialog(
     }
 
     private fun setupSortRadio() {
-        val sortingRadio = view.sorting_dialog_radio_sorting
+        val sortingRadio = view.rgSortingDialogRadioSorting
         sortingRadio.setOnCheckedChangeListener { group, checkedId ->
             val isSortingByNameOrPath =
-                checkedId == sortingRadio.sorting_dialog_radio_name.id || checkedId == sortingRadio.sorting_dialog_radio_path.id
-            view.sorting_dialog_numeric_sorting.beVisibleIf(isSortingByNameOrPath)
-            view.use_for_this_folder_divider.beVisibleIf(view.sorting_dialog_numeric_sorting.isVisible() || view.sorting_dialog_use_for_this_folder.isVisible())
+                checkedId == sortingRadio.rbSortingDialogRadioName.id || checkedId == sortingRadio.rbSortingDialogRadioPath.id
+            view.cbSortingDialogNumericSorting.beVisibleIf(isSortingByNameOrPath)
+            view.use_for_this_folder_divider.beVisibleIf(view.cbSortingDialogNumericSorting.isVisible() || view.cbSortingDialogUseForThisFolder.isVisible())
         }
 
         val sortBtn = when {
-            currSorting and SORT_BY_PATH != 0 -> sortingRadio.sorting_dialog_radio_path
-            currSorting and SORT_BY_SIZE != 0 -> sortingRadio.sorting_dialog_radio_size
-            currSorting and SORT_BY_DATE_MODIFIED != 0 -> sortingRadio.sorting_dialog_radio_last_modified
-            currSorting and SORT_BY_DATE_TAKEN != 0 -> sortingRadio.sorting_dialog_radio_date_taken
-            currSorting and SORT_BY_RANDOM != 0 -> sortingRadio.sorting_dialog_radio_random
-            else -> sortingRadio.sorting_dialog_radio_name
+            currSorting and SORT_BY_PATH != 0 -> sortingRadio.rbSortingDialogRadioPath
+            currSorting and SORT_BY_SIZE != 0 -> sortingRadio.rbSortingDialogRadioSize
+            currSorting and SORT_BY_DATE_MODIFIED != 0 -> sortingRadio.rbSortingDialogRadioLastModified
+            currSorting and SORT_BY_DATE_TAKEN != 0 -> sortingRadio.rbSortingDialogRadioDateTaken
+            currSorting and SORT_BY_RANDOM != 0 -> sortingRadio.rbSortingDialogRadioRandom
+            else -> sortingRadio.rbSortingDialogRadioName
         }
         sortBtn.isChecked = true
     }
 
     private fun setupOrderRadio() {
-        val orderRadio = view.sorting_dialog_radio_order
-        var orderBtn = orderRadio.sorting_dialog_radio_ascending
+        val orderRadio = view.rgSortingDialogRadioOrder
+        var orderBtn = orderRadio.rbSortingDialogRadioAscending
 
         if (currSorting and SORT_DESCENDING != 0) {
-            orderBtn = orderRadio.sorting_dialog_radio_descending
+            orderBtn = orderRadio.rbSortingDialogRadioDescending
         }
         orderBtn.isChecked = true
     }
 
     override fun onClick(dialog: DialogInterface, which: Int) {
-        val sortingRadio = view.sorting_dialog_radio_sorting
+        val sortingRadio = view.rgSortingDialogRadioSorting
         var sorting = when (sortingRadio.checkedRadioButtonId) {
-            R.id.sorting_dialog_radio_name -> SORT_BY_NAME
-            R.id.sorting_dialog_radio_path -> SORT_BY_PATH
-            R.id.sorting_dialog_radio_size -> SORT_BY_SIZE
-            R.id.sorting_dialog_radio_last_modified -> SORT_BY_DATE_MODIFIED
-            R.id.sorting_dialog_radio_random -> SORT_BY_RANDOM
+            R.id.rbSortingDialogRadioName -> SORT_BY_NAME
+            R.id.rbSortingDialogRadioPath -> SORT_BY_PATH
+            R.id.rbSortingDialogRadioSize -> SORT_BY_SIZE
+            R.id.rbSortingDialogRadioLastModified -> SORT_BY_DATE_MODIFIED
+            R.id.rbSortingDialogRadioRandom -> SORT_BY_RANDOM
             else -> SORT_BY_DATE_TAKEN
         }
 
-        if (view.sorting_dialog_radio_order.checkedRadioButtonId == R.id.sorting_dialog_radio_descending) {
+        if (view.rgSortingDialogRadioOrder.checkedRadioButtonId == R.id.rbSortingDialogRadioDescending) {
             sorting = sorting or SORT_DESCENDING
         }
 
-        if (view.sorting_dialog_numeric_sorting.isChecked) {
+        if (view.cbSortingDialogNumericSorting.isChecked) {
             sorting = sorting or SORT_USE_NUMERIC_VALUE
         }
 
         if (isDirectorySorting) {
             config.directorySorting = sorting
         } else {
-            if (view.sorting_dialog_use_for_this_folder.isChecked) {
+            if (view.cbSortingDialogUseForThisFolder.isChecked) {
                 config.saveCustomSorting(pathToUse, sorting)
             } else {
                 config.removeCustomSorting(pathToUse)

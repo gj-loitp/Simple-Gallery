@@ -23,19 +23,19 @@ class ChangeFileThumbnailStyleDialog(
     init {
         view = activity.layoutInflater.inflate(R.layout.dialog_change_file_thumbnail_style, null)
             .apply {
-                dialog_file_style_rounded_corners.isChecked = config.fileRoundedCorners
-                dialog_file_style_animate_gifs.isChecked = config.animateGifs
-                dialog_file_style_show_thumbnail_video_duration.isChecked =
+                swDialogFileStyleRoundedCorners.isChecked = config.fileRoundedCorners
+                swDialogFileStyleAnimateGifs.isChecked = config.animateGifs
+                swDialogFileStyleShowThumbnailVideoDuration.isChecked =
                     config.showThumbnailVideoDuration
-                dialog_file_style_show_thumbnail_file_types.isChecked =
+                swDialogFileStyleShowThumbnailFileTypes.isChecked =
                     config.showThumbnailFileTypes
 
-                dialog_file_style_rounded_corners_holder.setOnClickListener { dialog_file_style_rounded_corners.toggle() }
-                dialog_file_style_animate_gifs_holder.setOnClickListener { dialog_file_style_animate_gifs.toggle() }
-                dialog_file_style_show_thumbnail_video_duration_holder.setOnClickListener { dialog_file_style_show_thumbnail_video_duration.toggle() }
-                dialog_file_style_show_thumbnail_file_types_holder.setOnClickListener { dialog_file_style_show_thumbnail_file_types.toggle() }
+                layoutDialogFileStyleRoundedCorners.setOnClickListener { swDialogFileStyleRoundedCorners.toggle() }
+                layoutDialogFileStyleAnimateGifs.setOnClickListener { swDialogFileStyleAnimateGifs.toggle() }
+                layoutDialogFileStyleShowThumbnailVideoDuration.setOnClickListener { swDialogFileStyleShowThumbnailVideoDuration.toggle() }
+                layoutDialogFileStyleShowThumbnailFileTypes.setOnClickListener { swDialogFileStyleShowThumbnailFileTypes.toggle() }
 
-                dialog_file_style_spacing_holder.setOnClickListener {
+                layoutDialogFileStyleSpacing.setOnClickListener {
                     val items = arrayListOf(
                         RadioItem(0, "0x"),
                         RadioItem(1, "1x"),
@@ -65,16 +65,16 @@ class ChangeFileThumbnailStyleDialog(
     }
 
     override fun onClick(dialog: DialogInterface, which: Int) {
-        config.fileRoundedCorners = view.dialog_file_style_rounded_corners.isChecked
-        config.animateGifs = view.dialog_file_style_animate_gifs.isChecked
+        config.fileRoundedCorners = view.swDialogFileStyleRoundedCorners.isChecked
+        config.animateGifs = view.swDialogFileStyleAnimateGifs.isChecked
         config.showThumbnailVideoDuration =
-            view.dialog_file_style_show_thumbnail_video_duration.isChecked
-        config.showThumbnailFileTypes = view.dialog_file_style_show_thumbnail_file_types.isChecked
+            view.swDialogFileStyleShowThumbnailVideoDuration.isChecked
+        config.showThumbnailFileTypes = view.swDialogFileStyleShowThumbnailFileTypes.isChecked
         config.thumbnailSpacing = thumbnailSpacing
     }
 
     @SuppressLint("SetTextI18n")
     private fun updateThumbnailSpacingText() {
-        view.dialog_file_style_spacing.text = "${thumbnailSpacing}x"
+        view.tvDialogFileStyleSpacing.text = "${thumbnailSpacing}x"
     }
 }
