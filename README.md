@@ -1,12 +1,6 @@
 # Simple Gallery
 
-<img alt="Logo" src="fastlane/metadata/android/en-US/images/icon.png" width="120" />
-
 Simple Gallery Pro is a highly customizable lightweight gallery loved by millions of people for its great user experience. Organize and edit your photos, recover deleted files with the recycle bin, protect & hide files and easily view a huge variety of different photo and video formats including RAW, SVG, GIF, panoramic and much more.
-
--------------------------------------------------
-SIMPLE GALLERY PRO – FEATURES
--------------------------------------------------
 
 • A beautiful modern gallery with no ads or popups
 
@@ -84,31 +78,3 @@ Accidentally deleted a precious photo or video? Don’t worry! Simple Gallery Pr
 
 PROTECT & HIDE PHOTOS, VIDEOS & FILES
 Using pin, pattern or your device’s fingerprint scanner you can protect and hide photos, videos & entire albums. You can protect the app itself or place locks on specific functions of the app. For example, you can’t delete a file without a fingerprint scan, helping to protect your files from accidental deletion.
-
-
-Check out the full suite of Simple Tools here:
-https://www.simplemobiletools.com
-
-
-Standalone website of Simple Gallery Pro:
-https://www.simplemobiletools.com/gallery
-
-
-Facebook:
-https://www.facebook.com/simplemobiletools
-
-
-Reddit:
-https://www.reddit.com/r/SimpleMobileTools
-
-
-Don't forget that if you uninstall any paid app within 2 hours, you will automatically be refunded. If you want a refund anytime later, just contact us at hello@simplemobiletools.com and you will get it. That makes it easy to try it out :)
-
-<a href='https://play.google.com/store/apps/details?id=com.loitp.pro'><img src='https://simplemobiletools.com/assets/images/google-play.png' alt='Get it on Google Play' height='45' /></a>
-<a href='https://f-droid.org/packages/com.loitp.pro'><img src='https://simplemobiletools.com/assets/images/f-droid.png' alt='Get it on F-Droid' height='45' /></a>
-
-<div style="display:flex;">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/english/1.jpg" width="30%">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/english/2.jpg" width="30%">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/english/3.jpg" width="30%">
-</div>
