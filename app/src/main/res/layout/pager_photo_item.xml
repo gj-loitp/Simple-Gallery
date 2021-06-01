@@ -6,19 +6,19 @@
     android:layout_height="match_parent">
 
     <com.alexvasilkov.gestures.GestureImageView
-        android:id="@+id/gestures_view"
+        android:id="@+id/gesturesImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <com.alexvasilkov.gestures.GestureFrameLayout
-        android:id="@+id/gif_view_frame"
+        android:id="@+id/layoutGifViewFrame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone">
 
         <pl.droidsonroids.gif.GifTextureView
-            android:id="@+id/gif_view"
+            android:id="@+id/gifView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitCenter" />
@@ -26,13 +26,13 @@
     </com.alexvasilkov.gestures.GestureFrameLayout>
 
     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-        android:id="@+id/subsampling_view"
+        android:id="@+id/subSamplingView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/panorama_outline"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPanoramaOutline"
         android:layout_width="@dimen/play_outline_size_big"
         android:layout_height="@dimen/play_outline_size_big"
         android:layout_centerInParent="true"
@@ -41,8 +41,8 @@
         android:src="@drawable/ic_panorama_outline"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/photo_details"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhotoDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -56,12 +56,12 @@
         tools:text="My image\nAnother line" />
 
     <com.loitp.ui.view.MediaSideScroll
-        android:id="@+id/photo_brightness_controller"
+        android:id="@+id/scrollPhotoBrightnessController"
         android:layout_width="@dimen/media_side_slider_width"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvSlideInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,14 +79,14 @@
         android:textSize="@dimen/extra_big_text_size" />
 
     <RelativeLayout
-        android:id="@+id/photo_portrait_stripe_wrapper"
+        android:id="@+id/layoutPhotoPortraitStripeWrapper"
         android:layout_width="match_parent"
         android:layout_height="@dimen/portrait_photos_stripe_height"
         android:layout_alignParentBottom="true"
         android:visibility="invisible">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/photo_portrait_stripe"
+            android:id="@+id/rvPhotoPortraitStripe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -96,12 +96,12 @@
     </RelativeLayout>
 
     <com.loitp.ui.view.InstantItemSwitch
-        android:id="@+id/instant_prev_item"
+        android:id="@+id/instantPrevItem"
         android:layout_width="1dp"
         android:layout_height="match_parent" />
 
     <com.loitp.ui.view.InstantItemSwitch
-        android:id="@+id/instant_next_item"
+        android:id="@+id/instantNextItem"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true" />

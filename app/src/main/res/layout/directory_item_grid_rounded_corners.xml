@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dir_holder"
+    android:id="@+id/layoutDir"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/medium_margin"
@@ -10,18 +10,18 @@
     android:paddingTop="@dimen/medium_margin">
 
     <com.loitp.ui.view.MySquareImageView
-        android:id="@+id/dir_thumbnail"
+        android:id="@+id/ivDirThumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/dir_lock"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivDirLock"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignStart="@+id/dir_thumbnail"
-        android:layout_alignTop="@+id/dir_thumbnail"
-        android:layout_alignEnd="@+id/dir_thumbnail"
-        android:layout_alignBottom="@+id/dir_thumbnail"
+        android:layout_alignStart="@+id/ivDirThumbnail"
+        android:layout_alignTop="@+id/ivDirThumbnail"
+        android:layout_alignEnd="@+id/ivDirThumbnail"
+        android:layout_alignBottom="@+id/ivDirThumbnail"
         android:layout_centerInParent="true"
         android:background="@color/default_background_color"
         android:contentDescription="@string/lock_folder"
@@ -29,8 +29,8 @@
         android:src="@drawable/ic_lock_vector"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/dir_check"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivDirCheck"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
         android:layout_alignParentTop="true"
@@ -42,8 +42,8 @@
         android:src="@drawable/ic_check_vector"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/dir_pin"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivDirPin"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
         android:layout_alignParentStart="true"
@@ -55,35 +55,35 @@
         android:src="@drawable/ic_pin"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/dir_name"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDirName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dir_thumbnail"
-        android:layout_alignStart="@+id/dir_thumbnail"
-        android:layout_toStartOf="@+id/dir_location"
+        android:layout_below="@+id/ivDirThumbnail"
+        android:layout_alignStart="@+id/ivDirThumbnail"
+        android:layout_toStartOf="@+id/ivDirLocation"
         android:paddingTop="@dimen/medium_margin"
         android:textColor="@android:color/white"
         android:textSize="@dimen/normal_text_size"
         tools:text="Camera" />
 
-    <TextView
-        android:id="@+id/photo_cnt"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhotoCnt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dir_name"
-        android:layout_alignStart="@+id/dir_thumbnail"
-        android:layout_toStartOf="@+id/dir_location"
+        android:layout_below="@+id/tvDirName"
+        android:layout_alignStart="@+id/ivDirThumbnail"
+        android:layout_toStartOf="@+id/ivDirLocation"
         android:paddingTop="@dimen/small_margin"
         android:textColor="@android:color/white"
         android:textSize="@dimen/normal_text_size"
         tools:text="36" />
 
-    <ImageView
-        android:id="@+id/dir_location"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivDirLocation"
         android:layout_width="@dimen/sd_card_icon_size"
         android:layout_height="@dimen/sd_card_icon_size"
-        android:layout_alignBottom="@+id/dir_name"
+        android:layout_alignBottom="@+id/tvDirName"
         android:layout_alignParentEnd="true"
         android:alpha="0.8"
         android:contentDescription="@null"

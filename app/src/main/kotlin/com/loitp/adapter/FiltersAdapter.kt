@@ -46,9 +46,9 @@ class FiltersAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(filterItem: FilterItem): View {
             itemView.apply {
-                editor_filter_item_label.text = filterItem.filter.name
-                editor_filter_item_thumbnail.setImageBitmap(filterItem.bitmap)
-                editor_filter_item_thumbnail.background = if (getCurrentFilter() == filterItem) {
+                tvEditorFilterItemLabel.text = filterItem.filter.name
+                ivEditorFilterItemThumbnail.setImageBitmap(filterItem.bitmap)
+                ivEditorFilterItemThumbnail.background = if (getCurrentFilter() == filterItem) {
                     strokeBackground
                 } else {
                     null

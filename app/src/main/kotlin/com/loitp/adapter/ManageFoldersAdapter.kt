@@ -76,8 +76,8 @@ class ManageFoldersAdapter(
 
     private fun setupView(view: View, folder: String) {
         view.apply {
-            manage_folder_holder?.isSelected = selectedKeys.contains(folder.hashCode())
-            manage_folder_title.apply {
+            layoutManageFolder?.isSelected = selectedKeys.contains(folder.hashCode())
+            tvManageFolderTitle.apply {
                 text = folder
                 setTextColor(config.textColor)
             }

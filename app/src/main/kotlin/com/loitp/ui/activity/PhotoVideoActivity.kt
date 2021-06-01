@@ -172,7 +172,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
             mFragment!!.listener = this
             mFragment!!.arguments = bundle
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_placeholder, mFragment!!).commit()
+                .replace(R.id.fragmentPlaceholder, mFragment!!).commit()
         }
 
         if (config.blackBackground) {

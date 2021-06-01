@@ -95,17 +95,17 @@ class ChangeFolderThumbnailStyleDialog(
 
             when (rgDialogRadioFolderCount.checkedRadioButtonId) {
                 R.id.rbDialogRadioFolderCountLine -> {
-                    dir_name.text = folderName
-                    photo_cnt.text = photoCount.toString()
-                    photo_cnt.beVisible()
+                    tvDirName.text = folderName
+                    tvPhotoCnt.text = photoCount.toString()
+                    tvPhotoCnt.beVisible()
                 }
                 R.id.rbDialogRadioFolderCountBrackets -> {
-                    photo_cnt.beGone()
-                    dir_name.text = "$folderName ($photoCount)"
+                    tvPhotoCnt.beGone()
+                    tvDirName.text = "$folderName ($photoCount)"
                 }
                 else -> {
-                    dir_name.text = folderName
-                    photo_cnt?.beGone()
+                    tvDirName.text = folderName
+                    tvPhotoCnt?.beGone()
                 }
             }
 
@@ -117,11 +117,11 @@ class ChangeFolderThumbnailStyleDialog(
             if (useRoundedCornersLayout) {
                 val cornerRadius = resources.getDimension(R.dimen.rounded_corner_radius_big).toInt()
                 builder = builder.transform(CenterCrop(), RoundedCorners(cornerRadius))
-                dir_name.setTextColor(activity.config.textColor)
-                photo_cnt.setTextColor(activity.config.textColor)
+                tvDirName.setTextColor(activity.config.textColor)
+                tvPhotoCnt.setTextColor(activity.config.textColor)
             }
 
-            builder.into(dir_thumbnail)
+            builder.into(ivDirThumbnail)
         }
     }
 

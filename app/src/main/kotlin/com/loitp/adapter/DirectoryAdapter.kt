@@ -31,12 +31,12 @@ import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FileDirItem
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.dir_check
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.dir_location
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.dir_lock
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.dir_name
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.dir_pin
-import kotlinx.android.synthetic.main.directory_item_grid_square.view.dir_thumbnail
+import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirCheck
+import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirLocation
+import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirLock
+import kotlinx.android.synthetic.main.directory_item_grid_square.view.tvDirName
+import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirPin
+import kotlinx.android.synthetic.main.directory_item_grid_square.view.ivDirThumbnail
 import kotlinx.android.synthetic.main.directory_item_list.view.*
 import java.io.File
 
@@ -169,7 +169,7 @@ class DirectoryAdapter(
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
         if (!activity.isDestroyed) {
-            Glide.with(activity).clear(holder.itemView.dir_thumbnail!!)
+            Glide.with(activity).clear(holder.itemView.ivDirThumbnail!!)
         }
     }
 
@@ -739,7 +739,7 @@ class DirectoryAdapter(
     private fun setupView(view: View, directory: Directory) {
         val isSelected = selectedKeys.contains(directory.path.hashCode())
         view.apply {
-            dir_path?.text = "${directory.path.substringBeforeLast("/")}/"
+            tvDirPath?.text = "${directory.path.substringBeforeLast("/")}/"
             val thumbnailType = when {
                 directory.tmb.isVideoFast() -> TYPE_VIDEOS
                 directory.tmb.isGif() -> TYPE_GIFS
@@ -748,28 +748,28 @@ class DirectoryAdapter(
                 else -> TYPE_IMAGES
             }
 
-            dir_check?.beVisibleIf(isSelected)
+            ivDirCheck?.beVisibleIf(isSelected)
             if (isSelected) {
-                dir_check.background?.applyColorFilter(adjustedPrimaryColor)
-                dir_check.applyColorFilter(contrastColor)
+                ivDirCheck.background?.applyColorFilter(adjustedPrimaryColor)
+                ivDirCheck.applyColorFilter(contrastColor)
             }
 
             if (isListViewType) {
-                dir_holder.isSelected = isSelected
+                layoutDir.isSelected = isSelected
             }
 
             if (scrollHorizontally && !isListViewType && folderStyle == FOLDER_STYLE_ROUNDED_CORNERS) {
-                (dir_thumbnail.layoutParams as RelativeLayout.LayoutParams).addRule(
+                (ivDirThumbnail.layoutParams as RelativeLayout.LayoutParams).addRule(
                     RelativeLayout.ABOVE,
-                    dir_name.id
+                    tvDirName.id
                 )
 
-                val photoCntParams = (photo_cnt.layoutParams as RelativeLayout.LayoutParams)
-                val nameParams = (dir_name.layoutParams as RelativeLayout.LayoutParams)
+                val photoCntParams = (tvPhotoCnt.layoutParams as RelativeLayout.LayoutParams)
+                val nameParams = (tvDirName.layoutParams as RelativeLayout.LayoutParams)
                 nameParams.removeRule(RelativeLayout.BELOW)
 
                 if (config.showFolderMediaCount == FOLDER_MEDIA_CNT_LINE) {
-                    nameParams.addRule(RelativeLayout.ABOVE, photo_cnt.id)
+                    nameParams.addRule(RelativeLayout.ABOVE, tvPhotoCnt.id)
                     nameParams.removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
 
                     photoCntParams.removeRule(RelativeLayout.BELOW)
@@ -780,11 +780,11 @@ class DirectoryAdapter(
             }
 
             if (lockedFolderPaths.contains(directory.path)) {
-                dir_lock.beVisible()
-                dir_lock.background = ColorDrawable(config.backgroundColor)
-                dir_lock.applyColorFilter(config.backgroundColor.getContrastColor())
+                ivDirLock.beVisible()
+                ivDirLock.background = ColorDrawable(config.backgroundColor)
+                ivDirLock.applyColorFilter(config.backgroundColor.getContrastColor())
             } else {
-                dir_lock.beGone()
+                ivDirLock.beGone()
                 val roundedCorners = when {
                     isListViewType -> ROUNDED_CORNERS_SMALL
                     folderStyle == FOLDER_STYLE_SQUARE -> ROUNDED_CORNERS_NONE
@@ -794,7 +794,7 @@ class DirectoryAdapter(
                 activity.loadImage(
                     type = thumbnailType,
                     path = directory.tmb,
-                    target = dir_thumbnail,
+                    target = ivDirThumbnail,
                     horizontalScroll = scrollHorizontally,
                     animateGifs = animateGifs,
                     cropThumbnails = cropThumbnails,
@@ -803,18 +803,18 @@ class DirectoryAdapter(
                 )
             }
 
-            dir_pin.beVisibleIf(pinnedFolders.contains(directory.path))
-            dir_location.beVisibleIf(directory.location != LOCATION_INTERNAL)
-            if (dir_location.isVisible()) {
-                dir_location.setImageResource(if (directory.location == LOCATION_SD) R.drawable.ic_sd_card_vector else R.drawable.ic_usb_vector)
+            ivDirPin.beVisibleIf(pinnedFolders.contains(directory.path))
+            ivDirLocation.beVisibleIf(directory.location != LOCATION_INTERNAL)
+            if (ivDirLocation.isVisible()) {
+                ivDirLocation.setImageResource(if (directory.location == LOCATION_SD) R.drawable.ic_sd_card_vector else R.drawable.ic_usb_vector)
             }
 
-            photo_cnt.text = directory.subfoldersMediaCount.toString()
-            photo_cnt.beVisibleIf(showMediaCount == FOLDER_MEDIA_CNT_LINE)
+            tvPhotoCnt.text = directory.subfoldersMediaCount.toString()
+            tvPhotoCnt.beVisibleIf(showMediaCount == FOLDER_MEDIA_CNT_LINE)
 
             if (limitFolderTitle) {
-                dir_name.setSingleLine()
-                dir_name.ellipsize = TextUtils.TruncateAt.MIDDLE
+                tvDirName.setSingleLine()
+                tvDirName.ellipsize = TextUtils.TruncateAt.MIDDLE
             }
 
             var nameCount = directory.name
@@ -828,18 +828,18 @@ class DirectoryAdapter(
                 }
             }
 
-            dir_name.text = nameCount
+            tvDirName.text = nameCount
 
             if (isListViewType || folderStyle == FOLDER_STYLE_ROUNDED_CORNERS) {
-                photo_cnt.setTextColor(textColor)
-                dir_name.setTextColor(textColor)
-                dir_location.applyColorFilter(textColor)
+                tvPhotoCnt.setTextColor(textColor)
+                tvDirName.setTextColor(textColor)
+                ivDirLocation.applyColorFilter(textColor)
             }
 
             if (isListViewType) {
-                dir_path.setTextColor(textColor)
-                dir_pin.applyColorFilter(textColor)
-                dir_location.applyColorFilter(textColor)
+                tvDirPath.setTextColor(textColor)
+                ivDirPin.applyColorFilter(textColor)
+                ivDirLocation.applyColorFilter(textColor)
             }
         }
     }

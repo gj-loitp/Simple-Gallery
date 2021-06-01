@@ -96,14 +96,14 @@ class VideoFragment : ViewPagerFragment(),
         mMedium = arguments!!.getSerializable(MEDIUM) as Medium
         mConfig = context!!.config
         mView = inflater.inflate(R.layout.pager_video_item, container, false).apply {
-            panorama_outline.setOnClickListener { openPanorama() }
+            ivPanoramaOutline.setOnClickListener { openPanorama() }
             tvVideoCurrTime.setOnClickListener { skip(false) }
             tvVideoDuration.setOnClickListener { skip(true) }
-            video_holder.setOnClickListener { toggleFullscreen() }
-            video_preview.setOnClickListener { toggleFullscreen() }
+            layoutVideo.setOnClickListener { toggleFullscreen() }
+            ivVideoPreview.setOnClickListener { toggleFullscreen() }
             layoutVideoSurfaceFrame.controller.settings.swallowDoubleTaps = true
 
-            video_play_outline.setOnClickListener {
+            ivVideoPlayOutline.setOnClickListener {
                 if (mConfig.openVideosOnSeparateScreen) {
                     launchVideoPlayer()
                 } else {
@@ -156,7 +156,7 @@ class VideoFragment : ViewPagerFragment(),
                     }
                 })
 
-            video_preview.setOnTouchListener { _, event ->
+            ivVideoPreview.setOnTouchListener { _, event ->
                 handleEvent(event)
                 false
             }
@@ -176,7 +176,7 @@ class VideoFragment : ViewPagerFragment(),
         }
 
         storeStateVariables()
-        Glide.with(context!!).load(mMedium.path).into(mView.video_preview)
+        Glide.with(context!!).load(mMedium.path).into(mView.ivVideoPreview)
 
         // setMenuVisibility is not called at VideoActivity (third party intent)
         if (!mIsFragmentVisible && activity is VideoActivity) {
@@ -197,11 +197,11 @@ class VideoFragment : ViewPagerFragment(),
 
         if (mIsPanorama) {
             mView.apply {
-                panorama_outline.beVisible()
-                video_play_outline.beGone()
+                ivPanoramaOutline.beVisible()
+                ivVideoPlayOutline.beGone()
                 mVolumeSideScroll.beGone()
                 mBrightnessSideScroll.beGone()
-                Glide.with(context!!).load(mMedium.path).into(video_preview)
+                Glide.with(context!!).load(mMedium.path).into(ivVideoPreview)
             }
         }
 
@@ -266,7 +266,7 @@ class VideoFragment : ViewPagerFragment(),
         super.onResume()
         mConfig =
             context!!.config      // make sure we get a new config, in case the user changed something in the app settings
-        activity!!.updateTextColors(mView.video_holder)
+        activity!!.updateTextColors(mView.layoutVideo)
         val allowVideoGestures = mConfig.allowVideoGestures
         mTextureView.beGoneIf(mConfig.openVideosOnSeparateScreen || mIsPanorama)
         mView.layoutVideoSurfaceFrame.beGoneIf(mTextureView.isGone())
@@ -487,7 +487,7 @@ class VideoFragment : ViewPagerFragment(),
 
     private fun checkExtendedDetails() {
         if (mConfig.showExtendedDetails) {
-            mView.video_details.apply {
+            mView.tvVideoDetails.apply {
                 beInvisible()   // make it invisible so we can measure it, but not show yet
                 text = getMediumExtendedDetails(mMedium)
                 onGlobalLayout {
@@ -502,7 +502,7 @@ class VideoFragment : ViewPagerFragment(),
                 }
             }
         } else {
-            mView.video_details.beGone()
+            mView.tvVideoDetails.beGone()
         }
     }
 
@@ -561,7 +561,7 @@ class VideoFragment : ViewPagerFragment(),
         }
 
         mTimeHolder.animate().alpha(newAlpha).start()
-        mView.video_details.apply {
+        mView.tvVideoDetails.apply {
             if (mStoredShowExtendedDetails && isVisible() && context != null && resources != null) {
                 animate().y(getExtendedDetailsY(height))
 
@@ -679,8 +679,8 @@ class VideoFragment : ViewPagerFragment(),
             return
         }
 
-        if (mView.video_preview.isVisible()) {
-            mView.video_preview.beGone()
+        if (mView.ivVideoPreview.isVisible()) {
+            mView.ivVideoPreview.beGone()
             initExoPlayer()
         }
 
@@ -699,7 +699,7 @@ class VideoFragment : ViewPagerFragment(),
         }
 
         if (!mWasVideoStarted) {
-            mView.video_play_outline.beGone()
+            mView.ivVideoPlayOutline.beGone()
             mPlayPauseButton.beVisible()
         }
 
