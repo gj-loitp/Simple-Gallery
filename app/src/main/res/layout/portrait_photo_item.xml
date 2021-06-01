@@ -5,8 +5,8 @@
     android:layout_marginStart="@dimen/one_dp"
     android:layout_marginEnd="@dimen/one_dp">
 
-    <ImageView
-        android:id="@+id/portrait_photo_item_thumbnail"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPortraitPhotoItemThumbnail"
         android:layout_width="@dimen/portrait_photos_stripe_height"
         android:layout_height="@dimen/portrait_photos_stripe_height"
         android:background="@drawable/stroke_background"

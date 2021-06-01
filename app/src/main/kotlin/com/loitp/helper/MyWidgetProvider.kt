@@ -55,10 +55,10 @@ class MyWidgetProvider : AppWidgetProvider() {
             val config = context.config
             context.widgetsDB.getWidgets().filter { appWidgetIds.contains(it.widgetId) }.forEach {
                 val views = RemoteViews(context.packageName, R.layout.widget).apply {
-                    setBackgroundColor(R.id.widget_holder, config.widgetBgColor)
-                    setVisibleIf(R.id.widget_folder_name, config.showWidgetFolderName)
-                    setTextColor(R.id.widget_folder_name, config.widgetTextColor)
-                    setText(R.id.widget_folder_name, context.getFolderNameFromPath(it.folderPath))
+                    setBackgroundColor(R.id.layoutWidget, config.widgetBgColor)
+                    setVisibleIf(R.id.tvWidgetFolderName, config.showWidgetFolderName)
+                    setTextColor(R.id.tvWidgetFolderName, config.widgetTextColor)
+                    setText(R.id.tvWidgetFolderName, context.getFolderNameFromPath(it.folderPath))
                 }
 
                 val path =
@@ -86,7 +86,7 @@ class MyWidgetProvider : AppWidgetProvider() {
                         .apply(options)
                         .submit(widgetSize, widgetSize)
                         .get()
-                    views.setImageViewBitmap(R.id.widget_imageview, image)
+                    views.setImageViewBitmap(R.id.ivWidget, image)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -94,7 +94,7 @@ class MyWidgetProvider : AppWidgetProvider() {
                 setupAppOpenIntent(
                     context = context,
                     views = views,
-                    id = R.id.widget_holder,
+                    id = R.id.layoutWidget,
                     widget = it
                 )
 

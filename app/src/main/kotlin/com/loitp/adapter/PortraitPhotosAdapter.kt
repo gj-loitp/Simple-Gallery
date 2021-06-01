@@ -56,14 +56,14 @@ class PortraitPhotosAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(photo: String, position: Int): View {
             itemView.apply {
-                portrait_photo_item_thumbnail.layoutParams.width =
+                ivPortraitPhotoItemThumbnail.layoutParams.width =
                     if (position == 0 || position == photos.size - 1) {
                         sideElementWidth
                     } else {
                         itemWidth
                     }
 
-                portrait_photo_item_thumbnail.background =
+                ivPortraitPhotoItemThumbnail.background =
                     if (photo.isEmpty() || position != currentSelectionIndex) {
                         null
                     } else {
@@ -79,7 +79,7 @@ class PortraitPhotosAdapter(
                     .load(photo)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .apply(options)
-                    .into(portrait_photo_item_thumbnail)
+                    .into(ivPortraitPhotoItemThumbnail)
 
                 if (photo.isNotEmpty()) {
                     isClickable = true

@@ -34,10 +34,10 @@ import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.photo_item_grid.view.*
 import kotlinx.android.synthetic.main.thumbnail_section.view.*
 import kotlinx.android.synthetic.main.video_item_grid.view.*
-import kotlinx.android.synthetic.main.video_item_grid.view.media_item_holder
-import kotlinx.android.synthetic.main.video_item_grid.view.medium_check
-import kotlinx.android.synthetic.main.video_item_grid.view.medium_name
-import kotlinx.android.synthetic.main.video_item_grid.view.medium_thumbnail
+import kotlinx.android.synthetic.main.video_item_grid.view.layoutMediaItem
+import kotlinx.android.synthetic.main.video_item_grid.view.ivMediumCheck
+import kotlinx.android.synthetic.main.video_item_grid.view.tvMediumName
+import kotlinx.android.synthetic.main.video_item_grid.view.ivMediumThumbnail
 import java.util.*
 
 class MediaAdapter(
@@ -212,8 +212,8 @@ class MediaAdapter(
         super.onViewRecycled(holder)
         if (!activity.isDestroyed) {
             val itemView = holder.itemView
-            visibleItemPaths.remove(itemView.medium_name?.tag)
-            val tmb = itemView.medium_thumbnail
+            visibleItemPaths.remove(itemView.tvMediumName?.tag)
+            val tmb = itemView.ivMediumThumbnail
             if (tmb != null) {
                 Glide.with(activity).clear(tmb)
             }
@@ -572,33 +572,33 @@ class MediaAdapter(
                 0
             }
 
-            media_item_holder.setPadding(padding, padding, padding, padding)
+            layoutMediaItem.setPadding(padding, padding, padding, padding)
 
-            play_portrait_outline?.beVisibleIf(medium.isVideo() || medium.isPortrait())
+            ivPlayPortraitOutline?.beVisibleIf(medium.isVideo() || medium.isPortrait())
             if (medium.isVideo()) {
-                play_portrait_outline?.setImageResource(R.drawable.ic_play_outline_vector)
-                play_portrait_outline?.beVisible()
+                ivPlayPortraitOutline?.setImageResource(R.drawable.ic_play_outline_vector)
+                ivPlayPortraitOutline?.beVisible()
             } else if (medium.isPortrait()) {
-                play_portrait_outline?.setImageResource(R.drawable.ic_portrait_photo_vector)
-                play_portrait_outline?.beVisibleIf(showFileTypes)
+                ivPlayPortraitOutline?.setImageResource(R.drawable.ic_portrait_photo_vector)
+                ivPlayPortraitOutline?.beVisibleIf(showFileTypes)
             }
 
             if (showFileTypes && (medium.isGIF() || medium.isRaw() || medium.isSVG())) {
-                file_type.setText(
+                tvFileType.setText(
                     when (medium.type) {
                         TYPE_GIFS -> R.string.gif
                         TYPE_RAWS -> R.string.raw
                         else -> R.string.svg
                     }
                 )
-                file_type.beVisible()
+                tvFileType.beVisible()
             } else {
-                file_type?.beGone()
+                tvFileType?.beGone()
             }
 
-            medium_name.beVisibleIf(displayFilenames || isListViewType)
-            medium_name.text = medium.name
-            medium_name.tag = medium.path
+            tvMediumName.beVisibleIf(displayFilenames || isListViewType)
+            tvMediumName.text = medium.name
+            tvMediumName.tag = medium.path
 
             val showVideoDuration = medium.isVideo() && config.showThumbnailVideoDuration
             if (showVideoDuration) {
@@ -606,14 +606,14 @@ class MediaAdapter(
             }
             tvVideoDuration?.beVisibleIf(showVideoDuration)
 
-            medium_check?.beVisibleIf(isSelected)
+            ivMediumCheck?.beVisibleIf(isSelected)
             if (isSelected) {
-                medium_check?.background?.applyColorFilter(adjustedPrimaryColor)
-                medium_check.applyColorFilter(contrastColor)
+                ivMediumCheck?.background?.applyColorFilter(adjustedPrimaryColor)
+                ivMediumCheck.applyColorFilter(contrastColor)
             }
 
             if (isListViewType) {
-                media_item_holder.isSelected = isSelected
+                layoutMediaItem.isSelected = isSelected
             }
 
             var path = medium.path
@@ -631,7 +631,7 @@ class MediaAdapter(
                 activity.loadImage(
                     type = medium.type,
                     path = path,
-                    target = medium_thumbnail,
+                    target = ivMediumThumbnail,
                     horizontalScroll = scrollHorizontally,
                     animateGifs = animateGifs,
                     cropThumbnails = cropThumbnails,
@@ -640,15 +640,15 @@ class MediaAdapter(
                     skipMemoryCacheAtPaths = rotatedImagePaths
                 )
             } else {
-                medium_thumbnail.setImageDrawable(null)
-                medium_thumbnail.isHorizontalScrolling = scrollHorizontally
+                ivMediumThumbnail.setImageDrawable(null)
+                ivMediumThumbnail.isHorizontalScrolling = scrollHorizontally
                 delayHandler.postDelayed({
                     val isVisible = visibleItemPaths.contains(medium.path)
                     if (isVisible) {
                         activity.loadImage(
                             type = medium.type,
                             path = path,
-                            target = medium_thumbnail,
+                            target = ivMediumThumbnail,
                             horizontalScroll = scrollHorizontally,
                             animateGifs = animateGifs,
                             cropThumbnails = cropThumbnails,
@@ -661,16 +661,16 @@ class MediaAdapter(
             }
 
             if (isListViewType) {
-                medium_name.setTextColor(textColor)
-                play_portrait_outline?.applyColorFilter(textColor)
+                tvMediumName.setTextColor(textColor)
+                ivPlayPortraitOutline?.applyColorFilter(textColor)
             }
         }
     }
 
     private fun setupSection(view: View, section: ThumbnailSection) {
         view.apply {
-            thumbnail_section.text = section.title
-            thumbnail_section.setTextColor(textColor)
+            tvThumbnailSection.text = section.title
+            tvThumbnailSection.setTextColor(textColor)
         }
     }
 }

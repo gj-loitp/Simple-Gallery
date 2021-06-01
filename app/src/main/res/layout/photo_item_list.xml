@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/media_item_holder"
+    android:id="@+id/layoutMediaItem"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
@@ -10,15 +10,17 @@
     android:foreground="@drawable/selector"
     android:paddingStart="@dimen/medium_margin"
     android:paddingTop="@dimen/small_margin"
-    android:paddingBottom="@dimen/small_margin">
+    android:paddingEnd="0dp"
+    android:paddingBottom="@dimen/small_margin"
+    tools:ignore="UnusedAttribute">
 
     <com.loitp.ui.view.MySquareImageView
-        android:id="@+id/medium_thumbnail"
+        android:id="@+id/ivMediumThumbnail"
         android:layout_width="@dimen/list_view_folder_thumbnail_size"
         android:layout_height="@dimen/list_view_folder_thumbnail_size" />
 
-    <ImageView
-        android:id="@+id/medium_check"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivMediumCheck"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
         android:layout_alignParentTop="true"
@@ -31,13 +33,13 @@
         android:src="@drawable/ic_check_vector"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/medium_name"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMediumName"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignTop="@+id/medium_thumbnail"
-        android:layout_alignBottom="@+id/medium_thumbnail"
-        android:layout_toEndOf="@+id/medium_thumbnail"
+        android:layout_alignTop="@+id/ivMediumThumbnail"
+        android:layout_alignBottom="@+id/ivMediumThumbnail"
+        android:layout_toEndOf="@+id/ivMediumThumbnail"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="3"
@@ -47,14 +49,15 @@
         android:textSize="@dimen/bigger_text_size"
         tools:text="My photo" />
 
-    <TextView
-        android:id="@+id/file_type"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFileType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="@dimen/small_margin"
         android:fontFamily="sans-serif-medium"
+        android:paddingStart="0dp"
         android:paddingEnd="@dimen/small_margin"
         android:paddingBottom="@dimen/medium_margin"
         android:shadowColor="@color/default_background_color"
