@@ -23,7 +23,7 @@ class ResizeWithPathDialog(
         var realPath = path.getParentPath()
         val view =
             activity.layoutInflater.inflate(R.layout.dialog_resize_image_with_path, null).apply {
-                image_path.text = "${activity.humanizePath(realPath).trimEnd('/')}/"
+                tvImagePath.text = "${activity.humanizePath(realPath).trimEnd('/')}/"
 
                 val fullName = path.getFilenameFromPath()
                 val dotAt = fullName.lastIndexOf(".")
@@ -32,11 +32,11 @@ class ResizeWithPathDialog(
                 if (dotAt > 0) {
                     name = fullName.substring(0, dotAt)
                     val extension = fullName.substring(dotAt + 1)
-                    image_extension.setText(extension)
+                    etImageExtension.setText(extension)
                 }
 
-                image_name.setText(name)
-                image_path.setOnClickListener {
+                etImageName.setText(name)
+                tvImagePath.setOnClickListener {
                     FilePickerDialog(
                         activity = activity,
                         currPath = realPath,
@@ -45,14 +45,14 @@ class ResizeWithPathDialog(
                         showFAB = true,
                         canAddShowHiddenButton = true
                     ) {
-                        image_path.text = activity.humanizePath(it)
+                        tvImagePath.text = activity.humanizePath(it)
                         realPath = it
                     }
                 }
             }
 
-        val widthView = view.image_width
-        val heightView = view.image_height
+        val widthView = view.etImageWidth
+        val heightView = view.etImageHeight
 
         widthView.setText(size.x.toString())
         heightView.setText(size.y.toString())
@@ -88,7 +88,7 @@ class ResizeWithPathDialog(
             .setNegativeButton(R.string.cancel, null)
             .create().apply {
                 activity.setupDialogStuff(view, this) {
-                    showKeyboard(view.image_width)
+                    showKeyboard(view.etImageWidth)
                     getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val width = getViewValue(widthView)
                         val height = getViewValue(heightView)
@@ -99,8 +99,8 @@ class ResizeWithPathDialog(
 
                         val newSize = Point(getViewValue(widthView), getViewValue(heightView))
 
-                        val filename = view.image_name.value
-                        val extension = view.image_extension.value
+                        val filename = view.etImageName.value
+                        val extension = view.etImageExtension.value
                         if (filename.isEmpty()) {
                             activity.toast(R.string.filename_cannot_be_empty)
                             return@setOnClickListener

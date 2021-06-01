@@ -20,15 +20,15 @@ class ManageExtendedDetailsDialog(
     init {
         val details = activity.config.extendedDetails
         view.apply {
-            manage_extended_details_name.isChecked = details and EXT_NAME != 0
-            manage_extended_details_path.isChecked = details and EXT_PATH != 0
-            manage_extended_details_size.isChecked = details and EXT_SIZE != 0
-            manage_extended_details_resolution.isChecked = details and EXT_RESOLUTION != 0
-            manage_extended_details_last_modified.isChecked = details and EXT_LAST_MODIFIED != 0
-            manage_extended_details_date_taken.isChecked = details and EXT_DATE_TAKEN != 0
-            manage_extended_details_camera.isChecked = details and EXT_CAMERA_MODEL != 0
-            manage_extended_details_exif.isChecked = details and EXT_EXIF_PROPERTIES != 0
-            manage_extended_details_gps_coordinates.isChecked = details and EXT_GPS != 0
+            cbManageExtendedDetailsName.isChecked = details and EXT_NAME != 0
+            cbManageExtendedDetailsPath.isChecked = details and EXT_PATH != 0
+            cbManageExtendedDetailsSize.isChecked = details and EXT_SIZE != 0
+            cbManageExtendedDetailsResolution.isChecked = details and EXT_RESOLUTION != 0
+            cbManageExtendedDetailsLastModified.isChecked = details and EXT_LAST_MODIFIED != 0
+            cbManageExtendedDetailsDateTaken.isChecked = details and EXT_DATE_TAKEN != 0
+            cbManageExtendedDetailsCamera.isChecked = details and EXT_CAMERA_MODEL != 0
+            cbManageExtendedDetailsExif.isChecked = details and EXT_EXIF_PROPERTIES != 0
+            cbManageExtendedDetailsGpsCoordinates.isChecked = details and EXT_GPS != 0
         }
 
         AlertDialog.Builder(activity)
@@ -42,23 +42,23 @@ class ManageExtendedDetailsDialog(
     private fun dialogConfirmed() {
         var result = 0
         view.apply {
-            if (manage_extended_details_name.isChecked)
+            if (cbManageExtendedDetailsName.isChecked)
                 result += EXT_NAME
-            if (manage_extended_details_path.isChecked)
+            if (cbManageExtendedDetailsPath.isChecked)
                 result += EXT_PATH
-            if (manage_extended_details_size.isChecked)
+            if (cbManageExtendedDetailsSize.isChecked)
                 result += EXT_SIZE
-            if (manage_extended_details_resolution.isChecked)
+            if (cbManageExtendedDetailsResolution.isChecked)
                 result += EXT_RESOLUTION
-            if (manage_extended_details_last_modified.isChecked)
+            if (cbManageExtendedDetailsLastModified.isChecked)
                 result += EXT_LAST_MODIFIED
-            if (manage_extended_details_date_taken.isChecked)
+            if (cbManageExtendedDetailsDateTaken.isChecked)
                 result += EXT_DATE_TAKEN
-            if (manage_extended_details_camera.isChecked)
+            if (cbManageExtendedDetailsCamera.isChecked)
                 result += EXT_CAMERA_MODEL
-            if (manage_extended_details_exif.isChecked)
+            if (cbManageExtendedDetailsExif.isChecked)
                 result += EXT_EXIF_PROPERTIES
-            if (manage_extended_details_gps_coordinates.isChecked)
+            if (cbManageExtendedDetailsGpsCoordinates.isChecked)
                 result += EXT_GPS
         }
 

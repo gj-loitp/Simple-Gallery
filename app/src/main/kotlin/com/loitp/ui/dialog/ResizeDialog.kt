@@ -17,8 +17,8 @@ class ResizeDialog(
 ) {
     init {
         val view = activity.layoutInflater.inflate(R.layout.dialog_resize_image, null)
-        val widthView = view.image_width
-        val heightView = view.image_height
+        val widthView = view.etImageWidth
+        val heightView = view.etImageHeight
 
         widthView.setText(size.x.toString())
         heightView.setText(size.y.toString())
@@ -33,7 +33,7 @@ class ResizeDialog(
                     width = size.x
                 }
 
-                if (view.keep_aspect_ratio.isChecked) {
+                if (view.cbKeepAspectRatio.isChecked) {
                     heightView.setText((width / ratio).toInt().toString())
                 }
             }
@@ -47,7 +47,7 @@ class ResizeDialog(
                     height = size.y
                 }
 
-                if (view.keep_aspect_ratio.isChecked) {
+                if (view.cbKeepAspectRatio.isChecked) {
                     widthView.setText((height * ratio).toInt().toString())
                 }
             }
@@ -58,7 +58,7 @@ class ResizeDialog(
             .setNegativeButton(R.string.cancel, null)
             .create().apply {
                 activity.setupDialogStuff(view, this, R.string.resize_and_save) {
-                    showKeyboard(view.image_width)
+                    showKeyboard(view.etImageWidth)
                     getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val width = getViewValue(widthView)
                         val height = getViewValue(heightView)

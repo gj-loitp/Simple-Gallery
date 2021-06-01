@@ -22,7 +22,7 @@ class SaveAsDialog(
         var realPath = path.getParentPath()
 
         val view = activity.layoutInflater.inflate(R.layout.dialog_save_as, null).apply {
-            save_as_path.text = "${activity.humanizePath(realPath).trimEnd('/')}/"
+            tvSaveAsPath.text = "${activity.humanizePath(realPath).trimEnd('/')}/"
 
             val fullName = path.getFilenameFromPath()
             val dotAt = fullName.lastIndexOf(".")
@@ -31,16 +31,16 @@ class SaveAsDialog(
             if (dotAt > 0) {
                 name = fullName.substring(0, dotAt)
                 val extension = fullName.substring(dotAt + 1)
-                save_as_extension.setText(extension)
+                etSaveAsExtension.setText(extension)
             }
 
             if (appendFilename) {
                 name += "_1"
             }
 
-            save_as_name.setText(name)
-            save_as_path.setOnClickListener {
-                activity.hideKeyboard(save_as_path)
+            etSaveAsName.setText(name)
+            tvSaveAsPath.setOnClickListener {
+                activity.hideKeyboard(tvSaveAsPath)
                 FilePickerDialog(
                     activity = activity,
                     currPath = realPath,
@@ -49,7 +49,7 @@ class SaveAsDialog(
                     showFAB = true,
                     canAddShowHiddenButton = true
                 ) {
-                    save_as_path.text = activity.humanizePath(it)
+                    tvSaveAsPath.text = activity.humanizePath(it)
                     realPath = it
                 }
             }
@@ -61,10 +61,10 @@ class SaveAsDialog(
             .setOnCancelListener { cancelCallback?.invoke() }
             .create().apply {
                 activity.setupDialogStuff(view, this, R.string.save_as) {
-                    showKeyboard(view.save_as_name)
+                    showKeyboard(view.etSaveAsName)
                     getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                        val filename = view.save_as_name.value
-                        val extension = view.save_as_extension.value
+                        val filename = view.etSaveAsName.value
+                        val extension = view.etSaveAsExtension.value
 
                         if (filename.isEmpty()) {
                             activity.toast(R.string.filename_cannot_be_empty)
