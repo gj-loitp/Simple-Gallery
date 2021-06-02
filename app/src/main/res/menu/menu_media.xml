@@ -2,89 +2,89 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/search"
+        android:id="@+id/menuSearch"
         android:icon="@drawable/ic_search_vector"
         android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />
     <item
-        android:id="@+id/toggle_filename"
+        android:id="@+id/menuToggleFileName"
         android:icon="@drawable/ic_label_vector"
         android:title="@string/toggle_filename"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/sort"
+        android:id="@+id/menuSort"
         android:icon="@drawable/ic_sort_vector"
         android:title="@string/sort_by"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/filter"
+        android:id="@+id/menuFilter"
         android:icon="@drawable/ic_filter_vector"
         android:title="@string/filter_media"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/change_view_type"
+        android:id="@+id/menuChangeViewType"
         android:title="@string/change_view_type"
         app:showAsAction="never" />
     <item
-        android:id="@+id/temporarily_show_hidden"
+        android:id="@+id/menuTemporarilyShowHidden"
         android:title="@string/temporarily_show_hidden"
         app:showAsAction="never" />
     <item
-        android:id="@+id/stop_showing_hidden"
+        android:id="@+id/menuStopShowingHidden"
         android:title="@string/stop_showing_hidden"
         app:showAsAction="never" />
     <item
-        android:id="@+id/empty_recycle_bin"
+        android:id="@+id/menuEmptyRecycleBin"
         android:title="@string/empty_recycle_bin"
         app:showAsAction="never" />
     <item
-        android:id="@+id/empty_disable_recycle_bin"
+        android:id="@+id/menuEmptyDisableRecycleBin"
         android:title="@string/empty_and_disable_recycle_bin"
         app:showAsAction="never" />
     <item
-        android:id="@+id/restore_all_files"
+        android:id="@+id/menuRestoreAllFiles"
         android:title="@string/restore_all_files"
         app:showAsAction="never" />
     <item
-        android:id="@+id/folder_view"
+        android:id="@+id/menuFolderView"
         android:title="@string/folder_view"
         app:showAsAction="never" />
     <item
-        android:id="@+id/open_camera"
+        android:id="@+id/menuOpenCamera"
         android:icon="@drawable/ic_camera_vector"
         android:title="@string/open_camera"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/group"
+        android:id="@+id/menuGroupBy"
         android:title="@string/group_by"
         app:showAsAction="never" />
     <item
-        android:id="@+id/set_as_default_folder"
+        android:id="@+id/menuSetAsDefaultFolder"
         android:title="@string/set_as_default_folder"
         app:showAsAction="never" />
     <item
-        android:id="@+id/unset_as_default_folder"
+        android:id="@+id/menuUnsetAsDefaultFolder"
         android:title="@string/unset_as_default_folder"
         app:showAsAction="never" />
     <item
-        android:id="@+id/create_new_folder"
+        android:id="@+id/menuCreateNewFolder"
         android:title="@string/create_new_folder"
         app:showAsAction="never" />
     <item
-        android:id="@+id/increase_column_count"
+        android:id="@+id/menuIncreaseColumnCount"
         android:title="@string/increase_column_count"
         app:showAsAction="never" />
     <item
-        android:id="@+id/reduce_column_count"
+        android:id="@+id/menuReduceColumnCount"
         android:title="@string/reduce_column_count"
         app:showAsAction="never" />
     <item
-        android:id="@+id/slideshow"
+        android:id="@+id/menuSlideShow"
         android:title="@string/slideshow"
         app:showAsAction="never" />
     <item
-        android:id="@+id/settings"
+        android:id="@+id/menuSettings"
         android:title="@string/settings"
         app:showAsAction="never" />
 </menu>

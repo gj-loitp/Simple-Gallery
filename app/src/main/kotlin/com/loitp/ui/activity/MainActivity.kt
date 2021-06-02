@@ -287,21 +287,21 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
             menuInflater.inflate(R.menu.menu_main, menu)
             val useBin = config.useRecycleBin
             menu.apply {
-                findItem(R.id.increase_column_count).isVisible =
+                findItem(R.id.menuIncreaseColumnCount).isVisible =
                     config.viewTypeFolders == VIEW_TYPE_GRID && config.dirColumnCnt < MAX_COLUMN_COUNT
-                findItem(R.id.reduce_column_count).isVisible =
+                findItem(R.id.menuReduceColumnCount).isVisible =
                     config.viewTypeFolders == VIEW_TYPE_GRID && config.dirColumnCnt > 1
-                findItem(R.id.hide_the_recycle_bin).isVisible =
+                findItem(R.id.menuHideTheRecycleBin).isVisible =
                     useBin && config.showRecycleBinAtFolders
-                findItem(R.id.show_the_recycle_bin).isVisible =
+                findItem(R.id.menuShowTheRecycleBin).isVisible =
                     useBin && !config.showRecycleBinAtFolders
-                findItem(R.id.set_as_default_folder).isVisible = config.defaultFolder.isNotEmpty()
+                findItem(R.id.menuSetAsDefaultFolder).isVisible = config.defaultFolder.isNotEmpty()
                 setupSearch(this)
             }
         }
 
-        menu.findItem(R.id.temporarily_show_hidden).isVisible = !config.shouldShowHidden
-        menu.findItem(R.id.stop_showing_hidden).isVisible = config.temporarilyShowHidden
+        menu.findItem(R.id.menuTemporarilyShowHidden).isVisible = !config.shouldShowHidden
+        menu.findItem(R.id.menuStopShowingHidden).isVisible = config.temporarilyShowHidden
 
         updateMenuItemColors(menu)
         return true
@@ -309,20 +309,20 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.sort -> showSortingDialog()
-            R.id.filter -> showFilterMediaDialog()
-            R.id.open_camera -> launchCamera()
-            R.id.show_all -> showAllMedia()
-            R.id.change_view_type -> changeViewType()
-            R.id.temporarily_show_hidden -> tryToggleTemporarilyShowHidden()
-            R.id.stop_showing_hidden -> tryToggleTemporarilyShowHidden()
-            R.id.create_new_folder -> createNewFolder()
-            R.id.show_the_recycle_bin -> toggleRecycleBin(true)
-            R.id.hide_the_recycle_bin -> toggleRecycleBin(false)
-            R.id.increase_column_count -> increaseColumnCount()
-            R.id.reduce_column_count -> reduceColumnCount()
-            R.id.set_as_default_folder -> setAsDefaultFolder()
-            R.id.settings -> launchSettings()
+            R.id.menuSort -> showSortingDialog()
+            R.id.menuFilter -> showFilterMediaDialog()
+            R.id.menuOpenCamera -> launchCamera()
+            R.id.menuShowAll -> showAllMedia()
+            R.id.menuChangeViewType -> changeViewType()
+            R.id.menuTemporarilyShowHidden -> tryToggleTemporarilyShowHidden()
+            R.id.menuStopShowingHidden -> tryToggleTemporarilyShowHidden()
+            R.id.menuCreateNewFolder -> createNewFolder()
+            R.id.menuShowTheRecycleBin -> toggleRecycleBin(true)
+            R.id.menuHideTheRecycleBin -> toggleRecycleBin(false)
+            R.id.menuIncreaseColumnCount -> increaseColumnCount()
+            R.id.menuReduceColumnCount -> reduceColumnCount()
+            R.id.menuSetAsDefaultFolder -> setAsDefaultFolder()
+            R.id.menuSettings -> launchSettings()
             R.id.menuRateApp -> rateApp()
             R.id.menuMoreApp -> moreApp()
             else -> return super.onOptionsItemSelected(item)
@@ -375,7 +375,7 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
 
     private fun setupSearch(menu: Menu) {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        mSearchMenuItem = menu.findItem(R.id.search)
+        mSearchMenuItem = menu.findItem(R.id.menuSearch)
         (mSearchMenuItem?.actionView as? SearchView)?.apply {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             isSubmitButtonEnabled = false

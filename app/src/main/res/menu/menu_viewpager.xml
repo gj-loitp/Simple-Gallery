@@ -35,7 +35,7 @@
         </menu>
     </item>
     <item
-        android:id="@+id/menu_properties"
+        android:id="@+id/menuProperties"
         android:icon="@drawable/ic_info"
         android:title="@string/properties"
         app:showAsAction="ifRoom"/>
@@ -67,11 +67,11 @@
         android:title="@string/create_shortcut"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/menu_open_with"
+        android:id="@+id/menuOpenWith"
         android:title="@string/open_with"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/menu_set_as"
+        android:id="@+id/menuSetAs"
         android:icon="@drawable/ic_set_as_vector"
         android:title="@string/set_as"
         app:showAsAction="ifRoom"/>
@@ -120,7 +120,7 @@
         android:title="@string/resize"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/menu_show_on_map"
+        android:id="@+id/menuShowOnMap"
         android:title="@string/show_on_map"
         app:showAsAction="never"/>
     <item

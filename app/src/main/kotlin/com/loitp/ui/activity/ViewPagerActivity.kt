@@ -176,11 +176,11 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
 
         val rotationDegrees = getCurrentPhotoFragment()?.mCurrentRotationDegrees ?: 0
         menu.apply {
-            findItem(R.id.menu_show_on_map).isVisible =
+            findItem(R.id.menuShowOnMap).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP == 0
             findItem(R.id.menu_slideshow).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_SLIDESHOW == 0
-            findItem(R.id.menu_properties).isVisible =
+            findItem(R.id.menuProperties).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_PROPERTIES == 0
             findItem(R.id.menu_delete).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_DELETE == 0
@@ -191,7 +191,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
                 visibleBottomActions and BOTTOM_ACTION_RENAME == 0 && !currentMedium.getIsInRecycleBin()
             findItem(R.id.menu_rotate).isVisible =
                 currentMedium.isImage() && visibleBottomActions and BOTTOM_ACTION_ROTATE == 0
-            findItem(R.id.menu_set_as).isVisible =
+            findItem(R.id.menuSetAs).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_SET_AS == 0
             findItem(R.id.menu_copy_to).isVisible = visibleBottomActions and BOTTOM_ACTION_COPY == 0
             findItem(R.id.menu_move_to).isVisible = visibleBottomActions and BOTTOM_ACTION_MOVE == 0
@@ -236,11 +236,11 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
             return true
 
         when (item.itemId) {
-            R.id.menu_set_as -> setAs(getCurrentPath())
+            R.id.menuSetAs -> setAs(getCurrentPath())
             R.id.menu_slideshow -> initSlideshow()
             R.id.menu_copy_to -> copyMoveTo(true)
             R.id.menu_move_to -> moveFileTo()
-            R.id.menu_open_with -> openPath(getCurrentPath(), true)
+            R.id.menuOpenWith -> openPath(getCurrentPath(), true)
             R.id.menu_hide -> toggleFileVisibility(true)
             R.id.menu_unhide -> toggleFileVisibility(false)
             R.id.menu_share -> shareMediumPath(getCurrentPath())
@@ -248,8 +248,8 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
             R.id.menu_rename -> renameFile()
             R.id.menu_print -> printFile()
             R.id.menu_edit -> openEditor(getCurrentPath())
-            R.id.menu_properties -> showProperties()
-            R.id.menu_show_on_map -> showFileOnMap(getCurrentPath())
+            R.id.menuProperties -> showProperties()
+            R.id.menuShowOnMap -> showFileOnMap(getCurrentPath())
             R.id.menu_rotate_right -> rotateImage(90)
             R.id.menu_rotate_left -> rotateImage(-90)
             R.id.menu_rotate_one_eighty -> rotateImage(180)

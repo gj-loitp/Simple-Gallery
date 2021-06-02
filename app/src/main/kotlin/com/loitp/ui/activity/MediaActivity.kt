@@ -238,29 +238,29 @@ class MediaActivity : SimpleActivity(), MediaOperationsListener {
             config.defaultFolder.isNotEmpty() && File(config.defaultFolder).compareTo(File(mPath)) == 0
 
         menu.apply {
-            findItem(R.id.group).isVisible = !config.scrollHorizontally
+            findItem(R.id.menuGroupBy).isVisible = !config.scrollHorizontally
 
-            findItem(R.id.empty_recycle_bin).isVisible = mPath == RECYCLE_BIN
-            findItem(R.id.empty_disable_recycle_bin).isVisible = mPath == RECYCLE_BIN
-            findItem(R.id.restore_all_files).isVisible = mPath == RECYCLE_BIN
+            findItem(R.id.menuEmptyRecycleBin).isVisible = mPath == RECYCLE_BIN
+            findItem(R.id.menuEmptyDisableRecycleBin).isVisible = mPath == RECYCLE_BIN
+            findItem(R.id.menuRestoreAllFiles).isVisible = mPath == RECYCLE_BIN
 
-            findItem(R.id.folder_view).isVisible = mShowAll
-            findItem(R.id.open_camera).isVisible = mShowAll
-            findItem(R.id.create_new_folder).isVisible =
+            findItem(R.id.menuFolderView).isVisible = mShowAll
+            findItem(R.id.menuOpenCamera).isVisible = mShowAll
+            findItem(R.id.menuCreateNewFolder).isVisible =
                 !mShowAll && mPath != RECYCLE_BIN && mPath != FAVORITES
 
-            findItem(R.id.temporarily_show_hidden).isVisible = !config.shouldShowHidden
-            findItem(R.id.stop_showing_hidden).isVisible = config.temporarilyShowHidden
+            findItem(R.id.menuTemporarilyShowHidden).isVisible = !config.shouldShowHidden
+            findItem(R.id.menuStopShowingHidden).isVisible = config.temporarilyShowHidden
 
-            findItem(R.id.set_as_default_folder).isVisible = !isDefaultFolder
-            findItem(R.id.unset_as_default_folder).isVisible = isDefaultFolder
+            findItem(R.id.menuSetAsDefaultFolder).isVisible = !isDefaultFolder
+            findItem(R.id.menuUnsetAsDefaultFolder).isVisible = isDefaultFolder
 
             val viewType = config.getFolderViewType(if (mShowAll) SHOW_ALL else mPath)
-            findItem(R.id.increase_column_count).isVisible =
+            findItem(R.id.menuIncreaseColumnCount).isVisible =
                 viewType == VIEW_TYPE_GRID && config.mediaColumnCnt < MAX_COLUMN_COUNT
-            findItem(R.id.reduce_column_count).isVisible =
+            findItem(R.id.menuReduceColumnCount).isVisible =
                 viewType == VIEW_TYPE_GRID && config.mediaColumnCnt > 1
-            findItem(R.id.toggle_filename).isVisible = viewType == VIEW_TYPE_GRID
+            findItem(R.id.menuToggleFileName).isVisible = viewType == VIEW_TYPE_GRID
         }
 
         setupSearch(menu)
@@ -270,25 +270,25 @@ class MediaActivity : SimpleActivity(), MediaOperationsListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.sort -> showSortingDialog()
-            R.id.filter -> showFilterMediaDialog()
-            R.id.empty_recycle_bin -> emptyRecycleBin()
-            R.id.empty_disable_recycle_bin -> emptyAndDisableRecycleBin()
-            R.id.restore_all_files -> restoreAllFiles()
-            R.id.toggle_filename -> toggleFilenameVisibility()
-            R.id.open_camera -> launchCamera()
-            R.id.folder_view -> switchToFolderView()
-            R.id.change_view_type -> changeViewType()
-            R.id.group -> showGroupByDialog()
-            R.id.create_new_folder -> createNewFolder()
-            R.id.temporarily_show_hidden -> tryToggleTemporarilyShowHidden()
-            R.id.stop_showing_hidden -> tryToggleTemporarilyShowHidden()
-            R.id.increase_column_count -> increaseColumnCount()
-            R.id.reduce_column_count -> reduceColumnCount()
-            R.id.set_as_default_folder -> setAsDefaultFolder()
-            R.id.unset_as_default_folder -> unsetAsDefaultFolder()
-            R.id.slideshow -> startSlideshow()
-            R.id.settings -> launchSettings()
+            R.id.menuSort -> showSortingDialog()
+            R.id.menuFilter -> showFilterMediaDialog()
+            R.id.menuEmptyRecycleBin -> emptyRecycleBin()
+            R.id.menuEmptyDisableRecycleBin -> emptyAndDisableRecycleBin()
+            R.id.menuRestoreAllFiles -> restoreAllFiles()
+            R.id.menuToggleFileName -> toggleFilenameVisibility()
+            R.id.menuOpenCamera -> launchCamera()
+            R.id.menuFolderView -> switchToFolderView()
+            R.id.menuChangeViewType -> changeViewType()
+            R.id.menuGroupBy -> showGroupByDialog()
+            R.id.menuCreateNewFolder -> createNewFolder()
+            R.id.menuTemporarilyShowHidden -> tryToggleTemporarilyShowHidden()
+            R.id.menuStopShowingHidden -> tryToggleTemporarilyShowHidden()
+            R.id.menuIncreaseColumnCount -> increaseColumnCount()
+            R.id.menuReduceColumnCount -> reduceColumnCount()
+            R.id.menuSetAsDefaultFolder -> setAsDefaultFolder()
+            R.id.menuUnsetAsDefaultFolder -> unsetAsDefaultFolder()
+            R.id.menuSlideShow -> startSlideshow()
+            R.id.menuSettings -> launchSettings()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -323,7 +323,7 @@ class MediaActivity : SimpleActivity(), MediaOperationsListener {
 
     private fun setupSearch(menu: Menu) {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        mSearchMenuItem = menu.findItem(R.id.search)
+        mSearchMenuItem = menu.findItem(R.id.menuSearch)
         (mSearchMenuItem?.actionView as? SearchView)?.apply {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             isSubmitButtonEnabled = false

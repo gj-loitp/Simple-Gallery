@@ -68,7 +68,7 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.toggle_filename -> toggleFilenameVisibility()
+            R.id.menuToggleFileName -> toggleFilenameVisibility()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -76,7 +76,7 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
 
     private fun setupSearch(menu: Menu) {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        mSearchMenuItem = menu.findItem(R.id.search)
+        mSearchMenuItem = menu.findItem(R.id.menuSearch)
         MenuItemCompat.setOnActionExpandListener(
             mSearchMenuItem,
             object : MenuItemCompat.OnActionExpandListener {
