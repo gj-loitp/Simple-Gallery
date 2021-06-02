@@ -20,7 +20,7 @@
     <string name="force_landscape">Fekvő mód kényszerítése</string>
     <string name="use_default_orientation">Alapértelmezett tájolás használata</string>
     <string name="fix_date_taken">Dátum javítása</string>
-    <string name="fixing">Javítás...</string>
+    <string name="fixing">Javítás…</string>
     <string name="dates_fixed_successfully">Sikeres dátum javítás</string>
     <string name="no_date_takens_found">Nem találhatók Dátum értékek</string>
     <string name="upgraded_from_free">Hey,\n\nseems like you upgraded from the old free app. You can now uninstall the old version, which has an \'Upgrade to Pro\' button at the top of the app settings.\n\nYou will only have the Recycle bin items deleted, favorite items unmarked and you will also have to reset your app settings.\n\nThanks!</string>
@@ -82,7 +82,7 @@
 
     <!-- Set wallpaper -->
     <string name="simple_wallpaper">Simple Wallpaper</string>
-    <string name="setting_wallpaper">Beállítás háttérképként...</string>
+    <string name="setting_wallpaper">Beállítás háttérképként…</string>
     <string name="wallpaper_set_successfully">Sikeresen beállítva háttérképnek</string>
     <string name="home_screen">Kezdő képernyő</string>
     <string name="lock_screen">Zárolás képernyő</string>
@@ -214,12 +214,4 @@ Ezzel csak a kiválasztott mappák láthatók, mivel a kizárás és a befoglal�
     <string name="faq_15_title">Miért használ az alkalmazás ennyi helyet?</string>
     <string name="faq_15_text">Az alkalmazás gyorsítótára akár a 250 MB-ot is meghaladhatja, és ez gyorsabb megjelenítést biztosít. Ha az alkalmazás még több helyet foglal el, a legvalószínűbb oka, hogy a Lomtárban is van elem. Ezek a fájlok is az alkalmazás méretébe számítanak bele. Törölheti a Lomtárat azzal, hogy megnyitja és törli az összes fájlt vagy az alkalmazás beállításait. A Lomtárban lévő minden fájl 30 nap elteltével automatikusan törlődik.</string>
 
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <!-- Short description has to have less than 80 chars -->
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>

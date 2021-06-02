@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Simple Gallery</string>
     <string name="app_launcher_name">Galleri</string>
     <string name="edit">Rediger</string>
@@ -29,14 +29,14 @@
     <string name="unset_as_default_folder">Ikke lenger sett som standardmappe</string>
 
     <!-- Filter -->
-    <string name="filter_media">Filtrer media</string>
+    <string name="filter_media" tools:ignore="Typos">Filtrer media</string>
     <string name="images">Bilder</string>
     <string name="videos">Videoer</string>
     <string name="gifs">GIF-bilder</string>
     <string name="raw_images">RAW-format-bilder</string>
     <string name="svgs">SVG-bilder</string>
     <string name="portraits">Portretter</string>
-    <string name="no_media_with_filters">Ingen media-filer er funnet med de valgte filtrene.</string>
+    <string name="no_media_with_filters" tools:ignore="Typos">Ingen media-filer er funnet med de valgte filtrene.</string>
     <string name="change_filters_underlined"><u>Endre filtere</u></string>
 
     <!-- Hide / Exclude -->
@@ -55,7 +55,7 @@
     <string name="include_folders">Inkluderte mapper</string>
     <string name="manage_included_folders">Håndter inkluderte mapper</string>
     <string name="add_folder">Legg til mappe</string>
-    <string name="included_activity_placeholder">Hvis du har noen mapper som inneholder media, men ikke ble gjenkjent av appen, kan du legge dem til manuelt her.\n\nÅ legge til noen elementer her, ekskluderer ikke noen annen mappe.</string>
+    <string name="included_activity_placeholder" tools:ignore="Typos">Hvis du har noen mapper som inneholder media, men ikke ble gjenkjent av appen, kan du legge dem til manuelt her.\n\nÅ legge til noen elementer her, ekskluderer ikke noen annen mappe.</string>
     <string name="no_media_add_included">Ingen mediafiler er funnet. Dette kan løses ved å legge til mapper som inneholder mediafiler manuelt.</string>
 
     <!-- Resizing -->
@@ -101,7 +101,7 @@
     <string name="fade">Fade</string>
     <string name="slide">Slide</string>
     <string name="slideshow_ended">Lysbildeshowet er slutt</string>
-    <string name="no_media_for_slideshow">Ingen media for lysbildeshowet er funnet</string>
+    <string name="no_media_for_slideshow" tools:ignore="Typos">Ingen media for lysbildeshowet er funnet</string>
 
     <!-- View types -->
     <string name="group_direct_subfolders">Grupper direkte undermapper</string>
@@ -130,7 +130,7 @@
     <string name="max_brightness">Maks lysstyrke ved mediavisning</string>
     <string name="crop_thumbnails">Beskjær minibilder i kvadrater</string>
     <string name="show_thumbnail_video_duration">Vis videolengde</string>
-    <string name="screen_rotation_by">Roter media etter</string>
+    <string name="screen_rotation_by" tools:ignore="Typos">Roter media etter</string>
     <string name="screen_rotation_system_setting">Systeminnstilling</string>
     <string name="screen_rotation_device_rotation">Enhetsrotasjon</string>
     <string name="screen_rotation_aspect_ratio">Sideforhold</string>
@@ -141,7 +141,7 @@
     <string name="allow_photo_gestures">Tillat å styre fotolysstyrke med vertikale bevegelser</string>
     <string name="show_extended_details">Vis flere detaljer i mediavisningen</string>
     <string name="manage_extended_details">Velg detaljer</string>
-    <string name="allow_instant_change">Tillat å skifte media øyeblikkelig ved å trykke på kanten av skjermen</string>
+    <string name="allow_instant_change" tools:ignore="Typos">Tillat å skifte media øyeblikkelig ved å trykke på kanten av skjermen</string>
     <string name="allow_deep_zooming_images">Tillat dyp bildezooming</string>
     <string name="hide_extended_details">Skjul utvidede detaljer når statuslinjen er skjult</string>
     <string name="show_at_bottom">Vis noen handlingsknapper nederst på skjermen</string>
@@ -187,7 +187,7 @@
     <string name="faq_1_text">First you have to find the currently default gallery in the Apps section of your device settings, look for a button that says something like \"Open by default\", click on it, then select \"Clear defaults\".
         The next time you will try opening an image or video you should see an app picker, where you can select Simple Gallery and make it the default app.</string>
     <string name="faq_2_title">I locked the app with a password, but I forgot it. What can I do?</string>
-    <string name="faq_2_text">You can solve it in 2 ways. You can either reinstall the app, or find the app in your device settings and select \"Clear data\". It will reset all your settings, it will not remove any media files.</string>
+    <string name="faq_2_text" tools:ignore="Typos">You can solve it in 2 ways. You can either reinstall the app, or find the app in your device settings and select \"Clear data\". It will reset all your settings, it will not remove any media files.</string>
     <string name="faq_3_title">How can I make an album always appear at the top?</string>
     <string name="faq_3_text">You can long press the desired album and select the Pin icon at the actions menu, that will pin it to the top. You can pin multiple folders too, pinned items will be sorted by the default sorting method.</string>
     <string name="faq_4_title">How can I fast forward videos?</string>
@@ -203,7 +203,7 @@
         That will make only the selected folders visible, as both excluding and including are recursive and if a folder is both excluded and included, it will show up.</string>
     <string name="faq_10_title">Can I crop images with this app?</string>
     <string name="faq_10_text">Yes, you can crop images in the editor, by dragging the image corners. You can get to the editor either by long pressing an image thumbnail and selecting Edit, or selecting Edit from the fullscreen view.</string>
-    <string name="faq_11_title">Can I somehow group media file thumbnails?</string>
+    <string name="faq_11_title" tools:ignore="Typos">Can I somehow group media file thumbnails?</string>
     <string name="faq_11_text">Sure, just use the \"Group by\" menu item while at the thumbnails view. You can group files by multiple criteria, including Date Taken. If you use the \"Show all folders content\" function you can group them by folders too.</string>
     <string name="faq_12_title">Sorting by Date Taken doesn\'t seem to work properly, how can I fix it?</string>
     <string name="faq_12_text">It is most likely caused by the files being copied from somewhere. You can fix it by selecting the file thumbnails and selecting \"Fix Date Taken value\".</string>
@@ -214,12 +214,4 @@
     <string name="faq_15_title">Why does the app take up so much space?</string>
     <string name="faq_15_text">App cache can take up to 250MB, it ensures quicker image loading. If the app is taking up even more space, it is most likely caused by you having items in the Recycle Bin. Those files count to the app size. You can clear the Recycle bin by opening it and deleting all files, or from the app settings. Every file in the Bin is deleted automatically after 30 days.</string>
 
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <!-- Short description has to have less than 80 chars -->
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>

@@ -212,12 +212,4 @@
     <string name="faq_15_title">Dlaczego aplikacja zajmuje tak dużo miejsca?</string>
     <string name="faq_15_text">Pamięć podręczna aplikacji zajmuje do 250MB, zapewniając szybsze ładowanie obrazów. Aplikacja może zajmować więcej miejsca przez elementy w Koszu, które doliczane są do rozmiaru aplikacji. Wyczyść Kosz przez otwarcie go i usunięcie wszystkich elementów, lub z poziomu ustawień aplikacji. Każdy plik w Koszu jest też automatycznie usuwany po 30 dniach.</string>
 
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <!-- Short description has to have less than 80 chars -->
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>

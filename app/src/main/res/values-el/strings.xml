@@ -82,7 +82,7 @@
 
     <!-- Set wallpaper -->
     <string name="simple_wallpaper">Απλή Συλλογή</string>
-    <string name="setting_wallpaper">Η ταπετσαρία εφαρμόζεται...</string>
+    <string name="setting_wallpaper">Η ταπετσαρία εφαρμόζεται…</string>
     <string name="wallpaper_set_successfully">Η ταπετσαρία εφαρμόστηκε</string>
     <string name="home_screen">Αρχική οθόνη</string>
     <string name="lock_screen">Οθόνη κλειδώματος</string>
@@ -214,12 +214,4 @@
     <string name="faq_15_title">Γιατί η εφαρμογή καταλαμβάνει τόσο μεγάλο χώρο;</string>
     <string name="faq_15_text">Η προσωρινή μνήμη της εφαρμογής μπορεί να δεσμεύσει έως και 250MB, διασφαλίζοντας την ταχύτερη προφόρτωση των εικόνων. Αν η εφαρμογή χρησιμοποιεί ακόμα περισσότερο χώρο, πιθανότατα οφείλεται στην κατοχή αντικειμένων στον Κάδο. Αυτά τα αρχεία υπολογίζονται στο μέγεθος της εφαρμογής. Μπορείτε να αδειάσετε τον Κάδο Ανακύκλωσης ανοίγοντάς τον και διαγράφοντας όλα τα αρχεία ή από τις ρυθμίσεις της εφαρμογής. Κάθε αρχείο στον Κάδο διαγράφεται αυτόματα μετά από 30 ημέρες.</string>
 
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <!-- Short description has to have less than 80 chars -->
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>

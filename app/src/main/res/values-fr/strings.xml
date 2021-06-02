@@ -212,12 +212,4 @@
     <string name="faq_15_title">Pourquoi l\'application prend-elle tant de place ?</string>
     <string name="faq_15_text">Le cache d\'application peut prendre jusqu\'à 250 Mo pour accélérer le chargement des images. Si l\'application occupe encore plus d\'espace, c\'est probablement parce que vous avez des éléments dans la corbeille. Ces fichiers comptent pour la taille de l\'application. Vous pouvez vider la corbeille en l\'ouvrant et en supprimant tous les fichiers ou à partir des paramètres de l\'application. Chaque fichier de la corbeille est automatiquement supprimé après 30 jours.</string>
 
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <!-- Short description has to have less than 80 chars -->
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>

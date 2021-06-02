@@ -214,12 +214,4 @@
     <string name="faq_15_title">Proč aplikace zabírá tolik místa?</string>
     <string name="faq_15_text">Vyrovnávací paměť aplikace může zabírat až 250MB, zabezpečuje to rychlejší nahrávání obrázků. Pokud aplikace zabírá místa více, bude to pravděpodobně způsobeno soubory v odpadkovém koši. Dané soubory se započítávajé do velikosti aplikace. Koš můžete vyprázdnit buď jeho otevřením a smazáním všech souborů, nebo z nastavení aplikace. Položky v koši jsou automaticky mazány po 30 dnech.</string>
 
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <!-- Short description has to have less than 80 chars -->
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>

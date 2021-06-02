@@ -214,12 +214,4 @@
     <string name="faq_15_title">アプリが容量を沢山使用するのはなぜですか？</string>
     <string name="faq_15_text">アプリのキャッシュは画像の素早い読み込みのために最大250MB使用します。もしそれ以上にアプリが容量を取るようであれば、ゴミ箱内のアイテムが原因となっているはずです。ゴミ箱内のファイルもアプリ容量として加算されます。ゴミ箱を開くか、アプリの設定から全てのファイルを削除できます。ゴミ箱内のアイテムは30日を過ぎると自動的に削除されます。</string>
 
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <!-- Short description has to have less than 80 chars -->
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>
