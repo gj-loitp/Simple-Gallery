@@ -87,7 +87,7 @@ class MediaAdapter(
         enableInstantLoad()
     }
 
-    override fun getActionMenuId() = R.menu.cab_media
+    override fun getActionMenuId() = R.menu.menu_cab_media
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutType = if (viewType == ITEM_SECTION) {

@@ -255,7 +255,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.photo_video_menu, menu)
+        menuInflater.inflate(R.menu.menu_photo_video, menu)
         val visibleBottomActions = if (config.bottomActions) config.visibleBottomActions else 0
 
         menu.apply {

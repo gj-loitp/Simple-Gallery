@@ -68,7 +68,7 @@ class DirectoryAdapter(
         fillLockedFolders()
     }
 
-    override fun getActionMenuId() = R.menu.cab_directories
+    override fun getActionMenuId() = R.menu.menu_cab_directories
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutType = when {
