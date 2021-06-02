@@ -24,28 +24,26 @@ android {
     }
 
     signingConfigs {
-        if (keystorePropertiesFile.exists()) {
-            release {
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
-                storeFile file(keystoreProperties['storeFile'])
-                storePassword keystoreProperties['storePassword']
-            }
+        release {
+            storeFile file("keystore.jks")
+            storePassword "04021993"
+            keyAlias "loi"
+            keyPassword "04021993"
         }
     }
 
     buildTypes {
         debug {
-            // we cannot change the original package name, else PhotoEditorSDK won't work
-            //applicationIdSuffix ".debug"
+            minifyEnabled false
+            useProguard false //used android.enableR8=true in gradle.properties
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
+            debuggable false
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            if (keystorePropertiesFile.exists()) {
-                signingConfig signingConfigs.release
-            }
+            signingConfig signingConfigs.release
         }
     }
 
