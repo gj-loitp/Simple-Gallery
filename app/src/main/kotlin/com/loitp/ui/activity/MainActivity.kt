@@ -25,13 +25,13 @@ import com.loitp.adapter.DirectoryAdapter
 import com.loitp.db.GalleryDatabase
 import com.loitp.ext.*
 import com.loitp.helper.MediaFetcher
+import com.loitp.interfaces.DirectoryOperationsListener
+import com.loitp.model.Directory
+import com.loitp.model.Medium
 import com.loitp.pro.BuildConfig
 import com.loitp.pro.R
 import com.loitp.pro.helpers.*
-import com.loitp.interfaces.DirectoryOperationsListener
 import com.loitp.service.NewPhotoFetcher
-import com.loitp.model.Directory
-import com.loitp.model.Medium
 import com.loitp.ui.dialog.ChangeSortingDialog
 import com.loitp.ui.dialog.ChangeViewTypeDialog
 import com.loitp.ui.dialog.FilterMediaDialog
@@ -78,8 +78,8 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
         arrayListOf("")     // used at "Group direct subfolders" for navigating Up with the back button
     private var mDateFormat = ""
     private var mTimeFormat = ""
-    private var mLastMediaHandler = Handler()
-    private var mTempShowHiddenHandler = Handler()
+    private var mLastMediaHandler = Handler(Looper.getMainLooper())
+    private var mTempShowHiddenHandler = Handler(Looper.getMainLooper())
     private var mZoomListener: MyRecyclerView.MyZoomListener? = null
     private var mSearchMenuItem: MenuItem? = null
     private var mLastMediaFetcher: MediaFetcher? = null
@@ -323,9 +323,31 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
             R.id.reduce_column_count -> reduceColumnCount()
             R.id.set_as_default_folder -> setAsDefaultFolder()
             R.id.settings -> launchSettings()
+            R.id.menuRateApp -> rateApp()
+            R.id.menuMoreApp -> moreApp()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    private fun rateApp() {
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
+        } catch (e: android.content.ActivityNotFoundException) {
+            e.printStackTrace()
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=$packageName")
+                )
+            )
+        }
+    }
+
+    private fun moreApp() {
+        val uri = "https://play.google.com/store/apps/developer?id=Toi Yeu Viet Nam"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+        startActivity(intent)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

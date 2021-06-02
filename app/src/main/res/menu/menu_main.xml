@@ -66,4 +66,12 @@
         android:id="@+id/settings"
         android:title="@string/settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menuRateApp"
+        android:title="@string/rate_app"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuMoreApp"
+        android:title="@string/more_apps"
+        app:showAsAction="never" />
 </menu>
