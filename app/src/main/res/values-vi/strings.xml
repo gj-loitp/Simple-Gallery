@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Gallery</string>
+    <string name="app_name">Thư viện</string>
     <string name="app_launcher_name">Thư viện</string>
     <string name="edit">Biên tập</string>
     <string name="open_camera">Mở Camera</string>
@@ -214,12 +214,4 @@
     <string name="faq_15_title">Tại sao ứng dụng chiếm quá nhiều dung lượng ?</string>
     <string name="faq_15_text">Bộ nhớ cache ứng dụng có thể mất tới 250MB, nó đảm bảo tải hình ảnh nhanh hơn. Nếu ứng dụng chiếm nhiều dung lượng hơn, rất có thể là do bạn có nhiều mục trong Thùng rác. Những tập tin đó được tính vào kích thước ứng dụng. Bạn có thể xóa thùng rác bằng cách mở nó và xóa tất cả các tệp hoặc từ Cài đặt ứng dụng. Mọi tệp trong Thùng rác sẽ tự động bị xóa sau 30 ngày.</string>
 
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <!-- Short description has to have less than 80 chars -->
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>
