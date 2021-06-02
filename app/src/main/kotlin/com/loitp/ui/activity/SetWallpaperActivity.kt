@@ -58,7 +58,7 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.save -> confirmWallpaper()
+            R.id.menuSave -> confirmWallpaper()
             else -> return super.onOptionsItemSelected(item)
         }
         return true

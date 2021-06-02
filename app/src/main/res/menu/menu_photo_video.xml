@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_share"
+        android:id="@+id/menuShareVid"
         android:icon="@drawable/ic_share_vector"
         android:title="@string/share"
         app:showAsAction="ifRoom" />
@@ -12,7 +12,7 @@
         android:title="@string/properties"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_edit"
+        android:id="@+id/menuEdit"
         android:icon="@drawable/ic_edit_vector"
         android:title="@string/edit"
         app:showAsAction="ifRoom" />

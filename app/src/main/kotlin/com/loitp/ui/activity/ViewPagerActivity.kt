@@ -39,10 +39,13 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.loitp.pro.BuildConfig
-import com.loitp.pro.R
 import com.loitp.adapter.MyPagerAdapter
 import com.loitp.ext.*
+import com.loitp.model.Medium
+import com.loitp.model.ThumbnailItem
+import com.loitp.pro.BuildConfig
+import com.loitp.pro.R
+import com.loitp.pro.helpers.*
 import com.loitp.service.GetMediaAsyncTask
 import com.loitp.ui.dialog.DeleteWithRememberDialog
 import com.loitp.ui.dialog.ResizeWithPathDialog
@@ -51,9 +54,6 @@ import com.loitp.ui.dialog.SlideshowDialog
 import com.loitp.ui.frm.PhotoFragment
 import com.loitp.ui.frm.VideoFragment
 import com.loitp.ui.frm.ViewPagerFragment
-import com.loitp.pro.helpers.*
-import com.loitp.model.Medium
-import com.loitp.model.ThumbnailItem
 import com.loitp.ui.view.DefaultPageTransformer
 import com.loitp.ui.view.FadePageTransformer
 import com.simplemobiletools.commons.dialogs.PropertiesDialog
@@ -178,43 +178,44 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
         menu.apply {
             findItem(R.id.menuShowOnMap).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP == 0
-            findItem(R.id.menu_slideshow).isVisible =
+            findItem(R.id.menuSlideShow).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_SLIDESHOW == 0
             findItem(R.id.menuProperties).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_PROPERTIES == 0
-            findItem(R.id.menu_delete).isVisible =
+            findItem(R.id.menuDelete).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_DELETE == 0
-            findItem(R.id.menu_share).isVisible = visibleBottomActions and BOTTOM_ACTION_SHARE == 0
-            findItem(R.id.menu_edit).isVisible =
+            findItem(R.id.menuShareVid).isVisible =
+                visibleBottomActions and BOTTOM_ACTION_SHARE == 0
+            findItem(R.id.menuEdit).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_EDIT == 0 && !currentMedium.isSVG()
-            findItem(R.id.menu_rename).isVisible =
+            findItem(R.id.menuRename).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_RENAME == 0 && !currentMedium.getIsInRecycleBin()
-            findItem(R.id.menu_rotate).isVisible =
+            findItem(R.id.menuRotate).isVisible =
                 currentMedium.isImage() && visibleBottomActions and BOTTOM_ACTION_ROTATE == 0
             findItem(R.id.menuSetAs).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_SET_AS == 0
-            findItem(R.id.menu_copy_to).isVisible = visibleBottomActions and BOTTOM_ACTION_COPY == 0
-            findItem(R.id.menu_move_to).isVisible = visibleBottomActions and BOTTOM_ACTION_MOVE == 0
-            findItem(R.id.menu_save_as).isVisible = rotationDegrees != 0
-            findItem(R.id.menu_print).isVisible = currentMedium.isImage() || currentMedium.isRaw()
-            findItem(R.id.menu_resize).isVisible =
+            findItem(R.id.menuCopyTo).isVisible = visibleBottomActions and BOTTOM_ACTION_COPY == 0
+            findItem(R.id.menuMoveTo).isVisible = visibleBottomActions and BOTTOM_ACTION_MOVE == 0
+            findItem(R.id.menuSaveAs).isVisible = rotationDegrees != 0
+            findItem(R.id.menuPrint).isVisible = currentMedium.isImage() || currentMedium.isRaw()
+            findItem(R.id.menuResize).isVisible =
                 visibleBottomActions and BOTTOM_ACTION_RESIZE == 0 && currentMedium.isImage()
-            findItem(R.id.menu_hide).isVisible =
+            findItem(R.id.menuHide).isVisible =
                 !currentMedium.isHidden() && visibleBottomActions and BOTTOM_ACTION_TOGGLE_VISIBILITY == 0 && !currentMedium.getIsInRecycleBin()
-            findItem(R.id.menu_unhide).isVisible =
+            findItem(R.id.menuUnHide).isVisible =
                 currentMedium.isHidden() && visibleBottomActions and BOTTOM_ACTION_TOGGLE_VISIBILITY == 0 && !currentMedium.getIsInRecycleBin()
-            findItem(R.id.menu_add_to_favorites).isVisible =
+            findItem(R.id.menuAddToFavorites).isVisible =
                 !currentMedium.isFavorite && visibleBottomActions and BOTTOM_ACTION_TOGGLE_FAVORITE == 0 && !currentMedium.getIsInRecycleBin()
-            findItem(R.id.menu_remove_from_favorites).isVisible =
+            findItem(R.id.menuRemoveFromFavorites).isVisible =
                 currentMedium.isFavorite && visibleBottomActions and BOTTOM_ACTION_TOGGLE_FAVORITE == 0 && !currentMedium.getIsInRecycleBin()
-            findItem(R.id.menu_restore_file).isVisible =
+            findItem(R.id.menuRestoreFile).isVisible =
                 currentMedium.path.startsWith(recycleBinPath)
-            findItem(R.id.menu_create_shortcut).isVisible = isOreoPlus()
-            findItem(R.id.menu_change_orientation).isVisible =
+            findItem(R.id.menuCreateShortcut).isVisible = isOreoPlus()
+            findItem(R.id.menuChangeOrientation).isVisible =
                 rotationDegrees == 0 && visibleBottomActions and BOTTOM_ACTION_CHANGE_ORIENTATION == 0
-            findItem(R.id.menu_change_orientation).icon =
+            findItem(R.id.menuChangeOrientation).icon =
                 ContextCompat.getDrawable(this@ViewPagerActivity, getChangeOrientationIcon())
-            findItem(R.id.menu_rotate).setShowAsAction(
+            findItem(R.id.menuRotate).setShowAsAction(
                 if (rotationDegrees != 0) {
                     MenuItem.SHOW_AS_ACTION_ALWAYS
                 } else {
@@ -237,32 +238,32 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener,
 
         when (item.itemId) {
             R.id.menuSetAs -> setAs(getCurrentPath())
-            R.id.menu_slideshow -> initSlideshow()
-            R.id.menu_copy_to -> copyMoveTo(true)
-            R.id.menu_move_to -> moveFileTo()
+            R.id.menuSlideShow -> initSlideshow()
+            R.id.menuCopyTo -> copyMoveTo(true)
+            R.id.menuMoveTo -> moveFileTo()
             R.id.menuOpenWith -> openPath(getCurrentPath(), true)
-            R.id.menu_hide -> toggleFileVisibility(true)
-            R.id.menu_unhide -> toggleFileVisibility(false)
-            R.id.menu_share -> shareMediumPath(getCurrentPath())
-            R.id.menu_delete -> checkDeleteConfirmation()
-            R.id.menu_rename -> renameFile()
-            R.id.menu_print -> printFile()
-            R.id.menu_edit -> openEditor(getCurrentPath())
+            R.id.menuHide -> toggleFileVisibility(true)
+            R.id.menuUnHide -> toggleFileVisibility(false)
+            R.id.menuShareVid -> shareMediumPath(getCurrentPath())
+            R.id.menuDelete -> checkDeleteConfirmation()
+            R.id.menuRename -> renameFile()
+            R.id.menuPrint -> printFile()
+            R.id.menuEdit -> openEditor(getCurrentPath())
             R.id.menuProperties -> showProperties()
             R.id.menuShowOnMap -> showFileOnMap(getCurrentPath())
-            R.id.menu_rotate_right -> rotateImage(90)
-            R.id.menu_rotate_left -> rotateImage(-90)
-            R.id.menu_rotate_one_eighty -> rotateImage(180)
-            R.id.menu_add_to_favorites -> toggleFavorite()
-            R.id.menu_remove_from_favorites -> toggleFavorite()
-            R.id.menu_restore_file -> restoreFile()
-            R.id.menu_force_portrait -> toggleOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-            R.id.menu_force_landscape -> toggleOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-            R.id.menu_default_orientation -> toggleOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-            R.id.menu_save_as -> saveImageAs()
-            R.id.menu_create_shortcut -> createShortcut()
-            R.id.menu_resize -> resizeImage()
-            R.id.menu_settings -> launchSettings()
+            R.id.menuRotateRight -> rotateImage(90)
+            R.id.menuRotateLeft -> rotateImage(-90)
+            R.id.menuRotateOneEighty -> rotateImage(180)
+            R.id.menuAddToFavorites -> toggleFavorite()
+            R.id.menuRemoveFromFavorites -> toggleFavorite()
+            R.id.menuRestoreFile -> restoreFile()
+            R.id.menuForcePortrait -> toggleOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+            R.id.menuForceLandscape -> toggleOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+            R.id.menuDefaultOrientation -> toggleOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+            R.id.menuSaveAs -> saveImageAs()
+            R.id.menuCreateShortcut -> createShortcut()
+            R.id.menuResize -> resizeImage()
+            R.id.menuSettings -> launchSettings()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
