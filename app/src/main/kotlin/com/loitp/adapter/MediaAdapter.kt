@@ -148,16 +148,16 @@ class MediaAdapter(
         val selectedPaths = selectedItems.map { it.path } as ArrayList<String>
         val isInRecycleBin = selectedItems.firstOrNull()?.getIsInRecycleBin() == true
         menu.apply {
-            findItem(R.id.cab_rename).isVisible = !isInRecycleBin
-            findItem(R.id.cab_add_to_favorites).isVisible = !isInRecycleBin
-            findItem(R.id.cab_fix_date_taken).isVisible = !isInRecycleBin
-            findItem(R.id.cab_move_to).isVisible = !isInRecycleBin
-            findItem(R.id.cab_open_with).isVisible = isOneItemSelected
-            findItem(R.id.cab_confirm_selection).isVisible =
+            findItem(R.id.menuCabRename).isVisible = !isInRecycleBin
+            findItem(R.id.menuCabAddToFavorites).isVisible = !isInRecycleBin
+            findItem(R.id.menuCabFixDateTaken).isVisible = !isInRecycleBin
+            findItem(R.id.menuCabMoveTo).isVisible = !isInRecycleBin
+            findItem(R.id.menuCabOpenWith).isVisible = isOneItemSelected
+            findItem(R.id.menuCabConfirmSelection).isVisible =
                 isAGetIntent && allowMultiplePicks && selectedKeys.isNotEmpty()
-            findItem(R.id.cab_restore_recycle_bin_files).isVisible =
+            findItem(R.id.menuCabRestoreRecycleBinFiles).isVisible =
                 selectedPaths.all { it.startsWith(activity.recycleBinPath) }
-            findItem(R.id.cab_create_shortcut).isVisible = isOreoPlus() && isOneItemSelected
+            findItem(R.id.menuCabCreateShortcut).isVisible = isOreoPlus() && isOneItemSelected
 
             checkHideBtnVisibility(this, selectedItems)
             checkFavoriteBtnVisibility(this, selectedItems)
@@ -170,27 +170,27 @@ class MediaAdapter(
         }
 
         when (id) {
-            R.id.cab_confirm_selection -> confirmSelection()
-            R.id.cab_properties -> showProperties()
-            R.id.cab_rename -> renameFile()
-            R.id.cab_edit -> editFile()
-            R.id.cab_hide -> toggleFileVisibility(true)
-            R.id.cab_unhide -> toggleFileVisibility(false)
-            R.id.cab_add_to_favorites -> toggleFavorites(true)
-            R.id.cab_remove_from_favorites -> toggleFavorites(false)
-            R.id.cab_restore_recycle_bin_files -> restoreFiles()
-            R.id.cab_share -> shareMedia()
-            R.id.cab_rotate_right -> rotateSelection(90)
-            R.id.cab_rotate_left -> rotateSelection(270)
-            R.id.cab_rotate_one_eighty -> rotateSelection(180)
-            R.id.cab_copy_to -> copyMoveTo(true)
-            R.id.cab_move_to -> moveFilesTo()
-            R.id.cab_create_shortcut -> createShortcut()
-            R.id.cab_select_all -> selectAll()
-            R.id.cab_open_with -> openPath()
-            R.id.cab_fix_date_taken -> fixDateTaken()
-            R.id.cab_set_as -> setAs()
-            R.id.cab_delete -> checkDeleteConfirmation()
+            R.id.menuCabConfirmSelection -> confirmSelection()
+            R.id.menuCabProperties -> showProperties()
+            R.id.menuCabRename -> renameFile()
+            R.id.menuCabEdit -> editFile()
+            R.id.menuCabHide -> toggleFileVisibility(true)
+            R.id.menuCabUnhide -> toggleFileVisibility(false)
+            R.id.menuCabAddToFavorites -> toggleFavorites(true)
+            R.id.menuCabRemoveFromFavorites -> toggleFavorites(false)
+            R.id.menuCabRestoreRecycleBinFiles -> restoreFiles()
+            R.id.menuCabShare -> shareMedia()
+            R.id.menuCabRotateRight -> rotateSelection(90)
+            R.id.menuCabRotateLeft -> rotateSelection(270)
+            R.id.menuCabRotateOneEighty -> rotateSelection(180)
+            R.id.menuCabCopyTo -> copyMoveTo(true)
+            R.id.menuCabMoveTo -> moveFilesTo()
+            R.id.menuCabCreateShortcut -> createShortcut()
+            R.id.meuCabSelectAll -> selectAll()
+            R.id.menuCabOpenWith -> openPath()
+            R.id.menuCabFixDateTaken -> fixDateTaken()
+            R.id.menuCabSetAs -> setAs()
+            R.id.menuCabDelete -> checkDeleteConfirmation()
         }
     }
 
@@ -224,16 +224,16 @@ class MediaAdapter(
 
     private fun checkHideBtnVisibility(menu: Menu, selectedItems: ArrayList<Medium>) {
         val isInRecycleBin = selectedItems.firstOrNull()?.getIsInRecycleBin() == true
-        menu.findItem(R.id.cab_hide).isVisible =
+        menu.findItem(R.id.menuCabHide).isVisible =
             !isInRecycleBin && selectedItems.any { !it.isHidden() }
-        menu.findItem(R.id.cab_unhide).isVisible =
+        menu.findItem(R.id.menuCabUnhide).isVisible =
             !isInRecycleBin && selectedItems.any { it.isHidden() }
     }
 
     private fun checkFavoriteBtnVisibility(menu: Menu, selectedItems: ArrayList<Medium>) {
-        menu.findItem(R.id.cab_add_to_favorites).isVisible =
+        menu.findItem(R.id.menuCabAddToFavorites).isVisible =
             selectedItems.none { it.getIsInRecycleBin() } && selectedItems.any { !it.isFavorite }
-        menu.findItem(R.id.cab_remove_from_favorites).isVisible =
+        menu.findItem(R.id.menuCabRemoveFromFavorites).isVisible =
             selectedItems.none { it.getIsInRecycleBin() } && selectedItems.any { it.isFavorite }
     }
 

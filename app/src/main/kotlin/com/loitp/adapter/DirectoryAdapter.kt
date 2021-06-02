@@ -102,19 +102,19 @@ class DirectoryAdapter(
 
         val isOneItemSelected = isOneItemSelected()
         menu.apply {
-            findItem(R.id.cab_rename).isVisible =
+            findItem(R.id.menuCabRename).isVisible =
                 !selectedPaths.contains(FAVORITES) && !selectedPaths.contains(RECYCLE_BIN)
-            findItem(R.id.cab_change_cover_image).isVisible = isOneItemSelected
+            findItem(R.id.menuCabChangeCoverImage).isVisible = isOneItemSelected
 
-            findItem(R.id.cab_lock).isVisible = selectedPaths.any { !config.isFolderProtected(it) }
-            findItem(R.id.cab_unlock).isVisible = selectedPaths.any { config.isFolderProtected(it) }
+            findItem(R.id.menuCabLock).isVisible = selectedPaths.any { !config.isFolderProtected(it) }
+            findItem(R.id.menuCabUnlock).isVisible = selectedPaths.any { config.isFolderProtected(it) }
 
-            findItem(R.id.cab_empty_recycle_bin).isVisible =
+            findItem(R.id.menuCabEmptyRecycle_bin).isVisible =
                 isOneItemSelected && selectedPaths.first() == RECYCLE_BIN
-            findItem(R.id.cab_empty_disable_recycle_bin).isVisible =
+            findItem(R.id.menuCabEmptyDisableRecycleBin).isVisible =
                 isOneItemSelected && selectedPaths.first() == RECYCLE_BIN
 
-            findItem(R.id.cab_create_shortcut).isVisible = isOreoPlus() && isOneItemSelected
+            findItem(R.id.menuCabCreateShortcut).isVisible = isOreoPlus() && isOneItemSelected
 
             checkHideBtnVisibility(this, selectedPaths)
             checkPinBtnVisibility(this, selectedPaths)
@@ -127,24 +127,24 @@ class DirectoryAdapter(
         }
 
         when (id) {
-            R.id.cab_properties -> showProperties()
-            R.id.cab_rename -> renameDir()
-            R.id.cab_pin -> pinFolders(true)
-            R.id.cab_unpin -> pinFolders(false)
-            R.id.cab_empty_recycle_bin -> tryEmptyRecycleBin(true)
-            R.id.cab_empty_disable_recycle_bin -> emptyAndDisableRecycleBin()
-            R.id.cab_hide -> toggleFoldersVisibility(true)
-            R.id.cab_unhide -> toggleFoldersVisibility(false)
-            R.id.cab_exclude -> tryExcludeFolder()
-            R.id.cab_lock -> tryLockFolder()
-            R.id.cab_unlock -> unlockFolder()
-            R.id.cab_copy_to -> copyMoveTo(true)
-            R.id.cab_move_to -> moveFilesTo()
-            R.id.cab_select_all -> selectAll()
-            R.id.cab_create_shortcut -> tryCreateShortcut()
-            R.id.cab_delete -> askConfirmDelete()
-            R.id.cab_select_photo -> tryChangeAlbumCover(false)
-            R.id.cab_use_default -> tryChangeAlbumCover(true)
+            R.id.menuCabProperties -> showProperties()
+            R.id.menuCabRename -> renameDir()
+            R.id.menuCabPin -> pinFolders(true)
+            R.id.menuCabUnpin -> pinFolders(false)
+            R.id.menuCabEmptyRecycle_bin -> tryEmptyRecycleBin(true)
+            R.id.menuCabEmptyDisableRecycleBin -> emptyAndDisableRecycleBin()
+            R.id.menuCabHide -> toggleFoldersVisibility(true)
+            R.id.menuCabUnhide -> toggleFoldersVisibility(false)
+            R.id.menuCabExclude -> tryExcludeFolder()
+            R.id.menuCabLock -> tryLockFolder()
+            R.id.menuCabUnlock -> unlockFolder()
+            R.id.menuCabCopyTo -> copyMoveTo(true)
+            R.id.menuCabMoveTo -> moveFilesTo()
+            R.id.meuCabSelectAll -> selectAll()
+            R.id.menuCabCreateShortcut -> tryCreateShortcut()
+            R.id.menuCabDelete -> askConfirmDelete()
+            R.id.menuCabSelectPhoto -> tryChangeAlbumCover(false)
+            R.id.menuCabUseDefault -> tryChangeAlbumCover(true)
         }
     }
 
@@ -168,16 +168,16 @@ class DirectoryAdapter(
     }
 
     private fun checkHideBtnVisibility(menu: Menu, selectedPaths: ArrayList<String>) {
-        menu.findItem(R.id.cab_hide).isVisible =
+        menu.findItem(R.id.menuCabHide).isVisible =
             selectedPaths.any { !it.doesThisOrParentHaveNoMedia(HashMap(), null) }
-        menu.findItem(R.id.cab_unhide).isVisible =
+        menu.findItem(R.id.menuCabUnhide).isVisible =
             selectedPaths.any { it.doesThisOrParentHaveNoMedia(HashMap(), null) }
     }
 
     private fun checkPinBtnVisibility(menu: Menu, selectedPaths: ArrayList<String>) {
         val pinnedFolders = config.pinnedFolders
-        menu.findItem(R.id.cab_pin).isVisible = selectedPaths.any { !pinnedFolders.contains(it) }
-        menu.findItem(R.id.cab_unpin).isVisible = selectedPaths.any { pinnedFolders.contains(it) }
+        menu.findItem(R.id.menuCabPin).isVisible = selectedPaths.any { !pinnedFolders.contains(it) }
+        menu.findItem(R.id.menuCabUnpin).isVisible = selectedPaths.any { pinnedFolders.contains(it) }
     }
 
     private fun showProperties() {

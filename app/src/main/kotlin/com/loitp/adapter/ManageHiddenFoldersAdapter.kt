@@ -39,7 +39,7 @@ class ManageHiddenFoldersAdapter(
 
     override fun actionItemPressed(id: Int) {
         when (id) {
-            R.id.cab_unhide -> tryUnHideFolders()
+            R.id.menuCabUnhide -> tryUnHideFolders()
         }
     }
 

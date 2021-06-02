@@ -1,103 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/cab_confirm_selection"
+        android:id="@+id/menuCabConfirmSelection"
         android:icon="@drawable/ic_check_vector"
         android:title="@string/confirm_selection"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_delete"
+        android:id="@+id/menuCabDelete"
         android:icon="@drawable/ic_delete_vector"
         android:title="@string/delete"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_share"
+        android:id="@+id/menuCabShare"
         android:icon="@drawable/ic_share_vector"
         android:title="@string/share"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
         android:icon="@drawable/ic_rotate_right_vector"
         android:title="@string/rotate"
         app:showAsAction="ifRoom">
         <menu>
             <item
-                android:id="@+id/cab_rotate_right"
-                android:title="@string/rotate_right"/>
+                android:id="@+id/menuCabRotateRight"
+                android:title="@string/rotate_right" />
             <item
-                android:id="@+id/cab_rotate_left"
-                android:title="@string/rotate_left"/>
+                android:id="@+id/menuCabRotateLeft"
+                android:title="@string/rotate_left" />
             <item
-                android:id="@+id/cab_rotate_one_eighty"
-                android:title="@string/rotate_one_eighty"/>
+                android:id="@+id/menuCabRotateOneEighty"
+                android:title="@string/rotate_one_eighty" />
         </menu>
     </item>
     <item
-        android:id="@+id/cab_properties"
+        android:id="@+id/menuCabProperties"
         android:icon="@drawable/ic_info"
         android:title="@string/properties"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_rename"
+        android:id="@+id/menuCabRename"
         android:icon="@drawable/ic_rename_new"
         android:title="@string/rename"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_hide"
+        android:id="@+id/menuCabHide"
         android:icon="@drawable/ic_hide"
         android:title="@string/hide"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_unhide"
+        android:id="@+id/menuCabUnhide"
         android:icon="@drawable/ic_unhide_vector"
         android:title="@string/unhide"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_copy_to"
+        android:id="@+id/menuCabCopyTo"
         android:title="@string/copy_to"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
-        android:id="@+id/cab_move_to"
+        android:id="@+id/menuCabMoveTo"
         android:title="@string/move_to"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
-        android:id="@+id/cab_create_shortcut"
+        android:id="@+id/menuCabCreateShortcut"
         android:title="@string/create_shortcut"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
-        android:id="@+id/cab_open_with"
+        android:id="@+id/menuCabOpenWith"
         android:title="@string/open_with"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
-        android:id="@+id/cab_set_as"
+        android:id="@+id/menuCabSetAs"
         android:title="@string/set_as"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
-        android:id="@+id/cab_edit"
+        android:id="@+id/menuCabEdit"
         android:icon="@drawable/ic_edit_vector"
         android:title="@string/edit"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_add_to_favorites"
+        android:id="@+id/menuCabAddToFavorites"
         android:icon="@drawable/ic_star_off_vector"
         android:title="@string/add_to_favorites"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_remove_from_favorites"
+        android:id="@+id/menuCabRemoveFromFavorites"
         android:icon="@drawable/ic_star_on_vector"
         android:title="@string/remove_from_favorites"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_restore_recycle_bin_files"
+        android:id="@+id/menuCabRestoreRecycleBinFiles"
         android:title="@string/restore_selected_files"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
-        android:id="@+id/cab_fix_date_taken"
+        android:id="@+id/menuCabFixDateTaken"
         android:title="@string/fix_date_taken"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
-        android:id="@+id/cab_select_all"
+        android:id="@+id/meuCabSelectAll"
         android:icon="@drawable/ic_select_all_vector"
         android:title="@string/select_all"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 </menu>

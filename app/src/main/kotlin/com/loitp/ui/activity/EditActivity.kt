@@ -132,9 +132,9 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.save_as -> saveImage()
-            R.id.edit -> editWith()
-            R.id.share -> shareImage()
+            R.id.menuSaveAs -> saveImage()
+            R.id.menuEdit -> editWith()
+            R.id.menuShare -> shareImage()
             else -> return super.onOptionsItemSelected(item)
         }
         return true

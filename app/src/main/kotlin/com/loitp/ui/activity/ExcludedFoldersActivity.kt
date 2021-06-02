@@ -45,7 +45,7 @@ class ExcludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.add_folder -> addFolder()
+            R.id.menuAddFolder -> addFolder()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
