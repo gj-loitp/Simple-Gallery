@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
+//def keystorePropertiesFile = rootProject.file("keystore.properties")
+//def keystoreProperties = new Properties()
+//if (keystorePropertiesFile.exists()) {
+//    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//}
 
 android {
     compileSdkVersion 30
@@ -25,7 +25,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("keystore.jks")
+            storeFile file("keystoregallery.jks")
             storePassword "04021993"
             keyAlias "loi"
             keyPassword "04021993"
@@ -49,16 +49,16 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-        if (is_proprietary) {
-            main.java.srcDirs += 'src/proprietary/kotlin'
-        }
+//        if (is_proprietary) {
+//            main.java.srcDirs += 'src/proprietary/kotlin'
+//        }
     }
 
-    flavorDimensions "licensing"
-    productFlavors {
-        proprietary {}
-        foss {}
-    }
+//    flavorDimensions "licensing"
+//    productFlavors {
+//        proprietary {}
+//        foss {}
+//    }
 
     lintOptions {
         checkReleaseBuilds false
@@ -105,42 +105,42 @@ dependencies {
 }
 
 // Apply the PESDKPlugin
-if (is_proprietary) {
-    apply plugin: 'ly.img.android.sdk'
-
-    imglyConfig {
-        vesdk {
-            enabled true
-            licencePath 'vesdk_license'
-        }
-
-        pesdk {
-            enabled true
-            licencePath 'pesdk_license'
-        }
-
-        modules {
-            include 'ui:video-trim'
-            include 'ui:core'
-            include 'ui:text'
-            include 'ui:focus'
-            include 'ui:brush'
-            include 'ui:filter'
-            include 'ui:sticker'
-            include 'ui:overlay'
-            include 'ui:transform'
-            include 'ui:adjustment'
-
-            include 'backend:serializer'
-            include 'backend:sticker-smart'
-            include 'backend:sticker-animated'
-
-            include 'assets:font-basic'
-            include 'assets:filter-basic'
-            include 'assets:overlay-basic'
-            include 'assets:sticker-shapes'
-            include 'assets:sticker-emoticons'
-            include 'assets:sticker-animated'
-        }
-    }
-}
+//if (is_proprietary) {
+//    apply plugin: 'ly.img.android.sdk'
+//
+//    imglyConfig {
+//        vesdk {
+//            enabled true
+//            licencePath 'vesdk_license'
+//        }
+//
+//        pesdk {
+//            enabled true
+//            licencePath 'pesdk_license'
+//        }
+//
+//        modules {
+//            include 'ui:video-trim'
+//            include 'ui:core'
+//            include 'ui:text'
+//            include 'ui:focus'
+//            include 'ui:brush'
+//            include 'ui:filter'
+//            include 'ui:sticker'
+//            include 'ui:overlay'
+//            include 'ui:transform'
+//            include 'ui:adjustment'
+//
+//            include 'backend:serializer'
+//            include 'backend:sticker-smart'
+//            include 'backend:sticker-animated'
+//
+//            include 'assets:font-basic'
+//            include 'assets:filter-basic'
+//            include 'assets:overlay-basic'
+//            include 'assets:sticker-shapes'
+//            include 'assets:sticker-emoticons'
+//            include 'assets:sticker-animated'
+//        }
+//    }
+//}
